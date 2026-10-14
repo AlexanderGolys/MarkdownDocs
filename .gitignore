@@ -5,3 +5,6 @@ CLAUDE.md
 
 # Markdown written during development
 /docs/
+
+# Test build output
+/test-build/out/

@@ -4,11 +4,20 @@ newPackage(
     Version => "0.2",
     Date => "October 15, 2026",
     Headline => "Markdown documentation from Macaulay2 package documentation",
-    Authors => {{Name => "Alexander Golys", Email => "alexandergolys@gmail.com"}},
+    Authors => {{
+        Name => "Alexander Golys",
+        Email => "alexandergolys@gmail.com"
+    }},
     Keywords => {"Documentation"},
     PackageExports => {"Text"},
+    AuxiliaryFiles => true,
+    Configuration => {
+        "BookTemplate" => "",
+        "TreeSitterLibrary" => "",
+        "TreeSitterHighlights" => ""
+    },
     DebuggingMode => false
-    )
+)
 
 export {
     "markdownBlocks",
@@ -17,81 +26,108 @@ export {
     "writePackageMarkdown",
     "writeMarkdownIndex",
     "LinkedPackages"
-    }
+}
 
 -- The documentation internals that Core's own html renderer and installPackage use;
 -- the hypertext types come from Text.
 coreInternal := name -> value Core#"private dictionary"#name
-getPrimaryTag         := coreInternal "getPrimaryTag"
-fixup                 := coreInternal "fixup"
-isMissingDoc          := coreInternal "isMissingDoc"
-isUndocumented        := coreInternal "isUndocumented"
-isSecondaryTag        := coreInternal "isSecondaryTag"
+getPrimaryTag := coreInternal "getPrimaryTag"
+fixup := coreInternal "fixup"
+isMissingDoc := coreInternal "isMissingDoc"
+isUndocumented := coreInternal "isUndocumented"
+isSecondaryTag := coreInternal "isSecondaryTag"
 fetchRawDocumentation := coreInternal "fetchRawDocumentation"
-redoMENU              := coreInternal "redoMENU"
-deepSelect            := coreInternal "deepSelect"
-toFilename            := coreInternal "toFilename"
-toURL                 := coreInternal "toURL"
-removeFiles           := coreInternal "removeFiles"
-headline              := coreInternal "headline"
+redoMENU := coreInternal "redoMENU"
+deepSelect := coreInternal "deepSelect"
+toFilename := coreInternal "toFilename"
+toURL := coreInternal "toURL"
+removeFiles := coreInternal "removeFiles"
+defaultHEAD := coreInternal "defaultHEAD"
+headline := coreInternal "headline"
 
 -----------------------------------------------------------------------------
 -- Markdown rendering of Hypertext
 --
 -- The same per-type dispatch Core uses for `html`, `info` and `net`, written for
--- CommonMark as mdBook reads it: text is escaped, examples and usage lines become
--- fenced `m2` blocks, non-hypertext values become `$texMath$` exactly as
--- `html Thing` does, and documentation links resolve to Markdown pages. Core's own `markdown` targets Jekyll (Liquid raw tags, kramdown
--- attributes, links to installed .html files), hence separate methods.
+-- CommonMark: text is escaped, examples and usage lines become fenced `m2`
+-- blocks, mathematics stays raw TeX between dollar signs (non-hypertext values
+-- become `$texMath$`, as `html Thing` does), for a math preprocessor or any
+-- Markdown viewer with math, and documentation links resolve to Markdown pages.
+-- Core's own `markdown` targets Jekyll (Liquid raw tags, kramdown attributes,
+-- links to installed .html files), hence separate methods.
 -----------------------------------------------------------------------------
 
 markdownBlocks = method(Dispatch => Thing, TypicalValue => List)
 markdownInline = method(Dispatch => Thing, TypicalValue => String)
 
-escapeMarkdown := s -> replace(///[\\`*_\[\]<>|~&]///, ///\\$&///, s)
+escapeMarkdown := s -> replace(///[\\`*_\[\]<>|~&$]///, ///\\$&///, s)
+
+-- The math delimiters of the HTML documentation's KaTeX setup that Markdown math
+-- shares: display $$...$$ and inline $...$.
+mathSpan := ///\$\$[\s\S]+?\$\$|\$[^$]+\$///
+
+-- Prose: escaped for CommonMark, except mathematics, which stays raw TeX.
+escapeText := s -> (
+    pieces := {};
+    while (span := regex(mathSpan, s)) =!= null do (
+        pieces = append(pieces, escapeMarkdown substring(0, span#0#0, s) | substring(span#0, s));
+        s = substring(span#0#0 + span#0#1, s)
+    );
+    concatenate append(pieces, escapeMarkdown s)
+)
 
 -- A paragraph is one line; a leading list/heading/quote marker is escaped so it
 -- stays text.
 paragraph := s -> (
     line := replace(///\A\s+|\s+\z///, "", replace(///\s+///, " ", s));
-    replace(///\A([#>+=-]|\d+[.)])///, ///\\$1///, line))
+    replace(///\A([#>+=-]|\d+[.)])///, ///\\$1///, line)
+)
 
 longestBacktickRun := s -> max prepend(0, apply(select(///`+///, s), r -> #r))
 
 codeSpan := s -> (
-    if not match(///\S///, s) then return "";
+    if not match(///\S///, s) then
+        return "";
     ticks := concatenate(longestBacktickRun s + 1 : "`");
     padding := if match(///\A`|`\z///, s) then " " else "";
-    concatenate(ticks, padding, s, padding, ticks))
+    concatenate(ticks, padding, s, padding, ticks)
+)
 
 -- Leading and trailing blank lines removed, line by line: a whitespace regex
 -- anchored at the end exceeds Boost's complexity bound on long example output.
 trimBlankLines := s -> (
     textLines := lines s;
     nonBlank := positions(textLines, l -> match(///\S///, l));
-    if #nonBlank == 0 then "" else demark("\n", take(textLines, {first nonBlank, last nonBlank})))
+    if #nonBlank == 0 then
+        ""
+    else demark("\n", take(textLines, {first nonBlank, last nonBlank}))
+)
 
 codeFence := (language, s) -> (
     ticks := concatenate(max(3, longestBacktickRun s + 1) : "`");
-    concatenate(ticks, language, newline, trimBlankLines s, newline, ticks))
+    concatenate(ticks, language, newline, trimBlankLines s, newline, ticks)
+)
 
 -- Literal text of a subtree, ignoring markup and attributes.
 plainText = method(Dispatch => Thing)
-plainText String    := identity
+plainText String := identity
 plainText Option    :=
-plainText Nothing   := String => x -> ""
+    plainText Nothing := String => x -> ""
 plainText Hypertext := String => x -> concatenate apply(toList x, plainText)
-plainText Thing     := toString
+plainText Thing := toString
 
 hypertextAttribute := (x, name) -> (
     found := select(toList x, e -> instance(e, Option) and e#0 === name);
-    if #found > 0 then (last found)#1)
+    if #found > 0 then
+        (last found)#1
+)
 
 contents := x -> select(toList x, e -> not instance(e, Option))
 
 isBlock = x -> (
     instance(x, HypertextParagraph) or instance(x, HypertextContainer) or instance(x, HR)
-    or instance(x, Hypertext) and not instance(x, HypertextVoid) and any(contents x, isBlock))
+    or instance(x, Hypertext) and not instance(x, HypertextVoid) and any(contents x, isBlock)
+)
 
 codeTypes := {TT, CODE, KBD, SAMP, VAR}
 isLink := x -> instance(x, TO) or instance(x, TO2) or instance(x, TOH) or instance(x, HREF)
@@ -108,7 +144,8 @@ blocksOf := children -> select(
     flatten sublists(children, c -> not isBlock c,
         run -> {paragraph inlineRun run},
         markdownBlocks),
-    b -> match(///\S///, b))
+    b -> match(///\S///, b)
+)
 
 -----------------------------------------------------------------------------
 -- Links. Each package's pages sit in a directory of their own, the directories
@@ -126,172 +163,215 @@ linkedPackages := new MutableHashTable
 pageImages := new MutableHashTable
 
 onlinePage := (pkgname, stem) -> concatenate(
-    onlineDocumentation, replace("PKG", pkgname, Layout#1#"packagehtml"), stem, ".html")
+    onlineDocumentation, replace("PKG", pkgname, Layout#1#"packagehtml"), stem, ".html"
+)
 
 -- Package and page name (file stem) of a tag's documentation, or null when the
 -- node has no page (missing or undocumented), mirroring html TO2. The page names
 -- are those of the installed HTML.
 documentationPage := tag -> (
-    if tag.Format != tag.Package then tag = getPrimaryTag fixup tag;
-    if isUndocumented tag or isMissingDoc tag then return null;
+    if tag.Format != tag.Package then
+        tag = getPrimaryTag fixup tag;
+    if isUndocumented tag or isMissingDoc tag then
+        return null;
     fkey := format tag;
-    (tag.Package, if fkey === tag.Package then "index" else toFilename fkey))
+    (tag.Package, if fkey === tag.Package then "index" else toFilename fkey)
+)
 
 -- Page file of a tag within its package's directory.
 pageFile := tag -> (documentationPage tag)#1 | ".md"
 
 -- A page of the current package, of a linked package, or of the website.
 pageTarget := (pkgname, stem) -> (
-    if pkgname === currentPackage#"pkgname" then stem | ".md"
-    else if linkedPackages#?pkgname then concatenate("../", pkgname, "/", stem, ".md")
-    else onlinePage(pkgname, stem))
+    if pkgname === currentPackage#"pkgname" then
+        stem | ".md"
+    else if linkedPackages#?pkgname then
+        concatenate("../", pkgname, "/", stem, ".md")
+    else onlinePage(pkgname, stem)
+)
 
 markdownLink := (tag, text) -> (
     page := documentationPage tag;
-    if page === null then return text | " (missing documentation)";
-    concatenate("[", text, "](<", pageTarget page, ">)"))
+    if page === null then
+        return text | " (missing documentation)";
+    concatenate("[", text, "](<", pageTarget page, ">)")
+)
 
 linkText := x -> escapeMarkdown concatenate(format x#0, if x#?1 then x#1)
 
-markdownInline TO  := x -> markdownLink(x#0, linkText x)
+markdownInline TO := x -> markdownLink(x#0, linkText x)
 markdownInline TO2 := x -> markdownLink(x#0, escapeMarkdown x#1)
 markdownInline TOH := x -> concatenate(
     markdownInline TO toList x,
-    if (h := headline x#0) =!= null then (" -- ", escapeMarkdown h))
+    if (h := headline x#0) =!= null then (" -- ", escapeText h)
+)
 
 -- A path relative to an install prefix as the website names it: the website
 -- serves a single-tree install (Layout#1), a local install is split (Layout#2).
 onlineInstallPath := path -> (
     splitPrefixes := select(keys Layout#2, key -> match("\\A" | regexQuote Layout#2#key, path));
-    if #splitPrefixes == 0 then return path;
+    if #splitPrefixes == 0 then
+        return path;
     key := last sort(splitPrefixes, key -> #Layout#2#key);
-    Layout#1#key | substring(#Layout#2#key, path))
+    Layout#1#key | substring(#Layout#2#key, path)
+)
 
 -- Files installed with a package are named relative to its install prefix.
 installedFiles := path -> select(apply(prefixPath, prefix -> prefix | path), fileExists)
 
 -- An installed documentation page named by its path; captures package and page name.
-installedPagePattern := replace("PKG", "([^/]+)", regexQuote Layout#1#"packagehtml") | ///([^/#]+)\.html\z///
+installedPagePattern := replace("PKG", "([^/]+)", regexQuote Layout#1#"packagehtml") |
+    ///([^/#]+)\.html\z///
 
 -- Links to installed documentation pages resolve like documentation links;
 -- links to other files installed with a package point to them on the website.
 hrefTarget := url -> (
     page := regex(installedPagePattern, url);
-    if page =!= null then pageTarget(substring(page#1, url), substring(page#2, url))
-    else if #installedFiles url > 0 then onlineDocumentation | onlineInstallPath url
-    else toURL url)
+    if page =!= null then
+        pageTarget(substring(page#1, url), substring(page#2, url))
+    else if #installedFiles url > 0 then
+        onlineDocumentation | onlineInstallPath url
+    else toURL url
+)
 
 markdownInline HREF := x -> (
     url := hrefTarget first x;
     text := if #x > 1 then inlineRun drop(toList x, 1) else escapeMarkdown url;
-    concatenate("[", text, "](<", url, ">)"))
+    concatenate("[", text, "](<", url, ">)")
+)
 
 markdownInline IMG := x -> (
     src := hypertextAttribute(x, "src");
     installed := installedFiles src;
     target := if #installed == 0 then toURL src else (
-        pageImages#(first installed) = "images/" | baseFilename first installed);
-    concatenate("![", escapeMarkdown(hypertextAttribute(x, "alt") ?? ""), "](<", target, ">)"))
+        pageImages#(first installed) = "images/" | baseFilename first installed
+    );
+    concatenate("![", escapeMarkdown(hypertextAttribute(x, "alt") ?? ""), "](<", target, ">)")
+)
 
 -----------------------------------------------------------------------------
 -- Inline markup
 -----------------------------------------------------------------------------
 
-markdownInline String  := escapeMarkdown
+markdownInline String := escapeText
 markdownInline Nothing :=
-markdownInline Option  :=
-markdownInline COMMENT :=
-markdownInline ANCHOR  :=
-markdownInline SCRIPT  :=
-markdownInline STYLE   := x -> ""
+    markdownInline Option  :=
+    markdownInline COMMENT :=
+    markdownInline ANCHOR  :=
+    markdownInline SCRIPT  :=
+    markdownInline STYLE := x -> ""
 markdownInline LITERAL := x -> concatenate contents x
-markdownInline BR      := x -> "<br>"
-markdownInline LATER   := x -> markdownInline x#0()
-markdownInline Thing   := x -> "$" | escapeMarkdown texMath x | "$"
+markdownInline BR := x -> "<br>"
+markdownInline LATER := x -> markdownInline x#0()
+markdownInline Thing := x -> "$" | texMath x | "$"
 
 markdownInline Hypertext := x -> (
-    if isBlock x then demark(" ", markdownBlocks x)
-    else inlineRun contents x)
+    if isBlock x then
+        demark(" ", markdownBlocks x)
+    else inlineRun contents x
+)
 
 emphasis := delimiter -> x -> (
     inner := inlineRun contents x;
-    if match(///\S///, inner) then delimiter | inner | delimiter else inner)
+    if match(///\S///, inner) then
+        delimiter | inner | delimiter
+    else inner
+)
 markdownInline BOLD   :=
-markdownInline STRONG := emphasis "**"
+    markdownInline STRONG := emphasis "**"
 markdownInline EM     :=
-markdownInline ITALIC := emphasis "*"
+    markdownInline ITALIC := emphasis "*"
 
 scan({SUB, SUP, SMALL}, T -> markdownInline T := x -> (
     tag := toLower toString T;
-    concatenate("<", tag, ">", inlineRun contents x, "</", tag, ">")))
+    concatenate("<", tag, ">", inlineRun contents x, "</", tag, ">")
+))
 
 -- Code spans; a link inside code keeps working and the text around it stays code.
 scan(codeTypes, T -> markdownInline T := x -> (
-    if not any(contents x, isLink) then codeSpan replace(///\s+///, " ", plainText x)
-    else concatenate apply(contents x, c -> if isLink c then markdownInline c else codeSpan plainText c)))
+    if not any(contents x, isLink) then
+        codeSpan replace(///\s+///, " ", plainText x)
+    else concatenate apply(contents x, c ->
+            if isLink c then markdownInline c else codeSpan plainText c)
+))
 
 -----------------------------------------------------------------------------
 -- Blocks
 -----------------------------------------------------------------------------
 
-markdownBlocks Thing     := x -> {paragraph markdownInline x}
+markdownBlocks Thing := x -> {paragraph markdownInline x}
 markdownBlocks Nothing   :=
-markdownBlocks Option    :=
-markdownBlocks COMMENT   :=
-markdownBlocks SCRIPT    :=
-markdownBlocks STYLE     := x -> {}
-markdownBlocks LATER     := x -> markdownBlocks x#0()
+    markdownBlocks Option    :=
+    markdownBlocks COMMENT   :=
+    markdownBlocks SCRIPT    :=
+    markdownBlocks STYLE := x -> {}
+markdownBlocks LATER := x -> markdownBlocks x#0()
 markdownBlocks Hypertext := x -> blocksOf contents x
-markdownBlocks MENU      := x -> markdownBlocks redoMENU x
-markdownBlocks HR        := x -> {"***"}
-markdownBlocks IFRAME    := x -> {html x}
+markdownBlocks MENU := x -> markdownBlocks redoMENU x
+markdownBlocks HR := x -> {"***"}
+markdownBlocks IFRAME := x -> {html x}
 
 heading := (level, x) -> {concatenate(level : "#", " ", paragraph inlineRun contents x)}
 headingLevels := {HEADER1, HEADER2, HEADER3, HEADER4, HEADER5, HEADER6}
-scan(#headingLevels, i -> (T := headingLevels#i; markdownBlocks T := x -> heading(i + 1, x)))
+scan(#headingLevels, i -> (T := headingLevels#i;
+    markdownBlocks T := x -> heading(i + 1, x)))
 markdownBlocks SUBSECTION := x -> heading(2, x)
 
 codeLanguages := hashTable {"language-macaulay2" => "m2"}
 languageOf := x -> (
     code := select(contents x, c -> instance(c, CODE));
     language := if #code > 0 then hypertextAttribute(first code, "class");
-    if codeLanguages#?language then codeLanguages#language else "text")
-markdownBlocks PRE         := x -> {codeFence(languageOf x, plainText x)}
+    if codeLanguages#?language then
+        codeLanguages#language
+    else "text"
+)
+markdownBlocks PRE := x -> {codeFence(languageOf x, plainText x)}
 markdownBlocks ExampleItem := x -> {codeFence("m2", plainText x)}
 
 markdownBlocks BLOCKQUOTE := x -> {
-    replace("(?m)^", "> ", demark("\n>\n", blocksOf contents x))}
+    replace("(?m)^", "> ", demark("\n>\n", blocksOf contents x))
+}
 
 -- List items continue on lines indented past their marker.
 listItem := (marker, item) -> (
     itemLines := separate("\n", demark("\n", blocksOf contents item));
     indent := concatenate(#marker : " ");
     demark("\n", prepend(marker | first itemLines,
-        apply(drop(itemLines, 1), l -> if l == "" then l else indent | l))))
+        apply(drop(itemLines, 1), l -> if l == "" then l else indent | l)))
+)
 markdownBlocks UL := x -> {demark("\n", apply(contents x, item -> listItem("- ", item)))}
-markdownBlocks OL := x -> {demark("\n", apply(#contents x, i -> listItem(toString(i + 1) | ". ", (contents x)#i)))}
+markdownBlocks OL := x -> {demark("\n", apply(#contents x, i -> listItem(toString(i + 1) | ". ", (
+    contents x
+)#i)))}
 
 -- Definition lists: a term in bold. Usage lists (terms whose descriptions are
 -- lone code) collect their code into one highlighted block.
-isLoneCode := dd -> (c := contents dd; #c == 1 and instance(first c, CODE))
+isLoneCode := dd -> (c := contents dd;
+    #c == 1 and instance(first c, CODE))
 markdownBlocks DL := x -> flatten apply(
     sublists(contents x, e -> instance(e, DD), identity, identity),
     group -> (
-        if instance(group, DT) then {"**" | paragraph markdownInline(new SPAN from contents group) | "**"}
-        else if all(group, isLoneCode) then {codeFence("m2", demark("\n", apply(group, plainText)))}
-        else flatten apply(group, dd -> blocksOf contents dd)))
+        if instance(group, DT) then {"**" | paragraph markdownInline(new SPAN from contents group) |
+                "**"} else if all(group, isLoneCode) then {codeFence("m2", demark("\n", apply(group,
+                    plainText)))} else flatten apply(group, dd -> blocksOf contents dd)
+    )
+)
 
 -- Example sessions are a table of one-cell rows; anything else is a GFM table.
 markdownBlocks TABLE := x -> (
     rows := select(contents x, r -> instance(r, TR));
-    if hypertextAttribute(x, "class") === "examples" then return flatten apply(rows, r -> blocksOf contents r);
+    if hypertextAttribute(x, "class") === "examples" then
+        return flatten apply(rows, r -> blocksOf contents r);
     cells := apply(rows, r -> apply(select(contents r, c -> instance(c, TD)), c ->
             paragraph markdownInline new SPAN from contents c));
     cells = select(cells, r -> #r > 0);
-    if #cells == 0 then return {};
+    if #cells == 0 then
+        return {};
     width := max apply(cells, r -> #r);
     row := r -> "| " | demark(" | ", join(r, (width - #r) : "")) | " |";
-    {demark("\n", join({row first cells, concatenate("|", width : "---|")}, apply(drop(cells, 1), row)))})
+    {demark("\n", join({row first cells, concatenate("|", width : "---|")}, apply(drop(cells, 1),
+        row)))}
+)
 
 -- mdBook expands `{{#...}}` anywhere in a chapter, code included; `\{{#` is its escape.
 protectDirectives := s -> replace(///\{\{#///, ///\\{{#///, s)
@@ -311,13 +391,19 @@ packageTags := pkg -> (
     db := pkg#"raw documentation database";
     rawTags := join(
         apply(values pkg#"raw documentation", rawdoc -> rawdoc.DocumentTag),
-        if db =!= null then apply(keys db, fkey -> (value db#fkey).DocumentTag) else {});
+        if db =!= null then
+            apply(keys db, fkey -> (value db#fkey).DocumentTag)
+        else {}
+    );
     symbolTags := apply(select(pairs pkg.Dictionary, (name, sym) -> not match("\\$", name)),
         (name, sym) -> makeDocumentTag(sym, Package => pkg));
     top := makeDocumentTag(pkg#"pkgname", Package => pkg);
     byKey := new MutableHashTable;
-    scan(join({top}, symbolTags, rawTags), tag -> if not byKey#?(format tag) then byKey#(format tag) = tag);
-    select(values byKey, hasPage))
+    scan(join({top}, symbolTags, rawTags), tag -> if not (byKey#?(format tag)) then byKey#(
+        format tag
+    ) = tag);
+    select(values byKey, hasPage)
+)
 
 -- The subnode graph and depth-first forest of installPackage's
 -- assembleTree/makeForest. Core gives a node reached from several parents an
@@ -327,12 +413,16 @@ subnodeSections := {Description, Acknowledgement, Contributors, References, Cave
 
 subnodesOf := (pkg, tag) -> (
     rawdoc := fetchRawDocumentation tag;
-    if rawdoc === null then return {};
-    content := apply(select(subnodeSections, section -> rawdoc#?section), section -> rawdoc#section);
+    if rawdoc === null then
+        return {};
+    content := apply(select(subnodeSections, section -> rawdoc#?section), section ->
+            rawdoc#section);
     isSubnodeLink := e -> instance(e, BasicList) and #e > 0 and e#0 === ("class" => "subnode");
     sublinks := deepSelect(content, isSubnodeLink);
-    subnodes := deepSelect(join(sublinks, if rawdoc#?Subnodes then rawdoc.Subnodes else ()), DocumentTag);
-    getPrimaryTag \ select(fixup \ subnodes, node -> package node === pkg))
+    subnodes := deepSelect(join(sublinks, if rawdoc#?Subnodes then rawdoc.Subnodes else ()),
+        DocumentTag);
+    getPrimaryTag \ select(fixup \ subnodes, node -> package node === pkg)
+)
 
 -- {(tag, depth)} in table-of-contents order, the top node first at depth 0.
 packageOutline := (pkg, tags) -> (
@@ -341,10 +431,64 @@ packageOutline := (pkg, tags) -> (
     roots := unique prepend(top, sort toList(set keys graph - set flatten values graph));
     listed := new MutableHashTable;
     visit := (tag, depth) -> (
-        if listed#?tag or not graph#?tag then return {};
+        if listed#?tag or not graph#?tag then
+            return {};
         listed#tag = true;
-        prepend((tag, depth), flatten apply(graph#tag, child -> visit(child, depth + 1))));
-    flatten apply(roots, root -> visit(root, if root === top then 0 else 1)))
+        prepend((tag, depth), flatten apply(graph#tag, child -> visit(child, depth + 1)))
+    );
+    flatten apply(roots, root -> visit(root, if root === top then 0 else 1))
+)
+
+-----------------------------------------------------------------------------
+-- mdBook configuration. Each directory written is also an mdBook source: its
+-- book.toml comes from a template (the bundled one, or the configured
+-- "BookTemplate"), and the math macros of the HTML documentation's KaTeX setup
+-- sit beside the books in katex-macros.txt.
+-----------------------------------------------------------------------------
+
+configuration := () -> (options MarkdownDocs).Configuration
+
+auxiliaryFile := name -> get(currentFileDirectory | "MarkdownDocs/" | name)
+bundledBookTemplate := auxiliaryFile "book.toml"
+treeSitterTemplate := auxiliaryFile "treesitter.toml"
+
+bookTemplate := () -> (
+    template := (configuration())#"BookTemplate";
+    if template == "" then
+        bundledBookTemplate
+    else get template
+)
+
+treeSitterSection := () -> (
+    conf := configuration();
+    if conf#"TreeSitterLibrary" == "" then
+        ""
+    else
+        replace("@HIGHLIGHTS@", conf#"TreeSitterHighlights",
+            replace("@LIBRARY@", conf#"TreeSitterLibrary", treeSitterTemplate))
+)
+
+-- \name:definition lines, the macros file format of mdbook-katex, from the macros
+-- object of the KaTeX setup in defaultHEAD (JavaScript string literals).
+katexMacros := () -> (
+    katex := html first select(toList defaultHEAD "", node -> instance(node, LITERAL) and match(
+        "katex", html node
+    ));
+    macrosObject := substring((regex(///var macros = \{([\s\S]*?)\n\s*\}///, katex))#1, katex);
+    unescape := s -> replace(///\\\\///, ///\\///, s);
+    concatenate apply(select(///"[^"]*":\s*"[^"]*"///, macrosObject), pair -> (
+        (name, definition) := toSequence apply(select(///"[^"]*"///, pair), q -> unescape substring(
+            1, #q - 2, q
+        ));
+        name | ":" | definition | "\n"
+    ))
+)
+
+writeBookConfiguration := (bookDir, name, title) -> (
+    (bookDir | "/book.toml") << replace("@TREESITTER@", treeSitterSection(),
+        replace("@TITLE@", title, replace("@NAME@", name, bookTemplate()))) << close;
+    (bookDir | "/../katex-macros.txt") << katexMacros() << close
+)
 
 -----------------------------------------------------------------------------
 -- Writing Markdown. <dir>/<package>/ holds a package's pages, its SUMMARY.md
@@ -355,8 +499,10 @@ packageOutline := (pkg, tags) -> (
 directoryIn := (dir, name) -> replace("/+\\z", "", dir) | "/" | name
 
 writePackageMarkdown = method(Options => {LinkedPackages => {}})
-writePackageMarkdown(String, String)  := opts -> (name, dir) -> writePackageMarkdown(needsPackage name, dir, opts)
-writePackageMarkdown(Package, String) := opts -> (pkg, dir) -> (
+writePackageMarkdown (String, String) := opts -> (name, dir) -> writePackageMarkdown(
+    needsPackage name, dir, opts
+)
+writePackageMarkdown (Package, String) := opts -> (pkg, dir) -> (
     name := pkg#"pkgname";
     packageDir := directoryIn(dir, name);
     removeFiles packageDir;
@@ -370,20 +516,28 @@ writePackageMarkdown(Package, String) := opts -> (pkg, dir) -> (
     (summary, failure) := trap (
         tags := packageTags pkg;
         pages := apply(tags, pageFile);
-        if #unique pages != #pages then error("MarkdownDocs: page names collide in ", name);
+        if #unique pages != #pages then
+            error("MarkdownDocs: page names collide in ", name);
         scan(tags, pages, (tag, page) -> (packageDir | "/" | page) << markdownPage tag << close);
         outline := packageOutline(pkg, tags);
         summaryEntry := (tag, depth) -> concatenate(
-            (depth - 1) : "  ", "- [", escapeMarkdown format tag, "](<", pageFile tag, ">)");
+            (depth - 1) : "  ", "- [", escapeMarkdown format tag, "](<", pageFile tag, ">)"
+        );
         concatenate(
             "# Summary\n\n[", escapeMarkdown name, "](<", pageFile (first outline)#0, ">)\n\n",
-            demark("\n", apply(drop(outline, 1), summaryEntry)), "\n"));
+            demark("\n", apply(drop(outline, 1), summaryEntry)), "\n"
+        )
+    );
     currentPackage = enclosingPackage;
-    if failure =!= null then error toString failure;
+    if failure =!= null then
+        error toString failure;
     (packageDir | "/SUMMARY.md") << summary << close;
-    if #pageImages > 0 then makeDirectory(packageDir | "/images");
+    if #pageImages > 0 then
+        makeDirectory(packageDir | "/images");
     scan(pairs pageImages, (file, image) -> copyFile(file, packageDir | "/" | image));
-    packageDir)
+    writeBookConfiguration(packageDir, name, name | " — Macaulay2 documentation");
+    packageDir
+)
 
 -- Packages with installed documentation, as makePackageIndex finds them
 -- (the first prefix providing a package wins).
@@ -391,30 +545,40 @@ documentedPackages := () -> (
     found := new MutableHashTable;
     flatten apply(prefixPath, prefix -> flatten apply(values Layout, layout -> (
         docdir := prefix | layout#"docdir";
-        if not isDirectory docdir then return {};
+        if not isDirectory docdir then
+            return {};
         names := select(sort readDirectory docdir, name ->
-            not found#?name
+                not found#?name
             and fileExists(prefix | replace("PKG", name, layout#"packagehtml") | "index.html"));
         scan(names, name -> found#name = true);
-        names))))
+        names
+    )))
+)
+
+-- The index sits beside the package directories as a directory of its own.
+indexName := "index"
 
 writeMarkdownIndex = method()
-writeMarkdownIndex(List, String) := (names, dir) -> (
+writeMarkdownIndex (List, String) := (names, dir) -> (
     entry := (name, target) -> (
         headline := (readPackage name).Headline;
         concatenate("- [", name, "](<", target, ">)",
-            if headline =!= null then (" -- ", escapeMarkdown headline), "\n"));
+            if headline =!= null then (" -- ", escapeText headline), "\n")
+    );
     listed := set names;
     others := select(documentedPackages(), name -> not listed#?name);
-    file := directoryIn(dir, "index.md");
-    makeDirectory replace("[^/]*\\z", "", file);
-    file << concatenate("# Macaulay2 documentation\n\n",
+    indexDir := directoryIn(dir, indexName);
+    makeDirectory indexDir;
+    (indexDir | "/README.md") << concatenate("# Macaulay2 documentation\n\n",
         "## Packages\n\n",
-        apply(sort names, name -> entry(name, name | "/index.md")),
+        apply(sort names, name -> entry(name, "../" | name | "/index.md")),
         if #others > 0 then ("\n## Other installed packages\n\n",
             "Documented on the [Macaulay2 website](<", onlineDocumentation, ">).\n\n",
             apply(others, name -> entry(name, onlinePage(name, "index"))))) << close;
-    file)
+    (indexDir | "/SUMMARY.md") << "# Summary\n\n[Macaulay2 documentation](README.md)\n" << close;
+    writeBookConfiguration(indexDir, indexName, "Macaulay2 documentation");
+    indexDir
+)
 
 -----------------------------------------------------------------------------
 
@@ -435,16 +599,22 @@ Node
       A page is exactly what @TO installPackage@ renders to HTML -- the hypertext
       @TO help@ assembles for a documentation node, with usage, inputs, outputs,
       examples and their stored output -- serialized by @TO markdownBlocks@
-      instead of @TO html@. The table of contents follows the package's
-      documentation tree, and is written in the {\tt SUMMARY.md} format of
-      @HREF{"https://rust-lang.github.io/mdBook/", "mdBook"}@, so each package
-      directory is a ready mdBook source; building books from it is left to mdBook.
+      instead of @TO html@. Mathematics stays raw TeX between dollar signs, the
+      convention of math-aware Markdown viewers and preprocessors.
+
+      Each directory written is also a ready
+      @HREF{"https://rust-lang.github.io/mdBook/", "mdBook"}@ source: the table of
+      contents is a {\tt SUMMARY.md}, and a {\tt book.toml} declares the
+      preprocessors that render it. This package only writes files; building books
+      is left to mdBook and its preprocessors.
     Example
       markdownInline TT "ring R"
       first markdownBlocks UL {"one", TO "ring"}
+      markdownInline "a map $F \\otimes G \\to G \\otimes F$ of modules"
   Subnodes
     writePackageMarkdown
     writeMarkdownIndex
+    "mdBook configuration"
     markdownPage
     markdownBlocks
 Node
@@ -473,13 +643,13 @@ Node
       the package directory holds a Markdown page for each documentation node,
       named as in the installed HTML documentation, a {\tt SUMMARY.md} with the
       package's top node as introduction and the documentation tree as chapters,
-      and an {\tt images} directory with the images the pages show
+      an {\tt images} directory with the images the pages show, and a
+      {\tt book.toml}; see @TO "mdBook configuration"@
   Description
     Text
       Links to the package's own pages are relative page links, links into a
       linked package go to {\tt ../package/page.md}, and links into any other
-      package go to its page on the Macaulay2 website. Mathematics is written
-      between dollar signs, as in the HTML documentation.
+      package go to its page on the Macaulay2 website.
     CannedExample
       i1 : writePackageMarkdown("Graphs", "docs", LinkedPackages => {"Macaulay2Doc"})
 
@@ -500,16 +670,41 @@ Node
     dir:String
   Outputs
     :String
-      the index page, {\tt dir/index.md}
+      the index directory, {\tt dir/index}
   Description
     Text
       The index lists the given packages, linked to their directories, and then
       every other installed package with documentation, linked to the Macaulay2
-      website.
+      website. Like a package directory, it is an mdBook source.
     CannedExample
       i1 : writeMarkdownIndex({"Graphs", "Macaulay2Doc"}, "docs")
 
-      o1 = docs/index.md
+      o1 = docs/index
+Node
+  Key
+    "mdBook configuration"
+  Headline
+    the book.toml written with each directory
+  Description
+    Text
+      Each directory written is an mdBook source ({\tt src = "."}); books built from
+      the directories must sit side by side, named like them, for links between
+      packages to resolve. The {\tt book.toml} declares the
+      {\tt mdbook-katex} preprocessor, optional, with the math macros of the HTML
+      documentation, written to {\tt katex-macros.txt} beside the directories.
+
+      The configuration options of this package, set in its configuration file
+      (see @TO "packages"@), adjust the {\tt book.toml}:
+    Code
+      UL {
+          {TT "\"BookTemplate\"", ": a file to use instead of the bundled template; ",
+              TT "@TITLE@", ", ", TT "@NAME@", " and ", TT "@TREESITTER@",
+              " are replaced by the book's title, directory name, and the tree-sitter section"},
+          {TT "\"TreeSitterLibrary\"", ", ", TT "\"TreeSitterHighlights\"",
+              ": a compiled tree-sitter Macaulay2 grammar and its highlights query; when set, ",
+              "the book declares the ", TT "mdbook-tsitter", " preprocessor for ", TT "m2",
+              " code, with its stylesheet expected as ", TT "treesitter.css",
+              " beside the directories"}}
 Node
   Key
     markdownPage
@@ -548,8 +743,9 @@ Node
     Text
       Like @TO html@, these are methods with a case for each hypertext type, and
       can be extended to new types. Paragraph and container hypertext renders as
-      blocks, the rest inline; text is escaped for CommonMark, and other values
-      render as $\TeX$ math, as in the HTML documentation.
+      blocks, the rest inline. Text is escaped for CommonMark except mathematics,
+      which stays raw TeX; other values render as TeX math, as in the HTML
+      documentation.
     Example
       markdownInline SPAN {"see ", TO "ideal", " and ", TT "I_0"}
       markdownBlocks DIV {HEADER2 "Ideals", PARA {"generated by ", TT "x"}}
@@ -565,6 +761,9 @@ TEST ///
   assert(markdownBlocks HEADER2 "Ideals" == {"## Ideals"})
   assert(markdownBlocks DIV {"a", PARA "b"} == {"a", "b"})
   assert(markdownInline TT "a`b" == "``a`b``")
+  -- mathematics stays raw TeX; an unpaired dollar sign is literal
+  assert(markdownInline "map $a_b \\to c$ and x_y" == "map $a_b \\to c$ and x\\_y")
+  assert(markdownInline "costs $5" == "costs \\$5")
   -- an installed documentation page named by path links like a documentation key
   installedLink := markdownInline HREF {"/usr/share/doc/Macaulay2/Complexes/html/_free__Resolution.html", "f"};
   assert match("Complexes.*_free__Resolution\\.html>\\)\\z", installedLink);
@@ -579,8 +778,12 @@ TEST ///
   assert match("\\[FirstPackage\\]\\(<index.md>\\)", summary);
   assert match("firstFunction", summary);
   assert fileExists(packageDir | "/index.md");
-  indexPage := writeMarkdownIndex({"FirstPackage"}, dir);
-  assert match("\\(<FirstPackage/index.md>\\)", get indexPage)
+  assert match("src = \"\\.\"", get(packageDir | "/book.toml"));
+  assert not match("@[A-Z]+@", get(packageDir | "/book.toml"));
+  assert match("\\\\ZZ:", get(dir | "/katex-macros.txt"));
+  indexDir := writeMarkdownIndex({"FirstPackage"}, dir);
+  assert match("\\(<\\.\\./FirstPackage/index.md>\\)", get(indexDir | "/README.md"));
+  assert fileExists(indexDir | "/SUMMARY.md")
 ///
 
 TEST ///

@@ -1,0 +1,14 @@
+
+# Macaulay2 code highlighted by mdbook-tsitter with the configured grammar. Its
+# stylesheet (mdbook-tsitter css) is expected beside the books.
+[preprocessor.tsitter]
+# After math: code blocks must still be code when mdbook-katex skips them.
+after = ["links", "katex"]
+
+[preprocessor.tsitter.languages.macaulay2]
+library = "@LIBRARY@"
+highlights = "@HIGHLIGHTS@"
+aliases = ["m2", "macaulay2"]
+
+[output.html]
+additional-css = ["../treesitter.css"]

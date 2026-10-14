@@ -1,0 +1,22 @@
+# mdBook configuration written by MarkdownDocs. This directory is the book's
+# source (src = "."). Build each book into a directory named like its source,
+# all side by side, so that links between packages (../<package>/) resolve.
+[book]
+title = "@TITLE@"
+language = "en"
+src = "."
+
+# Mathematics is raw TeX between dollar signs, with the macros of the
+# Macaulay2 documentation; rendered when mdbook-katex is installed.
+[preprocessor.katex]
+optional = true
+after = ["links"]
+macros = "../katex-macros.txt"
+throw-on-error = false
+@TREESITTER@
+[output.html.fold]
+enable = true
+level = 0
+
+[output.html.print]
+enable = false
