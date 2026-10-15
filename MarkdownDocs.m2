@@ -378,7 +378,7 @@ protectDirectives := s -> replace(///\{\{#///, ///\\{{#///, s)
 
 markdownPage = method(TypicalValue => String)
 markdownPage DocumentTag := tag -> protectDirectives(demark("\n\n", markdownBlocks help tag) | "\n")
-markdownPage Thing := key -> markdownPage makeDocumentTag key
+markdownPage Thing := String => key -> markdownPage makeDocumentTag key
 
 -----------------------------------------------------------------------------
 -- Package pages and table of contents, as installPackage builds them
@@ -468,8 +468,14 @@ treeSitterSection := () -> (
             replace("@LIBRARY@", conf#"TreeSitterLibrary", treeSitterTemplate))
 )
 
+-- mdbook-katex renders math into the page before mdBook parses the Markdown, and
+-- KaTeX draws \tilde as a literal "~", so two of them in a paragraph become
+-- strikethrough around everything between them; \widetilde is drawn as SVG.
+strikethroughSafeMacros := ///\tilde:\widetilde/// | "\n"
+
 -- \name:definition lines, the macros file format of mdbook-katex, from the macros
--- object of the KaTeX setup in defaultHEAD (JavaScript string literals).
+-- object of the KaTeX setup in defaultHEAD (JavaScript string literals), followed
+-- by the overrides Markdown needs.
 katexMacros := () -> (
     katex := html first select(toList defaultHEAD "", node -> instance(node, LITERAL) and match(
         "katex", html node
@@ -481,7 +487,7 @@ katexMacros := () -> (
             1, #q - 2, q
         ));
         name | ":" | definition | "\n"
-    ))
+    )) | strikethroughSafeMacros
 )
 
 writeBookConfiguration := (bookDir, name, title) -> (
@@ -692,6 +698,8 @@ Node
       packages to resolve. The {\tt book.toml} declares the
       {\tt mdbook-katex} preprocessor, optional, with the math macros of the HTML
       documentation, written to {\tt katex-macros.txt} beside the directories.
+      There {\tt \\tilde} is drawn as {\tt \\widetilde}: KaTeX draws it as a
+      literal tilde, which Markdown would read as strikethrough.
 
       The configuration options of this package, set in its configuration file
       (see @TO "packages"@), adjust the {\tt book.toml}:
@@ -781,6 +789,7 @@ TEST ///
   assert match("src = \"\\.\"", get(packageDir | "/book.toml"));
   assert not match("@[A-Z]+@", get(packageDir | "/book.toml"));
   assert match("\\\\ZZ:", get(dir | "/katex-macros.txt"));
+  assert match("^\\\\tilde:\\\\widetilde$", get(dir | "/katex-macros.txt"));
   indexDir := writeMarkdownIndex({"FirstPackage"}, dir);
   assert match("\\(<\\.\\./FirstPackage/index.md>\\)", get(indexDir | "/README.md"));
   assert fileExists(indexDir | "/SUMMARY.md")
