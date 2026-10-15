@@ -1,0 +1,1445 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>showClassStructure - Macaulay2Doc — Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-b2932a8a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-ab61a4b0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Macaulay2Doc — Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="showclassstructure--display-class-structure"><a class="header" href="#showclassstructure--display-class-structure">showClassStructure – display class structure</a></h1>
+<h2 id="synopsis"><a class="header" href="#synopsis">Synopsis</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">showClassStructure
+</code></pre>
+</li>
+<li>Outputs:
+<ul>
+<li>a display of the class structure of all objects assigned to global variables</li>
+</ul>
+</li>
+</ul>
+<h2 id="synopsis-1"><a class="header" href="#synopsis-1">Synopsis</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">showClassStructure (x,y,...)
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>x</code></li>
+<li><code>y</code></li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>a display of the class structure of objects specified</li>
+</ul>
+</li>
+</ul>
+<p>Each object is displayed to the right of its <a href="_class.html">class</a>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i1</span> <span class="ts-operator">:</span> <span class="ts-variable">showClassStructure</span>
+
+<span class="ts-variable ts-variable-builtin">o1</span> <span class="ts-operator">=</span> <span class="ts-variable">Type</span> <span class="ts-operator">:</span> <span class="ts-variable">AffineVariety</span>
+            <span class="ts-variable">AngleBarList</span>
+            <span class="ts-variable">Array</span>
+            <span class="ts-variable">AssociativeExpression</span>
+            <span class="ts-variable">AtomicInt</span>
+            <span class="ts-variable">BasicList</span>
+            <span class="ts-variable">BettiTally</span>
+            <span class="ts-variable">Boolean</span> <span class="ts-operator">:</span> <span class="ts-boolean">false</span>
+                      <span class="ts-boolean">true</span>
+            <span class="ts-variable">CacheTable</span>
+            <span class="ts-variable">CC</span>
+              <span class="ts-operator">*</span>
+            <span class="ts-variable">CCi</span>
+               <span class="ts-operator">*</span>
+            <span class="ts-variable">CoherentSheaf</span>
+            <span class="ts-variable">CompiledFunction</span> <span class="ts-operator">:</span> <span class="ts-variable">addCancelTask</span>
+                               <span class="ts-variable">addDependencyTask</span>
+                               <span class="ts-variable">addStartTask</span>
+                               <span class="ts-variable">alarm</span>
+                               <span class="ts-variable">ancestor</span>
+                               <span class="ts-variable">any</span>
+                               <span class="ts-variable">append</span>
+                               <span class="ts-variable">apply</span>
+                               <span class="ts-variable">applyKeys</span>
+                               <span class="ts-variable">applyPairs</span>
+                               <span class="ts-variable">applyValues</span>
+                               <span class="ts-variable">ascii</span>
+                               <span class="ts-variable">atEndOfFile</span>
+                               <span class="ts-variable">cancelTask</span>
+                               <span class="ts-variable">changeDirectory</span>
+                               <span class="ts-variable">characters</span>
+                               <span class="ts-variable">class</span>
+                               <span class="ts-variable">clearEcho</span>
+                               <span class="ts-variable">collectGarbage</span>
+                               <span class="ts-variable">combine</span>
+                               <span class="ts-variable">commandInterpreter</span>
+                               <span class="ts-variable">concatenate</span>
+                               <span class="ts-variable">connectionCount</span>
+                               <span class="ts-variable">copy</span>
+                               <span class="ts-variable">cpuTime</span>
+                               <span class="ts-variable">createTask</span>
+                               <span class="ts-variable">currentColumnNumber</span>
+                               <span class="ts-variable">currentDirectory</span>
+                               <span class="ts-variable">currentRowNumber</span>
+                               <span class="ts-variable">currentTime</span>
+                               <span class="ts-variable">deepSplice</span>
+                               <span class="ts-variable">difference</span>
+                               <span class="ts-variable">disassemble</span>
+                               <span class="ts-variable">drop</span>
+                               <span class="ts-variable">echoOff</span>
+                               <span class="ts-variable">echoOn</span>
+                               <span class="ts-variable">erase</span>
+                               <span class="ts-error">error</span>
+                               <span class="ts-variable">exec</span>
+                               <span class="ts-variable">fileExecutable</span>
+                               <span class="ts-variable">fileExists</span>
+                               <span class="ts-variable">fileLength</span>
+                               <span class="ts-variable">fileMode</span>
+                               <span class="ts-variable">fileReadable</span>
+                               <span class="ts-variable">fileTime</span>
+                               <span class="ts-variable">fileWritable</span>
+                               <span class="ts-variable">firstkey</span>
+                               <span class="ts-variable">flagLookup</span>
+                               <span class="ts-variable">fork</span>
+                               <span class="ts-variable">frames</span>
+                               <span class="ts-variable">functionBody</span>
+                               <span class="ts-variable">GCstats</span>
+                               <span class="ts-variable">get</span>
+                               <span class="ts-variable">getc</span>
+                               <span class="ts-variable">getenv</span>
+                               <span class="ts-variable">getGlobalSymbol</span>
+                               <span class="ts-variable">getIOThreadMode</span>
+                               <span class="ts-variable">getNetFile</span>
+                               <span class="ts-variable">groupID</span>
+                               <span class="ts-variable">hash</span>
+                               <span class="ts-variable">hashTable</span>
+                               <span class="ts-variable">horizontalJoin</span>
+                               <span class="ts-variable">identity</span>
+                               <span class="ts-variable">installMethod</span>
+                               <span class="ts-variable">instance</span>
+                               <span class="ts-variable">isANumber</span>
+                               <span class="ts-variable">isCanceled</span>
+                               <span class="ts-variable">isDirectory</span>
+                               <span class="ts-variable">isGlobalSymbol</span>
+                               <span class="ts-variable">isInputFile</span>
+                               <span class="ts-variable">isListener</span>
+                               <span class="ts-variable">isMutable</span>
+                               <span class="ts-variable">isOpen</span>
+                               <span class="ts-variable">isOutputFile</span>
+                               <span class="ts-variable">isReady</span>
+                               <span class="ts-variable">isRegularFile</span>
+                               <span class="ts-variable">join</span>
+                               <span class="ts-variable">keys</span>
+                               <span class="ts-variable">kill</span>
+                               <span class="ts-variable">limitFiles</span>
+                               <span class="ts-variable">limitProcesses</span>
+                               <span class="ts-variable">linkFile</span>
+                               <span class="ts-variable">localDictionaries</span>
+                               <span class="ts-variable">lookup</span>
+                               <span class="ts-variable">lookupCount</span>
+                               <span class="ts-variable">merge</span>
+                               <span class="ts-variable">mergePairs</span>
+                               <span class="ts-variable">mingle</span>
+                               <span class="ts-variable">minimizeFilename</span>
+                               <span class="ts-variable">minus</span>
+                               <span class="ts-variable">mkdir</span>
+                               <span class="ts-variable">nanosleep</span>
+                               <span class="ts-variable">newClass</span>
+                               <span class="ts-variable">newNetFile</span>
+                               <span class="ts-variable">nextkey</span>
+                               <span class="ts-variable">openDatabase</span>
+                               <span class="ts-variable">openDatabaseOut</span>
+                               <span class="ts-variable">openFiles</span>
+                               <span class="ts-variable">openIn</span>
+                               <span class="ts-variable">openInOut</span>
+                               <span class="ts-variable">openListener</span>
+                               <span class="ts-variable">openOut</span>
+                               <span class="ts-variable">openOutAppend</span>
+                               <span class="ts-variable">override</span>
+                               <span class="ts-variable">pairs</span>
+                               <span class="ts-variable">parent</span>
+                               <span class="ts-variable">parse</span>
+                               <span class="ts-variable">plus</span>
+                               <span class="ts-variable">power</span>
+                               <span class="ts-variable">powermod</span>
+                               <span class="ts-variable">prepend</span>
+                               <span class="ts-variable">printString</span>
+                               <span class="ts-variable">processID</span>
+                               <span class="ts-variable">protect</span>
+                               <span class="ts-variable">pseudocode</span>
+                               <span class="ts-variable">read</span>
+                               <span class="ts-variable">readDirectory</span>
+                               <span class="ts-variable">readlink</span>
+                               <span class="ts-variable">realpath</span>
+                               <span class="ts-variable">recursionDepth</span>
+                               <span class="ts-variable">relativizeFilename</span>
+                               <span class="ts-variable">remove</span>
+                               <span class="ts-variable">removeDirectory</span>
+                               <span class="ts-variable">removeFile</span>
+                               <span class="ts-variable">reorganize</span>
+                               <span class="ts-variable">reverse</span>
+                               <span class="ts-variable">run</span>
+                               <span class="ts-variable">scan</span>
+                               <span class="ts-variable">scanPairs</span>
+                               <span class="ts-variable">schedule</span>
+                               <span class="ts-variable">selectPairs</span>
+                               <span class="ts-variable">sequence</span>
+                               <span class="ts-variable">serialNumber</span>
+                               <span class="ts-variable">setEcho</span>
+                               <span class="ts-variable">setGroupID</span>
+                               <span class="ts-variable">setIOExclusive</span>
+                               <span class="ts-variable">setIOSynchronized</span>
+                               <span class="ts-variable">setIOUnSynchronized</span>
+                               <span class="ts-variable">size2</span>
+                               <span class="ts-variable">sleep</span>
+                               <span class="ts-variable">splice</span>
+                               <span class="ts-variable">stack</span>
+                               <span class="ts-variable">stacktrace</span>
+                               <span class="ts-variable">substring</span>
+                               <span class="ts-variable">symbolBody</span>
+                               <span class="ts-variable">symlinkFile</span>
+                               <span class="ts-variable">take</span>
+                               <span class="ts-variable">tally</span>
+                               <span class="ts-variable">taskResult</span>
+                               <span class="ts-variable">times</span>
+                               <span class="ts-variable">toCC</span>
+                               <span class="ts-variable">toCCi</span>
+                               <span class="ts-variable">toRR</span>
+                               <span class="ts-variable">toRRi</span>
+                               <span class="ts-variable">toSequence</span>
+                               <span class="ts-variable">uncurry</span>
+                               <span class="ts-variable">unsequence</span>
+                               <span class="ts-variable">unstack</span>
+                               <span class="ts-variable">utf8</span>
+                               <span class="ts-variable">utf8check</span>
+                               <span class="ts-variable">utf8substring</span>
+                               <span class="ts-variable">values</span>
+                               <span class="ts-variable">wait</span>
+                               <span class="ts-variable">wrap</span>
+                               <span class="ts-variable">youngest</span>
+            <span class="ts-variable">CompiledFunctionBody</span>
+            <span class="ts-variable">CompiledFunctionClosure</span>
+            <span class="ts-variable">Complex</span>
+            <span class="ts-variable">ComplexField</span>
+            <span class="ts-variable">ComplexMap</span>
+            <span class="ts-variable">Cone</span>
+            <span class="ts-variable">Constant</span> <span class="ts-operator">:</span> <span class="ts-constant ts-constant-builtin">CatalanConstant</span>
+                       <span class="ts-constant ts-constant-builtin">EulerConstant</span>
+                       <span class="ts-constant ts-constant-builtin">ii</span>
+                       <span class="ts-constant ts-constant-builtin">pi</span>
+            <span class="ts-variable">Database</span>
+            <span class="ts-variable">Descent</span>
+            <span class="ts-variable">Dictionary</span>
+            <span class="ts-variable">DocumentTag</span>
+            <span class="ts-variable">EngineRing</span>
+            <span class="ts-variable">Error</span>
+            <span class="ts-variable">Expression</span>
+            <span class="ts-variable">Fan</span>
+            <span class="ts-variable">File</span> <span class="ts-operator">:</span> <span class="ts-variable">stdio</span>
+            <span class="ts-variable">FilePosition</span>
+            <span class="ts-variable">FractionField</span>
+            <span class="ts-variable">Function</span>
+            <span class="ts-variable">FunctionBody</span>
+            <span class="ts-variable">FunctionClosure</span> <span class="ts-operator">:</span> <span class="ts-variable">addEndFunction</span>
+                              <span class="ts-variable">ancestors</span>
+                              <span class="ts-variable">applicationDirectory</span>
+                              <span class="ts-variable">applyTable</span>
+                              <span class="ts-variable">baseFilename</span>
+                              <span class="ts-variable">beginDocumentation</span>
+                              <span class="ts-variable">benchmark</span>
+                              <span class="ts-variable">cacheValue</span>
+                              <span class="ts-variable">centerString</span>
+                              <span class="ts-variable">columnate</span>
+                              <span class="ts-variable">currentPosition</span>
+                              <span class="ts-variable">demark</span>
+                              <span class="ts-variable">End</span>
+                              <span class="ts-variable">even</span>
+                              <span class="ts-variable">first</span>
+                              <span class="ts-variable">getNonUnit</span>
+                              <span class="ts-variable">getSymbol</span>
+                              <span class="ts-variable">globalAssign</span>
+                              <span class="ts-variable">globalAssignFunction</span>
+                              <span class="ts-variable">globalAssignment</span>
+                              <span class="ts-variable">globalReleaseFunction</span>
+                              <span class="ts-variable">input</span>
+                              <span class="ts-variable">installedPackages</span>
+                              <span class="ts-variable">isPrimitive</span>
+                              <span class="ts-variable">isTable</span>
+                              <span class="ts-variable">last</span>
+                              <span class="ts-variable">lines</span>
+                              <span class="ts-variable">load</span>
+                              <span class="ts-variable">memoizeClear</span>
+                              <span class="ts-variable">memoizeValues</span>
+                              <span class="ts-variable">method</span>
+                              <span class="ts-variable">mod</span>
+                              <span class="ts-variable">monomialCurveIdeal</span>
+                              <span class="ts-variable">needs</span>
+                              <span class="ts-variable">notImplemented</span>
+                              <span class="ts-variable">number</span>
+                              <span class="ts-variable">odd</span>
+                              <span class="ts-variable">on</span>
+                              <span class="ts-variable">pager</span>
+                              <span class="ts-variable">peek</span>
+                              <span class="ts-variable">print</span>
+                              <span class="ts-variable">printerr</span>
+                              <span class="ts-variable">same</span>
+                              <span class="ts-variable">seeParsing</span>
+                              <span class="ts-variable">showHtml</span>
+                              <span class="ts-variable">showTex</span>
+                              <span class="ts-variable">stashValue</span>
+                              <span class="ts-variable">subtable</span>
+                              <span class="ts-variable">synonym</span>
+                              <span class="ts-variable">table</span>
+                              <span class="ts-variable">temporaryFileName</span>
+                              <span class="ts-variable">toAbsolutePath</span>
+                              <span class="ts-variable">toLower</span>
+                              <span class="ts-variable">toUpper</span>
+                              <span class="ts-variable">tutorial</span>
+                              <span class="ts-variable">uniform</span>
+                              <span class="ts-variable">uninstallAllPackages</span>
+                              <span class="ts-variable">userSymbols</span>
+                              <span class="ts-variable">zero</span>
+            <span class="ts-variable">GaloisField</span>
+            <span class="ts-variable">GeneralOrderedMonoid</span>
+            <span class="ts-variable">GlobalDictionary</span> <span class="ts-operator">:</span> <span class="ts-variable">PackageDictionary</span>
+            <span class="ts-variable">GroebnerBasis</span>
+            <span class="ts-variable">GroebnerBasisOptions</span>
+            <span class="ts-variable">HashTable</span>
+            <span class="ts-variable">HeaderType</span> <span class="ts-operator">:</span> <span class="ts-variable">Adjacent</span>
+                         <span class="ts-variable">BinaryOperation</span>
+                         <span class="ts-variable">Divide</span>
+                         <span class="ts-variable">Equation</span>
+                         <span class="ts-variable">FunctionApplication</span>
+                         <span class="ts-variable">MapExpression</span>
+                         <span class="ts-variable">MatrixExpression</span>
+                         <span class="ts-variable">Power</span>
+                         <span class="ts-variable">RowExpression</span>
+                         <span class="ts-variable">SparseMonomialVectorExpression</span>
+                         <span class="ts-variable">SparseVectorExpression</span>
+                         <span class="ts-variable">Subscript</span>
+                         <span class="ts-variable">Superscript</span>
+                         <span class="ts-variable">Table</span>
+                         <span class="ts-variable">VectorExpression</span>
+            <span class="ts-variable">Ideal</span>
+            <span class="ts-variable">ImmutableType</span>
+            <span class="ts-variable">IndeterminateNumber</span> <span class="ts-operator">:</span> <span class="ts-variable">indeterminate</span>
+            <span class="ts-variable">IndexedVariable</span>
+            <span class="ts-variable">IndexedVariableTable</span>
+            <span class="ts-variable">InexactField</span>
+            <span class="ts-variable">InexactFieldFamily</span> <span class="ts-operator">:</span> <span class="ts-variable">CC</span>
+                                 <span class="ts-variable">CCi</span>
+                                 <span class="ts-variable">RR</span>
+                                 <span class="ts-variable">RRi</span>
+            <span class="ts-variable">InexactNumber</span>
+            <span class="ts-variable">InexactNumber</span>
+                         <span class="ts-operator">*</span>
+            <span class="ts-variable">InfiniteNumber</span> <span class="ts-operator">:</span> <span class="ts-constant ts-constant-builtin">infinity</span>
+            <span class="ts-variable">Keyword</span>
+            <span class="ts-variable">List</span>
+            <span class="ts-variable">LocalDictionary</span>
+            <span class="ts-variable">Manipulator</span> <span class="ts-operator">:</span> <span class="ts-variable">close</span>
+                          <span class="ts-variable">closeIn</span>
+                          <span class="ts-variable">closeOut</span>
+                          <span class="ts-variable">endl</span>
+                          <span class="ts-variable">flush</span>
+            <span class="ts-variable">Matrix</span>
+            <span class="ts-variable">MethodFunction</span> <span class="ts-operator">:</span> <span class="ts-variable">abs</span>
+                             <span class="ts-variable">accumulate</span>
+                             <span class="ts-variable">acos</span>
+                             <span class="ts-variable">acosh</span>
+                             <span class="ts-variable">acot</span>
+                             <span class="ts-variable">acoth</span>
+                             <span class="ts-variable">addCone</span>
+                             <span class="ts-variable">addPolyhedron</span>
+                             <span class="ts-variable">adjoint'</span>
+                             <span class="ts-variable">affineHull</span>
+                             <span class="ts-variable">affineImage</span>
+                             <span class="ts-variable">affinePreimage</span>
+                             <span class="ts-variable">agm</span>
+                             <span class="ts-variable">all</span>
+                             <span class="ts-variable">ambDim</span>
+                             <span class="ts-variable">ambient</span>
+                             <span class="ts-variable">antipode</span>
+                             <span class="ts-variable">apropos</span>
+                             <span class="ts-variable">areCompatible</span>
+                             <span class="ts-variable">arXiv</span>
+                             <span class="ts-variable">asin</span>
+                             <span class="ts-variable">asinh</span>
+                             <span class="ts-variable">assert</span>
+                             <span class="ts-variable">atan</span>
+                             <span class="ts-variable">atan2</span>
+                             <span class="ts-variable">atanh</span>
+                             <span class="ts-variable">augmentationMap</span>
+                             <span class="ts-variable">autoload</span>
+                             <span class="ts-variable">barycentricTriangulation</span>
+                             <span class="ts-variable">baseName</span>
+                             <span class="ts-variable">baseRing</span>
+                             <span class="ts-variable">BesselJ</span>
+                             <span class="ts-variable">BesselY</span>
+                             <span class="ts-variable">Beta</span>
+                             <span class="ts-variable">between</span>
+                             <span class="ts-variable">binomial</span>
+                             <span class="ts-variable">bipyramid</span>
+                             <span class="ts-variable">borel</span>
+                             <span class="ts-variable">canonicalTruncation</span>
+                             <span class="ts-variable">canUseHilbertHint</span>
+                             <span class="ts-variable">ccRefinement</span>
+                             <span class="ts-variable">ceiling</span>
+                             <span class="ts-variable">cellDecompose</span>
+                             <span class="ts-variable">centroid</span>
+                             <span class="ts-variable">changeBase</span>
+                             <span class="ts-variable">char</span>
+                             <span class="ts-variable">chi</span>
+                             <span class="ts-variable">clean</span>
+                             <span class="ts-variable">coefficient</span>
+                             <span class="ts-variable">coefficientRing</span>
+                             <span class="ts-variable">coimage</span>
+                             <span class="ts-variable">cokernel</span>
+                             <span class="ts-variable">columnAdd</span>
+                             <span class="ts-variable">columnMult</span>
+                             <span class="ts-variable">columnPermute</span>
+                             <span class="ts-variable">columnRankProfile</span>
+                             <span class="ts-variable">columnSwap</span>
+                             <span class="ts-variable">commonFace</span>
+                             <span class="ts-variable">commonRing</span>
+                             <span class="ts-variable">comodule</span>
+                             <span class="ts-variable">compareExchange</span>
+                             <span class="ts-variable">complement</span>
+                             <span class="ts-variable">complete</span>
+                             <span class="ts-variable">component</span>
+                             <span class="ts-variable">components</span>
+                             <span class="ts-variable">compositions</span>
+                             <span class="ts-variable">compress</span>
+                             <span class="ts-variable">concentration</span>
+                             <span class="ts-variable">conductor</span>
+                             <span class="ts-variable">cone</span>
+                             <span class="ts-variable">coneFromHData</span>
+                             <span class="ts-variable">coneFromVData</span>
+                             <span class="ts-variable">cones</span>
+                             <span class="ts-variable">conjugate</span>
+                             <span class="ts-variable">constantStrand</span>
+                             <span class="ts-variable">contains</span>
+                             <span class="ts-variable">content</span>
+                             <span class="ts-variable">contract</span>
+                             <span class="ts-variable">contract'</span>
+                             <span class="ts-variable">convexHull</span>
+                             <span class="ts-variable">cos</span>
+                             <span class="ts-variable">cosh</span>
+                             <span class="ts-variable">cot</span>
+                             <span class="ts-variable">coth</span>
+                             <span class="ts-variable">cover</span>
+                             <span class="ts-variable">coverMap</span>
+                             <span class="ts-variable">crossPolytope</span>
+                             <span class="ts-variable">csc</span>
+                             <span class="ts-variable">csch</span>
+                             <span class="ts-variable">cyclicPolytope</span>
+                             <span class="ts-variable">cylinder</span>
+                             <span class="ts-variable">debug</span>
+                             <span class="ts-variable">default</span>
+                             <span class="ts-variable">degree</span>
+                             <span class="ts-variable">degreeGroup</span>
+                             <span class="ts-variable">degreeLength</span>
+                             <span class="ts-variable">degrees</span>
+                             <span class="ts-variable">degreesMonoid</span>
+                             <span class="ts-variable">degreesRing</span>
+                             <span class="ts-variable">delete</span>
+                             <span class="ts-variable">denominator</span>
+                             <span class="ts-variable">depth</span>
+                             <span class="ts-variable">diagonalMatrix</span>
+                             <span class="ts-variable">diameter</span>
+                             <span class="ts-variable">dictionary</span>
+                             <span class="ts-variable">diff</span>
+                             <span class="ts-variable">diff'</span>
+                             <span class="ts-variable">Digamma</span>
+                             <span class="ts-variable">dim</span>
+                             <span class="ts-variable">dismiss</span>
+                             <span class="ts-variable">divideByVariable</span>
+                             <span class="ts-variable">doc</span>
+                             <span class="ts-variable">dualCone</span>
+                             <span class="ts-variable">dualFaceRepresentationMap</span>
+                             <span class="ts-variable">eagonNorthcott</span>
+                             <span class="ts-variable">effCone</span>
+                             <span class="ts-variable">effGenerators</span>
+                             <span class="ts-variable">ehrhart</span>
+                             <span class="ts-variable">eint</span>
+                             <span class="ts-variable">elements</span>
+                             <span class="ts-variable">eliminate</span>
+                             <span class="ts-variable">emptyPolyhedron</span>
+                             <span class="ts-variable">endPackage</span>
+                             <span class="ts-variable">entries</span>
+                             <span class="ts-variable">erf</span>
+                             <span class="ts-variable">erfc</span>
+                             <span class="ts-variable">euler</span>
+                             <span class="ts-variable">eulers</span>
+                             <span class="ts-variable">exchange</span>
+                             <span class="ts-variable">exp</span>
+                             <span class="ts-variable">expectedReesIdeal</span>
+                             <span class="ts-variable">expm1</span>
+                             <span class="ts-variable">exponents</span>
+                             <span class="ts-variable">exportFrom</span>
+                             <span class="ts-variable">faceFan</span>
+                             <span class="ts-variable">faces</span>
+                             <span class="ts-variable">facesAsCones</span>
+                             <span class="ts-variable">facesAsPolyhedra</span>
+                             <span class="ts-variable">facets</span>
+                             <span class="ts-variable">fan</span>
+                             <span class="ts-variable">fanFromGfan</span>
+                             <span class="ts-variable">Fano</span>
+                             <span class="ts-variable">findSynonyms</span>
+                             <span class="ts-variable">fittingIdeal</span>
+                             <span class="ts-variable">flip</span>
+                             <span class="ts-variable">floor</span>
+                             <span class="ts-variable">fold</span>
+                             <span class="ts-variable">formation</span>
+                             <span class="ts-variable">frac</span>
+                             <span class="ts-variable">fraction</span>
+                             <span class="ts-variable">fromDividedPowers</span>
+                             <span class="ts-variable">fVector</span>
+                             <span class="ts-variable">Gamma</span>
+                             <span class="ts-variable">gbRemove</span>
+                             <span class="ts-variable">gbSnapshot</span>
+                             <span class="ts-variable">gcdCoefficients</span>
+                             <span class="ts-variable">genera</span>
+                             <span class="ts-variable">generateAssertions</span>
+                             <span class="ts-variable">generator</span>
+                             <span class="ts-variable">genericMatrix</span>
+                             <span class="ts-variable">genericSkewMatrix</span>
+                             <span class="ts-variable">genericSymmetricMatrix</span>
+                             <span class="ts-variable">genus</span>
+                             <span class="ts-variable">getChangeMatrix</span>
+                             <span class="ts-variable">getWWW</span>
+                             <span class="ts-variable">gramm</span>
+                             <span class="ts-variable">halfspaces</span>
+                             <span class="ts-variable">headlines</span>
+                             <span class="ts-variable">heft</span>
+                             <span class="ts-variable">height</span>
+                             <span class="ts-variable">hirzebruch</span>
+                             <span class="ts-variable">homogenize</span>
+                             <span class="ts-variable">homomorphism</span>
+                             <span class="ts-variable">homotopyMap</span>
+                             <span class="ts-variable">httpHeaders</span>
+                             <span class="ts-variable">hypercube</span>
+                             <span class="ts-variable">hyperplanes</span>
+                             <span class="ts-variable">icFractions</span>
+                             <span class="ts-variable">icMap</span>
+                             <span class="ts-variable">icPIdeal</span>
+                             <span class="ts-variable">image</span>
+                             <span class="ts-variable">imageFan</span>
+                             <span class="ts-variable">imaginaryPart</span>
+                             <span class="ts-variable">importFrom</span>
+                             <span class="ts-variable">incompCones</span>
+                             <span class="ts-variable">incompPolyhedra</span>
+                             <span class="ts-variable">index</span>
+                             <span class="ts-variable">indices</span>
+                             <span class="ts-variable">inducesWellDefinedMap</span>
+                             <span class="ts-variable">inInterior</span>
+                             <span class="ts-variable">insert</span>
+                             <span class="ts-variable">installAssignmentMethod</span>
+                             <span class="ts-variable">installHilbertFunction</span>
+                             <span class="ts-variable">instances</span>
+                             <span class="ts-variable">integrate</span>
+                             <span class="ts-variable">interiorLatticePoints</span>
+                             <span class="ts-variable">interiorPoint</span>
+                             <span class="ts-variable">interiorVector</span>
+                             <span class="ts-variable">inverse</span>
+                             <span class="ts-variable">inverseErf</span>
+                             <span class="ts-variable">inversePermutation</span>
+                             <span class="ts-variable">inverseRegularizedBeta</span>
+                             <span class="ts-variable">inverseRegularizedGamma</span>
+                             <span class="ts-variable">irreducibleCharacteristicSeries</span>
+                             <span class="ts-variable">irreducibleDecomposition</span>
+                             <span class="ts-variable">isAffineRing</span>
+                             <span class="ts-variable">isBorel</span>
+                             <span class="ts-variable">isc</span>
+                             <span class="ts-variable">isCommutative</span>
+                             <span class="ts-variable">isCompact</span>
+                             <span class="ts-variable">isComplete</span>
+                             <span class="ts-variable">isComplexMorphism</span>
+                             <span class="ts-variable">isConstant</span>
+                             <span class="ts-variable">isDirectSum</span>
+                             <span class="ts-variable">isEmpty</span>
+                             <span class="ts-variable">isFace</span>
+                             <span class="ts-variable">isField</span>
+                             <span class="ts-variable">isFinite</span>
+                             <span class="ts-variable">isFinitePrimeField</span>
+                             <span class="ts-variable">isFree</span>
+                             <span class="ts-variable">isFreeModule</span>
+                             <span class="ts-variable">isFullDimensional</span>
+                             <span class="ts-variable">isHomogeneous</span>
+                             <span class="ts-variable">isIdeal</span>
+                             <span class="ts-variable">isInfinite</span>
+                             <span class="ts-variable">isInjective</span>
+                             <span class="ts-variable">isIsomorphism</span>
+                             <span class="ts-variable">isLatticePolytope</span>
+                             <span class="ts-variable">isLocallyFree</span>
+                             <span class="ts-variable">isMember</span>
+                             <span class="ts-variable">isModule</span>
+                             <span class="ts-variable">isModuleFinite</span>
+                             <span class="ts-variable">isMonomialIdeal</span>
+                             <span class="ts-variable">isNormal</span>
+                             <span class="ts-variable">isNullHomotopic</span>
+                             <span class="ts-variable">isNullHomotopyOf</span>
+                             <span class="ts-variable">isPointed</span>
+                             <span class="ts-variable">isPolynomialRing</span>
+                             <span class="ts-variable">isPolytopal</span>
+                             <span class="ts-variable">isProjective</span>
+                             <span class="ts-variable">isPure</span>
+                             <span class="ts-variable">isQuotientModule</span>
+                             <span class="ts-variable">isQuotientOf</span>
+                             <span class="ts-variable">isQuotientRing</span>
+                             <span class="ts-variable">isReal</span>
+                             <span class="ts-variable">isRing</span>
+                             <span class="ts-variable">isScalar</span>
+                             <span class="ts-variable">isShortExactSequence</span>
+                             <span class="ts-variable">isSimplicial</span>
+                             <span class="ts-variable">isSkewCommutative</span>
+                             <span class="ts-variable">isSquareFree</span>
+                             <span class="ts-variable">isStandardGradedPolynomialRing</span>
+                             <span class="ts-variable">isSubmodule</span>
+                             <span class="ts-variable">isSubquotient</span>
+                             <span class="ts-variable">isSubset</span>
+                             <span class="ts-variable">isSupportedInZeroLocus</span>
+                             <span class="ts-variable">isSurjective</span>
+                             <span class="ts-variable">isUnit</span>
+                             <span class="ts-variable">isWellDefined</span>
+                             <span class="ts-variable">isWeylAlgebra</span>
+                             <span class="ts-variable">jacobian</span>
+                             <span class="ts-variable">kernelOfLocalization</span>
+                             <span class="ts-variable">koszul</span>
+                             <span class="ts-variable">latticePoints</span>
+                             <span class="ts-variable">latticeVolume</span>
+                             <span class="ts-variable">leadCoefficient</span>
+                             <span class="ts-variable">leadComponent</span>
+                             <span class="ts-variable">leadMonomial</span>
+                             <span class="ts-variable">leadTerm</span>
+                             <span class="ts-variable">left</span>
+                             <span class="ts-variable">liftable</span>
+                             <span class="ts-variable">liftMapAlongQuasiIsomorphism</span>
+                             <span class="ts-variable">linealitySpace</span>
+                             <span class="ts-variable">linearTransform</span>
+                             <span class="ts-variable">linSpace</span>
+                             <span class="ts-variable">listForm</span>
+                             <span class="ts-variable">listSymbols</span>
+                             <span class="ts-variable">lngamma</span>
+                             <span class="ts-variable">lock</span>
+                             <span class="ts-variable">log</span>
+                             <span class="ts-variable">log1p</span>
+                             <span class="ts-variable">lowerLeft</span>
+                             <span class="ts-variable">lowerRight</span>
+                             <span class="ts-variable">LUdecomposition</span>
+                             <span class="ts-variable">makeDirectory</span>
+                             <span class="ts-variable">maxCones</span>
+                             <span class="ts-variable">maxFace</span>
+                             <span class="ts-variable">maxPolyhedra</span>
+                             <span class="ts-variable">memoize</span>
+                             <span class="ts-variable">methodOptions</span>
+                             <span class="ts-variable">midpoint</span>
+                             <span class="ts-variable">minFace</span>
+                             <span class="ts-variable">minimalNonFaces</span>
+                             <span class="ts-variable">minimize</span>
+                             <span class="ts-variable">minkowskiSum</span>
+                             <span class="ts-variable">minkSummandCone</span>
+                             <span class="ts-variable">mixedVolume</span>
+                             <span class="ts-variable">module</span>
+                             <span class="ts-variable">monomialSubideal</span>
+                             <span class="ts-variable">multidegree</span>
+                             <span class="ts-variable">multigraded</span>
+                             <span class="ts-variable">naiveTruncation</span>
+                             <span class="ts-variable">nefCone</span>
+                             <span class="ts-variable">nefGenerators</span>
+                             <span class="ts-variable">newCoordinateSystem</span>
+                             <span class="ts-variable">newtonPolytope</span>
+                             <span class="ts-variable">next</span>
+                             <span class="ts-variable">nextPrime</span>
+                             <span class="ts-variable">norm</span>
+                             <span class="ts-variable">normalFan</span>
+                             <span class="ts-variable">nullhomotopy</span>
+                             <span class="ts-variable">nullSpace</span>
+                             <span class="ts-variable">numColumns</span>
+                             <span class="ts-variable">numerator</span>
+                             <span class="ts-variable">numeric</span>
+                             <span class="ts-variable">numericInterval</span>
+                             <span class="ts-variable">numgens</span>
+                             <span class="ts-variable">numRows</span>
+                             <span class="ts-variable">nVertices</span>
+                             <span class="ts-variable">objectiveVector</span>
+                             <span class="ts-variable">ofClass</span>
+                             <span class="ts-variable">pack</span>
+                             <span class="ts-variable">packageTemplate</span>
+                             <span class="ts-variable">pad</span>
+                             <span class="ts-variable">part</span>
+                             <span class="ts-variable">partition</span>
+                             <span class="ts-variable">partitions</span>
+                             <span class="ts-variable">parts</span>
+                             <span class="ts-variable">pdim</span>
+                             <span class="ts-variable">peek'</span>
+                             <span class="ts-variable">permanents</span>
+                             <span class="ts-variable">permutations</span>
+                             <span class="ts-variable">pfaffian</span>
+                             <span class="ts-variable">pfaffians</span>
+                             <span class="ts-variable">pivots</span>
+                             <span class="ts-variable">poincare</span>
+                             <span class="ts-variable">poincareN</span>
+                             <span class="ts-variable">polar</span>
+                             <span class="ts-variable">polarFace</span>
+                             <span class="ts-variable">poly</span>
+                             <span class="ts-variable">polyhedra</span>
+                             <span class="ts-variable">polyhedralComplex</span>
+                             <span class="ts-variable">polyhedron</span>
+                             <span class="ts-variable">polyhedronFromHData</span>
+                             <span class="ts-variable">polylog</span>
+                             <span class="ts-variable">polytope</span>
+                             <span class="ts-variable">positions</span>
+                             <span class="ts-variable">posOrthant</span>
+                             <span class="ts-variable">precision</span>
+                             <span class="ts-variable">preimage</span>
+                             <span class="ts-variable">presentation</span>
+                             <span class="ts-variable">product</span>
+                             <span class="ts-variable">Proj</span>
+                             <span class="ts-variable">projectiveHilbertPolynomial</span>
+                             <span class="ts-variable">promote</span>
+                             <span class="ts-variable">proximum</span>
+                             <span class="ts-variable">pseudoRemainder</span>
+                             <span class="ts-variable">pushout</span>
+                             <span class="ts-variable">pyramid</span>
+                             <span class="ts-variable">QRDecomposition</span>
+                             <span class="ts-variable">quotientRemainder</span>
+                             <span class="ts-variable">quotientRemainder'</span>
+                             <span class="ts-variable">randomElement</span>
+                             <span class="ts-variable">randomKRationalPoint</span>
+                             <span class="ts-variable">randomSubset</span>
+                             <span class="ts-variable">rank</span>
+                             <span class="ts-variable">realPart</span>
+                             <span class="ts-variable">reducedRowEchelonForm</span>
+                             <span class="ts-variable">reduceHilbert</span>
+                             <span class="ts-variable">reductionNumber</span>
+                             <span class="ts-variable">registerFinalizer</span>
+                             <span class="ts-variable">regularizedBeta</span>
+                             <span class="ts-variable">regularizedGamma</span>
+                             <span class="ts-variable">regularSubdivision</span>
+                             <span class="ts-variable">regularTriangulation</span>
+                             <span class="ts-variable">relations</span>
+                             <span class="ts-variable">remainder</span>
+                             <span class="ts-variable">remainder'</span>
+                             <span class="ts-variable">removeLowestDimension</span>
+                             <span class="ts-variable">reshape</span>
+                             <span class="ts-variable">right</span>
+                             <span class="ts-variable">ring</span>
+                             <span class="ts-variable">rotate</span>
+                             <span class="ts-variable">round</span>
+                             <span class="ts-variable">rowAdd</span>
+                             <span class="ts-variable">rowMult</span>
+                             <span class="ts-variable">rowPermute</span>
+                             <span class="ts-variable">rowRankProfile</span>
+                             <span class="ts-variable">rowSwap</span>
+                             <span class="ts-variable">saveSession</span>
+                             <span class="ts-variable">scanKeys</span>
+                             <span class="ts-variable">scanLines</span>
+                             <span class="ts-variable">scanValues</span>
+                             <span class="ts-variable">schreyerOrder</span>
+                             <span class="ts-variable">searchPath</span>
+                             <span class="ts-variable">sec</span>
+                             <span class="ts-variable">sech</span>
+                             <span class="ts-variable">secondaryPolytope</span>
+                             <span class="ts-variable">selectInSubring</span>
+                             <span class="ts-variable">selectKeys</span>
+                             <span class="ts-variable">selectValues</span>
+                             <span class="ts-variable">selectVariables</span>
+                             <span class="ts-variable">setup</span>
+                             <span class="ts-variable">setupEmacs</span>
+                             <span class="ts-variable">setupLift</span>
+                             <span class="ts-variable">setupPromote</span>
+                             <span class="ts-variable">sheaf</span>
+                             <span class="ts-variable">show</span>
+                             <span class="ts-variable">shuffle</span>
+                             <span class="ts-variable">sign</span>
+                             <span class="ts-variable">simplex</span>
+                             <span class="ts-variable">sin</span>
+                             <span class="ts-variable">singularLocus</span>
+                             <span class="ts-variable">sinh</span>
+                             <span class="ts-variable">size</span>
+                             <span class="ts-variable">skeleton</span>
+                             <span class="ts-variable">smallestFace</span>
+                             <span class="ts-variable">smoothSubfan</span>
+                             <span class="ts-variable">someTerms</span>
+                             <span class="ts-variable">source</span>
+                             <span class="ts-variable">Spec</span>
+                             <span class="ts-variable">splitWWW</span>
+                             <span class="ts-variable">sqrt</span>
+                             <span class="ts-variable">stacksProject</span>
+                             <span class="ts-variable">standardForm</span>
+                             <span class="ts-variable">standardPairs</span>
+                             <span class="ts-variable">stanleyReisnerRing</span>
+                             <span class="ts-variable">statePolytope</span>
+                             <span class="ts-variable">stdSimplex</span>
+                             <span class="ts-variable">stellarSubdivision</span>
+                             <span class="ts-variable">store</span>
+                             <span class="ts-variable">sublatticeBasis</span>
+                             <span class="ts-variable">sublists</span>
+                             <span class="ts-variable">submatrix</span>
+                             <span class="ts-variable">submatrix'</span>
+                             <span class="ts-variable">submatrixByDegrees</span>
+                             <span class="ts-variable">subquotient</span>
+                             <span class="ts-variable">subsets</span>
+                             <span class="ts-variable">substitute</span>
+                             <span class="ts-variable">sum</span>
+                             <span class="ts-variable">super</span>
+                             <span class="ts-variable">support</span>
+                             <span class="ts-variable">switch</span>
+                             <span class="ts-variable">sylvesterMatrix</span>
+                             <span class="ts-variable">symmetricPower</span>
+                             <span class="ts-variable">tailCone</span>
+                             <span class="ts-variable">tan</span>
+                             <span class="ts-variable">tanh</span>
+                             <span class="ts-variable">target</span>
+                             <span class="ts-variable">tensorAssociativity</span>
+                             <span class="ts-variable">tensorCommutativity</span>
+                             <span class="ts-variable">terms</span>
+                             <span class="ts-variable">testHunekeQuestion</span>
+                             <span class="ts-variable">tests</span>
+                             <span class="ts-variable">toChainComplex</span>
+                             <span class="ts-variable">toDividedPowers</span>
+                             <span class="ts-variable">toField</span>
+                             <span class="ts-variable">toMutableComplex</span>
+                             <span class="ts-variable">topCoefficients</span>
+                             <span class="ts-variable">topComponents</span>
+                             <span class="ts-variable">toSublattice</span>
+                             <span class="ts-variable">trace</span>
+                             <span class="ts-variable">triangulate</span>
+                             <span class="ts-variable">truncateOutput</span>
+                             <span class="ts-variable">tryLock</span>
+                             <span class="ts-variable">ultimate</span>
+                             <span class="ts-variable">unbag</span>
+                             <span class="ts-variable">uniquePermutations</span>
+                             <span class="ts-variable">unlock</span>
+                             <span class="ts-variable">upperLeft</span>
+                             <span class="ts-variable">upperRight</span>
+                             <span class="ts-variable">urlEncode</span>
+                             <span class="ts-variable">value</span>
+                             <span class="ts-variable">variety</span>
+                             <span class="ts-variable">vector</span>
+                             <span class="ts-variable">versalEmbedding</span>
+                             <span class="ts-variable">vertexEdgeMatrix</span>
+                             <span class="ts-variable">vertexFacetMatrix</span>
+                             <span class="ts-variable">vertices</span>
+                             <span class="ts-variable">volume</span>
+                             <span class="ts-variable">wedgeProduct</span>
+                             <span class="ts-variable">weightRange</span>
+                             <span class="ts-variable">whichGm</span>
+                             <span class="ts-variable">width</span>
+                             <span class="ts-variable">wikipedia</span>
+                             <span class="ts-variable">yonedaExtension</span>
+                             <span class="ts-variable">yonedaProduct</span>
+                             <span class="ts-variable">zeta</span>
+            <span class="ts-variable">MethodFunctionBinary</span> <span class="ts-operator">:</span> <span class="ts-variable">directProduct</span>
+                                   <span class="ts-variable">gcd</span>
+                                   <span class="ts-variable">intersect</span>
+                                   <span class="ts-variable">lcm</span>
+                                   <span class="ts-variable">span</span>
+                                   <span class="ts-variable">tensor</span>
+                                   <span class="ts-variable">union</span>
+            <span class="ts-variable">MethodFunctionSingle</span> <span class="ts-operator">:</span> <span class="ts-variable">code</span>
+                                   <span class="ts-variable">commonest</span>
+                                   <span class="ts-variable">describe</span>
+                                   <span class="ts-variable">directSum</span>
+                                   <span class="ts-variable">document</span>
+                                   <span class="ts-variable">EXAMPLE</span>
+                                   <span class="ts-variable">examples</span>
+                                   <span class="ts-variable">export</span>
+                                   <span class="ts-variable">exportMutable</span>
+                                   <span class="ts-variable">expression</span>
+                                   <span class="ts-variable">flatten</span>
+                                   <span class="ts-variable">format</span>
+                                   <span class="ts-variable">gradedModule</span>
+                                   <span class="ts-variable">hold</span>
+                                   <span class="ts-variable">hooks</span>
+                                   <span class="ts-variable">html</span>
+                                   <span class="ts-variable">hypertext</span>
+                                   <span class="ts-variable">ideal</span>
+                                   <span class="ts-variable">info</span>
+                                   <span class="ts-variable">isSorted</span>
+                                   <span class="ts-variable">iterator</span>
+                                   <span class="ts-variable">length</span>
+                                   <span class="ts-variable">locate</span>
+                                   <span class="ts-variable">makeDocumentTag</span>
+                                   <span class="ts-variable">makePackageIndex</span>
+                                   <span class="ts-variable">mathML</span>
+                                   <span class="ts-variable">max</span>
+                                   <span class="ts-variable">maxPosition</span>
+                                   <span class="ts-variable">methods</span>
+                                   <span class="ts-variable">min</span>
+                                   <span class="ts-variable">minPosition</span>
+                                   <span class="ts-variable">monoid</span>
+                                   <span class="ts-variable">monomialIdeal</span>
+                                   <span class="ts-variable">net</span>
+                                   <span class="ts-variable">newPackage</span>
+                                   <span class="ts-variable">options</span>
+                                   <span class="ts-variable">package</span>
+                                   <span class="ts-variable">pretty</span>
+                                   <span class="ts-variable">regexQuote</span>
+                                   <span class="ts-variable">runLengthEncode</span>
+                                   <span class="ts-variable">set</span>
+                                   <span class="ts-variable">setRandomSeed</span>
+                                   <span class="ts-variable">SYNOPSIS</span>
+                                   <span class="ts-variable">tex</span>
+                                   <span class="ts-variable">texMath</span>
+                                   <span class="ts-variable">toExternalString</span>
+                                   <span class="ts-variable">toList</span>
+                                   <span class="ts-variable">toString</span>
+                                   <span class="ts-variable">transpose</span>
+                                   <span class="ts-variable">undocumented</span>
+                                   <span class="ts-variable">unique</span>
+                                   <span class="ts-variable">use</span>
+                                   <span class="ts-variable">vars</span>
+            <span class="ts-variable">MethodFunctionWithOptions</span> <span class="ts-operator">:</span> <span class="ts-variable">about</span>
+                                        <span class="ts-variable">addHook</span>
+                                        <span class="ts-variable">adjoint</span>
+                                        <span class="ts-variable">analyticSpread</span>
+                                        <span class="ts-variable">annihilator</span>
+                                        <span class="ts-variable">associatedGradedRing</span>
+                                        <span class="ts-variable">associatedPrimes</span>
+                                        <span class="ts-variable">basis</span>
+                                        <span class="ts-variable">betti</span>
+                                        <span class="ts-variable">canonicalBundle</span>
+                                        <span class="ts-variable">canonicalMap</span>
+                                        <span class="ts-variable">capture</span>
+                                        <span class="ts-variable">check</span>
+                                        <span class="ts-variable">checkDegrees</span>
+                                        <span class="ts-variable">codim</span>
+                                        <span class="ts-variable">coefficients</span>
+                                        <span class="ts-variable">cohomology</span>
+                                        <span class="ts-variable">complex</span>
+                                        <span class="ts-variable">compose</span>
+                                        <span class="ts-variable">connectingExtMap</span>
+                                        <span class="ts-variable">connectingMap</span>
+                                        <span class="ts-variable">connectingTorMap</span>
+                                        <span class="ts-variable">conwayPolynomial</span>
+                                        <span class="ts-variable">copyDirectory</span>
+                                        <span class="ts-variable">copyFile</span>
+                                        <span class="ts-variable">cotangentSheaf</span>
+                                        <span class="ts-variable">decompose</span>
+                                        <span class="ts-variable">determinant</span>
+                                        <span class="ts-variable">discriminant</span>
+                                        <span class="ts-variable">distinguished</span>
+                                        <span class="ts-variable">dual</span>
+                                        <span class="ts-variable">eagonNorthcottComplex</span>
+                                        <span class="ts-variable">eigenvalues</span>
+                                        <span class="ts-variable">eigenvectors</span>
+                                        <span class="ts-variable">epicResolutionMap</span>
+                                        <span class="ts-variable">extend</span>
+                                        <span class="ts-variable">exteriorPower</span>
+                                        <span class="ts-variable">factor</span>
+                                        <span class="ts-variable">fillMatrix</span>
+                                        <span class="ts-variable">findFiles</span>
+                                        <span class="ts-variable">findHeft</span>
+                                        <span class="ts-variable">findProgram</span>
+                                        <span class="ts-variable">flattenRing</span>
+                                        <span class="ts-variable">forceGB</span>
+                                        <span class="ts-variable">freeResolution</span>
+                                        <span class="ts-variable">fromDual</span>
+                                        <span class="ts-variable">gb</span>
+                                        <span class="ts-variable">gcdLLL</span>
+                                        <span class="ts-variable">generators</span>
+                                        <span class="ts-variable">getPrimeWithRootOfUnity</span>
+                                        <span class="ts-variable">GF</span>
+                                        <span class="ts-variable">graphIdeal</span>
+                                        <span class="ts-variable">graphRing</span>
+                                        <span class="ts-variable">Grassmannian</span>
+                                        <span class="ts-variable">groebnerBasis</span>
+                                        <span class="ts-variable">hermite</span>
+                                        <span class="ts-variable">hilbertBasis</span>
+                                        <span class="ts-variable">hilbertFunction</span>
+                                        <span class="ts-variable">hilbertPolynomial</span>
+                                        <span class="ts-variable">hilbertSeries</span>
+                                        <span class="ts-variable">Hom</span>
+                                        <span class="ts-variable">homology</span>
+                                        <span class="ts-variable">homomorphism'</span>
+                                        <span class="ts-variable">horseshoeResolution</span>
+                                        <span class="ts-variable">icFracP</span>
+                                        <span class="ts-variable">idealizer</span>
+                                        <span class="ts-variable">idealSheaf</span>
+                                        <span class="ts-variable">independentSets</span>
+                                        <span class="ts-variable">inducedMap</span>
+                                        <span class="ts-variable">installPackage</span>
+                                        <span class="ts-variable">integralClosure</span>
+                                        <span class="ts-variable">intersectInP</span>
+                                        <span class="ts-variable">interval</span>
+                                        <span class="ts-variable">inverseSystem</span>
+                                        <span class="ts-variable">isExact</span>
+                                        <span class="ts-variable">isIsomorphic</span>
+                                        <span class="ts-variable">isLinearType</span>
+                                        <span class="ts-variable">isLLL</span>
+                                        <span class="ts-variable">isomorphism</span>
+                                        <span class="ts-variable">isPrimary</span>
+                                        <span class="ts-variable">isPrime</span>
+                                        <span class="ts-variable">isPseudoprime</span>
+                                        <span class="ts-variable">isQuasiIsomorphism</span>
+                                        <span class="ts-variable">isReduction</span>
+                                        <span class="ts-variable">isReflexive</span>
+                                        <span class="ts-variable">isSmooth</span>
+                                        <span class="ts-variable">isVeryAmple</span>
+                                        <span class="ts-variable">jacobianDual</span>
+                                        <span class="ts-variable">kernel</span>
+                                        <span class="ts-variable">kernelLLL</span>
+                                        <span class="ts-variable">koszulComplex</span>
+                                        <span class="ts-variable">lift</span>
+                                        <span class="ts-variable">LLL</span>
+                                        <span class="ts-variable">loadPackage</span>
+                                        <span class="ts-variable">localize</span>
+                                        <span class="ts-variable">longExactSequence</span>
+                                        <span class="ts-variable">makeS2</span>
+                                        <span class="ts-variable">map</span>
+                                        <span class="ts-variable">markedGB</span>
+                                        <span class="ts-variable">match</span>
+                                        <span class="ts-variable">matrix</span>
+                                        <span class="ts-variable">mingens</span>
+                                        <span class="ts-variable">minimalBetti</span>
+                                        <span class="ts-variable">minimalPresentation</span>
+                                        <span class="ts-variable">minimalPrimes</span>
+                                        <span class="ts-variable">minimalReduction</span>
+                                        <span class="ts-variable">minors</span>
+                                        <span class="ts-variable">modulo</span>
+                                        <span class="ts-variable">monomials</span>
+                                        <span class="ts-variable">moveFile</span>
+                                        <span class="ts-variable">multiplicity</span>
+                                        <span class="ts-variable">mutableIdentity</span>
+                                        <span class="ts-variable">mutableMatrix</span>
+                                        <span class="ts-variable">needsPackage</span>
+                                        <span class="ts-variable">netList</span>
+                                        <span class="ts-variable">newRing</span>
+                                        <span class="ts-variable">normalCone</span>
+                                        <span class="ts-variable">nullHomotopy</span>
+                                        <span class="ts-variable">oeis</span>
+                                        <span class="ts-variable">parallelApply</span>
+                                        <span class="ts-variable">polarize</span>
+                                        <span class="ts-variable">position</span>
+                                        <span class="ts-variable">primaryComponent</span>
+                                        <span class="ts-variable">primaryDecomposition</span>
+                                        <span class="ts-variable">prune</span>
+                                        <span class="ts-variable">pruneComplex</span>
+                                        <span class="ts-variable">pruneDiff</span>
+                                        <span class="ts-variable">pruneUnit</span>
+                                        <span class="ts-variable">pullback</span>
+                                        <span class="ts-variable">pushForward</span>
+                                        <span class="ts-variable">pushFwd</span>
+                                        <span class="ts-variable">quotient</span>
+                                        <span class="ts-variable">quotient'</span>
+                                        <span class="ts-variable">radical</span>
+                                        <span class="ts-variable">radicalContainment</span>
+                                        <span class="ts-variable">random</span>
+                                        <span class="ts-variable">randomComplexMap</span>
+                                        <span class="ts-variable">randomMutableMatrix</span>
+                                        <span class="ts-variable">rays</span>
+                                        <span class="ts-variable">readPackage</span>
+                                        <span class="ts-variable">reesAlgebra</span>
+                                        <span class="ts-variable">reesIdeal</span>
+                                        <span class="ts-variable">regex</span>
+                                        <span class="ts-variable">regSeqInIdeal</span>
+                                        <span class="ts-variable">regularity</span>
+                                        <span class="ts-variable">replace</span>
+                                        <span class="ts-variable">resolutionMap</span>
+                                        <span class="ts-variable">resultant</span>
+                                        <span class="ts-variable">ringFromFractions</span>
+                                        <span class="ts-variable">roots</span>
+                                        <span class="ts-variable">rsort</span>
+                                        <span class="ts-variable">runHooks</span>
+                                        <span class="ts-variable">runProgram</span>
+                                        <span class="ts-variable">saturate</span>
+                                        <span class="ts-variable">Schubert</span>
+                                        <span class="ts-variable">select</span>
+                                        <span class="ts-variable">separate</span>
+                                        <span class="ts-variable">sheafHom</span>
+                                        <span class="ts-variable">simpleDocFrob</span>
+                                        <span class="ts-variable">smithNormalForm</span>
+                                        <span class="ts-variable">solve</span>
+                                        <span class="ts-variable">sort</span>
+                                        <span class="ts-variable">sortColumns</span>
+                                        <span class="ts-variable">specialFiber</span>
+                                        <span class="ts-variable">specialFiberIdeal</span>
+                                        <span class="ts-variable">status</span>
+                                        <span class="ts-variable">SVD</span>
+                                        <span class="ts-variable">symlinkDirectory</span>
+                                        <span class="ts-variable">symmetricAlgebra</span>
+                                        <span class="ts-variable">symmetricAlgebraIdeal</span>
+                                        <span class="ts-variable">symmetricKernel</span>
+                                        <span class="ts-variable">syz</span>
+                                        <span class="ts-variable">tangentCone</span>
+                                        <span class="ts-variable">tangentSheaf</span>
+                                        <span class="ts-variable">toDual</span>
+                                        <span class="ts-variable">torSymmetry</span>
+                                        <span class="ts-variable">trim</span>
+                                        <span class="ts-variable">truncate</span>
+                                        <span class="ts-variable">uninstallPackage</span>
+                                        <span class="ts-variable">yonedaExtension'</span>
+                                        <span class="ts-variable">yonedaMap</span>
+                                        <span class="ts-variable">yonedaMap'</span>
+            <span class="ts-variable">Module</span>
+            <span class="ts-variable">Monoid</span>
+            <span class="ts-variable">MonoidElement</span>
+            <span class="ts-variable">MonomialIdeal</span>
+            <span class="ts-variable">MultigradedBettiTally</span>
+            <span class="ts-variable">MutableHashTable</span>
+            <span class="ts-variable">MutableList</span>
+            <span class="ts-variable">MutableMatrix</span>
+            <span class="ts-variable">Mutex</span>
+            <span class="ts-variable">Net</span>
+            <span class="ts-variable">NetFile</span>
+            <span class="ts-variable">Nothing</span>
+            <span class="ts-variable">Number</span>
+            <span class="ts-variable">OneExpression</span>
+            <span class="ts-variable">Option</span>
+            <span class="ts-variable">OptionTable</span>
+            <span class="ts-variable">OrderedMonoid</span>
+            <span class="ts-variable">Package</span> <span class="ts-operator">:</span> <span class="ts-variable">Classic</span>
+                      <span class="ts-variable">Complexes</span>
+                      <span class="ts-variable">ConwayPolynomials</span>
+                      <span class="ts-variable">Core</span>
+                      <span class="ts-variable">Elimination</span>
+                      <span class="ts-variable">FourierMotzkin</span>
+                      <span class="ts-variable">GenericInitialIdeal</span>
+                      <span class="ts-variable">IntegralClosure</span>
+                      <span class="ts-variable">InverseSystems</span>
+                      <span class="ts-variable">Isomorphism</span>
+                      <span class="ts-variable">LLLBases</span>
+                      <span class="ts-variable">Macaulay2Doc</span>
+                      <span class="ts-variable">MinimalPrimes</span>
+                      <span class="ts-variable">OnlineLookup</span>
+                      <span class="ts-variable">PackageCitations</span>
+                      <span class="ts-variable">Parsing</span>
+                      <span class="ts-variable">Polyhedra</span>
+                      <span class="ts-variable">PrimaryDecomposition</span>
+                      <span class="ts-variable">PushForward</span>
+                      <span class="ts-variable">ReesAlgebra</span>
+                      <span class="ts-variable">Saturation</span>
+                      <span class="ts-variable">Schubert2</span>
+                      <span class="ts-variable">SchurRings</span>
+                      <span class="ts-variable">SimpleDoc</span>
+                      <span class="ts-variable">SimplicialComplexes</span>
+                      <span class="ts-variable">TangentCone</span>
+                      <span class="ts-variable">Text</span>
+                      <span class="ts-variable">Topcom</span>
+                      <span class="ts-variable">Truncations</span>
+                      <span class="ts-variable">User</span>
+                      <span class="ts-variable">Varieties</span>
+            <span class="ts-variable">Partition</span>
+            <span class="ts-variable">PolyhedralComplex</span>
+            <span class="ts-variable">PolyhedralObject</span>
+            <span class="ts-variable">Polyhedron</span>
+            <span class="ts-variable">PolynomialRing</span>
+            <span class="ts-variable">Program</span>
+            <span class="ts-variable">ProgramRun</span>
+            <span class="ts-variable">ProjectiveHilbertPolynomial</span>
+            <span class="ts-variable">ProjectiveVariety</span>
+            <span class="ts-variable">Pseudocode</span>
+            <span class="ts-variable">PseudocodeClosure</span>
+            <span class="ts-variable">QuotientRing</span>
+            <span class="ts-variable">RealField</span>
+            <span class="ts-variable">Resolution</span>
+            <span class="ts-variable">Ring</span> <span class="ts-operator">:</span> <span class="ts-variable">QQ</span>
+                   <span class="ts-variable">ZZ</span>
+            <span class="ts-variable">RingElement</span>
+            <span class="ts-variable">RingFamily</span>
+            <span class="ts-variable">RingMap</span>
+            <span class="ts-variable">RR</span>
+              <span class="ts-operator">*</span>
+            <span class="ts-variable">RRi</span>
+               <span class="ts-operator">*</span>
+            <span class="ts-variable">ScriptedFunctor</span> <span class="ts-operator">:</span> <span class="ts-variable">Ext</span>
+                              <span class="ts-variable">HH</span>
+                              <span class="ts-variable">hh</span>
+                              <span class="ts-variable">id</span>
+                              <span class="ts-variable">OO</span>
+                              <span class="ts-variable">sheafExt</span>
+                              <span class="ts-variable">Tor</span>
+            <span class="ts-variable">SelfInitializingType</span> <span class="ts-operator">:</span> <span class="ts-variable">Bag</span>
+                                   <span class="ts-variable">Command</span> <span class="ts-operator">:</span> <span class="ts-variable">cite</span>
+                                             <span class="ts-variable">clearAll</span>
+                                             <span class="ts-variable">clearOutput</span>
+                                             <span class="ts-variable">copyright</span>
+                                             <span class="ts-variable">coverageSummary</span>
+                                             <span class="ts-variable">edit</span>
+                                             <span class="ts-variable">exit</span>
+                                             <span class="ts-variable">help</span>
+                                             <span class="ts-variable">infoHelp</span>
+                                             <span class="ts-variable">listLocalSymbols</span>
+                                             <span class="ts-variable">listUserSymbols</span>
+                                             <span class="ts-variable">profileSummary</span>
+                                             <span class="ts-variable">quit</span>
+                                             <span class="ts-variable">restart</span>
+                                             <span class="ts-variable">showClassStructure</span>
+                                             <span class="ts-variable">showStructure</span>
+                                             <span class="ts-variable">showUserStructure</span>
+                                             <span class="ts-variable">viewHelp</span>
+                                   <span class="ts-variable">Eliminate</span>
+                                   <span class="ts-variable">Hybrid</span>
+                                   <span class="ts-variable">Iterator</span>
+                                   <span class="ts-variable">LowerBound</span>
+                                   <span class="ts-variable">NumberedVerticalList</span>
+                                   <span class="ts-variable">ProductOrder</span>
+                                   <span class="ts-variable">TestInput</span>
+                                   <span class="ts-variable">URL</span>
+                                   <span class="ts-variable">VerticalList</span>
+            <span class="ts-variable">Sequence</span>
+            <span class="ts-variable">Set</span>
+            <span class="ts-variable">SheafMap</span>
+            <span class="ts-variable">SheafOfRings</span>
+            <span class="ts-variable">String</span>
+            <span class="ts-variable">SumOfTwists</span>
+            <span class="ts-variable">Symbol</span>
+            <span class="ts-variable">SymbolBody</span>
+            <span class="ts-variable">Tally</span>
+            <span class="ts-variable">Task</span>
+            <span class="ts-variable">Thing</span>
+            <span class="ts-variable">Time</span>
+            <span class="ts-variable">Variety</span>
+            <span class="ts-variable">Vector</span>
+            <span class="ts-variable">VirtualTally</span>
+            <span class="ts-variable">VisibleList</span>
+            <span class="ts-variable">WrapperType</span> <span class="ts-operator">:</span> <span class="ts-variable">Describe</span>
+                          <span class="ts-variable">DirectSum</span>
+                          <span class="ts-variable">Holder</span>
+                          <span class="ts-variable">Minus</span>
+                          <span class="ts-variable">Parenthesize</span>
+                          <span class="ts-variable">Product</span>
+                          <span class="ts-variable">SheafExpression</span>
+                          <span class="ts-variable">Sum</span>
+                          <span class="ts-variable">TensorProduct</span>
+            <span class="ts-variable">ZeroExpression</span>
+
+<span class="ts-variable ts-variable-builtin">o1</span> <span class="ts-operator">:</span> <span class="ts-variable">Descent</span>
+</code></pre>
+
+<h2 id="see-also"><a class="header" href="#see-also">See also</a></h2>
+<ul>
+<li><a href="_show__Structure.html">showStructure</a> – display parent structure</li>
+<li><a href="_show__User__Structure.html">showUserStructure</a> – show parent structure for those types defined by user</li>
+</ul>
+<hr>
+<p>The source of this document is in <code>Macaulay2Doc/ov_types.m2:731:0</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="_show__Structure.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="_show__User__Structure.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="_show__Structure.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="_show__User__Structure.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

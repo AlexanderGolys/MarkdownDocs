@@ -1,0 +1,430 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>fine control of a Groebner basis computation - Macaulay2Doc — Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-b2932a8a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-ab61a4b0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Macaulay2Doc — Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="fine-control-of-a-groebner-basis-computation"><a class="header" href="#fine-control-of-a-groebner-basis-computation">fine control of a Groebner basis computation</a></h1>
+<p>Use this page when a Gröbner basis computation is too slow, too large, or needs to be inspected before it finishes. The main controls are the options <a href="___Degree__Limit.html">DegreeLimit</a>, <a href="___Pair__Limit.html">PairLimit</a>, <a href="___Basis__Element__Limit.html">BasisElementLimit</a>, <a href="___Codimension__Limit.html">CodimensionLimit</a>, and <a href="___Subring__Limit.html">SubringLimit</a>; the inspection tools <a href="_gb__Snapshot.html">gbSnapshot</a> and <a href="_gb__Trace.html">gbTrace</a>; and <a href="_force__G__B.html">forceGB</a> for creating a Gröbner basis object from data already known to be a basis.</p>
+<h2 id="partially-computed-gröbner-bases"><a class="header" href="#partially-computed-gröbner-bases">Partially computed Gröbner bases</a></h2>
+<p>Suppose that you have computed part of a Gröbner basis. For example, you may have interrupted the computation using <code>Ctrl-C</code> (typing <code>C</code> while holding the <code>Ctrl</code> key down, in Emacs, you have to type <code>Ctrl-C</code> twice), or you may have given options requesting only partial computation.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i1</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-variable">ZZ</span><span class="ts-operator">/</span><span class="ts-number">32003</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i2</span> <span class="ts-operator">:</span> <span class="ts-variable">I</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">random</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">R</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-function ts-function-call">random</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">R</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-function ts-function-call">random</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">R</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+                <span class="ts-number">3</span>        <span class="ts-operator"></span><span class="ts-number">2</span>           <span class="ts-operator"></span><span class="ts-number">2</span>        <span class="ts-operator"></span><span class="ts-number">3</span>        <span class="ts-operator"></span><span class="ts-number">2</span>               
+<span class="ts-variable ts-variable-builtin">o2</span> <span class="ts-operator">=</span> <span class="ts-variable">ideal</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">107</span><span class="ts-operator"></span><span class="ts-variable">a</span>  <span class="ts-operator">+</span> <span class="ts-number">4376</span><span class="ts-operator"></span><span class="ts-function ts-function-call">a</span> <span class="ts-variable"><span class="ts-operator"></span>b</span> <span class="ts-operator">-</span> <span class="ts-number">5307</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span>  <span class="ts-operator">-</span> <span class="ts-number">6203</span><span class="ts-operator"></span><span class="ts-variable">b</span>  <span class="ts-operator">-</span> <span class="ts-number">5570</span><span class="ts-operator"></span><span class="ts-function ts-function-call">a</span> <span class="ts-variable"><span class="ts-operator"></span>c</span> <span class="ts-operator">+</span> <span class="ts-number">8570</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">c</span> <span class="ts-operator">+</span>
+     <span class="ts-comment">------------------------------------------------------------------------</span>
+           <span class="ts-number">2</span>            <span class="ts-operator"></span><span class="ts-number">2</span>           <span class="ts-operator"></span><span class="ts-number">2</span>        <span class="ts-operator"></span><span class="ts-number">3</span>        <span class="ts-operator"></span><span class="ts-number">2</span>                
+     12365b c - 10480a*c  - 11950b*c  + 9534c  + 3187a d - 15344a*b*d -
+     ------------------------------------------------------------------------
+           2                                  2           2          2  
+     13508b d + 10359a*c*d + 8231b*c*d - 7216c d - 8251a*d  + 5026b*d  +
+     ------------------------------------------------------------------------
+            2        3        2                     2               
+     7256c*d  + 9033d  + 3783a e + 8444a*b*e - 9480b e - 7464a*c*e +
+     ------------------------------------------------------------------------
+                       2                                              2   
+     5864b*c*e - 10125c e + 2653a*d*e + 10259b*d*e - 5321c*d*e + 5107d e +
+     ------------------------------------------------------------------------
+            2          2          2          2        3        3         2   
+     5071a*e  - 7501b*e  + 6230c*e  - 3996d*e  + 9398e , 13177a  + 13990a b +
+     ------------------------------------------------------------------------
+             2        3         2                     2           2  
+     10866a*b  + 1031b  - 11521a c + 5398a*b*c - 2036b c + 2627a*c  -
+     ------------------------------------------------------------------------
+            2        3        2                     2               
+     6922b*c  - 3589c  - 1309a d + 5549a*b*d - 6325b d - 5326a*c*d -
+     ------------------------------------------------------------------------
+                      2           2          2           2        3        2 
+     5080b*c*d - 5599c d + 5679a*d  + 8922b*d  + 13707c*d  + 8971d  - 1779a e
+     ------------------------------------------------------------------------
+                         2                                 2               
+     - 7061a*b*e - 11740b e + 2998a*c*e + 1236b*c*e + 4259c e - 7152a*d*e -
+     ------------------------------------------------------------------------
+                                    2            2          2         2  
+     5006b*d*e - 13892c*d*e - 14165d e + 15317a*e  + 8880b*e  - 994c*e  -
+     ------------------------------------------------------------------------
+            2        3          3        2            2         3        2   
+     3002d*e  + 2177e , - 10521a  - 1946a b - 11045a*b  - 15333b  - 7021a c +
+     ------------------------------------------------------------------------
+                       2           2          2        3        2   
+     10370a*b*c - 7600b c - 7028a*c  - 3560b*c  + 5969c  + 1206a d -
+     ------------------------------------------------------------------------
+                      2                               2           2  
+     9702a*b*d - 6040b d - 15a*c*d - 7194b*c*d - 5483c d + 6377a*d  -
+     ------------------------------------------------------------------------
+            2          2         3        2                     2   
+     6627b*d  + 9074c*d  - 11726d  - 6453a e + 8886a*b*e - 3164b e -
+     ------------------------------------------------------------------------
+                                  2                                         
+     6723a*c*e - 7092b*c*e + 5874c e - 11435a*d*e + 4700b*d*e - 15250c*d*e +
+     ------------------------------------------------------------------------
+          2           2          2           2         2        3
+     8022d e - 1192a*e  + 9797b*e  + 10567c*e  + 295d*e  + 2292e )
+
+o2 : Ideal of R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i3</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">gens</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">gb</span></span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">I</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">PairLimit</span><span class="ts-operator">=&gt;</span><span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+
+             <span class="ts-number">1</span>      <span class="ts-operator"></span><span class="ts-number">7</span>
+<span class="ts-variable ts-variable-builtin">o3</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">Matrix</span> <span class="ts-variable"><span class="ts-operator"></span>R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>
+</code></pre>
+
+<p>Get the Gröbner basis object:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i4</span> <span class="ts-operator">:</span> <span class="ts-variable">g</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">gb</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">I</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">StopBeforeComputation</span> <span class="ts-operator">=&gt;</span> <span class="ts-boolean">true</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i5</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">leadTerm</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">gens</span></span> <span class="ts-variable"><span class="ts-operator"></span>g</span>
+
+<span class="ts-variable ts-variable-builtin">o5</span> = | ab2 a2b a3 b3c b4 abc3 a2c3 |
+
+             1      7
+o5 : Matrix R  &lt;-- R
+</code></pre>
+
+<p>We can make a Gröbner basis snapshot by using StopBeforeComputation, or <a href="_gb__Snapshot.html">gbSnapshot</a>:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i6</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">gens</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">gb</span></span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">I</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">StopBeforeComputation</span> <span class="ts-operator">=&gt;</span> <span class="ts-boolean">true</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o6</span> = | ab2-11391b3-5320a2c-13396abc-13493b2c-1240ac2+7608bc2-3232c3-1589a2d-
+     ------------------------------------------------------------------------
+     10031abd+4261b2d-8339acd+11672bcd-8273c2d+9919ad2+2784bd2-9469cd2-467d3+
+     ------------------------------------------------------------------------
+     10443a2e-8047abe-804b2e-8732ace-4103bce-11320c2e+15116ade+8081bde+
+     ------------------------------------------------------------------------
+     13170cde+8155d2e+14681ae2+6840be2-4060ce2+4697de2-10579e3
+     ------------------------------------------------------------------------
+     a2b-1245b3-6307a2c-11752abc+4739b2c-7117ac2+4604bc2-2102c3-1103a2d+
+     ------------------------------------------------------------------------
+     14036abd+12312b2d+4931acd+10339bcd-8058c2d+11980ad2+8057bd2+13937cd2-
+     ------------------------------------------------------------------------
+     85d3+14455a2e+8260abe+2037b2e+9647ace-15410bce+921c2e+9551ade-3204bde-
+     ------------------------------------------------------------------------
+     8696cde+6879d2e+12651ae2-7056be2+10714ce2-1787de2+14941e3
+     ------------------------------------------------------------------------
+     a3+8403b3-1190a2c-15323abc+13420b2c+6342ac2+15466bc2-3361c3-7950a2d-
+     ------------------------------------------------------------------------
+     1838abd+14555b2d+12332acd+5108bcd+2903c2d-5539ad2-10429bd2-2305cd2-
+     ------------------------------------------------------------------------
+     7937d3-1697a2e+9091abe+14609b2e-8778ace+9245bce+4957c2e-5753ade+10314bde
+     ------------------------------------------------------------------------
+     +1752cde+12225d2e+15200ae2-1840be2+2970ce2+7214de2-6578e3
+     ------------------------------------------------------------------------
+     b3c+5081a2c2-8259abc2-14376b2c2+3188ac3-769bc3+9944c4-7494b3d+7852a2cd+
+     ------------------------------------------------------------------------
+     10219abcd+4847b2cd+1132ac2d-7248bc2d-1825c3d-5344a2d2-6809abd2+11727b2d2
+     ------------------------------------------------------------------------
+     -3821acd2-12167bcd2-7415c2d2-5912ad3+8110bd3+4202cd3+1057d4-2905b3e+
+     ------------------------------------------------------------------------
+     5014a2ce+6780abce+15730b2ce-14498ac2e+8288bc2e+8027c3e+4400a2de-2006abde
+     ------------------------------------------------------------------------
+     -11279b2de-12106acde+85bcde+4702c2de-6507ad2e+375bd2e+1276cd2e-75d3e+
+     ------------------------------------------------------------------------
+     8509a2e2+11161abe2-1461b2e2-13786ace2+13233bce2-13146c2e2-4294ade2+
+     ------------------------------------------------------------------------
+     2115bde2-8341cde2+6748d2e2-3680ae3-9994be3+13199ce3+9404de3-7442e4
+     ------------------------------------------------------------------------
+     b4+8597a2c2+2008abc2+10927b2c2+11183ac3-2334bc3+2651c4-11800b3d-2247a2cd
+     ------------------------------------------------------------------------
+     -3514abcd-10663b2cd-4703ac2d+3223bc2d-31c3d-8220a2d2-14532abd2+9140b2d2-
+     ------------------------------------------------------------------------
+     15426acd2-8204bcd2+4041c2d2+1695ad3-12050bd3-9450cd3-1043d4-13002b3e+
+     ------------------------------------------------------------------------
+     7568a2ce-8466abce+2203b2ce-520ac2e-10283bc2e+15655c3e-4914a2de+14891abde
+     ------------------------------------------------------------------------
+     +7008b2de+4316acde+5553bcde+13770c2de+14595ad2e-3748bd2e-3132cd2e-
+     ------------------------------------------------------------------------
+     4247d3e+5929a2e2-223abe2-13618b2e2-4800ace2-14221bce2-10331c2e2+
+     ------------------------------------------------------------------------
+     15289ade2+11676bde2+13221cde2+10864d2e2-3953ae3-12193be3-3354ce3-9362de3
+     ------------------------------------------------------------------------
+     +5003e4 abc3+14563b2c3+7076ac4-3805bc4-998c5-11331a2c2d+14001abc2d-
+     ------------------------------------------------------------------------
+     9559b2c2d+13974ac3d+1972bc3d+7522c4d-15602b3d2-5593a2cd2-14073abcd2-
+     ------------------------------------------------------------------------
+     9437b2cd2-3338ac2d2+3652bc2d2-7670c3d2+2680a2d3+8342abd3-14061b2d3+
+     ------------------------------------------------------------------------
+     1909acd3+10705bcd3+6541c2d3+1512ad4-6422bd4+6813cd4+12171d5+849a2c2e-
+     ------------------------------------------------------------------------
+     4307abc2e-11850b2c2e-11391ac3e-13420bc3e-15487c4e-959b3de-64a2cde+
+     ------------------------------------------------------------------------
+     3520abcde+11428b2cde+6361ac2de-9883bc2de-8624c3de+2129a2d2e+15459abd2e-
+     ------------------------------------------------------------------------
+     9432b2d2e-11415acd2e-14940bcd2e+1863c2d2e-14855ad3e-14014bd3e-2661cd3e-
+     ------------------------------------------------------------------------
+     4619d4e-950b3e2+10361a2ce2-5000abce2+15729b2ce2+2961ac2e2-1806bc2e2-
+     ------------------------------------------------------------------------
+     15236c3e2-4319a2de2-1113abde2+3734b2de2+7689acde2-1337bcde2-12800c2de2+
+     ------------------------------------------------------------------------
+     13550ad2e2-312bd2e2+3671cd2e2-7034d3e2-14914a2e3-9352abe3-7633b2e3-
+     ------------------------------------------------------------------------
+     8892ace3-5755bce3+7215c2e3-13530ade3-4610bde3-338cde3+8929d2e3-6303ae4-
+     ------------------------------------------------------------------------
+     9672be4-8826ce4-5872de4-14853e5
+     ------------------------------------------------------------------------
+     a2c3+12817b2c3+4227ac4-1643bc4+11820c5+13424a2c2d+421abc2d-9343b2c2d-
+     ------------------------------------------------------------------------
+     8104ac3d-208bc3d-2264c4d-4618b3d2-9256a2cd2-13197abcd2+12517b2cd2+
+     ------------------------------------------------------------------------
+     8613ac2d2-10602bc2d2+8080c3d2-12173a2d3+7845abd3+11470b2d3-15645acd3+
+     ------------------------------------------------------------------------
+     14068bcd3+1614c2d3-2477ad4+14757bd4-10489cd4+8593d5-8625a2c2e+547abc2e+
+     ------------------------------------------------------------------------
+     9666b2c2e-7182ac3e+4055bc3e-2460c4e+11055b3de+15233a2cde-2278abcde+
+     ------------------------------------------------------------------------
+     14497b2cde-8061ac2de+9802bc2de+14712c3de-8847a2d2e-2836abd2e+7338b2d2e+
+     ------------------------------------------------------------------------
+     9402acd2e+10024bcd2e+15998c2d2e-3436ad3e+12062bd3e+7886cd3e+7886d4e+
+     ------------------------------------------------------------------------
+     9628b3e2-6744a2ce2-1535abce2-1802b2ce2+10769ac2e2+269bc2e2-8136c3e2+
+     ------------------------------------------------------------------------
+     1243a2de2-763abde2-6341b2de2-2584acde2+11620bcde2+10174c2de2+10935ad2e2+
+     ------------------------------------------------------------------------
+     6495bd2e2+4855cd2e2-12580d3e2+8827a2e3+15208abe3+11344b2e3+3458ace3-
+     ------------------------------------------------------------------------
+     69bce3-4243c2e3+3442ade3-7654bde3-15312cde3+11297d2e3+14040ae4+10946be4+
+     ------------------------------------------------------------------------
+     15202ce4+14150de4+3493e5 |
+
+             1      7
+o6 : Matrix R  &lt;-- R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i7</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">leadTerm</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">gbSnapshot</span></span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">I</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o7</span> = | ab2 a2b a3 b3c b4 abc3 a2c3 |
+
+             1      7
+o7 : Matrix R  &lt;-- R
+</code></pre>
+
+<hr>
+<p>The source of this document is in <code>Macaulay2Doc/ov_groebner_bases.m2:524:0</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="_simple_sp__Groebner_spbasis_spcomputations_spover_spvarious_springs.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="_computing_sp__Groebner_spbases.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="_simple_sp__Groebner_spbasis_spcomputations_spover_spvarious_springs.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="_computing_sp__Groebner_spbases.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

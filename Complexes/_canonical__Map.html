@@ -1,0 +1,1044 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>canonicalMap - Complexes — Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-bc240cfb.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-057d6b04.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Complexes — Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="canonicalmap--gets-the-natural-map-arising-from-various-constructions"><a class="header" href="#canonicalmap--gets-the-natural-map-arising-from-various-constructions">canonicalMap – gets the natural map arising from various constructions</a></h1>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">g = canonicalMap(D, C)
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>C</code>, a <a href="___Complex.html">complex</a>,</li>
+<li><code>D</code>, a <a href="___Complex.html">complex</a>,</li>
+</ul>
+</li>
+<li><a href="../Macaulay2Doc/_using_spfunctions_spwith_spoptional_spinputs.html">Optional inputs</a>:
+<ul>
+<li><code>UseTarget =&gt; </code>a <a href="../Macaulay2Doc/___Boolean.html">Boolean value</a>, default value null, determines the choice of canonical map when <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span> is a cylinder of a map <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> and the source and target of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> are the same</li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li><code>g</code>, a <a href="___Complex__Map.html">map of complexes</a>,</li>
+</ul>
+</li>
+</ul>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
+<p>A canonical map, also called a natural map, is a map that arises naturally from the definition or the construction of the object.</p>
+<p>The following six constructions are supported: kernel, cokernel, image, coimage, cone, and cylinder.</p>
+<p>The <a href="_kernel_lp__Complex__Map_rp.html">kernel of a complex map</a> comes with a natural injection into the source complex. This natural map is always a complex morphism.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i1</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-variable">ZZ</span><span class="ts-operator">/</span><span class="ts-number">101</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i2</span> <span class="ts-operator">:</span> <span class="ts-variable">D</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">freeResolution</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">coker</span></span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">vars</span></span> <span class="ts-variable"><span class="ts-operator"></span>R</span>
+
+      <span class="ts-number">1</span>      <span class="ts-operator"></span><span class="ts-number">4</span>      <span class="ts-operator"></span><span class="ts-number">6</span>      <span class="ts-operator"></span><span class="ts-number">4</span>      <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o2</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>
+                                  
+     <span class="ts-number">0</span>      <span class="ts-operator"></span><span class="ts-number">1</span>      <span class="ts-operator"></span><span class="ts-number">2</span>      <span class="ts-operator"></span><span class="ts-number">3</span>      <span class="ts-operator"></span><span class="ts-number">4</span>
+
+<span class="ts-variable ts-variable-builtin">o2</span> <span class="ts-operator">:</span> <span class="ts-variable">Complex</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i3</span> <span class="ts-operator">:</span> <span class="ts-variable">C</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">freeResolution</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">coker</span></span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">matrix</span></span><span class="ts-string"><span class="ts-operator"></span>"a,b,c"</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+      <span class="ts-number">1</span>      <span class="ts-operator"></span><span class="ts-number">3</span>      <span class="ts-operator"></span><span class="ts-number">3</span>      <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o3</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>
+                           
+     <span class="ts-operator">-</span><span class="ts-number">1</span>     <span class="ts-operator"></span><span class="ts-number">0</span>      <span class="ts-operator"></span><span class="ts-number">1</span>      <span class="ts-operator"></span><span class="ts-number">2</span>
+
+<span class="ts-variable ts-variable-builtin">o3</span> <span class="ts-operator">:</span> <span class="ts-variable">Complex</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i4</span> <span class="ts-operator">:</span> <span class="ts-variable">f</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">randomComplexMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">D</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">C</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">Cycle</span><span class="ts-operator">=&gt;</span><span class="ts-boolean">true</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+                    <span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o4</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span><span class="ts-number">1</span> <span class="ts-operator">:</span> <span class="ts-number">0</span> <span class="ts-operator">&lt;-</span><span class="ts-comment">---- R  : -1</span>
+               <span class="ts-number">0</span>
+
+          <span class="ts-number">1</span>                                                           <span class="ts-operator"></span><span class="ts-number">3</span>
+     <span class="ts-number">0</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">------------------------------------------------------ R  : 0</span>
+               | -46a+17b-8c+26d -38a-2b+23c-10d -30a-18b-9c+37d |
+
+          4                                                               3
+     1 : R  &lt;----------------------------------------------------------- R  : 1
+               {1} | 38a+3b-10c+25d  30a+36b+14c-9d -47b-19c+2d      |
+               {1} | -47a+17b-29c-8d -18a+39c-22d   -24a+18b-32c-27d |
+               {1} | -13a+21b-34d    50a-22b-8c+24d -19a+39b+23c-18d |
+               {1} | -15a+34b+34c    -28a+22b+2c    -2a-10b+8c       |
+
+          6                               1
+     2 : R  &lt;--------------------------- R  : 2
+               {2} | 24a-36b-30c-29d |
+               {2} | 19a+19b-10c-29d |
+               {2} | -8a-22b-29c-24d |
+               {2} | 2a+38b-47c      |
+               {2} | 45a+22b+16c     |
+               {2} | -47a-48b-34c    |
+
+o4 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i5</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">isComplexMorphism</span></span> <span class="ts-variable"><span class="ts-operator"></span>f</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i6</span> <span class="ts-operator">:</span> <span class="ts-variable">K1</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">kernel</span> <span class="ts-variable"><span class="ts-operator"></span>f</span>
+
+      <span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o6</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-function ts-function-call">image</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-operator">-</span><span class="ts-number">14</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">-</span><span class="ts-number">22</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">-</span><span class="ts-number">50</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">-</span><span class="ts-number">9</span><span class="ts-operator"></span><span class="ts-variable">d</span> <span class="ts-operator">-</span><span class="ts-number">32</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">+</span><span class="ts-number">17</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">-</span><span class="ts-number">42</span><span class="ts-operator"></span><span class="ts-variable">d</span> <span class="ts-operator">-</span><span class="ts-number">27</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">-</span><span class="ts-number">21</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">+</span><span class="ts-number">50</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">+</span><span class="ts-number">27</span><span class="ts-operator"></span><span class="ts-variable">d</span> | &lt;-- image 0 &lt;-- image 0
+                  {1} | a+15b-13c+17d   22b+40c+33d  -27b+6c+10d      |                  
+     -1           {1} | 0               b+31c-38d    a+27c-19d        |     1           2
+             
+            0
+
+o6 : Complex
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i7</span> <span class="ts-operator">:</span> <span class="ts-variable">g</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">source</span> <span class="ts-variable"><span class="ts-operator"></span>f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">K1</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+           <span class="ts-number">1</span>             <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o7</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span><span class="ts-number">1</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">-------- R  : -1</span>
+                | 1 |
+
+          3
+     0 : R  &lt;--------------------------------------------------------- image {1} | -14a-22b-50c-9d -32b+17c-42d -27a-21b+50c+27d | : 0
+               {1} | -14a-22b-50c-9d -32b+17c-42d -27a-21b+50c+27d |         {1} | a+15b-13c+17d   22b+40c+33d  -27b+6c+10d      |
+               {1} | a+15b-13c+17d   22b+40c+33d  -27b+6c+10d      |         {1} | 0               b+31c-38d    a+27c-19d        |
+               {1} | 0               b+31c-38d    a+27c-19d        |
+
+          3
+     1 : R  &lt;----- image 0 : 1
+               0
+
+          1
+     2 : R  &lt;----- image 0 : 2
+               0
+
+o7 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i8</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">degree</span> <span class="ts-variable"><span class="ts-operator"></span>g</span>
+
+<span class="ts-variable ts-variable-builtin">o8</span> <span class="ts-operator">=</span> <span class="ts-number">0</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i9</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>g</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>g</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i10</span> <span class="ts-operator">:</span> <span class="ts-variable">f2</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">randomComplexMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">D</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">C</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+                     <span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o10</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span><span class="ts-number">1</span> <span class="ts-operator">:</span> <span class="ts-number">0</span> <span class="ts-operator">&lt;-</span><span class="ts-comment">---- R  : -1</span>
+                <span class="ts-number">0</span>
+
+           <span class="ts-number">1</span>                                                           <span class="ts-operator"></span><span class="ts-number">3</span>
+      <span class="ts-number">0</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">------------------------------------------------------ R  : 0</span>
+                | 47a+19b-16c+7d 15a-23b+39c+43d -17a-11b+48c+36d |
+
+           4                                                                3
+      1 : R  &lt;------------------------------------------------------------ R  : 1
+                {1} | 35a+11b-38c+33d -47a+15b-37c-13d -48a-15b+39c    |
+                {1} | 40a+11b+46c-28d -10a+30b-18c+39d 33a-49b-33c-19d |
+                {1} | a-3b+22c-47d    27a-22b+32c-9d   17a-20b+44c-39d |
+                {1} | -23a-7b+2c+29d  -32a-20b+24c-30d 36a+9b-39c+4d   |
+
+           6                               1
+      2 : R  &lt;--------------------------- R  : 2
+                {2} | 13a-26b+22c-49d |
+                {2} | -11a-8b+43c-8d  |
+                {2} | 36a-3b-22c-30d  |
+                {2} | 41a+16b-28c-6d  |
+                {2} | 35a-9b-35c+6d   |
+                {2} | 40a+3b-31c+25d  |
+
+o10 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i11</span> <span class="ts-operator">:</span> <span class="ts-variable">assert</span> <span class="ts-operator"></span><span class="ts-keyword ts-keyword-operator">not</span> <span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>f2</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i12</span> <span class="ts-operator">:</span> <span class="ts-variable">K2</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">kernel</span> <span class="ts-variable"><span class="ts-operator"></span>f2</span>
+
+       <span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o12</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-function ts-function-call">image</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-operator">-</span><span class="ts-number">39</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">-</span><span class="ts-number">21</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">+</span><span class="ts-number">40</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">-</span><span class="ts-number">31</span><span class="ts-operator"></span><span class="ts-variable">d</span> <span class="ts-operator">-</span><span class="ts-number">20</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">-</span><span class="ts-number">28</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">+</span><span class="ts-number">37</span><span class="ts-operator"></span><span class="ts-function ts-function-call">d</span> <span class="ts-number"><span class="ts-operator"></span>24</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">+</span><span class="ts-number">47</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">+</span><span class="ts-number">6</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">+</span><span class="ts-number">38</span><span class="ts-operator"></span><span class="ts-variable">d</span> | &lt;-- image 0 &lt;-- image 0
+                   {1} | a+9b+19c-2d      -17b+26c-23d -49b-32c+5d    |                  
+      -1           {1} | 0                b-c-19d      a+28c-33d      |     1           2
+              
+             0
+
+o12 : Complex
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i13</span> <span class="ts-operator">:</span> <span class="ts-variable">g2</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">source</span> <span class="ts-variable"><span class="ts-operator"></span>f2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">K2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+            <span class="ts-number">1</span>             <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o13</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span><span class="ts-number">1</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">-------- R  : -1</span>
+                 | 1 |
+
+           3
+      0 : R  &lt;-------------------------------------------------------- image {1} | -39a-21b+40c-31d -20b-28c+37d 24a+47b+6c+38d | : 0
+                {1} | -39a-21b+40c-31d -20b-28c+37d 24a+47b+6c+38d |         {1} | a+9b+19c-2d      -17b+26c-23d -49b-32c+5d    |
+                {1} | a+9b+19c-2d      -17b+26c-23d -49b-32c+5d    |         {1} | 0                b-c-19d      a+28c-33d      |
+                {1} | 0                b-c-19d      a+28c-33d      |
+
+           3
+      1 : R  &lt;----- image 0 : 1
+                0
+
+           1
+      2 : R  &lt;----- image 0 : 2
+                0
+
+o13 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i14</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>g2</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>g2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<p>The <a href="_cokernel_lp__Complex__Map_rp.html">cokernel of a complex map</a> comes with a natural surjection from the target complex.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i15</span> <span class="ts-operator">:</span> <span class="ts-variable">Q</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">cokernel</span> <span class="ts-variable"><span class="ts-operator"></span>f</span>
+
+                                                                                                                                                                                  <span class="ts-number">4</span>      <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o15</span> <span class="ts-operator">=</span> <span class="ts-variable">cokernel</span> <span class="ts-operator">|</span> <span class="ts-operator">-</span><span class="ts-number">46</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">+</span><span class="ts-number">17</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">-</span><span class="ts-number">8</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">+</span><span class="ts-number">26</span><span class="ts-operator"></span><span class="ts-variable">d</span> <span class="ts-operator">-</span><span class="ts-number">38</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">-</span><span class="ts-number">2</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">+</span><span class="ts-number">23</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-operator"></span><span class="ts-variable">d</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">-</span><span class="ts-number">18</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">-</span><span class="ts-number">9</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">+</span><span class="ts-number">37</span><span class="ts-operator"></span><span class="ts-variable">d</span> | &lt;-- cokernel {1} | 38a+3b-10c+25d  30a+36b+14c-9d -47b-19c+2d      | &lt;-- cokernel {2} | 24a-36b-30c-29d | &lt;-- R  &lt;-- R
+                                                                                {1} | -47a+17b-29c-8d -18a+39c-22d   -24a+18b-32c-27d |              {2} | 19a+19b-10c-29d |             
+      0                                                                         {1} | -13a+21b-34d    50a-22b-8c+24d -19a+39b+23c-18d |              {2} | -8a-22b-29c-24d |     3      4
+                                                                                {1} | -15a+34b+34c    -28a+22b+2c    -2a-10b+8c       |              {2} | 2a+38b-47c      |
+                                                                                                                                                     {2} | 45a+22b+16c     |
+                                                                       1                                                                             {2} | -47a-48b-34c    |
+                                                                                                                                             
+                                                                                                                                            2
+
+o15 : Complex
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i16</span> <span class="ts-operator">:</span> <span class="ts-variable">g3</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">Q</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">target</span> <span class="ts-variable"><span class="ts-operator"></span>f</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+                                                                                   <span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o16</span> <span class="ts-operator">=</span> <span class="ts-number">0</span> : <span class="ts-variable">cokernel</span> <span class="ts-operator">|</span> <span class="ts-operator">-</span><span class="ts-number">46</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">+</span><span class="ts-number">17</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">-</span><span class="ts-number">8</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">+</span><span class="ts-number">26</span><span class="ts-operator"></span><span class="ts-variable">d</span> <span class="ts-operator">-</span><span class="ts-number">38</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">-</span><span class="ts-number">2</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">+</span><span class="ts-number">23</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-operator"></span><span class="ts-variable">d</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">-</span><span class="ts-number">18</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">-</span><span class="ts-number">9</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">+</span><span class="ts-number">37</span><span class="ts-operator"></span><span class="ts-variable">d</span> | &lt;--------- R  : 0
+                                                                          | 1 |
+
+                                                                                                 4
+      1 : cokernel {1} | 38a+3b-10c+25d  30a+36b+14c-9d -47b-19c+2d      | &lt;------------------- R  : 1
+                   {1} | -47a+17b-29c-8d -18a+39c-22d   -24a+18b-32c-27d |    {1} | 1 0 0 0 |
+                   {1} | -13a+21b-34d    50a-22b-8c+24d -19a+39b+23c-18d |    {1} | 0 1 0 0 |
+                   {1} | -15a+34b+34c    -28a+22b+2c    -2a-10b+8c       |    {1} | 0 0 1 0 |
+                                                                              {1} | 0 0 0 1 |
+
+                                                                     6
+      2 : cokernel {2} | 24a-36b-30c-29d | &lt;----------------------- R  : 2
+                   {2} | 19a+19b-10c-29d |    {2} | 1 0 0 0 0 0 |
+                   {2} | -8a-22b-29c-24d |    {2} | 0 1 0 0 0 0 |
+                   {2} | 2a+38b-47c      |    {2} | 0 0 1 0 0 0 |
+                   {2} | 45a+22b+16c     |    {2} | 0 0 0 1 0 0 |
+                   {2} | -47a-48b-34c    |    {2} | 0 0 0 0 1 0 |
+                                              {2} | 0 0 0 0 0 1 |
+
+           4                       4
+      3 : R  &lt;------------------- R  : 3
+                {3} | 1 0 0 0 |
+                {3} | 0 1 0 0 |
+                {3} | 0 0 1 0 |
+                {3} | 0 0 0 1 |
+
+           1                 1
+      4 : R  &lt;------------- R  : 4
+                {4} | 1 |
+
+o16 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i17</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>g3</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>g3</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<p>The <a href="_image_lp__Complex__Map_rp.html">image of a complex map</a> comes with a natural injection into the target complex.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i18</span> <span class="ts-operator">:</span> <span class="ts-variable">I</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">image</span> <span class="ts-variable"><span class="ts-operator"></span>f</span>
+
+<span class="ts-variable ts-variable-builtin">o18</span> <span class="ts-operator">=</span> <span class="ts-variable">image</span> <span class="ts-operator">|</span> <span class="ts-operator">-</span><span class="ts-number">46</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">+</span><span class="ts-number">17</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">-</span><span class="ts-number">8</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">+</span><span class="ts-number">26</span><span class="ts-operator"></span><span class="ts-variable">d</span> <span class="ts-operator">-</span><span class="ts-number">38</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">-</span><span class="ts-number">2</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">+</span><span class="ts-number">23</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-operator"></span><span class="ts-variable">d</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">-</span><span class="ts-number">18</span><span class="ts-operator"></span><span class="ts-variable">b</span><span class="ts-operator">-</span><span class="ts-number">9</span><span class="ts-operator"></span><span class="ts-variable">c</span><span class="ts-operator">+</span><span class="ts-number">37</span><span class="ts-operator"></span><span class="ts-variable">d</span> | &lt;-- image {1} | 38a+3b-10c+25d  30a+36b+14c-9d -47b-19c+2d      | &lt;-- image {2} | 24a-36b-30c-29d | &lt;-- image 0 &lt;-- image 0
+                                                                          {1} | -47a+17b-29c-8d -18a+39c-22d   -24a+18b-32c-27d |           {2} | 19a+19b-10c-29d |                  
+      0                                                                   {1} | -13a+21b-34d    50a-22b-8c+24d -19a+39b+23c-18d |           {2} | -8a-22b-29c-24d |     3           4
+                                                                          {1} | -15a+34b+34c    -28a+22b+2c    -2a-10b+8c       |           {2} | 2a+38b-47c      |
+                                                                                                                                            {2} | 45a+22b+16c     |
+                                                                    1                                                                       {2} | -47a-48b-34c    |
+                                                                                                                                       
+                                                                                                                                      2
+
+o18 : Complex
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i19</span> <span class="ts-operator">:</span> <span class="ts-variable">g4</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">target</span> <span class="ts-variable"><span class="ts-operator"></span>f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">I</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+           <span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o19</span> <span class="ts-operator">=</span> <span class="ts-number">0</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">------------------------------------------------------ image | -46a+17b-8c+26d -38a-2b+23c-10d -30a-18b-9c+37d | : 0</span>
+                | -46a+17b-8c+26d -38a-2b+23c-10d -30a-18b-9c+37d |
+
+           4
+      1 : R  &lt;----------------------------------------------------------- image {1} | 38a+3b-10c+25d  30a+36b+14c-9d -47b-19c+2d      | : 1
+                {1} | 38a+3b-10c+25d  30a+36b+14c-9d -47b-19c+2d      |         {1} | -47a+17b-29c-8d -18a+39c-22d   -24a+18b-32c-27d |
+                {1} | -47a+17b-29c-8d -18a+39c-22d   -24a+18b-32c-27d |         {1} | -13a+21b-34d    50a-22b-8c+24d -19a+39b+23c-18d |
+                {1} | -13a+21b-34d    50a-22b-8c+24d -19a+39b+23c-18d |         {1} | -15a+34b+34c    -28a+22b+2c    -2a-10b+8c       |
+                {1} | -15a+34b+34c    -28a+22b+2c    -2a-10b+8c       |
+
+           6
+      2 : R  &lt;--------------------------- image {2} | 24a-36b-30c-29d | : 2
+                {2} | 24a-36b-30c-29d |         {2} | 19a+19b-10c-29d |
+                {2} | 19a+19b-10c-29d |         {2} | -8a-22b-29c-24d |
+                {2} | -8a-22b-29c-24d |         {2} | 2a+38b-47c      |
+                {2} | 2a+38b-47c      |         {2} | 45a+22b+16c     |
+                {2} | 45a+22b+16c     |         {2} | -47a-48b-34c    |
+                {2} | -47a-48b-34c    |
+
+           4
+      3 : R  &lt;----- image 0 : 3
+                0
+
+           1
+      4 : R  &lt;----- image 0 : 4
+                0
+
+o19 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i20</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>g4</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>g4</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<p>The <a href="_coimage_lp__Complex__Map_rp.html">coimage of a complex map</a> comes with a natural surjection from the source complex. This natural map is always a complex morphism.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i21</span> <span class="ts-operator">:</span> <span class="ts-variable">J</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">coimage</span> <span class="ts-variable"><span class="ts-operator"></span>f</span>
+
+                                                                                             <span class="ts-number">3</span>      <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o21</span> <span class="ts-operator">=</span> <span class="ts-variable">cokernel</span> <span class="ts-operator">|</span> <span class="ts-number">1</span> | &lt;-- cokernel {1} | -14a-22b-50c-9d -32b+17c-42d -27a-21b+50c+27d | &lt;-- R  &lt;-- R
+                                  {1} | a+15b-13c+17d   22b+40c+33d  -27b+6c+10d      |             
+      -1                          {1} | 0               b+31c-38d    a+27c-19d        |     1      2
+                          
+                         0
+
+o21 : Complex
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i22</span> <span class="ts-operator">:</span> <span class="ts-variable">g5</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">J</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">source</span> <span class="ts-variable"><span class="ts-operator"></span>f</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+                                  <span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o22</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span><span class="ts-number">1</span> : <span class="ts-variable">cokernel</span> <span class="ts-operator">|</span> <span class="ts-number">1</span> | &lt;----- R  : -1
+                             0
+
+                                                                                             3
+      0 : cokernel {1} | -14a-22b-50c-9d -32b+17c-42d -27a-21b+50c+27d | &lt;----------------- R  : 0
+                   {1} | a+15b-13c+17d   22b+40c+33d  -27b+6c+10d      |    {1} | 1 0 0 |
+                   {1} | 0               b+31c-38d    a+27c-19d        |    {1} | 0 1 0 |
+                                                                            {1} | 0 0 1 |
+
+           3                     3
+      1 : R  &lt;----------------- R  : 1
+                {2} | 1 0 0 |
+                {2} | 0 1 0 |
+                {2} | 0 0 1 |
+
+           1                 1
+      2 : R  &lt;------------- R  : 2
+                {3} | 1 |
+
+o22 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i23</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>g5</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>g5</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i24</span> <span class="ts-operator">:</span> <span class="ts-variable">J2</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">coimage</span> <span class="ts-variable"><span class="ts-operator"></span>f2</span>
+
+                                                                                            <span class="ts-number">3</span>      <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o24</span> <span class="ts-operator">=</span> <span class="ts-variable">cokernel</span> <span class="ts-operator">|</span> <span class="ts-number">1</span> | &lt;-- cokernel {1} | -39a-21b+40c-31d -20b-28c+37d 24a+47b+6c+38d | &lt;-- R  &lt;-- R
+                                  {1} | a+9b+19c-2d      -17b+26c-23d -49b-32c+5d    |             
+      -1                          {1} | 0                b-c-19d      a+28c-33d      |     1      2
+                          
+                         0
+
+o24 : Complex
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i25</span> <span class="ts-operator">:</span> <span class="ts-variable">g6</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">J2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">source</span> <span class="ts-variable"><span class="ts-operator"></span>f2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+                                  <span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o25</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span><span class="ts-number">1</span> : <span class="ts-variable">cokernel</span> <span class="ts-operator">|</span> <span class="ts-number">1</span> | &lt;----- R  : -1
+                             0
+
+                                                                                            3
+      0 : cokernel {1} | -39a-21b+40c-31d -20b-28c+37d 24a+47b+6c+38d | &lt;----------------- R  : 0
+                   {1} | a+9b+19c-2d      -17b+26c-23d -49b-32c+5d    |    {1} | 1 0 0 |
+                   {1} | 0                b-c-19d      a+28c-33d      |    {1} | 0 1 0 |
+                                                                           {1} | 0 0 1 |
+
+           3                     3
+      1 : R  &lt;----------------- R  : 1
+                {2} | 1 0 0 |
+                {2} | 0 1 0 |
+                {2} | 0 0 1 |
+
+           1                 1
+      2 : R  &lt;------------- R  : 2
+                {3} | 1 |
+
+o25 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i26</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>g6</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>g6</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<p>The <a href="_cone_lp__Complex__Map_rp.html">cone of a complex morphism</a> comes with two natural maps. Given a map <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span>, let <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span> denote the cone of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span>. The first is a natural injection from the target <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span> of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> into <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span>. The second is a natural surjection from <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span></span></span> to <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mopen">[</span><span class="mord">−</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>. Together, these maps form a short exact sequence of complexes.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i27</span> <span class="ts-operator">:</span> <span class="ts-variable">E</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">cone</span> <span class="ts-variable"><span class="ts-operator"></span>f</span>
+
+       <span class="ts-number">2</span>      <span class="ts-operator"></span><span class="ts-number">7</span>      <span class="ts-operator"></span><span class="ts-number">9</span>      <span class="ts-operator"></span><span class="ts-number">5</span>      <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o27</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>
+                                   
+      <span class="ts-number">0</span>      <span class="ts-operator"></span><span class="ts-number">1</span>      <span class="ts-operator"></span><span class="ts-number">2</span>      <span class="ts-operator"></span><span class="ts-number">3</span>      <span class="ts-operator"></span><span class="ts-number">4</span>
+
+<span class="ts-variable ts-variable-builtin">o27</span> <span class="ts-operator">:</span> <span class="ts-variable">Complex</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i28</span> <span class="ts-operator">:</span> <span class="ts-variable">g</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">E</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">target</span> <span class="ts-variable"><span class="ts-operator"></span>f</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+           <span class="ts-number">2</span>             <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o28</span> <span class="ts-operator">=</span> <span class="ts-number">0</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">-------- R  : 0</span>
+                | 0 |
+                | 1 |
+
+           7                       4
+      1 : R  &lt;------------------- R  : 1
+                {1} | 0 0 0 0 |
+                {1} | 0 0 0 0 |
+                {1} | 0 0 0 0 |
+                {1} | 1 0 0 0 |
+                {1} | 0 1 0 0 |
+                {1} | 0 0 1 0 |
+                {1} | 0 0 0 1 |
+
+           9                           6
+      2 : R  &lt;----------------------- R  : 2
+                {2} | 0 0 0 0 0 0 |
+                {2} | 0 0 0 0 0 0 |
+                {2} | 0 0 0 0 0 0 |
+                {2} | 1 0 0 0 0 0 |
+                {2} | 0 1 0 0 0 0 |
+                {2} | 0 0 1 0 0 0 |
+                {2} | 0 0 0 1 0 0 |
+                {2} | 0 0 0 0 1 0 |
+                {2} | 0 0 0 0 0 1 |
+
+           5                       4
+      3 : R  &lt;------------------- R  : 3
+                {3} | 0 0 0 0 |
+                {3} | 1 0 0 0 |
+                {3} | 0 1 0 0 |
+                {3} | 0 0 1 0 |
+                {3} | 0 0 0 1 |
+
+           1                 1
+      4 : R  &lt;------------- R  : 4
+                {4} | 1 |
+
+o28 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i29</span> <span class="ts-operator">:</span> <span class="ts-variable">h</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">source</span> <span class="ts-variable"><span class="ts-operator"></span>f</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">E</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+           <span class="ts-number">1</span>               <span class="ts-operator"></span><span class="ts-number">2</span>
+<span class="ts-variable ts-variable-builtin">o29</span> <span class="ts-operator">=</span> <span class="ts-number">0</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">---------- R  : 0</span>
+                | 1 0 |
+
+           3                             7
+      1 : R  &lt;------------------------- R  : 1
+                {1} | 1 0 0 0 0 0 0 |
+                {1} | 0 1 0 0 0 0 0 |
+                {1} | 0 0 1 0 0 0 0 |
+
+           3                                 9
+      2 : R  &lt;----------------------------- R  : 2
+                {2} | 1 0 0 0 0 0 0 0 0 |
+                {2} | 0 1 0 0 0 0 0 0 0 |
+                {2} | 0 0 1 0 0 0 0 0 0 |
+
+           1                         5
+      3 : R  &lt;--------------------- R  : 3
+                {3} | 1 0 0 0 0 |
+
+o29 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i30</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>g</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>h</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i31</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>g</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>h</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i32</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">isShortExactSequence</span></span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">h</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">g</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<p>The <a href="_cylinder.html">cylinder of a complex map</a> comes with four natural maps. Given a map <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span>, let <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span></span></span></span> denote the cylinder of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span>. The first is the natural injection from the source <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span> of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> into the cylinder <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span></span></span></span>. Together these two maps form a short exact sequence of complexes.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i33</span> <span class="ts-operator">:</span> <span class="ts-variable">F</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">cylinder</span> <span class="ts-variable"><span class="ts-operator"></span>f</span>
+
+       <span class="ts-number">1</span>      <span class="ts-operator"></span><span class="ts-number">5</span>      <span class="ts-operator"></span><span class="ts-number">10</span>      <span class="ts-operator"></span><span class="ts-number">10</span>      <span class="ts-operator"></span><span class="ts-number">5</span>      <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o33</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>   <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>   <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>
+                                            
+      <span class="ts-operator">-</span><span class="ts-number">1</span>     <span class="ts-operator"></span><span class="ts-number">0</span>      <span class="ts-operator"></span><span class="ts-number">1</span>       <span class="ts-operator"></span><span class="ts-number">2</span>       <span class="ts-operator"></span><span class="ts-number">3</span>      <span class="ts-operator"></span><span class="ts-number">4</span>
+
+<span class="ts-variable ts-variable-builtin">o33</span> <span class="ts-operator">:</span> <span class="ts-variable">Complex</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i34</span> <span class="ts-operator">:</span> <span class="ts-variable">g</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">F</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">source</span> <span class="ts-variable"><span class="ts-operator"></span>f</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+            <span class="ts-number">1</span>             <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o34</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span><span class="ts-number">1</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">-------- R  : -1</span>
+                 | 1 |
+
+           5                     3
+      0 : R  &lt;----------------- R  : 0
+                {0} | 0 0 0 |
+                {1} | 1 0 0 |
+                {1} | 0 1 0 |
+                {1} | 0 0 1 |
+                {0} | 0 0 0 |
+
+           10                     3
+      1 : R   &lt;----------------- R  : 1
+                 {1} | 0 0 0 |
+                 {1} | 0 0 0 |
+                 {1} | 0 0 0 |
+                 {2} | 1 0 0 |
+                 {2} | 0 1 0 |
+                 {2} | 0 0 1 |
+                 {1} | 0 0 0 |
+                 {1} | 0 0 0 |
+                 {1} | 0 0 0 |
+                 {1} | 0 0 0 |
+
+           10                 1
+      2 : R   &lt;------------- R  : 2
+                 {2} | 0 |
+                 {2} | 0 |
+                 {2} | 0 |
+                 {3} | 1 |
+                 {2} | 0 |
+                 {2} | 0 |
+                 {2} | 0 |
+                 {2} | 0 |
+                 {2} | 0 |
+                 {2} | 0 |
+
+o34 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i35</span> <span class="ts-operator">:</span> <span class="ts-variable">h</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">E</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">F</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+           <span class="ts-number">2</span>                     <span class="ts-operator"></span><span class="ts-number">5</span>
+<span class="ts-variable ts-variable-builtin">o35</span> <span class="ts-operator">=</span> <span class="ts-number">0</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">---------------- R  : 0</span>
+                | 1 0 0 0 0 |
+                | 0 0 0 0 1 |
+
+           7                                   10
+      1 : R  &lt;------------------------------- R   : 1
+                {1} | 1 0 0 0 0 0 0 0 0 0 |
+                {1} | 0 1 0 0 0 0 0 0 0 0 |
+                {1} | 0 0 1 0 0 0 0 0 0 0 |
+                {1} | 0 0 0 0 0 0 1 0 0 0 |
+                {1} | 0 0 0 0 0 0 0 1 0 0 |
+                {1} | 0 0 0 0 0 0 0 0 1 0 |
+                {1} | 0 0 0 0 0 0 0 0 0 1 |
+
+           9                                   10
+      2 : R  &lt;------------------------------- R   : 2
+                {2} | 1 0 0 0 0 0 0 0 0 0 |
+                {2} | 0 1 0 0 0 0 0 0 0 0 |
+                {2} | 0 0 1 0 0 0 0 0 0 0 |
+                {2} | 0 0 0 0 1 0 0 0 0 0 |
+                {2} | 0 0 0 0 0 1 0 0 0 0 |
+                {2} | 0 0 0 0 0 0 1 0 0 0 |
+                {2} | 0 0 0 0 0 0 0 1 0 0 |
+                {2} | 0 0 0 0 0 0 0 0 1 0 |
+                {2} | 0 0 0 0 0 0 0 0 0 1 |
+
+           5                         5
+      3 : R  &lt;--------------------- R  : 3
+                {3} | 1 0 0 0 0 |
+                {3} | 0 1 0 0 0 |
+                {3} | 0 0 1 0 0 |
+                {3} | 0 0 0 1 0 |
+                {3} | 0 0 0 0 1 |
+
+           1                 1
+      4 : R  &lt;------------- R  : 4
+                {4} | 1 |
+
+o35 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i36</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>g</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>h</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i37</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>g</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>h</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i38</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">isShortExactSequence</span></span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">h</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">g</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<p>The third is the natural injection from the target <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span> of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span></span></span></span> into the cylinder <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span></span></span></span>. The fourth is the natural surjection from the cylinder <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span></span></span></span> to the target <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span> of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span>. However, these two maps do not form a short exact sequence of complexes.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i39</span> <span class="ts-operator">:</span> <span class="ts-variable">g'</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">F</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">target</span> <span class="ts-variable"><span class="ts-operator"></span>f</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+           <span class="ts-number">5</span>                 <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o39</span> <span class="ts-operator">=</span> <span class="ts-number">0</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-comment">------------ R  : 0</span>
+                <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator">|</span>
+                <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator">|</span>
+                <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator">|</span>
+                <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator">|</span>
+                <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">1</span> <span class="ts-operator">|</span>
+
+           <span class="ts-number">10</span>                       <span class="ts-operator"></span><span class="ts-number">4</span>
+      <span class="ts-number">1</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>   <span class="ts-operator">&lt;-</span><span class="ts-comment">------------------ R  : 1</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator">|</span>
+
+           <span class="ts-number">10</span>                           <span class="ts-operator"></span><span class="ts-number">6</span>
+      <span class="ts-number">2</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>   <span class="ts-operator">&lt;-</span><span class="ts-comment">---------------------- R  : 2</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator">|</span>
+
+           <span class="ts-number">5</span>                       <span class="ts-operator"></span><span class="ts-number">4</span>
+      <span class="ts-number">3</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-comment">------------------ R  : 3</span>
+                <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator">|</span>
+                <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator">|</span>
+
+           <span class="ts-number">1</span>                 <span class="ts-operator"></span><span class="ts-number">1</span>
+      <span class="ts-number">4</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-comment">------------ R  : 4</span>
+                <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">1</span> <span class="ts-operator">|</span>
+
+<span class="ts-variable ts-variable-builtin">o39</span> <span class="ts-operator">:</span> <span class="ts-variable">ComplexMap</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i40</span> <span class="ts-operator">:</span> <span class="ts-variable">h'</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">target</span> <span class="ts-variable"><span class="ts-operator"></span>f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">F</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+           <span class="ts-number">1</span>                                                               <span class="ts-operator"></span><span class="ts-number">5</span>
+<span class="ts-variable ts-variable-builtin">o40</span> <span class="ts-operator">=</span> <span class="ts-number">0</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">---------------------------------------------------------- R  : 0</span>
+                | 0 -46a+17b-8c+26d -38a-2b+23c-10d -30a-18b-9c+37d 1 |
+
+           4                                                                             10
+      1 : R  &lt;------------------------------------------------------------------------- R   : 1
+                {1} | 0 0 0 38a+3b-10c+25d  30a+36b+14c-9d -47b-19c+2d      1 0 0 0 |
+                {1} | 0 0 0 -47a+17b-29c-8d -18a+39c-22d   -24a+18b-32c-27d 0 1 0 0 |
+                {1} | 0 0 0 -13a+21b-34d    50a-22b-8c+24d -19a+39b+23c-18d 0 0 1 0 |
+                {1} | 0 0 0 -15a+34b+34c    -28a+22b+2c    -2a-10b+8c       0 0 0 1 |
+
+           6                                                 10
+      2 : R  &lt;--------------------------------------------- R   : 2
+                {2} | 0 0 0 24a-36b-30c-29d 1 0 0 0 0 0 |
+                {2} | 0 0 0 19a+19b-10c-29d 0 1 0 0 0 0 |
+                {2} | 0 0 0 -8a-22b-29c-24d 0 0 1 0 0 0 |
+                {2} | 0 0 0 2a+38b-47c      0 0 0 1 0 0 |
+                {2} | 0 0 0 45a+22b+16c     0 0 0 0 1 0 |
+                {2} | 0 0 0 -47a-48b-34c    0 0 0 0 0 1 |
+
+           4                         5
+      3 : R  &lt;--------------------- R  : 3
+                {3} | 0 1 0 0 0 |
+                {3} | 0 0 1 0 0 |
+                {3} | 0 0 0 1 0 |
+                {3} | 0 0 0 0 1 |
+
+           1                 1
+      4 : R  &lt;------------- R  : 4
+                {4} | 1 |
+
+o40 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i41</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>g'</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>h'</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i42</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>g'</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>h'</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i43</span> <span class="ts-operator">:</span> <span class="ts-variable">assert</span> <span class="ts-operator"></span><span class="ts-keyword ts-keyword-operator">not</span> <span class="ts-function ts-function-call">isShortExactSequence</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">h'</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">g'</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<p>When <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">==</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span></span></span></span>, the optional argument <code>UseTarget</code> selects the appropriate natural map.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i44</span> <span class="ts-operator">:</span> <span class="ts-variable">f'</span> <span class="ts-operator">=</span> <span class="ts-variable">id</span><span class="ts-operator">_</span><span class="ts-property">C</span>
+
+            <span class="ts-number">1</span>             <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o44</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span><span class="ts-number">1</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">-------- R  : -1</span>
+                 | 1 |
+
+           3                     3
+      0 : R  &lt;----------------- R  : 0
+                {1} | 1 0 0 |
+                {1} | 0 1 0 |
+                {1} | 0 0 1 |
+
+           3                     3
+      1 : R  &lt;----------------- R  : 1
+                {2} | 1 0 0 |
+                {2} | 0 1 0 |
+                {2} | 0 0 1 |
+
+           1                 1
+      2 : R  &lt;------------- R  : 2
+                {3} | 1 |
+
+o44 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i45</span> <span class="ts-operator">:</span> <span class="ts-variable">F'</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">cylinder</span> <span class="ts-variable"><span class="ts-operator"></span>f'</span>
+
+       <span class="ts-number">2</span>      <span class="ts-operator"></span><span class="ts-number">7</span>      <span class="ts-operator"></span><span class="ts-number">9</span>      <span class="ts-operator"></span><span class="ts-number">5</span>      <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o45</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>
+                                   
+      <span class="ts-operator">-</span><span class="ts-number">1</span>     <span class="ts-operator"></span><span class="ts-number">0</span>      <span class="ts-operator"></span><span class="ts-number">1</span>      <span class="ts-operator"></span><span class="ts-number">2</span>      <span class="ts-operator"></span><span class="ts-number">3</span>
+
+<span class="ts-variable ts-variable-builtin">o45</span> <span class="ts-operator">:</span> <span class="ts-variable">Complex</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i46</span> <span class="ts-operator">:</span> <span class="ts-variable">g</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">F'</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">C</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">UseTarget</span><span class="ts-operator">=&gt;</span><span class="ts-boolean">true</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+            <span class="ts-number">2</span>             <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o46</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span><span class="ts-number">1</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">-------- R  : -1</span>
+                 | 0 |
+                 | 1 |
+
+           7                     3
+      0 : R  &lt;----------------- R  : 0
+                {0} | 0 0 0 |
+                {1} | 0 0 0 |
+                {1} | 0 0 0 |
+                {1} | 0 0 0 |
+                {1} | 1 0 0 |
+                {1} | 0 1 0 |
+                {1} | 0 0 1 |
+
+           9                     3
+      1 : R  &lt;----------------- R  : 1
+                {1} | 0 0 0 |
+                {1} | 0 0 0 |
+                {1} | 0 0 0 |
+                {2} | 0 0 0 |
+                {2} | 0 0 0 |
+                {2} | 0 0 0 |
+                {2} | 1 0 0 |
+                {2} | 0 1 0 |
+                {2} | 0 0 1 |
+
+           5                 1
+      2 : R  &lt;------------- R  : 2
+                {2} | 0 |
+                {2} | 0 |
+                {2} | 0 |
+                {3} | 0 |
+                {3} | 1 |
+
+o46 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i47</span> <span class="ts-operator">:</span> <span class="ts-variable">h</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">canonicalMap</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">F'</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">C</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">UseTarget</span><span class="ts-operator">=&gt;</span><span class="ts-boolean">false</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+            <span class="ts-number">2</span>             <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o47</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span><span class="ts-number">1</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>  &lt;-<span class="ts-comment">-------- R  : -1</span>
+                 | 1 |
+                 | 0 |
+
+           7                     3
+      0 : R  &lt;----------------- R  : 0
+                {0} | 0 0 0 |
+                {1} | 1 0 0 |
+                {1} | 0 1 0 |
+                {1} | 0 0 1 |
+                {1} | 0 0 0 |
+                {1} | 0 0 0 |
+                {1} | 0 0 0 |
+
+           9                     3
+      1 : R  &lt;----------------- R  : 1
+                {1} | 0 0 0 |
+                {1} | 0 0 0 |
+                {1} | 0 0 0 |
+                {2} | 1 0 0 |
+                {2} | 0 1 0 |
+                {2} | 0 0 1 |
+                {2} | 0 0 0 |
+                {2} | 0 0 0 |
+                {2} | 0 0 0 |
+
+           5                 1
+      2 : R  &lt;------------- R  : 2
+                {2} | 0 |
+                {2} | 0 |
+                {2} | 0 |
+                {3} | 1 |
+                {3} | 0 |
+
+o47 : ComplexMap
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i48</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>g</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isWellDefined</span> <span class="ts-variable"><span class="ts-operator"></span>h</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i49</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">g</span> <span class="ts-operator">!=</span> <span class="ts-variable">h</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i50</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">assert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>g</span> <span class="ts-keyword ts-keyword-operator">and</span> <span class="ts-function ts-function-call">isComplexMorphism</span> <span class="ts-variable"><span class="ts-operator"></span>h</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<h2 id="see-also"><a class="header" href="#see-also">See also</a></h2>
+<ul>
+<li><a href="_induced__Map_lp__Complex_cm__Complex_rp.html">inducedMap(Complex,Complex)</a> – make the map of complexes induced at each term by the identity map</li>
+</ul>
+<h2 id="ways-to-use-canonicalmap"><a class="header" href="#ways-to-use-canonicalmap">Ways to use <code>canonicalMap</code>:</a></h2>
+<ul>
+<li><code>canonicalMap(Complex,Complex)</code></li>
+</ul>
+<h2 id="for-the-programmer"><a class="header" href="#for-the-programmer">For the programmer</a></h2>
+<p>The object <a href="_canonical__Map.html">canonicalMap</a> is a <a href="../Macaulay2Doc/___Method__Function__With__Options.html">method function with options</a>.</p>
+<hr>
+<p>The source of this document is in <code>Complexes/ChainComplexMapDoc.m2:1960:0</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="_betti_lp__Complex_rp.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="_canonical__Truncation_lp__Complex_cm__Z__Z_cm__Z__Z_rp.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="_betti_lp__Complex_rp.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="_canonical__Truncation_lp__Complex_cm__Z__Z_cm__Z__Z_rp.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>changes, 1.3 - Macaulay2Doc — Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-b2932a8a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-ab61a4b0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Macaulay2Doc — Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="changes-13"><a class="header" href="#changes-13">changes, 1.3</a></h1>
+<ul>
+<li>major improvements and additions:
+<ul>
+<li>A new option <a href="_new__Package.html">newPackage(…,Certification=&gt;…)</a> for <a href="_new__Package.html">newPackage</a>, provides information about packages that have been accepted for publication in a refereed journal. The information is displayed in the top documentation node of the package. The first three packages so certified are <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EdgeIdeals/html/index.html">EdgeIdeals</a> <img src="images/GoldStar.png" alt="a gold star">, <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/PieriMaps/html/index.html">PieriMaps</a> <img src="images/GoldStar.png" alt="a gold star">, and <a href="../Polyhedra/index.html">Polyhedra</a> <img src="images/GoldStar.png" alt="a gold star">.</li>
+<li>New packages <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/OpenMath/html/index.html">OpenMath</a> and <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SCSCP/html/index.html">SCSCP</a> for communicating via SCSCP with OpenMath to programs such as GAP and Maple have been developed, thanks to Dan Roozemond. They depend on the new package <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/XML/html/index.html">XML</a>, which uses the <code>libxml2</code> library to parse <code>XML</code> code.</li>
+<li>The programs <a href="_4ti2.html">4ti2</a>, <a href="_gfan.html">gfan</a>, and <a href="_normaliz.html">normaliz</a> are now included with <em>Macaulay2</em> binary distributions, and are compiled automatically during Macaulay2’s build process, with automatic downloading available as an option. This makes the packages <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FourTiTwo/html/index.html">FourTiTwo</a>, <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/gfanInterface/html/index.html">gfanInterface</a>, <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Normaliz/html/index.html">Normaliz</a>, and <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/StatePolytope/html/index.html">StatePolytope</a>, each of which uses one or more of them, more readily usable.</li>
+<li>packages newly included:
+<ul>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ConvexInterface/html/index.html">ConvexInterface</a> – interface to Convex</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MapleInterface/html/index.html">MapleInterface</a> – interface to Maple</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/OpenMath/html/index.html">OpenMath</a> – OpenMath for Macaulay2</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Posets/html/index.html">Posets</a> – partially ordered sets (posets)</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RationalPoints/html/index.html">RationalPoints</a> – find the common zeroes of a set of polynomials with coefficients in a finite field</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SCSCP/html/index.html">SCSCP</a> – SCSCP for Macaulay2</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SRdeformations/html/index.html">SRdeformations</a> – deformations of Stanley-Reisner rings and related computations</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/XML/html/index.html">XML</a> – an XML parser</li>
+</ul>
+</li>
+<li>Improved handling of finite fields: <a href="___G__F.html">GF</a> now uses <a href="../ConwayPolynomials/index.html">Conway polynomials</a> when possible. Maps between Galois fields made with them are now easy to produce with <code>map(E,F)</code>. (This was advertised as a change to 1.2, when the package was introduced, but the package was not pre-loaded, whereas now it is.).</li>
+<li>Fixed a long-standing bug in <a href="../Saturation/_saturate.html">saturate</a> that caused it to give incorrect answers (too small) in the case that the following three conditions all held: the ring has a non-standard monomial ordering, such as a weight vector; all variables had degree 1; and the degree of the element being used to saturate was equal to 1.</li>
+<li>The function <a href="_to__Field_lp__Ring_rp.html">toField</a> has been changed so that the expression <code>F = toField A</code> returns a new ring <code>F</code> isomorphic to <code>A</code> and declares it to be field, whereas formerly <code>A</code> was declared to be a field, without creating a new ring. Users of this function should check their code and ensure that the return value <code>F</code> is used. The return value is a polynomial ring of no variables over A, with a new monomial ordering, and with degree length equal to 0. The advantage is that now various computations in polynomial rings over the newly declared field will provide correct answers.</li>
+<li>Fixed a bug in degree(x,f) where the degrees of the grading were used instead of the actual exponents.</li>
+<li>Fixed a bug in <a href="_read.html">read</a> reported by Dan Roozemond: whenever it would return a string of length 4096, subsequent read operations would change the bytes in it.</li>
+<li>The package <a href="../IntegralClosure/index.html">IntegralClosure</a> has been rewritten. The ring used as input for <a href="../IntegralClosure/_integral__Closure.html">integralClosure</a> must be a domain, but the documentation describes how to get around this. The function now provides correct output when it finishes, and it can handle much larger input than before. There are some new routines and some new strategies for the computation.</li>
+<li>A bug in Gröbner bases over the integers was fixed, which, under certain situations, led to an incomplete Gröbner basis.</li>
+<li>A bug in Gröbner bases over fields and the integers was fixed, which caused, under some situations, the list of “trimmed” generators to be incomplete (but the Gröbner basis itself was correct). This impacted functions which use <a href="_trim.html">trim</a>, especially <a href="../MinimalPrimes/_minimal__Primes.html">minimalPrimes</a>.</li>
+<li>The function <a href="../Elimination/_eliminate.html">eliminate</a> has been fixed. The function previously quietly assumed a flat polynomial ring, with no quotient elements, and also quietly assumed that the ring was commutative. Now error messages are given when it would have produced incorrect answers, and it handles Weyl and skew commutative poly rings correctly. Additionally, this function now uses an elimination order rather than a product order, improving performance in many cases.</li>
+<li>Fixed a a bug in <a href="_independent__Sets.html">independentSets</a>, which produced incorrect answers on the cygwin version. A variable was not being initialized. Thanks to B. Roune for reporting the bug and suggesting the fix.</li>
+<li>A bug in <a href="../MinimalPrimes/_minimal__Primes.html">minimalPrimes</a> was unearthed that could produce incorrect answers. The problem was that <a href="_trim.html">trim</a> sometimes could produce incorrect answers (fixed).</li>
+<li>Fixed a bug where if the degrees of the variables in a ring were not all equal to 1, and weight vectors were present, then the monomial ordering was not the documented one.</li>
+<li>Fixed a bug in <a href="_minimal__Presentation.html">minimalPresentation</a> of an <a href="___Ideal.html">Ideal</a> or <a href="___Ring.html">Ring</a>, which would produce incorrect answers in rare situations.</li>
+</ul>
+</li>
+<li>functionality added or improved:
+<ul>
+<li>The method function <a href="_minimal__Presentation_lp__Ring_rp.html">minimalPresentation(Ring)</a> now allows an option, <a href="_minimal__Presentation_lp__Ring_rp.html">minimalPresentation(…,Exclude=&gt;…)</a>, which takes a list of integers: the variables with these indices will not be eliminated. Indices are used, because if the ring is a quotient by linear polynomials, then variables might have normal forms that are complicated polynomials.</li>
+<li>The function <a href="_install__Package.html">installPackage</a> will now, when the option <code>AbsoluteLinks</code> is set to <a href="_true.html">true</a>, will now also search the installation prefix where the package is about to be installed for the files that are linked to. This should resolve the situation where a developer uses the function to modify a package that is already incorporated into <em>Macaulay2</em> itself, and (some of) the links in the freshly installed package end up pointing to the wrong web pages.</li>
+<li>The expression <code>setRandomSeed()</code> can now be used to re-initialize the random number generator; see <a href="_set__Random__Seed.html">setRandomSeed</a>.</li>
+<li>The operator <a href="_...html">..</a> can now be used to generate sequences of consecutive strings.</li>
+<li>A new binary operator <a href="_.._lt.html">..&lt;</a> provides for the generation of sequences that stop one short of those provided by <a href="_...html">..</a> .</li>
+<li>The operator <a href="_...html">..</a>, will now deliver rectangular sequences of consecutive indexed variables, e.g., <code>x_1 .. y_2</code> will have the value <code>(x_1,x_2,y_1,y_2)</code>.</li>
+<li>A new variable, <a href="_handle__Interrupts.html">handleInterrupts</a>, specifies whether Macaulay2’s interrupt handlers for SIGINT and SIGALRM are installed.</li>
+<li>The function <a href="___E__X__A__M__P__L__E.html">EXAMPLE</a> will now accept objects of type <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Text/html/___P__R__E.html">PRE</a> to be interpreted as preformatted example output.</li>
+<li>The function <a href="_open__Listener_lp__String_rp.html">openListener</a> can now open a socket on a specified interface.</li>
+<li>The function <a href="../SimpleDoc/_doc.html">doc</a> will now handle example input expressions that span multiple lines: within in each expression, indent lines after the first one more than the first.</li>
+<li>Multiplication of a scalar and a mutable matrix is now not allowed. Previously attempting this could cause <em>Macaulay2</em> to crash.</li>
+<li>Very long lists can now be parsed without overflowing the stack and causing the program to crash. This was a problem for MacOS with lists of length greater than about 90000. In a future version we plan to reduce the amount of memory required to parse, translate, and then evaluate the list.</li>
+</ul>
+</li>
+<li>functionality changed:
+<ul>
+<li>The CTRL-C interrupt signal SIGINT will now interrupt system calls (such as read and write) that are in progress; formerly, they were restarted by the kernel after the handler set a flag. This necessitated reworking the handling of interrupts by the top level interpreter, which will now respond to them immediately. When the readline library is active and reading user input (such as when the Emacs interface to Macaulay2 is not used), interrupts are handled just by it.</li>
+<li><a href="_current__Directory.html">currentDirectory</a> is now a function rather than a string constant, in order to postpone signalling an error if a component of the path to the current working directory no longer exists.</li>
+<li>When the program starts, the random number seed is now initialized to a value that depends on the date, time in seconds, and the process id. The former initial state can be obtained with <code>setRandomSeed()</code>.</li>
+<li>The function <a href="_realpath.html">realpath</a> now returns a string ending in ‘/’ if the path leads to a directory, for consistency with the convention elsewhere in Macaulay2 that directory names end in ‘/’.</li>
+<li>The <a href="___User__Mode.html">UserMode</a> option to <a href="_install__Package.html">installPackage</a> and <a href="_check.html">check</a> now has default value <a href="_null.html">null</a>, meaning to propagate the command line option <code>-q</code>, if present, to child processes running M2 on examples and tests</li>
+<li>If you set the variable <a href="_gb__Trace.html">gbTrace</a> to 15, then now one sees a large amount of information about the S-pairs computed during a Gröbner basis computation, if the default algorithm is in use.</li>
+<li>The initialization file <code>init.m2</code> is now sought only in the user’s application directory, and not also in the current directory.</li>
+</ul>
+</li>
+<li>new constants and operators:
+<ul>
+<li>New constants <a href="_root__Path.html">rootPath</a> and <a href="_root__U__R__I.html">rootURI</a> provide prefixes to be prepended to absolute file paths so that native Microsoft Windows programs can find them.</li>
+<li>New binary operators <a href="__lt_eq_eq.html">&lt;==</a> and <a href="__lt_eq_eq_eq.html">&lt;===</a> have been introduced. The operators are flexible, i.e., the user can install methods for them.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>The source of this document is in <code>Macaulay2Doc/changes.m2:2680:0</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="_changes_cm_sp1.3.1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="_changes_cm_sp1.2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="_changes_cm_sp1.3.1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="_changes_cm_sp1.2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,1094 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>lists and sequences - Macaulay2Doc — Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-b2932a8a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-ab61a4b0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Macaulay2Doc — Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="lists-and-sequences--a-detailed-overview-of-lists-and-sequences-in-macaulay2"><a class="header" href="#lists-and-sequences--a-detailed-overview-of-lists-and-sequences-in-macaulay2">lists and sequences – a detailed overview of lists and sequences in Macaulay2</a></h1>
+<p>This page gives an overview of the use of lists of all types, including:</p>
+<p><strong>basic lists</strong> (of class <a href="___Basic__List.html">BasicList</a>),<br> <strong>visible lists</strong> (of class <a href="___Visible__List.html">VisibleList</a>),<br> <strong>lists</strong> (of class <a href="___List.html">List</a>),<br> <strong>sequences</strong> (of class <a href="___Sequence.html">Sequence</a>),<br> <strong>arrays</strong> (of class <a href="___Array.html">Array</a>), <strong>angle bar lists</strong> (of class <a href="___Angle__Bar__List.html">AngleBarList</a>), and<br> <strong>mutable lists</strong> (of class <a href="___Mutable__List.html">MutableList</a>).</p>
+<p>The sections of the overview are, in order:</p>
+<p><strong>Creating lists; kinds of lists.</strong> <br> <strong>Elements and indexing.</strong> <br> <strong>Nested lists.</strong> <br> <strong>Ranges and repetitions.</strong> <br> <strong>Manipulating lists and sequences.</strong> <br> <strong>Mapping over lists.</strong> <br> <strong>Conditional expressions; selecting elements matching a criterion.</strong></p>
+<p>Links to individual documentation pages for the functions described in this article are collected in an alphabetized list at the very end of the page.</p>
+<p><strong>Creating lists; kinds of lists.</strong></p>
+<p>To create a <strong>list</strong>, use curly braces around a comma-separated series of elements.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i1</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o1</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o1</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p><strong>Sequences</strong> are created and displayed using parentheses instead of braces.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i2</span> <span class="ts-operator">:</span> <span class="ts-variable">S</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o2</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o2</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<p>Sequences are implemented in a more efficient way than lists, since a sequence is created every time a function is called with more than one argument. On the other hand, parentheses are also used for grouping algebraic expressions. This complicates some tasks, such as creating a sequence of length 1.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i3</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o3</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o3</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i4</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o4</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o4</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i5</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o5</span> <span class="ts-operator">=</span> <span class="ts-number">1</span>
+</code></pre>
+
+<p>The functions <a href="_to__List.html">toList</a> and <a href="_to__Sequence.html">toSequence</a>, which convert between lists and sequences, may be useful here.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i6</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">toSequence</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o6</span> <span class="ts-operator">=</span> <span class="ts-number">1</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o6</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<p>Lists can be used as vectors, provided their elements are the sorts of things that can be added and multiplied.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i7</span> <span class="ts-operator">:</span> <span class="ts-number">10000</span><span class="ts-operator">*</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">+</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o7</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">30001</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">40002</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">50003</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o7</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>An <strong>array</strong> is another type of list, created and displayed using square brackets. Unlike lists and sequences, arrays can’t be used as vectors. Their main use is notational; for example, they appear in the construction of polynomial rings.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i8</span> <span class="ts-operator">:</span> <span class="ts-variable">v</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o8</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o8</span> <span class="ts-operator">:</span> <span class="ts-variable">Array</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i9</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">ZZ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o9</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ZZ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o9</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<p>An <strong>angle bar list</strong> is another type of list, created and displayed using angle bars. They are used in much the same way as arrays are.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i10</span> <span class="ts-operator">:</span> <span class="ts-variable">v</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">&lt;|</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">|&gt;</span>
+
+<span class="ts-variable ts-variable-builtin">o10</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">&lt;|</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">|&gt;</span>
+
+<span class="ts-variable ts-variable-builtin">o10</span> <span class="ts-operator">:</span> <span class="ts-variable">AngleBarList</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i11</span> <span class="ts-operator">:</span> <span class="ts-variable">v</span><span class="ts-operator">#</span><span class="ts-property">1</span>
+
+<span class="ts-variable ts-variable-builtin">o11</span> <span class="ts-operator">=</span> <span class="ts-number">2</span>
+</code></pre>
+
+<p>Lists, sequences, and arrays are the three examples of what we call <strong>visible lists</strong>, which constitute the class <a href="___Visible__List.html">VisibleList</a>. Many functions are defined to act uniformly on visible lists. There is a type of list more general than a visible list, which we call a <a href="___Basic__List.html">BasicList</a>. Basic lists are a secure choice for defining new datatypes, since the many functions that act on visible lists do not act on basic lists. Here we illustrate how to create a new type of basic list, in this case called <em>Container</em>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i12</span> <span class="ts-operator">:</span> <span class="ts-variable">Container</span> <span class="ts-operator">=</span> <span class="ts-keyword">new</span> <span class="ts-type">Type</span> <span class="ts-keyword">of</span> <span class="ts-variable">BasicList</span>
+
+<span class="ts-variable ts-variable-builtin">o12</span> <span class="ts-operator">=</span> <span class="ts-variable">Container</span>
+
+<span class="ts-variable ts-variable-builtin">o12</span> <span class="ts-operator">:</span> <span class="ts-variable">Type</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i13</span> <span class="ts-operator">:</span> <span class="ts-variable">t</span> <span class="ts-operator">=</span> <span class="ts-keyword">new</span> <span class="ts-type">Container</span> <span class="ts-keyword">from</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o13</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">Container</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o13</span> <span class="ts-operator">:</span> <span class="ts-variable">Container</span>
+</code></pre>
+
+<p>We can then declare a new method for the operator <a href="__pl_pl.html">++</a> that will join two Containers:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i14</span> <span class="ts-label">:</span> <span class="ts-variable"><span class="ts-type ts-type-parameter">Container <span class="ts-operator">++</span> <span class="ts-variable">Container</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">join</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i15</span> <span class="ts-operator">:</span> <span class="ts-variable">t</span> <span class="ts-operator">++</span> <span class="ts-variable">t</span>
+
+<span class="ts-variable ts-variable-builtin">o15</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">Container</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o15</span> <span class="ts-operator">:</span> <span class="ts-variable">Container</span>
+</code></pre>
+
+<p>Basic lists are normally <em>immutable</em>; that is, no element can be replaced, added, or removed. (Functions like <a href="_append.html">append</a>, and the many others described in the <strong>Manipulating lists and sequences</strong> section, will return a new list in <code>Macaulay2</code>, as a general rule, rather than modify the existing list.)</p>
+<p>However, there is a certain type of basic list, called a <strong>mutable list</strong> (of class <a href="___Mutable__List.html">MutableList</a>), whose elements can be changed. This allows the possibility of creating circular structures that would cause a print routine to go into an infinite loop. To avoid such infinite loops, the contents of mutable lists are not printed. Instead, use <a href="_peek.html">peek</a> to display the elements in a controlled way.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i16</span> <span class="ts-operator">:</span> <span class="ts-variable">A</span> <span class="ts-operator">=</span> <span class="ts-keyword">new</span> <span class="ts-type">MutableList</span> <span class="ts-keyword">from</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o16</span> <span class="ts-operator">=</span> <span class="ts-variable">MutableList</span><span class="ts-punctuation ts-punctuation-bracket">{</span>...3...}
+
+o16 : MutableList
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i17</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">peek</span> <span class="ts-variable"><span class="ts-operator"></span>A</span>
+
+<span class="ts-variable ts-variable-builtin">o17</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">MutableList</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i18</span> <span class="ts-operator">:</span> <span class="ts-variable">A</span><span class="ts-operator">#</span><span class="ts-property">2</span> <span class="ts-operator">=</span> <span class="ts-number">1234</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i19</span> <span class="ts-operator">:</span> <span class="ts-variable">A</span>
+
+<span class="ts-variable ts-variable-builtin">o19</span> <span class="ts-operator">=</span> <span class="ts-variable">MutableList</span><span class="ts-punctuation ts-punctuation-bracket">{</span>...3...}
+
+o19 : MutableList
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i20</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">peek</span> <span class="ts-variable"><span class="ts-operator"></span>A</span>
+
+<span class="ts-variable ts-variable-builtin">o20</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">MutableList</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">1234</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+</code></pre>
+
+<p>Because the contents of mutable lists are not printed, they can be used as containers for big things one doesn’t <em>want</em> to print. Although any mutable list can be used in this way, there is a a special type of mutable list called a <a href="___Bag.html">Bag</a>, which is designed for this purpose. When printed, the bag displays only a little information about its contents.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i21</span> <span class="ts-operator">:</span> <span class="ts-variable">r</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">Bag</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">100</span><span class="ts-operator">!</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">;</span> <span class="ts-variable">r</span>
+
+<span class="ts-variable ts-variable-builtin">o22</span> <span class="ts-operator">=</span> <span class="ts-comment">-*a bagged integer*-</span>
+
+<span class="ts-variable ts-variable-builtin">o22</span> <span class="ts-operator">:</span> <span class="ts-variable">Bag</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i23</span> <span class="ts-operator">:</span> <span class="ts-variable">q</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">Bag</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-operator">/</span><span class="ts-number">100</span><span class="ts-operator">!</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">;</span> <span class="ts-variable">q</span>
+
+<span class="ts-variable ts-variable-builtin">o24</span> <span class="ts-operator">=</span> <span class="ts-comment">-*a bagged rational number*-</span>
+
+<span class="ts-variable ts-variable-builtin">o24</span> <span class="ts-operator">:</span> <span class="ts-variable">Bag</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i25</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">unbag</span> <span class="ts-variable"><span class="ts-operator"></span>q</span>
+
+                                                                             
+<span class="ts-variable ts-variable-builtin">o25</span> <span class="ts-operator">=</span> <span class="ts-comment">-----------------------------------------------------------------------</span>
+      <span class="ts-number">93326215443944152681699238856266700490715968264381621468592963895217599</span>
+      =======================================================================
+              1
+      -----------------------------------------------------------------------
+      99322991560894146397615651828625369792082722375825118521091686400000000
+      =======================================================================
+      ----------------
+      0000000000000000
+
+o25 : QQ
+</code></pre>
+
+<p>The hierarchy of types mentioned above is summarized here using <a href="_show__Structure.html">showStructure</a>:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i26</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">showStructure</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">List</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">Sequence</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">Array</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">Container</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">MutableList</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">Bag</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">BasicList</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o26</span> <span class="ts-operator">=</span> <span class="ts-variable">Thing</span> <span class="ts-operator">:</span> <span class="ts-variable">BasicList</span> <span class="ts-operator">:</span> <span class="ts-variable">Container</span>
+                          <span class="ts-variable">MutableList</span> <span class="ts-operator">:</span> <span class="ts-variable">Bag</span>
+                          <span class="ts-variable">VisibleList</span> <span class="ts-operator">:</span> <span class="ts-variable">Array</span>
+                                        <span class="ts-variable">List</span>
+                                        <span class="ts-variable">Sequence</span>
+
+<span class="ts-variable ts-variable-builtin">o26</span> <span class="ts-operator">:</span> <span class="ts-variable">Descent</span>
+</code></pre>
+
+<p><strong>Elements and indexing.</strong></p>
+<p>We retrieve the length of a list with the operator <a href="__sh.html">#</a> or with the function <a href="_length.html">length</a>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i27</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">926</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">621</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i28</span> <span class="ts-operator">:</span> <span class="ts-operator">#</span><span class="ts-variable">L</span>
+
+<span class="ts-variable ts-variable-builtin">o28</span> <span class="ts-operator">=</span> <span class="ts-number">10</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i29</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">length</span> <span class="ts-variable"><span class="ts-operator"></span>L</span>
+
+<span class="ts-variable ts-variable-builtin">o29</span> <span class="ts-operator">=</span> <span class="ts-number">10</span>
+</code></pre>
+
+<p>The expression <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">L</span><span class="mord">#</span><span class="mord mathnormal">n</span></span></span></span> returns the <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>th element of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span>. The elements are numbered consecutively starting with 0. Alternatively, they are numbered consecutively ending with -1.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i30</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span><span class="ts-operator">#</span><span class="ts-property">0</span>
+
+<span class="ts-variable ts-variable-builtin">o30</span> <span class="ts-operator">=</span> <span class="ts-number">926</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i31</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span><span class="ts-operator">#</span><span class="ts-property">2</span>
+
+<span class="ts-variable ts-variable-builtin">o31</span> <span class="ts-operator">=</span> <span class="ts-number">429</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i32</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span><span class="ts-operator">#</span><span class="ts-operator">-</span><span class="ts-number">1</span>
+
+<span class="ts-variable ts-variable-builtin">o32</span> <span class="ts-operator">=</span> <span class="ts-number">961</span>
+</code></pre>
+
+<p>The <a href="__us.html">_</a> operator is similar to <a href="__sh.html">#</a>, except that it can also take a list or range of indices. However, it may only be used with visible lists.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i33</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span><span class="ts-operator">_</span><span class="ts-property">1</span>
+
+<span class="ts-variable ts-variable-builtin">o33</span> <span class="ts-operator">=</span> <span class="ts-number">621</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i34</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span><span class="ts-operator">_</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o34</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o34</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>The functions <a href="_first.html">first</a> and <a href="_last.html">last</a> retrieve the first and last elements of a list.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i35</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">first</span> <span class="ts-variable"><span class="ts-operator"></span>L</span>
+
+<span class="ts-variable ts-variable-builtin">o35</span> <span class="ts-operator">=</span> <span class="ts-number">926</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i36</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">last</span> <span class="ts-variable"><span class="ts-operator"></span>L</span>
+
+<span class="ts-variable ts-variable-builtin">o36</span> <span class="ts-operator">=</span> <span class="ts-number">961</span>
+</code></pre>
+
+<p>Omitting an element of a list causes the symbol <a href="_null.html">null</a> to be inserted in its place. When the value of an expression is <code>null</code>, like when we ask for <code>A#2</code> in the next example, the output line doesn’t appear at all.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i37</span> <span class="ts-operator">:</span> <span class="ts-variable">A</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o37</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o37</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i38</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">peek</span> <span class="ts-variable"><span class="ts-operator"></span>A</span>
+
+<span class="ts-variable ts-variable-builtin">o38</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-constant ts-constant-builtin">null</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i39</span> <span class="ts-operator">:</span> <span class="ts-variable">A</span><span class="ts-operator">#</span><span class="ts-property">2</span>
+</code></pre>
+
+<p><strong>Ranges and repetitions.</strong></p>
+<p>The operator <a href="_...html">..</a> can be used to create sequences of numbers, sequences of subscripted variables, and so on.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i40</span> <span class="ts-operator">:</span> <span class="ts-number">1</span> <span class="ts-operator">..</span> <span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span><span class="ts-operator">_</span><span class="ts-property">1</span> <span class="ts-operator">..</span> <span class="ts-variable">x</span><span class="ts-operator">_</span><span class="ts-property">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span> <span class="ts-operator">..</span> <span class="ts-variable">e</span>
+
+<span class="ts-variable ts-variable-builtin">o40</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span> <span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+                          <span class="ts-number">1</span>   <span class="ts-operator"></span><span class="ts-number">2</span>   <span class="ts-operator"></span><span class="ts-number">3</span>   <span class="ts-operator"></span><span class="ts-number">4</span>   <span class="ts-operator"></span><span class="ts-number">5</span>
+
+<span class="ts-variable ts-variable-builtin">o40</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<p>The operator <a href="___Z__Z_sp_co_sp__Thing.html">ZZ : Thing</a> creates a sequence by replicating an element a given number of times.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i41</span> <span class="ts-operator">:</span> <span class="ts-number">12</span><span class="ts-operator">:</span><span class="ts-variable">a</span>
+
+<span class="ts-variable ts-variable-builtin">o41</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o41</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<p>Replicating something once is another way to create a sequence of length 1, which cannot be entered by simply typing parentheses.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i42</span> <span class="ts-operator">:</span> <span class="ts-number">1</span><span class="ts-operator">:</span><span class="ts-variable">a</span>
+
+<span class="ts-variable ts-variable-builtin">o42</span> <span class="ts-operator">=</span> <span class="ts-number">1</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o42</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<p>Both <a href="_...html">..</a> and <a href="__co.html">:</a> produce sequences, and may not behave as expected with respect to nesting. For instance, to create the list <code>\{3, 4, 5, 6, 9, 12, 12, 12\}</code>, the following command will <em>not</em> work:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i43</span> <span class="ts-operator">:</span> <span class="ts-variable">A</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span> <span class="ts-operator">..</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">9</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-operator">:</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o43</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">9</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o43</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>Instead, we get a list of length 3, some of whose elements are sequences. This is easily resolved with <a href="_splice.html">splice</a>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i44</span> <span class="ts-operator">:</span> <span class="ts-variable">A</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">splice</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-operator">..</span><span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">9</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-operator">:</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o44</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">9</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o44</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>However, many operators and functions will automatically splice lists for you. Two examples are the array of variables defining a polynomial ring, and the indices passed to the <a href="__us.html">_</a> operator.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i45</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">QQ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">x</span><span class="ts-operator">_</span><span class="ts-property">1</span><span class="ts-operator">..</span><span class="ts-variable">x</span><span class="ts-operator">_</span><span class="ts-property">4</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o45</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">QQ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span> <span class="ts-operator">..</span><span class="ts-variable">x</span> <span class="ts-punctuation ts-punctuation-bracket">]</span>
+                <span class="ts-number">1</span>   <span class="ts-operator"></span><span class="ts-number">4</span>
+
+<span class="ts-variable ts-variable-builtin">o45</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i46</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span><span class="ts-operator">_</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-operator">..</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-operator">-</span><span class="ts-number">3</span><span class="ts-operator">..</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o46</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">621</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o46</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p><strong>Nested lists.</strong></p>
+<p>When the elements of a list are themselves lists, we call it a <em>nested list</em>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i47</span> <span class="ts-operator">:</span> <span class="ts-variable">A</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o47</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o47</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i48</span> <span class="ts-operator">:</span> <span class="ts-operator">#</span><span class="ts-variable">A</span>
+
+<span class="ts-variable ts-variable-builtin">o48</span> <span class="ts-operator">=</span> <span class="ts-number">2</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i49</span> <span class="ts-operator">:</span> <span class="ts-operator">#</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">first</span> <span class="ts-variable"><span class="ts-operator"></span>A</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o49</span> <span class="ts-operator">=</span> <span class="ts-number">3</span>
+</code></pre>
+
+<p>One level of nesting may be eliminated with <a href="_flatten.html">flatten</a>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i50</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">flatten</span> <span class="ts-variable"><span class="ts-operator"></span>A</span>
+
+<span class="ts-variable ts-variable-builtin">o50</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o50</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>The function <a href="_splice.html">splice</a> acts analogously on sequences, removing those pairs of parentheses that are one level inward.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i51</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">splice</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">g</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">h</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o51</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">g</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">h</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o51</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<p>To remove all layers of nesting at once, use <a href="_deep__Splice.html">deepSplice</a>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i52</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">deepSplice</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">g</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">h</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o52</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">g</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">h</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o52</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<p>A table is a list whose elements are lists all of the same length. The inner lists are regarded as rows when the table is displayed as a two-dimensional array with <a href="___Matrix__Expression.html">MatrixExpression</a>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i53</span> <span class="ts-operator">:</span> <span class="ts-variable">T</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o53</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o53</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i54</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">isTable</span> <span class="ts-variable"><span class="ts-operator"></span>T</span>
+
+<span class="ts-variable ts-variable-builtin">o54</span> <span class="ts-operator">=</span> <span class="ts-boolean">true</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i55</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">MatrixExpression</span> <span class="ts-variable"><span class="ts-operator"></span>T</span>
+
+<span class="ts-variable ts-variable-builtin">o55</span> = | a 1 |
+      | b 2 |
+      | c 3 |
+
+o55 : Expression of class MatrixExpression
+</code></pre>
+
+<p>The function <a href="_table.html">table</a> can be used to create a table (doubly nested list) from two lists and a function of two arguments. It applies the function consecutively to each element from the first list paired with each element from the second list, so the total number of evaluations of the function is the product of the lengths of the two lists.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i56</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">table</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">8</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-number">1000</span><span class="ts-operator">*</span><span class="ts-variable">i</span><span class="ts-operator">+</span><span class="ts-variable">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o56</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1007</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">1008</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2007</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2008</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3007</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3008</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o56</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>The function <a href="_pack.html">pack</a><code>(L, n)</code> turns the list <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span> into a nested list, whose elements are lists containing the elements of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span> taken <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> at a time.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i57</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">pack</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">1</span><span class="ts-operator">..</span><span class="ts-number">15</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o57</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">8</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">9</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">11</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">13</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">14</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">15</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o57</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>On the other hand, <a href="_mingle.html">mingle</a><code>(L)</code> takes the nested list <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner">…</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">}</span></span></span></span> and combines the elements of the <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> into a single list in the following way:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i58</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">mingle</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">20</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">40</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">100</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">200</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">300</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">400</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o58</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">100</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">20</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">200</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">300</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">40</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">400</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o58</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p><strong>Manipulating lists and sequences.</strong></p>
+<p>Use <a href="_append.html">append</a><code>(L, x)</code> to create a copy of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span> with the element <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> added to the end. Since lists are immutable in Macaulay2, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span> itself is not changed, unless redefined.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i59</span> <span class="ts-operator">:</span> 
+      
+      <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">926</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">621</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i60</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">append</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o60</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">926</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">621</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o60</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i61</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span>
+
+<span class="ts-variable ts-variable-builtin">o61</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">926</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">621</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o61</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i62</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">append</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">;</span> <span class="ts-variable">L</span>
+
+<span class="ts-variable ts-variable-builtin">o63</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">926</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">621</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o63</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>Use <a href="_prepend.html">prepend</a><code>(x, L)</code> to create a copy of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span> with <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> added to the beginning of the list. Notice the order of arguments is the opposite of append!</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i64</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">prepend</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-operator">-</span><span class="ts-number">20</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o64</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-operator">-</span><span class="ts-number">20</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">926</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">621</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o64</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>Use <a href="_insert.html">insert</a><code>(n, x, L)</code> to specify that the element <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> should be added to the list <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span> at position <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i65</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">insert</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o65</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-operator">-</span><span class="ts-number">20</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">926</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">621</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o65</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>Use <a href="_switch.html">switch</a><code>(m, n, L)</code> to switch the elements of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span> in indices <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">m</span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i66</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">switch</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o66</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-operator">-</span><span class="ts-number">20</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">621</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">926</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o66</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>The function <a href="_delete.html">delete</a> removes elements that have a particular <em>value</em>, NOT a particular <em>index</em>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i67</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">delete</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o67</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-operator">-</span><span class="ts-number">20</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">621</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">926</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o67</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>To remove the element at index <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span>, use the command <a href="_drop.html">drop</a><code>(L, \{n,n\})</code>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i68</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">drop</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o68</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-operator">-</span><span class="ts-number">20</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">926</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o68</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>You can also use drop to remove a specified number of elements from the beginning or end of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i69</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">drop</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o69</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">35</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">961</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o69</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i70</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">drop</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o70</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">18</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o70</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>On the other hand, use <a href="_take.html">take</a> to specify the number of elements to <em>keep</em>, or a range of indices to keep:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i71</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">take</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o71</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">429</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">264</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o71</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i72</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">take</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o72</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o72</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>Use <a href="_between.html">between</a><code>(x, L)</code> to insert the element <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">x</span></span></span></span> between every two elements of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">L</span></span></span></span>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i73</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">between</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">L</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o73</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o73</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>Useful commands for reordering lists are <a href="_reverse.html">reverse</a> (reverse the current order), <a href="_sort.html">sort</a> (put elements in ascending order), and <a href="_rsort.html">rsort</a> (put elements in descending order).</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i74</span> <span class="ts-operator">:</span> <span class="ts-variable">L</span>
+
+<span class="ts-variable ts-variable-builtin">o74</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o74</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i75</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">reverse</span> <span class="ts-variable"><span class="ts-operator"></span>L</span>
+
+<span class="ts-variable ts-variable-builtin">o75</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o75</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i76</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">sort</span> <span class="ts-variable"><span class="ts-operator"></span>L</span>
+
+<span class="ts-variable ts-variable-builtin">o76</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o76</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i77</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">rsort</span> <span class="ts-variable"><span class="ts-operator"></span>L</span>
+
+<span class="ts-variable ts-variable-builtin">o77</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o77</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>Use <a href="_unique.html">unique</a> to remove duplicates from a list or sequence.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i78</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">unique</span> <span class="ts-variable"><span class="ts-operator"></span>L</span>
+
+<span class="ts-variable ts-variable-builtin">o78</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">67</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">30</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">594</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">904</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o78</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>Use <a href="_join.html">join</a> to concatenate two lists or sequences. The symbol <a href="__vb.html">|</a> is also used for concatenation.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i79</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">join</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">1</span><span class="ts-operator">..</span><span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o79</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o79</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i80</span> <span class="ts-operator">:</span> <span class="ts-variable">x</span><span class="ts-operator">_</span><span class="ts-property">1</span><span class="ts-operator">..</span><span class="ts-variable">x</span><span class="ts-operator">_</span><span class="ts-property">3</span> <span class="ts-operator">|</span> <span class="ts-variable">y</span><span class="ts-operator">_</span><span class="ts-property">1</span><span class="ts-operator">..</span><span class="ts-variable">y</span><span class="ts-operator">_</span><span class="ts-property">4</span>
+
+<span class="ts-variable ts-variable-builtin">o80</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">y</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">y</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">y</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">y</span> <span class="ts-punctuation ts-punctuation-bracket">)</span>
+        <span class="ts-number">1</span>   <span class="ts-operator"></span><span class="ts-number">2</span>   <span class="ts-operator"></span><span class="ts-number">3</span>   <span class="ts-operator"></span><span class="ts-number">1</span>   <span class="ts-operator"></span><span class="ts-number">2</span>   <span class="ts-operator"></span><span class="ts-number">3</span>   <span class="ts-operator"></span><span class="ts-number">4</span>
+
+<span class="ts-variable ts-variable-builtin">o80</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<p><strong>Mapping over lists.</strong></p>
+<p>In programming, loops that operate on consecutive elements of a list are common, so we offer various ways to apply functions to each of the elements of a list, along with various ways to treat the returned values.</p>
+<p>The most basic operation is provided by <a href="_scan.html">scan</a>, which applies a function consecutively to each element of a list, discarding the values returned.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i81</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">scan</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">print</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+<span class="ts-variable">a</span>
+<span class="ts-variable">b</span>
+<span class="ts-variable">c</span>
+</code></pre>
+
+<p>The keyword <a href="_break.html">break</a> can be used to terminate the scan prematurely, and optionally to specify a return value for the expression. Here we use it to locate the first even number in a list.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i82</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">scan</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">11</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">44</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">55</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">77</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-keyword ts-keyword-conditional">if</span> <span class="ts-function ts-function-call">even</span> <span class="ts-variable"><span class="ts-operator"></span>i</span> <span class="ts-keyword ts-keyword-conditional">then</span> <span class="ts-keyword ts-keyword-return">break</span> <span class="ts-variable">i</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o82</span> <span class="ts-operator">=</span> <span class="ts-number">44</span>
+</code></pre>
+
+<p>The function <a href="_apply.html">apply</a> is similar to <a href="_scan.html">scan</a>, but creates a list storing the values returned.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i83</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">apply</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o83</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">9</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">16</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o83</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>This operation is so common that we offer two shorthand notations for it, one with the function on the right and one with the function on the left.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i84</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">/</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o84</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">9</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">16</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o84</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i85</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">\</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o85</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">9</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">16</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o85</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>The associativity of these operators during parsing is set up so the following code works as one would wish.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i86</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">/</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">/</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">j</span> <span class="ts-operator">-&gt;</span> <span class="ts-number">1000</span><span class="ts-operator">*</span><span class="ts-variable">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o86</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1000</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4000</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">9000</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">16000</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o86</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i87</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">j</span> <span class="ts-operator">-&gt;</span> <span class="ts-number">1000</span><span class="ts-operator">*</span><span class="ts-variable">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">\</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">\</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o87</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1000</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4000</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">9000</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">16000</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o87</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i88</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">j</span> <span class="ts-operator">-&gt;</span> <span class="ts-number">1000</span><span class="ts-operator">*</span><span class="ts-variable">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">@@</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">\</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o88</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1000</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4000</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">9000</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">16000</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o88</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>The function <a href="_apply.html">apply</a> can also be used with two lists of the same length, in which case it will apply the function consecutively to corresponding elements of the two lists.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i89</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">apply</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">8</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">9</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-number">1000</span><span class="ts-operator">*</span><span class="ts-variable">i</span><span class="ts-operator">+</span><span class="ts-variable">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o89</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1007</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2008</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3009</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o89</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>The function <a href="_apply__Table.html">applyTable</a> can be used to apply a function to each element of a table.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i90</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">applyTable</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o90</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">9</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">16</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">25</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o90</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>The functions <a href="_fold.html">fold</a> and <a href="_accumulate.html">accumulate</a> provide various ways to iteratively apply a function of two arguments to the elements of a list. One of the arguments is the next element from the list, and the other argument is the value returned by the previous application of the function. As an example, suppose we want to convert the list <code>\{7,3,5,4,2\}</code> of digits into the corresponding number <code>73542</code>. The formula <code>(((7*10+3)*10+5)*10+4)+2</code> is a fast way to do it that doesn’t involve computing high powers of 10 separately. We can do this with <a href="_fold.html">fold</a> and the following code.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i91</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">fold</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">*</span><span class="ts-number">10</span><span class="ts-operator">+</span><span class="ts-variable">j</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o91</span> <span class="ts-operator">=</span> <span class="ts-number">73542</span>
+</code></pre>
+
+<p>Using <a href="_accumulate.html">accumulate</a> returns all the intermediate values of this iterative calculation along with the final result.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i92</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">accumulate</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">*</span><span class="ts-number">10</span><span class="ts-operator">+</span><span class="ts-variable">j</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o92</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">73</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">735</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">7354</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">73542</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o92</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p><strong>Conditional expressions; selecting elements matching a criterion.</strong></p>
+<p>Use <a href="_select.html">select</a> to select those elements from a list that satisfy some condition.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i93</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">select</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">42</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">53</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">even</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o93</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">42</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o93</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i94</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">select</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">42</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">53</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">&lt;</span><span class="ts-number">0</span> <span class="ts-keyword ts-keyword-operator">or</span> <span class="ts-variable">i</span><span class="ts-operator">&gt;</span><span class="ts-number">40</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o94</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">42</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">53</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o94</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>An optional first argument of an integer <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> specifies to select no more than <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> matching elements.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i95</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">select</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">42</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">53</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">even</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o95</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o95</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>Use <a href="_positions.html">positions</a> to select the <em>indices</em> of elements satisfying the condition.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i96</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">positions</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">42</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">53</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">&lt;</span><span class="ts-number">0</span> <span class="ts-keyword ts-keyword-operator">or</span> <span class="ts-variable">i</span><span class="ts-operator">&gt;</span><span class="ts-number">40</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o96</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o96</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<p>The singular <a href="_position.html">position</a> returns only the first (or last, by specifying <code>Reverse =&gt; true</code>) matching index.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i97</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">position</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">42</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">53</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">&lt;</span><span class="ts-number">0</span> <span class="ts-keyword ts-keyword-operator">or</span> <span class="ts-variable">i</span><span class="ts-operator">&gt;</span><span class="ts-number">40</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o97</span> <span class="ts-operator">=</span> <span class="ts-number">2</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i98</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">position</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">42</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">53</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">&lt;</span><span class="ts-number">0</span> <span class="ts-keyword ts-keyword-operator">or</span> <span class="ts-variable">i</span><span class="ts-operator">&gt;</span><span class="ts-number">40</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">Reverse</span> <span class="ts-operator">=&gt;</span> <span class="ts-boolean">true</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o98</span> <span class="ts-operator">=</span> <span class="ts-number">6</span>
+</code></pre>
+
+<p>Use <a href="_number.html">number</a> to count how many elements satisfy the condition.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i99</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">number</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">12</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">42</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">53</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">i</span><span class="ts-operator">&lt;</span><span class="ts-number">0</span> <span class="ts-keyword ts-keyword-operator">or</span> <span class="ts-variable">i</span><span class="ts-operator">&gt;</span><span class="ts-number">40</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o99</span> <span class="ts-operator">=</span> <span class="ts-number">3</span>
+</code></pre>
+
+<p>Use <a href="_max.html">max</a> and <a href="_min.html">min</a> to find the maximum or minimum of the list. The functions <a href="_max__Position.html">maxPosition</a> and <a href="_min__Position.html">minPosition</a> give the index of the maximum/minimum. Note that max and min work with many <code>Macaulay2</code> types besides numbers, for instance elements of a polynomial ring with respect to a monomial order.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i100</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">QQ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">x</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">y</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">z</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">MonomialOrder</span> <span class="ts-operator">=&gt;</span> <span class="ts-variable">Lex</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i101</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">max</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">x</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-operator">*</span><span class="ts-variable">y</span><span class="ts-operator">*</span><span class="ts-variable">z</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span><span class="ts-operator">*</span><span class="ts-variable">y</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">*</span><span class="ts-variable">z</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">y</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">z</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+        <span class="ts-number">3</span>
+<span class="ts-variable ts-variable-builtin">o101</span> <span class="ts-operator">=</span> <span class="ts-variable">x</span>
+
+<span class="ts-variable ts-variable-builtin">o101</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i102</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">maxPosition</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">x</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-operator">*</span><span class="ts-variable">y</span><span class="ts-operator">*</span><span class="ts-variable">z</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span><span class="ts-operator">*</span><span class="ts-variable">y</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">*</span><span class="ts-variable">z</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">y</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">z</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o102</span> <span class="ts-operator">=</span> <span class="ts-number">2</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i103</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">min</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">x</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-operator">*</span><span class="ts-variable">y</span><span class="ts-operator">*</span><span class="ts-variable">z</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span><span class="ts-operator">*</span><span class="ts-variable">y</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">*</span><span class="ts-variable">z</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">y</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">z</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o103</span> <span class="ts-operator">=</span> <span class="ts-variable">z</span>
+
+<span class="ts-variable ts-variable-builtin">o103</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i104</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">minPosition</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">x</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-operator">*</span><span class="ts-variable">y</span><span class="ts-operator">*</span><span class="ts-variable">z</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span><span class="ts-operator">*</span><span class="ts-variable">y</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">*</span><span class="ts-variable">z</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">x</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">y</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">z</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o104</span> <span class="ts-operator">=</span> <span class="ts-number">4</span>
+</code></pre>
+
+<p>We may use <a href="_any.html">any</a> to tell whether there is at least one element of a list satisfying a condition, and <a href="_all.html">all</a> to tell whether all elements satisfy it.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i105</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">any</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">8</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">even</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o105</span> <span class="ts-operator">=</span> <span class="ts-boolean">true</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i106</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">all</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">8</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">even</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o106</span> <span class="ts-operator">=</span> <span class="ts-boolean">false</span>
+</code></pre>
+
+<h2 id="see-also"><a class="header" href="#see-also">See also</a></h2>
+<ul>
+<li><a href="__sh_qu.html">BasicList #? ZZ</a> – check existence of value in a list, hash table, database, or string</li>
+<li><a href="___Set.html">Set</a> – the class of all sets</li>
+</ul>
+<h3 id="menu"><a class="header" href="#menu">Menu</a></h3>
+<h4 id="types-of-lists"><a class="header" href="#types-of-lists">Types of lists</a></h4>
+<ul>
+<li><a href="___Basic__List.html">BasicList</a> – the class of all basic lists</li>
+<li><a href="___Visible__List.html">VisibleList</a> – the class of all visible lists</li>
+<li><a href="___Mutable__List.html">MutableList</a> – the class of all mutable lists</li>
+</ul>
+<h4 id="information-about-lists"><a class="header" href="#information-about-lists">Information about lists</a></h4>
+<ul>
+<li><a href="_length_lp__Visible__List_rp.html">length(VisibleList)</a> – length of a visible list</li>
+<li><a href="__sh_sp__List.html"># List</a> – length or cardinality of a list, hash table, dictionary, set, or string</li>
+<li><a href="_is__Empty.html">isEmpty</a> – whether an object is empty</li>
+</ul>
+<h4 id="accessing-list-elements"><a class="header" href="#accessing-list-elements">Accessing list elements</a></h4>
+<ul>
+<li><a href="___List_sp_sh_sp__Z__Z.html">List # ZZ</a> – get value from list, hash table, database, dictionary, or string</li>
+<li><a href="___Visible__List_sp_us_sp__Z__Z.html">VisibleList _ ZZ</a> – get element from list</li>
+<li><a href="___Visible__List_sp_us_sp__List.html">VisibleList _ List</a> – get some entries of a list</li>
+<li><a href="_drop.html">drop</a> – drop some elements from a list or sequence</li>
+<li><a href="_take.html">take</a> – take some elements from a list or sequence</li>
+<li><a href="_first.html">first</a> – first element of a list</li>
+<li><a href="_last.html">last</a> – last element of a list</li>
+</ul>
+<h4 id="creating-simple-lists"><a class="header" href="#creating-simple-lists">Creating simple lists</a></h4>
+<ul>
+<li><a href="___Z__Z_sp.._sp__Z__Z.html">ZZ .. ZZ</a> – sequences of consecutive integers</li>
+<li><a href="___Z__Z_sp.._lt_sp__Z__Z.html">ZZ ..&lt; ZZ</a> – sequences of consecutive integers</li>
+<li><a href="___Z__Z_sp_co_sp__Thing.html">ZZ : Thing</a> – repeat an item</li>
+</ul>
+<h4 id="iterating-over-lists"><a class="header" href="#iterating-over-lists">Iterating over lists</a></h4>
+<ul>
+<li><a href="___Visible__List_sp_sl_sp__Function.html">VisibleList / Function</a> – apply a function to elements of a list</li>
+<li><a href="___Visible__List_sp_sl_sl_sp__Function.html">VisibleList // Function</a> – apply a function</li>
+<li><a href="_scan.html">scan</a> – apply a function to each element in a list or sequence</li>
+<li><a href="_apply.html">apply</a> – apply a function to each element</li>
+<li><a href="_fold.html">fold</a> – apply a binary operator repeatedly</li>
+<li><a href="_accumulate.html">accumulate</a> – apply a binary operator repeatedly</li>
+<li><a href="_ultimate.html">ultimate</a> – ultimate value for an iteration</li>
+</ul>
+<h4 id="creating-iterators"><a class="header" href="#creating-iterators">Creating iterators</a></h4>
+<ul>
+<li><a href="___Iterator.html">Iterator</a> – class for iterators</li>
+</ul>
+<h4 id="searching-in-lists"><a class="header" href="#searching-in-lists">Searching in lists</a></h4>
+<ul>
+<li><a href="_all.html">all</a> – whether all elements satisfy a specified condition</li>
+<li><a href="_any.html">any</a> – whether any elements satisfy a specified condition</li>
+<li><a href="_same.html">same</a> – whether everything in a list is the same</li>
+<li><a href="_uniform.html">uniform</a> – whether all elements of a list are the same class</li>
+<li><a href="_select.html">select</a> – select from a list, hash table, or string</li>
+<li><a href="_is__Member.html">isMember</a> – test membership in a list or set</li>
+<li><a href="_is__Subset.html">isSubset</a> – whether one object is a subset of another</li>
+<li><a href="_position.html">position</a> – the first element of a list satisfying a condition</li>
+<li><a href="_positions.html">positions</a> – which elements of a list satisfy a condition</li>
+<li><a href="_min.html">min</a> – get the minimum element in a list or sequence</li>
+<li><a href="_min__Position.html">minPosition</a> – position of the smallest element</li>
+<li><a href="_max.html">max</a> – get the maximum element in a list or sequence</li>
+<li><a href="_max__Position.html">maxPosition</a> – position of the largest element</li>
+<li><a href="_number.html">number</a> – count how many elements of a list satisfy a condition</li>
+<li><a href="_partition.html">partition</a> – partition a set or list by values of a function</li>
+<li><a href="_sublists.html">sublists</a> – process interspersed subsequences of a visible list</li>
+</ul>
+<h4 id="nested-lists"><a class="header" href="#nested-lists">Nested lists</a></h4>
+<ul>
+<li><a href="_table.html">table</a> – make a table from a binary function</li>
+<li><a href="_is__Table.html">isTable</a> – whether something is a list of lists of equal length</li>
+<li><a href="_subtable.html">subtable</a> – extract a subtable from a table</li>
+<li><a href="_apply__Table.html">applyTable</a> – apply a function to each element of a table</li>
+<li><a href="___List_sp_st_st_sp__List.html">List ** List</a> – Cartesian product of two lists</li>
+<li><a href="___List_sp.._sp__List.html">List .. List</a> – rectangular sequences of consecutive lists and sequences</li>
+<li><a href="___List_sp.._lt_sp__List.html">List ..&lt; List</a> – rectangular sequences of consecutive lists and sequences</li>
+<li><a href="_pack.html">pack</a> – pack elements of a list or string into several shorter lists or strings</li>
+<li><a href="_net__List.html">netList</a> – a table of boxes</li>
+</ul>
+<h4 id="sorting-lists"><a class="header" href="#sorting-lists">Sorting lists</a></h4>
+<ul>
+<li><a href="_sort.html">sort</a> – sort a list or columns of a matrix</li>
+<li><a href="_rsort.html">rsort</a> – sort a list or matrix in reverse order</li>
+<li><a href="_is__Sorted.html">isSorted</a> – whether a list is sorted</li>
+</ul>
+<h4 id="manipulating-lists"><a class="header" href="#manipulating-lists">Manipulating lists</a></h4>
+<ul>
+<li><a href="___List_sp_pl_sp__List.html">List + List</a> – sum of two vectors</li>
+<li><a href="___List_sp-_sp__List.html">List - List</a> – difference of two vectors</li>
+<li><a href="___List_sp_vb_sp__List.html">List | List</a> – join lists, sequences or arrays</li>
+<li><a href="_join.html">join</a> – join lists, sequences, and iterable objects</li>
+<li><a href="_append.html">append</a> – add an element to the end of a list</li>
+<li><a href="_prepend.html">prepend</a> – add an element to the beginning of a list</li>
+<li><a href="_rotate.html">rotate</a> – rotate a list</li>
+<li><a href="_insert.html">insert</a> – copy a list, inserting an element</li>
+<li><a href="_replace.html">replace</a> – replacement in strings and lists</li>
+<li><a href="_between.html">between</a> – insert something between elements of a list</li>
+<li><a href="_delete.html">delete</a> – delete some elements of a list</li>
+<li><a href="_sum.html">sum</a> – compute the sum</li>
+<li><a href="_product.html">product</a></li>
+<li><a href="_to__List.html">toList</a> – create a list</li>
+<li><a href="_to__Sequence.html">toSequence</a> – convert to sequence</li>
+<li><a href="_flatten.html">flatten</a> – flatten a nested list or a matrix</li>
+<li><a href="_splice.html">splice</a> – remove subsequences from a sequence or list</li>
+<li><a href="_deep__Splice.html">deepSplice</a> – remove all levels of subsequences from a sequence or list</li>
+<li><a href="_mingle.html">mingle</a> – mingle elements of several lists</li>
+<li><a href="_merge__Pairs.html">mergePairs</a> – merge sorted lists of pairs</li>
+<li><a href="_reverse.html">reverse</a> – reverse a list, sequence, or string</li>
+<li><a href="_sequence.html">sequence</a> – make a sequence</li>
+<li><a href="_unsequence.html">unsequence</a> – extract the single element from a sequence of length 1</li>
+<li><a href="_switch.html">switch</a> – copy a list, switching two elements</li>
+<li><a href="_tally.html">tally</a> – tally the elements of a list, sequence, array, or string</li>
+<li><a href="_commonest.html">commonest</a> – the most common elements of a list or tally</li>
+<li><a href="_unique.html">unique</a> – eliminate duplicates from a list</li>
+<li><a href="_run__Length__Encode.html">runLengthEncode</a> – run length encoding</li>
+<li><a href="_unique__Permutations.html">uniquePermutations</a> – produce all unique permutations of a list</li>
+<li><a href="_permutations.html">permutations</a> – produce all permutations of a list</li>
+<li><a href="_subsets.html">subsets</a> – produce the subsets of a set or list</li>
+</ul>
+<hr>
+<p>The source of this document is in <code>Macaulay2Doc/ov_lists.m2:535:0</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="_newline.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="___Basic__List.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="_newline.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="___Basic__List.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

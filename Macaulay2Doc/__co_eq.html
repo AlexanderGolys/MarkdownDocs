@@ -1,0 +1,806 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>:&#x3D; - Macaulay2Doc — Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-b2932a8a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-ab61a4b0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Macaulay2Doc — Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="--assignment-of-method-or-new-local-variable"><a class="header" href="#--assignment-of-method-or-new-local-variable">:= – assignment of method or new local variable</a></h1>
+<p>In this section we’ll discuss simple local assignment to variables, multiple local assignment, and installation and use of method functions. See also the operator <a href="__eq.html">=</a>, which handles other forms of assignment, as well as the operator <a href="__lt-.html">&lt;-</a>, which is an assignment operator that evaluates its left hand side and can have assignment methods installed for it by the user.</p>
+<h2 id="simple-local-assignment"><a class="header" href="#simple-local-assignment">simple local assignment</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">x := e
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>x</code>, a <a href="___Symbol.html">symbol</a>, (unevaluated)</li>
+<li><code>e</code>, a <a href="___Thing.html">thing</a></li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>a <a href="___Thing.html">thing</a>, the value of the expression is <code>e</code></li>
+</ul>
+</li>
+<li>Consequences:
+<ul>
+<li>a new local variable <code>x</code> is created. The scope of <code>x</code> is the innermost current function body or <a href="_for.html">for</a> loop, or the current file.</li>
+<li><code>e</code> is assigned to <code>x</code>, so future references to the value of <code>x</code> yield <code>e</code></li>
+<li>a warning message is issued if a local variable with the same name has already been created</li>
+</ul>
+</li>
+</ul>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i1</span> <span class="ts-operator">:</span> <span class="ts-variable">x</span>
+
+<span class="ts-variable ts-variable-builtin">o1</span> <span class="ts-operator">=</span> <span class="ts-variable">x</span>
+
+<span class="ts-variable ts-variable-builtin">o1</span> <span class="ts-operator">:</span> <span class="ts-variable">Symbol</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i2</span> <span class="ts-label">:</span> <span class="ts-type ts-type-parameter">x</span> <span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-number">4</span>
+
+<span class="ts-variable ts-variable-builtin">o2</span> <span class="ts-operator">=</span> <span class="ts-number">4</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i3</span> <span class="ts-operator">:</span> <span class="ts-variable">x</span>
+
+<span class="ts-variable ts-variable-builtin">o3</span> <span class="ts-operator">=</span> <span class="ts-number">4</span>
+</code></pre>
+
+<p>In the next example, we see that the scope of the local variable <code>p</code> is limited to the body of the function.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i4</span> <span class="ts-operator">:</span> <span class="ts-variable">g</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-punctuation ts-punctuation-bracket">(</span> <span class="ts-variable">p</span> <span class="ts-operator">:=</span> <span class="ts-number">444</span><span class="ts-punctuation ts-punctuation-delimiter">;</span> <span class="ts-variable">p</span> <span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o4</span> <span class="ts-operator">=</span> <span class="ts-variable">g</span>
+
+<span class="ts-variable ts-variable-builtin">o4</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i5</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">g</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o5</span> <span class="ts-operator">=</span> <span class="ts-number">444</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i6</span> <span class="ts-operator">:</span> <span class="ts-variable">p</span>
+
+<span class="ts-variable ts-variable-builtin">o6</span> <span class="ts-operator">=</span> <span class="ts-variable">p</span>
+
+<span class="ts-variable ts-variable-builtin">o6</span> <span class="ts-operator">:</span> <span class="ts-variable">Symbol</span>
+</code></pre>
+
+<p>In this example, we see that the scope of the local variable <code>j</code> is limited to the body of a <a href="_for.html">for</a> loop.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i7</span> <span class="ts-operator">:</span> <span class="ts-variable">i</span><span class="ts-operator">=</span><span class="ts-string">"a b c"</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i8</span> <span class="ts-operator">:</span> <span class="ts-keyword ts-keyword-repeat">for</span> <span class="ts-variable">i</span> <span class="ts-keyword ts-keyword-repeat">to</span> <span class="ts-number">3</span> <span class="ts-keyword ts-keyword-conditional">list</span> <span class="ts-variable">j</span> <span class="ts-operator">:=</span> <span class="ts-variable">i</span><span class="ts-operator">+</span><span class="ts-number">1</span>
+
+<span class="ts-variable ts-variable-builtin">o8</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o8</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i9</span> <span class="ts-operator">:</span> <span class="ts-variable">i</span>
+
+<span class="ts-variable ts-variable-builtin">o9</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">a</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">b</span></span> <span class="ts-variable"><span class="ts-operator"></span>c</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i10</span> <span class="ts-operator">:</span> <span class="ts-variable">j</span>
+
+<span class="ts-variable ts-variable-builtin">o10</span> <span class="ts-operator">=</span> <span class="ts-variable">j</span>
+
+<span class="ts-variable ts-variable-builtin">o10</span> <span class="ts-operator">:</span> <span class="ts-variable">Symbol</span>
+</code></pre>
+
+<p>In this example, we see that a function returned by another function retains access to the values of local variables in its scope.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i11</span> <span class="ts-operator">:</span> <span class="ts-variable">g</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-punctuation ts-punctuation-bracket">(</span> <span class="ts-variable">p</span> <span class="ts-operator">:=</span> <span class="ts-number">444</span><span class="ts-punctuation ts-punctuation-delimiter">;</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">p</span> <span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o11</span> <span class="ts-operator">=</span> <span class="ts-variable">g</span>
+
+<span class="ts-variable ts-variable-builtin">o11</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i12</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">g</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o12</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">FunctionClosure</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">stdio</span><span class="ts-operator">:</span><span class="ts-number">11</span><span class="ts-operator">:</span><span class="ts-number">22</span><span class="ts-operator">-</span><span class="ts-number">11</span><span class="ts-operator">:</span><span class="ts-number">29</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o12</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i13</span> <span class="ts-operator">:</span> <span class="ts-variable ts-variable-builtin">oo</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o13</span> <span class="ts-operator">=</span> <span class="ts-number">444</span>
+</code></pre>
+
+<p>Functions returned by a function can also modify local variables within their scope, thereby communicating with each other.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i14</span> <span class="ts-operator">:</span> <span class="ts-variable">g</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-punctuation ts-punctuation-bracket">(</span> <span class="ts-variable">p</span> <span class="ts-operator">:=</span> <span class="ts-number">444</span><span class="ts-punctuation ts-punctuation-delimiter">;</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">p</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">p</span> <span class="ts-operator">=</span> <span class="ts-variable">i</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o14</span> <span class="ts-operator">=</span> <span class="ts-variable">g</span>
+
+<span class="ts-variable ts-variable-builtin">o14</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i15</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">g</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o15</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o15</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i16</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">b</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o16</span> <span class="ts-operator">=</span> <span class="ts-number">444</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i17</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">c</span> <span class="ts-number"><span class="ts-operator"></span>555</span>
+
+<span class="ts-variable ts-variable-builtin">o17</span> <span class="ts-operator">=</span> <span class="ts-number">555</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i18</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">b</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o18</span> <span class="ts-operator">=</span> <span class="ts-number">555</span>
+</code></pre>
+
+<p>Since the value of the entire expression is <code>e</code>, and since the operator <a href="__eq.html">=</a> is right-associative (see <a href="_precedence_spof_spoperators.html">precedence of operators</a>), <code>e</code> can be easily assigned to more than one variable, as in the following example.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i19</span> <span class="ts-label">:</span> <span class="ts-type ts-type-parameter">a</span> <span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">b</span> <span class="ts-operator">:=</span> <span class="ts-number">44</span>
+
+<span class="ts-variable ts-variable-builtin">o19</span> <span class="ts-operator">=</span> <span class="ts-number">44</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i20</span> <span class="ts-operator">:</span> <span class="ts-variable">a</span>
+
+<span class="ts-variable ts-variable-builtin">o20</span> <span class="ts-operator">=</span> <span class="ts-number">44</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i21</span> <span class="ts-operator">:</span> <span class="ts-variable">b</span>
+
+<span class="ts-variable ts-variable-builtin">o21</span> <span class="ts-operator">=</span> <span class="ts-number">44</span>
+</code></pre>
+
+<p>By the way, there is a difference between a variable (to which values can be assigned) and a symbol (which can be used as an indeterminate in making a polynomial ring). If you want a local variable to which is assigned the corresponding local symbol, then combine the use of <a href="__co_eq.html">:=</a> with the use of <a href="_local.html">local</a>, as in the following example, which illustrates a good way to do a computation in a temporary ring without disturbing the values of any global variables.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i22</span> <span class="ts-operator">:</span> <span class="ts-variable">g</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-punctuation ts-punctuation-bracket">(</span>
+           <span class="ts-variable">x</span> <span class="ts-operator">:=</span> <span class="ts-keyword ts-keyword-modifier">local</span> <span class="ts-variable">x</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+           <span class="ts-variable">R</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">QQ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">x</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+           <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">x</span><span class="ts-operator">+</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-operator">^</span><span class="ts-number">10</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i23</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">g</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+       <span class="ts-number">10</span>      <span class="ts-operator"></span><span class="ts-number">9</span>       <span class="ts-operator"></span><span class="ts-number">8</span>       <span class="ts-operator"></span><span class="ts-number">7</span>        <span class="ts-operator"></span><span class="ts-number">6</span>        <span class="ts-operator"></span><span class="ts-number">5</span>         <span class="ts-operator"></span><span class="ts-number">4</span>         <span class="ts-operator"></span><span class="ts-number">3</span>  
+<span class="ts-variable ts-variable-builtin">o23</span> <span class="ts-operator">=</span> <span class="ts-variable">x</span>   <span class="ts-operator">+</span> <span class="ts-number">20</span><span class="ts-operator"></span><span class="ts-variable">x</span>  <span class="ts-operator">+</span> <span class="ts-number">180</span><span class="ts-operator"></span><span class="ts-variable">x</span>  <span class="ts-operator">+</span> <span class="ts-number">960</span><span class="ts-operator"></span><span class="ts-variable">x</span>  <span class="ts-operator">+</span> <span class="ts-number">3360</span><span class="ts-operator"></span><span class="ts-variable">x</span>  <span class="ts-operator">+</span> <span class="ts-number">8064</span><span class="ts-operator"></span><span class="ts-variable">x</span>  <span class="ts-operator">+</span> <span class="ts-number">13440</span><span class="ts-operator"></span><span class="ts-variable">x</span>  <span class="ts-operator">+</span> <span class="ts-number">15360</span><span class="ts-operator"></span><span class="ts-variable">x</span>  <span class="ts-operator">+</span>
+      <span class="ts-comment">-----------------------------------------------------------------------</span>
+            <span class="ts-number">2</span>
+      <span class="ts-number">11520</span><span class="ts-operator"></span><span class="ts-variable">x</span>  <span class="ts-operator">+</span> <span class="ts-number">5120</span><span class="ts-operator"></span><span class="ts-variable">x</span> <span class="ts-operator">+</span> <span class="ts-number">1024</span>
+
+<span class="ts-variable ts-variable-builtin">o23</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">QQ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">x</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+</code></pre>
+
+<h2 id="multiple-local-assignment"><a class="header" href="#multiple-local-assignment">multiple local assignment</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">(x,y,z,...) := (c,d,e,...)
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>(x,y,z,...)</code> a <a href="___Sequence.html">sequence</a> of <a href="___Symbol.html">symbols</a> (unevaluated)</li>
+<li><code>(c,d,e,...)</code> a <a href="___Sequence.html">sequence</a> of <a href="___Thing.html">things</a></li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>the value of the expression is <code>(c,d,e,...)</code></li>
+</ul>
+</li>
+<li>Consequences:
+<ul>
+<li>new local variables <code>x</code>, <code>y</code>, <code>z</code>, … are created</li>
+<li>the expressions c,d,e,… are assigned to the variables x,y,z,…, respectively, as above.</li>
+<li>the number of expressions must match the number of variables.</li>
+</ul>
+</li>
+</ul>
+<p>Multiple assignment effectively means that functions can return multiple values usefully.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i24</span> <span class="ts-operator">:</span> <span class="ts-variable">f</span> <span class="ts-operator">=</span> <span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">i</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">i</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o24</span> <span class="ts-operator">=</span> <span class="ts-variable">f</span>
+
+<span class="ts-variable ts-variable-builtin">o24</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i25</span> <span class="ts-label">:</span> <span class="ts-type ts-type-parameter"><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">r</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">s</span><span class="ts-punctuation ts-punctuation-bracket">)</span></span> <span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-function ts-function-call">f</span> <span class="ts-number"><span class="ts-operator"></span>9</span>
+
+<span class="ts-variable ts-variable-builtin">o25</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">9</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">81</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o25</span> <span class="ts-operator">:</span> <span class="ts-variable">Sequence</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i26</span> <span class="ts-operator">:</span> <span class="ts-variable">r</span>
+
+<span class="ts-variable ts-variable-builtin">o26</span> <span class="ts-operator">=</span> <span class="ts-number">9</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i27</span> <span class="ts-operator">:</span> <span class="ts-variable">s</span>
+
+<span class="ts-variable ts-variable-builtin">o27</span> <span class="ts-operator">=</span> <span class="ts-number">81</span>
+</code></pre>
+
+<p>Multiple assignment may also be used for other uses of <code>:=</code> such as method installation.</p>
+<h2 id="installing-methods-for-binary-operators"><a class="header" href="#installing-methods-for-binary-operators">installing methods for binary operators</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">X OP Y := (x,y) -&gt; ...
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>X</code>, a <a href="___Type.html">type</a></li>
+<li><code>OP</code>, one of the binary operators for which users may install methods, namely: <a href="__pc.html">%</a> <a href="__pc_eq.html">%=</a> <a href="__am.html">&amp;</a> <a href="__am_eq.html">&amp;=</a> <a href="__st.html">*</a> <a href="__st_st.html">**</a> <a href="__st_st_eq.html">**=</a> <a href="__st_eq.html">*=</a> <a href="__pl.html">+</a> <a href="__pl_pl.html">++</a> <a href="__pl_pl_eq.html">++=</a> <a href="__pl_eq.html">+=</a> <a href="_-.html">-</a> <a href="_-_eq.html">-=</a> <a href="_...html">..</a> <a href="_.._lt.html">..&lt;</a> <a href="_.._lt_eq.html">..&lt;=</a> <a href="_.._eq.html">..=</a> <a href="__sl.html">/</a> <a href="__sl_sl.html">//</a> <a href="__sl_sl_eq.html">//=</a> <a href="__sl_eq.html">/=</a> <a href="__co.html">:</a> <a href="__lt_lt.html">&lt;&lt;</a> <a href="__lt_lt_eq.html">&lt;&lt;=</a> <a href="__lt_eq_eq.html">&lt;==</a> <a href="__lt_eq_eq_eq.html">&lt;===</a> <a href="__lt_eq_eq_gt.html">&lt;==&gt;</a> <a href="__lt_eq_eq_gt_eq.html">&lt;==&gt;=</a> <a href="__eq_eq.html">==</a> <a href="__eq_eq_eq_gt.html">===&gt;</a> <a href="__eq_eq_eq_gt_eq.html">===&gt;=</a> <a href="__eq_eq_gt.html">==&gt;</a> <a href="__eq_eq_gt_eq.html">==&gt;=</a> <a href="__gt_gt.html">&gt;&gt;</a> <a href="__gt_gt_eq.html">&gt;&gt;=</a> <a href="__qu.html">?</a> <a href="__qu_qu.html">??</a> <a href="__qu_qu_eq.html">??=</a> <a href="__at.html">@</a> <a href="__at_eq.html">@=</a> <a href="__at_at.html">@@</a> <a href="__at_at_eq.html">@@=</a> <a href="__at_at_qu.html">@@?</a> <a href="__at_at_qu_eq.html">@@?=</a> <a href="__bs.html">\</a> <a href="__bs_eq.html">\=</a> <a href="__bs_bs.html">\\</a> <a href="__bs_bs_eq.html">\\=</a> <a href="_^.html">^</a> <a href="_^_st_st.html">^**</a> <a href="_^_st_st_eq.html">^**=</a> <a href="_^_lt.html">^&lt;</a> <a href="_^_lt_eq.html">^&lt;=</a> <a href="_^_eq.html">^=</a> <a href="_^_gt.html">^&gt;</a> <a href="_^_gt_eq.html">^&gt;=</a> <a href="_^^.html">^^</a> <a href="_^^_eq.html">^^=</a> <a href="__us.html">_</a> <a href="__us_lt.html">_&lt;</a> <a href="__us_lt_eq.html">_&lt;=</a> <a href="__us_eq.html">_=</a> <a href="__us_gt.html">_&gt;</a> <a href="__us_gt_eq.html">_&gt;=</a> <a href="__vb.html">|</a> <a href="__vb-.html">|-</a> <a href="__vb-_eq.html">|-=</a> <a href="__vb_eq.html">|=</a> <a href="__vb_us.html">|_</a> <a href="__vb_us_eq.html">|_=</a> <a href="__vb_vb.html">||</a> <a href="__vb_vb_eq.html">||=</a> <a href="_~.html">~</a> <a href="_~_eq.html">~=</a> <a href="_·.html">·</a> <a href="_·_eq.html">·=</a> <a href="_⊠.html">⊠</a> <a href="_⊠_eq.html">⊠=</a> <a href="_⧢.html">⧢</a> <a href="_⧢_eq.html">⧢=</a> <a href="_and.html">and</a> <a href="_or.html">or</a> <a href="___S__P__A__C__E.html">SPACE</a> <a href="_xor.html">xor</a> . The operator SPACE, indicating adjacency, may be omitted from the usage above.</li>
+<li><code>Y</code>, a <a href="___Type.html">type</a></li>
+<li><code>(x,y) -&gt; ...</code>, a <a href="___Function.html">function</a></li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>the value of the expression is the same as the function on the right hand side</li>
+</ul>
+</li>
+<li>Consequences:
+<ul>
+<li>the function on the right hand side is installed as the method for <code>X OP Y</code>. See the next subsection below for using it.</li>
+</ul>
+</li>
+</ul>
+<p>The first line of the following example illustrates the syntax above.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i28</span> <span class="ts-label">:</span> <span class="ts-variable"><span class="ts-type ts-type-parameter">String <span class="ts-operator">*</span> <span class="ts-variable">String</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">peek</span><span class="ts-punctuation ts-punctuation-delimiter">;</span> 
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i29</span> <span class="ts-operator">:</span> <span class="ts-string">"left"</span> <span class="ts-operator">*</span> <span class="ts-string">"right"</span>
+
+<span class="ts-variable ts-variable-builtin">o29</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-string">"left"</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-string">"right"</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<p>Warning: the installation of new methods may supplant old ones, changing the behavior of Macaulay2.</p>
+<h2 id="using-methods-for-binary-operators"><a class="header" href="#using-methods-for-binary-operators">using methods for binary operators</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">x OP y
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>x</code>, an object of type <code>X</code></li>
+<li><code>OP</code>, one of the binary operators for which users may install methods, listed above. The operator SPACE, indicating adjacency, may be omitted from the usage above.</li>
+<li><code>y</code>, an object of type <code>Y</code></li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>the previously installed method for <code>X OP Y</code> is called with arguments <code>(x,y)</code>, and its return value is returned. If no such method has been installed, then Macaulay2 searches for a method for <code>X' OP Y'</code>, where <code>X'</code> is an ancestor of <code>X</code> and <code>Y'</code> is an ancestor of <code>Y</code> (see <a href="_inheritance.html">inheritance</a> for details).</li>
+</ul>
+</li>
+</ul>
+<p>The second line of the following example illustrates the syntax above.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i30</span> <span class="ts-label">:</span> <span class="ts-variable"><span class="ts-type ts-type-parameter">String <span class="ts-operator">*</span> <span class="ts-variable">Number</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">peek</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i31</span> <span class="ts-operator">:</span> <span class="ts-string">"left"</span> <span class="ts-operator">*</span> <span class="ts-number">33</span>
+
+<span class="ts-variable ts-variable-builtin">o31</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-string">"left"</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">33</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i32</span> <span class="ts-operator">:</span> <span class="ts-string">"left"</span> <span class="ts-operator">*</span> <span class="ts-number ts-number-float">3.3</span>
+
+<span class="ts-variable ts-variable-builtin">o32</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-string">"left"</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number ts-number-float">3.3</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<p>Some methods for operators are</p>
+<p><em>internal</em>, and cannot be successfully overridden by the user, as we illustrate in the next example, where we try (and fail) to override the definition of the sum of two integers.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i33</span> <span class="ts-label">:</span> <span class="ts-variable"><span class="ts-type ts-type-parameter">ZZ <span class="ts-operator">+</span> <span class="ts-variable">ZZ</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">x</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">y</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">x</span><span class="ts-operator">+</span><span class="ts-variable">y</span><span class="ts-operator">+</span><span class="ts-number">100</span>
+
+<span class="ts-variable ts-variable-builtin">o33</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">FunctionClosure</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">stdio</span><span class="ts-operator">:</span><span class="ts-number">36</span><span class="ts-operator">:</span><span class="ts-number">11</span><span class="ts-operator">-</span><span class="ts-number">36</span><span class="ts-operator">:</span><span class="ts-number">27</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o33</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i34</span> <span class="ts-operator">:</span> <span class="ts-number">3</span> <span class="ts-operator">+</span> <span class="ts-number">4</span>
+
+<span class="ts-variable ts-variable-builtin">o34</span> <span class="ts-operator">=</span> <span class="ts-number">7</span>
+</code></pre>
+
+<p>By contrast, division with remainder of rational numbers is not internal, and can be overridden.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i35</span> <span class="ts-label">:</span> <span class="ts-variable"><span class="ts-type ts-type-parameter">QQ <span class="ts-operator">//</span> <span class="ts-variable">QQ</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">w</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">z</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">numerator</span> <span class="ts-variable"><span class="ts-operator"></span>w</span> <span class="ts-operator">+</span> <span class="ts-function ts-function-call">numerator</span> <span class="ts-variable"><span class="ts-operator"></span>z</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-operator">/</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">denominator</span> <span class="ts-variable"><span class="ts-operator"></span>w</span> <span class="ts-operator">+</span> <span class="ts-function ts-function-call">denominator</span> <span class="ts-variable"><span class="ts-operator"></span>z</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o35</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">FunctionClosure</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">stdio</span><span class="ts-operator">:</span><span class="ts-number">38</span><span class="ts-operator">:</span><span class="ts-number">12</span><span class="ts-operator">-</span><span class="ts-number">38</span><span class="ts-operator">:</span><span class="ts-number">80</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o35</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i36</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">3</span><span class="ts-operator">/</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">//</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">6</span><span class="ts-operator">/</span><span class="ts-number">7</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+      <span class="ts-number">3</span>
+<span class="ts-variable ts-variable-builtin">o36</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span>
+      <span class="ts-number">4</span>
+
+<span class="ts-variable ts-variable-builtin">o36</span> <span class="ts-operator">:</span> <span class="ts-variable">QQ</span>
+</code></pre>
+
+<h2 id="installing-methods-for-unary-prefix-operators"><a class="header" href="#installing-methods-for-unary-prefix-operators">installing methods for unary prefix operators</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">OP X = (x) -&gt; ...
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>OP</code>, one of the unary prefix operators for which users may install methods, namely: <a href="__st.html">*</a> <a href="__pl.html">+</a> <a href="_-.html">-</a> <a href="__lt.html">&lt;</a> <a href="__lt_lt.html">&lt;&lt;</a> <a href="__lt_eq.html">&lt;=</a> <a href="__lt_eq_eq.html">&lt;==</a> <a href="__lt_eq_eq_eq.html">&lt;===</a> <a href="__gt.html">&gt;</a> <a href="__gt_eq.html">&gt;=</a> <a href="__qu.html">?</a> <a href="__qu_qu.html">??</a> <a href="__vb-.html">|-</a> <a href="_~.html">~</a> <a href="_not.html">not</a></li>
+<li><code>X</code>, a <a href="___Type.html">type</a></li>
+<li><code>(x) -&gt; ...</code>, a <a href="___Function.html">function</a></li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>the value of the expression is the same as the function on the right hand side</li>
+</ul>
+</li>
+<li>Consequences:
+<ul>
+<li>the function on the right hand side is installed as the method for <code>OP X</code>. See the next subsection below for using it.</li>
+</ul>
+</li>
+</ul>
+<p>The first line of the following example illustrates the syntax above.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i37</span> <span class="ts-label">:</span> <span class="ts-type ts-type-parameter"><span class="ts-operator">-</span> <span class="ts-variable">String</span> </span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">peek</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i38</span> <span class="ts-operator">:</span> <span class="ts-operator">-</span> <span class="ts-string">"foo"</span>
+
+<span class="ts-variable ts-variable-builtin">o38</span> <span class="ts-operator">=</span> <span class="ts-string">"foo"</span>
+</code></pre>
+
+<p>Warning: the installation of new methods may supplant old ones, changing the behavior of Macaulay2.</p>
+<h2 id="using-methods-for-unary-prefix-operators"><a class="header" href="#using-methods-for-unary-prefix-operators">using methods for unary prefix operators</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">OP x
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>OP</code>, one of the unary prefix operators for which users may install methods, listed above.</li>
+<li><code>x</code>, an object of type <code>X</code></li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>the previously installed method for <code>OP X</code> is called with argument <code>x</code>, and its return value is returned. If no such method has been installed, then Macaulay2 searches for a method for <code>OP X'</code>, where <code>X'</code> is an ancestor of <code>X</code> (see <a href="_inheritance.html">inheritance</a> for details).</li>
+</ul>
+</li>
+</ul>
+<p>The second line of the following example illustrates the syntax above.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i39</span> <span class="ts-label">:</span> <span class="ts-type ts-type-parameter"><span class="ts-operator">-</span> <span class="ts-variable">String</span> </span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">peek</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i40</span> <span class="ts-operator">:</span> <span class="ts-operator">-</span> <span class="ts-string">"foo"</span>
+
+<span class="ts-variable ts-variable-builtin">o40</span> <span class="ts-operator">=</span> <span class="ts-string">"foo"</span>
+</code></pre>
+
+<h2 id="installing-methods-for-unary-postfix-operators"><a class="header" href="#installing-methods-for-unary-postfix-operators">installing methods for unary postfix operators</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">X OP = (x) -&gt; ...
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>OP</code>, one of the unary postfix operators for which users may install methods, namely: <a href="_!.html">!</a> <a href="__lp_st_rp.html">(*)</a> <a href="_^!.html">^!</a> <a href="_^_st.html">^*</a> <a href="_^~.html">^~</a> <a href="__us!.html">_!</a> <a href="__us_st.html">_*</a> <a href="__us~.html">_~</a></li>
+<li><code>X</code>, a <a href="___Type.html">type</a></li>
+<li><code>(x) -&gt; ...</code>, a <a href="___Function.html">function</a></li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>the value of the expression is the same as the function on the right hand side</li>
+</ul>
+</li>
+<li>Consequences:
+<ul>
+<li>the function on the right hand side is installed as the method for <code>OP X</code>. See the next subsection below for using it.</li>
+</ul>
+</li>
+</ul>
+<p>The first line of the following example illustrates the syntax above.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i41</span> <span class="ts-label">:</span> <span class="ts-type ts-type-parameter"><span class="ts-variable">String</span> <span class="ts-operator">^~</span></span> <span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">peek</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i42</span> <span class="ts-operator">:</span> <span class="ts-string">"foo"</span> <span class="ts-operator">^~</span>
+
+<span class="ts-variable ts-variable-builtin">o42</span> <span class="ts-operator">=</span> <span class="ts-string">"foo"</span>
+</code></pre>
+
+<p>Warning: the installation of new methods may supplant old ones, changing the behavior of Macaulay2.</p>
+<h2 id="using-methods-for-unary-postfix-operators"><a class="header" href="#using-methods-for-unary-postfix-operators">using methods for unary postfix operators</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">x OP
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>x</code>, an object of type <code>X</code></li>
+<li><code>OP</code>, one of the unary postfix operators for which users may install methods, listed above.</li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>the previously installed method for <code>X OP</code> is called with argument= <code>x</code>, and its return value is returned. If no such method has been installed, then Macaulay2 searches for a method for to <code>X' OP</code>, where <code>X'</code> is an ancestor of <code>X</code> (see <a href="_inheritance.html">inheritance</a> for details).</li>
+</ul>
+</li>
+</ul>
+<p>The second line of the following example illustrates the syntax above.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i43</span> <span class="ts-label">:</span> <span class="ts-type ts-type-parameter"><span class="ts-variable">String</span> <span class="ts-operator">^~</span></span> <span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">peek</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i44</span> <span class="ts-operator">:</span> <span class="ts-string">"foo"</span> <span class="ts-operator">^~</span>
+
+<span class="ts-variable ts-variable-builtin">o44</span> <span class="ts-operator">=</span> <span class="ts-string">"foo"</span>
+</code></pre>
+
+<h2 id="installing-unary-methods-for-method-functions"><a class="header" href="#installing-unary-methods-for-method-functions">installing unary methods for method functions</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">f X := (x) -&gt; ...
+f(X) := (x) -&gt; ...
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>f</code>, a previously defined method function. A method function may be created with the function <a href="_method.html">method</a>.</li>
+<li><code>X</code>, a <a href="___Type.html">type</a></li>
+<li><code>(x) -&gt; ...</code>, a <a href="___Function.html">function</a></li>
+</ul>
+</li>
+<li>Consequences:
+<ul>
+<li>the function on the right hand side is installed as the method for assignment to <code>f X</code>. See the next subsection below for using it.</li>
+</ul>
+</li>
+</ul>
+<p>The first line of the following example illustrates the syntax above, using <a href="_source.html">source</a>, which happens to be a method function.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i45</span> <span class="ts-label">:</span> <span class="ts-function ts-function-call"><span class="ts-type ts-type-parameter">source <span class="ts-variable"><span class="ts-operator"></span>String</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">peek</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i46</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">source</span> <span class="ts-string"><span class="ts-operator"></span>"foo"</span>
+
+<span class="ts-variable ts-variable-builtin">o46</span> <span class="ts-operator">=</span> <span class="ts-string">"foo"</span>
+</code></pre>
+
+<p>Warning: the installation of new methods may supplant old ones, changing the behavior of Macaulay2.</p>
+<h2 id="using-unary-methods-for-method-functions"><a class="header" href="#using-unary-methods-for-method-functions">using unary methods for method functions</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">f x
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>f</code>, a method function</li>
+<li><code>x</code>, an object of type <code>X</code></li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>the previously installed method for <code>f X</code> is called with argument <code>x</code>, and its return value is returned</li>
+</ul>
+</li>
+</ul>
+<p>The second line of the following example illustrates the syntax above, using <a href="_source.html">source</a>, which happens to be a method function.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i47</span> <span class="ts-label">:</span> <span class="ts-function ts-function-call"><span class="ts-type ts-type-parameter">source <span class="ts-variable"><span class="ts-operator"></span>String</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">peek</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i48</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">source</span> <span class="ts-string"><span class="ts-operator"></span>"foo"</span>
+
+<span class="ts-variable ts-variable-builtin">o48</span> <span class="ts-operator">=</span> <span class="ts-string">"foo"</span>
+</code></pre>
+
+<h2 id="installing-binary-methods-for-method-functions"><a class="header" href="#installing-binary-methods-for-method-functions">installing binary methods for method functions</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">f(X,Y) := (x,y) -&gt; ...
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>f</code>, a previously defined method function. A method function may be created with the function <a href="_method.html">method</a>.</li>
+<li><code>X</code>, a <a href="___Type.html">type</a></li>
+<li><code>Y</code>, a <a href="___Type.html">type</a></li>
+<li><code>(x,y) -&gt; ...</code>, a <a href="___Function.html">function</a></li>
+</ul>
+</li>
+<li>Consequences:
+<ul>
+<li>the function on the right hand side is installed as the method for <code>f(X,Y)</code>. See the next subsection below for using it.</li>
+</ul>
+</li>
+</ul>
+<p>The first line of the following example illustrates the syntax above, using <a href="_source.html">source</a>, which happens to be a method function.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i49</span> <span class="ts-label">:</span> <span class="ts-function ts-function-call"><span class="ts-type ts-type-parameter">source<span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">String</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">Number</span><span class="ts-punctuation ts-punctuation-bracket">)</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">peek</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i50</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">source</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-string">"foo"</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">33</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o50</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-string">"foo"</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">33</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i51</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">source</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-string">"foo"</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number ts-number-float">3.3</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o51</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-string">"foo"</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number ts-number-float">3.3</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<p>Warning: the installation of new methods may supplant old ones, changing the behavior of Macaulay2.</p>
+<p>The same syntax works for 3 or 4 arguments.</p>
+<h2 id="using-binary-methods-for-method-functions"><a class="header" href="#using-binary-methods-for-method-functions">using binary methods for method functions</a></h2>
+<ul>
+<li><strong>Usage:</strong>
+<pre><code class="language-m2">f(x,y)
+</code></pre>
+</li>
+<li>Inputs:
+<ul>
+<li><code>f</code>, a method function</li>
+<li><code>x</code>, an object of type <code>X</code></li>
+<li><code>y</code>, an object of type <code>Y</code></li>
+</ul>
+</li>
+<li>Outputs:
+<ul>
+<li>the previously installed method for <code>f(X,Y)</code> is called with arguments <code>(x,y)</code>, and the return value is returned. If no such method has been installed, then Macaulay2 searches for a method for <code>f(X',Y')</code>, where <code>X'</code> is an ancestor of <code>X</code> and <code>Y'</code> is an ancestor of <code>Y</code> (see <a href="_inheritance.html">inheritance</a> for details).</li>
+</ul>
+</li>
+</ul>
+<p>The second line of the following example illustrates the syntax above, using <a href="_source.html">source</a>, which happens to be a method function.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i52</span> <span class="ts-label">:</span> <span class="ts-function ts-function-call"><span class="ts-type ts-type-parameter">source<span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">String</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">String</span><span class="ts-punctuation ts-punctuation-bracket">)</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-variable">peek</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i53</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">source</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-string">"foo"</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-string">"bar"</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o53</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-string">"foo"</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-string">"bar"</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+</code></pre>
+
+<p>The same syntax works for 3 or 4 arguments.</p>
+<p>Another use of the operator <a href="__co_eq.html">:=</a> is for installing methods for creation of new objects. For details, see <a href="_new.html">new</a>.</p>
+<h2 id="see-also"><a class="header" href="#see-also">See also</a></h2>
+<ul>
+<li><a href="__eq.html">=</a> – assignment</li>
+<li><a href="__lt-.html">&lt;-</a> – assignment with left side evaluated</li>
+<li><a href="_new.html">new</a> – new objects and new types</li>
+</ul>
+<hr>
+<p>The source of this document is in <code>Macaulay2Doc/operators/assignment.m2:716:0</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="__eq.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="__lt-.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="__eq.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="__lt-.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

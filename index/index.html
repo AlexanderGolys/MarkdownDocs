@@ -1,0 +1,527 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Macaulay2 documentation - Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-f86ba066.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-9580cb9d.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="macaulay2-documentation"><a class="header" href="#macaulay2-documentation">Macaulay2 documentation</a></h1>
+<h2 id="packages"><a class="header" href="#packages">Packages</a></h2>
+<ul>
+<li><a href="../Classic/index.html">Classic</a> – a classic Macaulay parser</li>
+<li><a href="../Complexes/index.html">Complexes</a> – beta testing new version of chain complexes</li>
+<li><a href="../ConwayPolynomials/index.html">ConwayPolynomials</a> – a database of Conway polynomials</li>
+<li><a href="../Elimination/index.html">Elimination</a> – elimination of variables</li>
+<li><a href="../IntegralClosure/index.html">IntegralClosure</a> – integral closure</li>
+<li><a href="../InverseSystems/index.html">InverseSystems</a> – equivariant Macaulay inverse systems</li>
+<li><a href="../Isomorphism/index.html">Isomorphism</a> – probabilistic test of isomorphism between modules</li>
+<li><a href="../LLLBases/index.html">LLLBases</a> – Lenstra-Lenstra-Lovasz bases</li>
+<li><a href="../Macaulay2Doc/index.html">Macaulay2Doc</a> – Macaulay2 documentation</li>
+<li><a href="../MinimalPrimes/index.html">MinimalPrimes</a> – minimal primes and radical routines for ideals</li>
+<li><a href="../OnlineLookup/index.html">OnlineLookup</a> – Look up mathematical information online</li>
+<li><a href="../PackageCitations/index.html">PackageCitations</a> – citation of Macaulay2 packages</li>
+<li><a href="../Polyhedra/index.html">Polyhedra</a> – convex polyhedra</li>
+<li><a href="../PrimaryDecomposition/index.html">PrimaryDecomposition</a> – primary decomposition and associated primes routines</li>
+<li><a href="../PushForward/index.html">PushForward</a> – push forwards of finite ring maps</li>
+<li><a href="../ReesAlgebra/index.html">ReesAlgebra</a> – Rees algebras</li>
+<li><a href="../Saturation/index.html">Saturation</a> – quotient, saturation, and annihilator routines for ideals and modules</li>
+<li><a href="../SimpleDoc/index.html">SimpleDoc</a> – a simple documentation function</li>
+<li><a href="../TangentCone/index.html">TangentCone</a> – tangent cones</li>
+<li><a href="../Truncations/index.html">Truncations</a> – truncation of a module</li>
+<li><a href="../Varieties/index.html">Varieties</a> – routines for working with affine and projective varieties and coherent sheaves on them</li>
+</ul>
+<h2 id="other-installed-packages"><a class="header" href="#other-installed-packages">Other installed packages</a></h2>
+<p>Documented on the <a href="https://macaulay2.com/doc/Macaulay2/">Macaulay2 website</a>.</p>
+<ul>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/A1BrouwerDegrees/html/index.html">A1BrouwerDegrees</a> – for working with A1-Brouwer degree computations and quadratic forms</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/AbstractSimplicialComplexes/html/index.html">AbstractSimplicialComplexes</a> – Abstract Simplicial Complexes</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/AbstractToricVarieties/html/index.html">AbstractToricVarieties</a> – links abstract simplicial (normal) toric varieties to Schubert2</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/AdjointIdeal/html/index.html">AdjointIdeal</a> – adjoint ideals of plane curves and related computations</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/AdjunctionForSurfaces/html/index.html">AdjunctionForSurfaces</a> – Adjunction for Surfaces</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/AInfinity/html/index.html">AInfinity</a> – AInfinity structures on free resolutions</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/AlgebraicSplines/html/index.html">AlgebraicSplines</a> – splines on simplicial complexes, polytopal complexes, and graphs</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/AllMarkovBases/html/index.html">AllMarkovBases</a> – computing all minimal Markov bases of a configuration matrix</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/AnalyzeSheafOnP1/html/index.html">AnalyzeSheafOnP1</a> – decompose a Sheaf on P1</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/AssociativeAlgebras/html/index.html">AssociativeAlgebras</a> – Noncommutative algebra</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/BeginningMacaulay2/html/index.html">BeginningMacaulay2</a> – Mathematicians’ Introduction to Macaulay2</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Benchmark/html/index.html">Benchmark</a> – standard Macaulay2 benchmarks</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/BernsteinSato/html/index.html">BernsteinSato</a> – Bernstein-Sato</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Bertini/html/index.html">Bertini</a> – interface to Bertini</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/BettiCharacters/html/index.html">BettiCharacters</a> – finite group characters on free resolutions and graded modules</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/BGG/html/index.html">BGG</a> – Bernstein-Gelfand-Gelfand correspondence</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/BIBasis/html/index.html">BIBasis</a> – involutive Pommaret basis in a Boolean ring</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/BinomialEdgeIdeals/html/index.html">BinomialEdgeIdeals</a> – binomial edge ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Binomials/html/index.html">Binomials</a> – specialized routines for binomial ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/BoijSoederberg/html/index.html">BoijSoederberg</a> – Betti diagram operations useful for investigating the Boij-Soederberg conjectures</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Book3264Examples/html/index.html">Book3264Examples</a> – examples to accompany the eponymous book by Eisenbud and Harris</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/BooleanGB/html/index.html">BooleanGB</a> – Groebner bases for ideals in Boolean polynomial quotient rings</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Brackets/html/index.html">Brackets</a> – Brackets, Grassmann-Cayley Algebra, and Projective Geometry</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Browse/html/index.html">Browse</a> – a method for browsing and examining Macaulay2 data structures</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Bruns/html/index.html">Bruns</a> – make a 3-generator ideal with an “any” resolution</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/CellularResolutions/html/index.html">CellularResolutions</a> – cellular resolutions of monomial ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ChainComplexExtras/html/index.html">ChainComplexExtras</a> – some additional ChainComplex Functions</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ChainComplexOperations/html/index.html">ChainComplexOperations</a> – sym2, wedge2, chi2 of a ChainComplex</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/CharacteristicClasses/html/index.html">CharacteristicClasses</a> – CSM classes, Segre classes and the Euler characteristic</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Chordal/html/index.html">Chordal</a> – routines that exploit chordal structure</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/CodingTheory/html/index.html">CodingTheory</a> – tools for coding theory</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/CohomCalg/html/index.html">CohomCalg</a> – interface to cohomCalg software for computing sheaf cohomology of line bundles on toric varieties</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/CoincidentRootLoci/html/index.html">CoincidentRootLoci</a> – coincident root loci</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/CompleteIntersectionResolutions/html/index.html">CompleteIntersectionResolutions</a> – Analyzing Resolutions over a Complete Intersection</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ConformalBlocks/html/index.html">ConformalBlocks</a> – for conformal block divisors</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ConnectionMatrices/html/index.html">ConnectionMatrices</a> – connection matrices and integrable systems from D-ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ConvexInterface/html/index.html">ConvexInterface</a> – interface to Convex</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/CorrespondenceScrolls/html/index.html">CorrespondenceScrolls</a> – correspondence scrolls</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/CotangentSchubert/html/index.html">CotangentSchubert</a> – Cotangent Schubert calculus</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/CpMackeyFunctors/html/index.html">CpMackeyFunctors</a> – homological algebra with Mackey functors for cyclic groups of prime order</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Cremona/html/index.html">Cremona</a> – rational maps between projective varieties</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Cyclotomic/html/index.html">Cyclotomic</a> – cyclotomic fields</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/DecomposableSparseSystems/html/index.html">DecomposableSparseSystems</a> – Solving decomposable sparse systems</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Depth/html/index.html">Depth</a> – aids in computations related to depth</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/DeterminantalRepresentations/html/index.html">DeterminantalRepresentations</a> – determinantal representations</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/DGAlgebras/html/index.html">DGAlgebras</a> – Data type for DG algebras</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/DiffAlg/html/index.html">DiffAlg</a> – specialized routines for differential forms</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/DirectSummands/html/index.html">DirectSummands</a> – decompositions of modules and coherent sheaves</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Dmodules/html/index.html">Dmodules</a> – D-modules</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EagonResolution/html/index.html">EagonResolution</a> – Compute the Eagon Resolution of the residue field</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EdgeIdeals/html/index.html">EdgeIdeals</a> – edge ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EigenSolver/html/index.html">EigenSolver</a> – polynomial system solver via eigen-computations</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EliminationMatrices/html/index.html">EliminationMatrices</a> – resultants</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EliminationTemplates/html/index.html">EliminationTemplates</a> – Elimination Templates</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EllipticCurves/html/index.html">EllipticCurves</a> – group law on elliptic curves (and counting points with brute force methods)</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EllipticIntegrals/html/index.html">EllipticIntegrals</a> – uniformization of elliptic curves</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EngineTests/html/index.html">EngineTests</a> – a test suite for the Macaulay2 engine</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EnumerationCurves/html/index.html">EnumerationCurves</a> – Enumeration of rational curves via torus actions</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EquivariantGB/html/index.html">EquivariantGB</a> – Equivariant Groebner bases and related algorithms</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/EuclideanDistanceDegree/html/index.html">EuclideanDistanceDegree</a> – produce critical equations and compute ED degrees</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ExampleSystems/html/index.html">ExampleSystems</a> – database of polynomial systems</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ExteriorExtensions/html/index.html">ExteriorExtensions</a> – Builds an algebra extending an exterior algebra</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ExteriorIdeals/html/index.html">ExteriorIdeals</a> – monomial ideals over exterior algebras</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ExteriorModules/html/index.html">ExteriorModules</a> – monomial modules over exterior algebras</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FastMinors/html/index.html">FastMinors</a> – faster linear algebra operations</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FGLM/html/index.html">FGLM</a> – Groebner bases via the FGLM algorithm</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FiniteFittingIdeals/html/index.html">FiniteFittingIdeals</a> – Fitting ideals of finite modules</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FirstPackage/html/index.html">FirstPackage</a> – an example Macaulay2 package</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ForeignFunctions/html/index.html">ForeignFunctions</a> – foreign function interface</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FormalGroupLaws/html/index.html">FormalGroupLaws</a> – commutative formal group laws</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FourierMotzkin/html/index.html">FourierMotzkin</a> – convex hulls and polar cones</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FourTiTwo/html/index.html">FourTiTwo</a> – Interface to 4ti2</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FrobeniusThresholds/html/index.html">FrobeniusThresholds</a> – F-thresholds</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FunctionFieldDesingularization/html/index.html">FunctionFieldDesingularization</a> – desingularization of function fields</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/GameTheory/html/index.html">GameTheory</a> – computing equilibria in game theory</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/GenericInitialIdeal/html/index.html">GenericInitialIdeal</a> – find the generic initial ideal of a given ideal</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/GeometricDecomposability/html/index.html">GeometricDecomposability</a> – checking whether ideals are geometrically vertex decomposable</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/gfanInterface/html/index.html">gfanInterface</a> – interface to Anders Jensen’s Gfan software</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/GKMVarieties/html/index.html">GKMVarieties</a> – computations with GKM manifolds and moment graphs</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/GradedLieAlgebras/html/index.html">GradedLieAlgebras</a> – computations in graded Lie algebras</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/GraphicalModels/html/index.html">GraphicalModels</a> – discrete and Gaussian graphical models</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/GraphicalModelsMLE/html/index.html">GraphicalModelsMLE</a> – maximum likelihood estimates for graphical statistical models</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Graphics/html/index.html">Graphics</a> – create graphics</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Graphs/html/index.html">Graphs</a> – graphs and directed graphs (digraphs)</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/GroebnerStrata/html/index.html">GroebnerStrata</a> – computing Groebner loci in Hilbert schemes</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/GroebnerWalk/html/index.html">GroebnerWalk</a> – Groebner bases via the Groebner walk</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Hadamard/html/index.html">Hadamard</a> – Hadamard products of projective subvarieties</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/HigherCIOperators/html/index.html">HigherCIOperators</a> – higher CI operators</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/HighestWeights/html/index.html">HighestWeights</a> – decompose free resolutions and graded modules with a semisimple Lie group action</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/HodgeIntegrals/html/index.html">HodgeIntegrals</a> – Hodge integrals on the moduli space of curves</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/HolonomicSystems/html/index.html">HolonomicSystems</a> – Holonomic Systems</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/HomotopyLieAlgebra/html/index.html">HomotopyLieAlgebra</a> – Homotopy Lie algebra</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/HyperplaneArrangements/html/index.html">HyperplaneArrangements</a> – manipulating finite sets of hyperplanes</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/IncidenceCorrespondenceCohomology/html/index.html">IncidenceCorrespondenceCohomology</a> – Cohomology on the incidence correspondence, bundle of principal parts, and Lefschetz properties</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/IntegerProgramming/html/index.html">IntegerProgramming</a> – solving integer programs with Gröbner bases</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/InvariantRing/html/index.html">InvariantRing</a> – invariants of group actions</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/InvolutiveBases/html/index.html">InvolutiveBases</a> – Methods for Janet bases and Pommaret bases in Macaulay 2</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Jets/html/index.html">Jets</a> – compute jets of various algebraic, geometric and combinatorial objects</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/JSON/html/index.html">JSON</a> – JSON encoding and decoding</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/JSONRPC/html/index.html">JSONRPC</a> – JSON-RPC server</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/K3Carpets/html/index.html">K3Carpets</a> – K3 double structure on scrolls</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/K3Surfaces/html/index.html">K3Surfaces</a> – Explicit constructions of K3 surfaces</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Kronecker/html/index.html">Kronecker</a> – Kronecker and rational normal forms</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/KustinMiller/html/index.html">KustinMiller</a> – unprojection and the Kustin-Miller complex construction</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/LanguageServer/html/index.html">LanguageServer</a> – language server</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/LatticePolytopes/html/index.html">LatticePolytopes</a> – lattice polytopes</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/LexIdeals/html/index.html">LexIdeals</a> – lexicographic-type monomial ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/LieAlgebraRepresentations/html/index.html">LieAlgebraRepresentations</a> – Lie algebra representations and characters</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/LinearTruncations/html/index.html">LinearTruncations</a> – find the multigraded truncations that give linear resolutions</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/LocalRings/html/index.html">LocalRings</a> – operations over a local ring R_p</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/M0nbar/html/index.html">M0nbar</a> – calculations for divisors and F-curves on the moduli space of stable n-pointed genus zero curves</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MacaulayPosets/html/index.html">MacaulayPosets</a> – Macaulay posets</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MapleInterface/html/index.html">MapleInterface</a> – interface to Maple</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Markov/html/index.html">Markov</a> – Markov ideals arising from Bayesian networks in statistics</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MatchingFields/html/index.html">MatchingFields</a> – Toric degenerations of flag varieties via matching fields</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MatrixFactorizations/html/index.html">MatrixFactorizations</a> – computing with matrix factorizations of different lengths</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MatrixSchubert/html/index.html">MatrixSchubert</a> – functions for investigating ASM and matrix Schubert varieties</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Matroids/html/index.html">Matroids</a> – computations with matroids</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MCMApproximations/html/index.html">MCMApproximations</a> – MCM approximations and complete intersections</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MergeTeX/html/index.html">MergeTeX</a> – Run Macaulay2 code inside a LaTeX file</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Miura/html/index.html">Miura</a> – arithmetic of Miura curves</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MixedMultiplicity/html/index.html">MixedMultiplicity</a> – Mixed Multiplicities of ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ModuleDeformations/html/index.html">ModuleDeformations</a> – versal deformations of maximal Cohen-Macaulay modules</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MonodromySolver/html/index.html">MonodromySolver</a> – solving polynomial systems via monodromy</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MonomialAlgebras/html/index.html">MonomialAlgebras</a> – monomial algebras</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MonomialIntegerPrograms/html/index.html">MonomialIntegerPrograms</a> – using integer programming for fast computations with monomial ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MonomialOrbits/html/index.html">MonomialOrbits</a> – Orbit representatives of monomial ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MRDI/html/index.html">MRDI</a> – serializing algebraic data with .mrdi files</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Msolve/html/index.html">Msolve</a> – interface to the msolve library for solving multivariate polynomial systems using Groebner Bases</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MultigradedBGG/html/index.html">MultigradedBGG</a> – the multigraded BGG correspondence and differential modules</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MultigradedImplicitization/html/index.html">MultigradedImplicitization</a> – solving implicitization problems using multigradings</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MultiGradedRationalMap/html/index.html">MultiGradedRationalMap</a> – degree and birationality of multi-graded rational maps</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MultiplicitySequence/html/index.html">MultiplicitySequence</a> – computing the multiplicity sequence of an ideal</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MultiplierIdeals/html/index.html">MultiplierIdeals</a> – multiplier ideals, log canonical thresholds, and jumping numbers</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MultiplierIdealsDim2/html/index.html">MultiplierIdealsDim2</a> – multiplier ideals in 2-dimensional rings</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/MultiprojectiveVarieties/html/index.html">MultiprojectiveVarieties</a> – multi-projective varieties and multi-rational maps</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NAGtypes/html/index.html">NAGtypes</a> – types used in Numerical Algebraic Geometry</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Nauty/html/index.html">Nauty</a> – interface to nauty</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NautyGraphs/html/index.html">NautyGraphs</a> – interface to nauty (Graphs fork)</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NCAlgebra/html/index.html">NCAlgebra</a> – data types for noncommutative algebras</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NeuralIdeals/html/index.html">NeuralIdeals</a> – canonical forms of neural ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NoetherianOperators/html/index.html">NoetherianOperators</a> – algorithms for computing local dual spaces and sets of Noetherian operators</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NoetherNormalization/html/index.html">NoetherNormalization</a> – place an ideal in Noether normal position</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NonPrincipalTestIdeals/html/index.html">NonPrincipalTestIdeals</a> – singularities of pairs with non-principal ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Normaliz/html/index.html">Normaliz</a> – interface to Normaliz in Macaulay2</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NormalToricVarieties/html/index.html">NormalToricVarieties</a> – routines for working with normal toric varieties and related objects</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NumericalAlgebraicGeometry/html/index.html">NumericalAlgebraicGeometry</a> – numerical algebraic geometry</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NumericalCertification/html/index.html">NumericalCertification</a> – numerical certification</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NumericalImplicitization/html/index.html">NumericalImplicitization</a> – numerical invariants of images of varieties</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NumericalLinearAlgebra/html/index.html">NumericalLinearAlgebra</a> – numerically compute local dual space and Hilbert functions</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NumericalSchubertCalculus/html/index.html">NumericalSchubertCalculus</a> – numerical methods in Schubert Calculus</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NumericalSemigroups/html/index.html">NumericalSemigroups</a> – Compute the Apery set and invariants of a numerical semigroup ring</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/NumericSolutions/html/index.html">NumericSolutions</a> – solving systems of polynomial equalities</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/OIGroebnerBases/html/index.html">OIGroebnerBases</a> – OI-modules over Noetherian polynomial OI-algebras</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/OldChainComplexes/html/index.html">OldChainComplexes</a> – consolidating legacy chain complex code</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/OpenMath/html/index.html">OpenMath</a> – OpenMath for Macaulay2</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Oscillators/html/index.html">Oscillators</a> – code to analyze graph oscillators</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/PackageTemplate/html/index.html">PackageTemplate</a> – an example Macaulay2 package</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Padic/html/index.html">Padic</a> – p-adic numbers</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Parametrization/html/index.html">Parametrization</a> – rational parametrization of rational plane curves and related computations</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Parsing/html/index.html">Parsing</a> – a framework for creating recursive descent parsers</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/PathSignatures/html/index.html">PathSignatures</a> – working with algebraic path signatures</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/PencilsOfQuadrics/html/index.html">PencilsOfQuadrics</a> – Clifford Algebra of a pencil of quadratic forms</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Permanents/html/index.html">Permanents</a> – permanents of a matrix</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Permutations/html/index.html">Permutations</a> – functions for working with permutations</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/PHCpack/html/index.html">PHCpack</a> – interface to PHCpack</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/PhylogeneticTrees/html/index.html">PhylogeneticTrees</a> – invariants for group-based phylogenetic models</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/PieriMaps/html/index.html">PieriMaps</a> – Pieri inclusions and projections between Schur modules with multiple basis conventions</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/PlaneCurveLinearSeries/html/index.html">PlaneCurveLinearSeries</a> – Linear series on the normalization of a plane curve</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Points/html/index.html">Points</a> – sets of points</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Polymake/html/index.html">Polymake</a> – interfacing with polymake</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/PolyominoIdeals/html/index.html">PolyominoIdeals</a> – Collections of cells and binomial ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Posets/html/index.html">Posets</a> – partially ordered sets (posets)</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/PositivityToricBundles/html/index.html">PositivityToricBundles</a> – check positivity of toric vector bundles</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Probability/html/index.html">Probability</a> – basic probability functions</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/PseudomonomialPrimaryDecomposition/html/index.html">PseudomonomialPrimaryDecomposition</a> – Primary decomposition of square free pseudomonomial ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Pullback/html/index.html">Pullback</a> – pullback of rings</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Python/html/index.html">Python</a> – interface to Python</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/QthPower/html/index.html">QthPower</a> – An implementation of the Qth-Power algorithm for computing integral closures</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/QuadraticIdealExamplesByRoos/html/index.html">QuadraticIdealExamplesByRoos</a> – Examples of Quadratic Ideals with Embedding Dimension Four by Jan-Erik Roos</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Quasidegrees/html/index.html">Quasidegrees</a> – quasidegrees and graded local cohomology</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/QuaternaryQuartics/html/index.html">QuaternaryQuartics</a> – code to support the paper ‘Quaternary Quartic Forms and Gorenstein Rings’</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/QuillenSuslin/html/index.html">QuillenSuslin</a> – the Quillen-Suslin algorithm for bases of projective modules</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RandomComplexes/html/index.html">RandomComplexes</a> – random complexes over fields or the integers</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RandomCurves/html/index.html">RandomCurves</a> – random smooth curves up to genus 14</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RandomCurvesOverVerySmallFiniteFields/html/index.html">RandomCurvesOverVerySmallFiniteFields</a> – general canonical curves of genus &lt;= 15 over fields with small characteristic</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RandomIdeals/html/index.html">RandomIdeals</a> – creating random ideals of various sorts</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RandomMonomialIdeals/html/index.html">RandomMonomialIdeals</a> – Erdos-Renyi-type random monomial ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RandomObjects/html/index.html">RandomObjects</a> – a framework for making random objects in algebraic geometry</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RandomPoints/html/index.html">RandomPoints</a> – find a point in a given variety over a finite field</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RationalMaps/html/index.html">RationalMaps</a> – rational maps between varieties</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RationalPoints/html/index.html">RationalPoints</a> – find the common zeroes of a set of polynomials with coefficients in a finite field</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RationalPoints2/html/index.html">RationalPoints2</a> – find the rational points on a variety</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ReactionNetworks/html/index.html">ReactionNetworks</a> – reaction networks</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RealRoots/html/index.html">RealRoots</a> – symbolically exploring, counting, and locating real solutions to general polynomial systems</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ReflexivePolytopesDB/html/index.html">ReflexivePolytopesDB</a> – simple access to Kreuzer-Skarke database of reflexive polytopes of dimensions 3 and 4</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Regularity/html/index.html">Regularity</a> – Castelnuovo-Mumford regularity of a homogeneous ideal</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RelativeCanonicalResolution/html/index.html">RelativeCanonicalResolution</a> – the relative canonical resolution for g-nodal canonical curves with a fixed g^1_k</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ResidualIntersections/html/index.html">ResidualIntersections</a> – conditions associated to residual intersection theory</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ResLengthThree/html/index.html">ResLengthThree</a> – Multiplication in free resolutions of length three</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ResolutionsOfStanleyReisnerRings/html/index.html">ResolutionsOfStanleyReisnerRings</a> – Comparing resolutions of Stanley-Reisner rings and computing various systems of parameters</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ResultantComplexes/html/index.html">ResultantComplexes</a> – calculates a resultants using subdivisions and Canny Emiris shift of Newton polytopes</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Resultants/html/index.html">Resultants</a> – resultants, discriminants, and Chow forms</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RInterface/html/index.html">RInterface</a> – interface to R for statistical computing</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/RunExternalM2/html/index.html">RunExternalM2</a> – run Macaulay2 functions outside the current Macaulay2 process</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SagbiGbDetection/html/index.html">SagbiGbDetection</a> – finding term orders for which the given generators of an ideal/algebra form a Gröbner/SAGBI basis</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Schubert2/html/index.html">Schubert2</a> – characteristic classes for varieties without equations</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SchurComplexes/html/index.html">SchurComplexes</a> – Schur functors of complexes</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SchurFunctors/html/index.html">SchurFunctors</a> – Schur modules and maps between them</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SchurRings/html/index.html">SchurRings</a> – representation rings of general linear groups and of symmetric groups</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SchurVeronese/html/index.html">SchurVeronese</a> – Data for Veronese embeddings of projective space</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SCMAlgebras/html/index.html">SCMAlgebras</a> – sequentially Cohen-Macaulay modules or ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SCSCP/html/index.html">SCSCP</a> – SCSCP for Macaulay2</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SectionRing/html/index.html">SectionRing</a> – the section ring of a Weil Divisor</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SegreClasses/html/index.html">SegreClasses</a> – Segre class computations for containment of varieties and Fulton-MacPherson intersection products</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SemidefiniteProgramming/html/index.html">SemidefiniteProgramming</a> – semidefinite programming</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Seminormalization/html/index.html">Seminormalization</a> – seminormalization of rings</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Serialization/html/index.html">Serialization</a> – reversible conversion of all Macaulay2 objects to strings</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SimplicialComplexes/html/index.html">SimplicialComplexes</a> – exploring abstract simplicial complexes within commutative algebra</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SimplicialDecomposability/html/index.html">SimplicialDecomposability</a> – various decomposability routines for simplicial complexes</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SimplicialModules/html/index.html">SimplicialModules</a> – methods for working in the category of simplicial modules</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SimplicialPosets/html/index.html">SimplicialPosets</a> – constructing Stanley simplicial poset rings</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SlackIdeals/html/index.html">SlackIdeals</a> – Slack ideals of polytopes and matroids</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SLnEquivariantMatrices/html/index.html">SLnEquivariantMatrices</a> – file ancillary to the paper “A construction of equivariant bundles on the space of symmetric forms”</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SLPexpressions/html/index.html">SLPexpressions</a> – straight line programs and algebraic circuits</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SpaceCurves/html/index.html">SpaceCurves</a> – space curves</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SparseResultants/html/index.html">SparseResultants</a> – computations with sparse resultants</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SpechtModule/html/index.html">SpechtModule</a> – invariants for permutation groups</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SpecialFanoFourfolds/html/index.html">SpecialFanoFourfolds</a> – Hodge-special fourfolds</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SpectralSequences/html/index.html">SpectralSequences</a> – spectral sequences</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SRdeformations/html/index.html">SRdeformations</a> – deformations of Stanley-Reisner rings and related computations</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/StatePolytope/html/index.html">StatePolytope</a> – the state polytope of an ideal</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/StatGraphs/html/index.html">StatGraphs</a> – Graphs specific for algebraic statistics</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/StronglyStableIdeals/html/index.html">StronglyStableIdeals</a> – studying strongly stable ideals related to Hilbert polynomials</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Style/html/index.html">Style</a> – style sheets and images for the documentation</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SubalgebraBases/html/index.html">SubalgebraBases</a> – Canonical subalgebra bases (aka SAGBI/Khovanskii bases)</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SumsOfSquares/html/index.html">SumsOfSquares</a> – sums of squares</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SuperLinearAlgebra/html/index.html">SuperLinearAlgebra</a> – computations related to supermatrices</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SVDComplexes/html/index.html">SVDComplexes</a> – SVD (singular value decomposition) of a complex over the reals and related functions</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SwitchingFields/html/index.html">SwitchingFields</a> – Switch Base Fields and Obtain Natural Maps</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SymbolicPowers/html/index.html">SymbolicPowers</a> – symbolic powers</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/SymmetricPolynomials/html/index.html">SymmetricPolynomials</a> – symmetric polynomials</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Tableaux/html/index.html">Tableaux</a> – constructing Young tableaux</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/TateOnProducts/html/index.html">TateOnProducts</a> – Tate resolutions on products of projective spaces</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/TensorComplexes/html/index.html">TensorComplexes</a> – multilinear algebra with labeled bases</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/TerraciniLoci/html/index.html">TerraciniLoci</a> – Terracini loci of projective varieties</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/TestAudit/html/index.html">TestAudit</a> – test audit functionality</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/TestIdeals/html/index.html">TestIdeals</a> – singularities in positive characteristic</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Text/html/index.html">Text</a> – documentation and hypertext</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ThinSincereQuivers/html/index.html">ThinSincereQuivers</a> – Construction of flow polytopes and their associated quivers</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ThreadedGB/html/index.html">ThreadedGB</a> – Compute a Groebner basis using the classical Buchberger with multiple threads</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Topcom/html/index.html">Topcom</a> – interface to the topcom software package which in particular computes triangulations</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/TorAlgebra/html/index.html">TorAlgebra</a> – classification of local rings based on multiplication in homology</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ToricHigherDirectImages/html/index.html">ToricHigherDirectImages</a> – computations involving pushforwards and higher direct images of toric maps</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ToricInvariants/html/index.html">ToricInvariants</a> – Euclidean distance degrees, polar degrees, and Chern-Mather classes of toric varieties</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ToricTopology/html/index.html">ToricTopology</a> – toric topology</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/ToricVectorBundles/html/index.html">ToricVectorBundles</a> – vector bundles on toric varieties</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/TriangularSets/html/index.html">TriangularSets</a> – triangular decompositions of ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Triangulations/html/index.html">Triangulations</a> – triangulations of polyhedra and point sets</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Triplets/html/index.html">Triplets</a> – triplets of degree sequences and associated Betti diagrams and cohomology tables</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Tropical/html/index.html">Tropical</a> – computations in tropical geometry</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/TropicalToric/html/index.html">TropicalToric</a> – tropical methods for toric intersection theory</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/TSpreadIdeals/html/index.html">TSpreadIdeals</a> – t-spread ideals of a polynomial ring</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Units/html/index.html">Units</a> – units conversion and physical constants</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Valuations/html/index.html">Valuations</a> – implementation of valuations for rings</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/VectorFields/html/index.html">VectorFields</a> – vector fields</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/VectorGraphics/html/index.html">VectorGraphics</a> – producing SVG graphics</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/VersalDeformations/html/index.html">VersalDeformations</a> – versal deformations and local Hilbert schemes</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/VirtualResolutions/html/index.html">VirtualResolutions</a> – Methods for virtual resolutions on products of projective spaces</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Visualize/html/index.html">Visualize</a> – interactive visualization and manipulation of combinatorial objects in a browser</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/VNumber/html/index.html">VNumber</a> – compute v-number of homogeneous ideals and v-function of monomial ideals</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/WeierstrassSemigroups/html/index.html">WeierstrassSemigroups</a> – Compute smoothing families for Weierstrass semigroups</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/WeilDivisors/html/index.html">WeilDivisors</a> – Weil divisors</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/WeylAlgebras/html/index.html">WeylAlgebras</a> – D-modules</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/WeylGroups/html/index.html">WeylGroups</a> – root systems and Weyl groups</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/WhitneyStratifications/html/index.html">WhitneyStratifications</a> – Compute Whitney Stratifications</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/WittVectors/html/index.html">WittVectors</a> – computations with Witt vectors, Frobenius lifts, and quasi-F-splittings</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/XML/html/index.html">XML</a> – an XML parser</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

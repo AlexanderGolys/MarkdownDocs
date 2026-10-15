@@ -1,0 +1,477 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Polyhedron - Polyhedra — Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-a988f81b.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-a00e57cd.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Polyhedra — Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="polyhedron--the-class-of-all-convex-polyhedra"><a class="header" href="#polyhedron--the-class-of-all-convex-polyhedra">Polyhedron – the class of all convex polyhedra</a></h1>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
+<p>A Polyhedron represents a rational polyhedron. It can be bounded or unbounded, need not be full dimensional or may contain a proper affine subspace. It can be empty or zero dimensional. It is saved as a hash table which contains the vertices, generating rays, and the basis of the lineality space of the Polyhedron as well as the defining affine half-spaces and hyperplanes. The output of a Polyhedron looks like this:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i1</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">convexHull</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">matrix</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-operator">-</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-function ts-function-call">matrix</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o1</span> <span class="ts-operator">=</span> <span class="ts-variable">Polyhedron</span><span class="ts-punctuation ts-punctuation-bracket">{</span>...1...}
+
+o1 : Polyhedron
+</code></pre>
+
+<p>This table displays a short summary of the properties of the Polyhedron. Note that the number of rays and vertices are modulo the lineality space. So for example a line in QQ^2 has one vertex and no rays. However, one can not access the above information directly, because this is just a virtual hash table generated for the output. The data defining a Polyhedron is extracted by the functions included in this package. A Polyhedron can be constructed as the convex hull (<a href="_convex__Hull.html">convexHull</a>) of a set of points and a set of rays or as the intersection (<a href="_polyhedron__From__H__Data.html">polyhedronFromHData</a>) of a set of affine half-spaces and affine hyperplanes.</p>
+<p>For example, consider the square and the square with an emerging ray for the convex hull:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i2</span> <span class="ts-operator">:</span> <span class="ts-variable">V</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o2</span> = | 1 1  -1 -1 |
+     | 1 -1 1  -1 |
+
+              2       4
+o2 : Matrix ZZ  &lt;-- ZZ
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i3</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">convexHull</span> <span class="ts-variable"><span class="ts-operator"></span>V</span>
+
+<span class="ts-variable ts-variable-builtin">o3</span> <span class="ts-operator">=</span> <span class="ts-variable">Polyhedron</span><span class="ts-punctuation ts-punctuation-bracket">{</span>...1...}
+
+o3 : Polyhedron
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i4</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o4</span> = | 1 |
+     | 1 |
+
+              2       1
+o4 : Matrix ZZ  &lt;-- ZZ
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i5</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">convexHull</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">V</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">R</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o5</span> <span class="ts-operator">=</span> <span class="ts-variable">Polyhedron</span><span class="ts-punctuation ts-punctuation-bracket">{</span>...1...}
+
+o5 : Polyhedron
+</code></pre>
+
+<p>If we take the intersection of the half-spaces defined by the directions of the vertices and 1 we get the crosspolytope:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i6</span> <span class="ts-operator">:</span> <span class="ts-variable">HS</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">transpose</span> <span class="ts-variable"><span class="ts-operator"></span>V</span>
+
+<span class="ts-variable ts-variable-builtin">o6</span> = | 1  1  |
+     | 1  -1 |
+     | -1 1  |
+     | -1 -1 |
+
+              4       2
+o6 : Matrix ZZ  &lt;-- ZZ
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i7</span> <span class="ts-operator">:</span> <span class="ts-variable">v</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span> <span class="ts-operator">||</span> <span class="ts-variable">R</span>
+
+<span class="ts-variable ts-variable-builtin">o7</span> = | 1 |
+     | 1 |
+     | 1 |
+     | 1 |
+
+              4       1
+o7 : Matrix ZZ  &lt;-- ZZ
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i8</span> <span class="ts-operator">:</span> <span class="ts-variable">P</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">polyhedronFromHData</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">HS</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">v</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o8</span> <span class="ts-operator">=</span> <span class="ts-variable">P</span>
+
+<span class="ts-variable ts-variable-builtin">o8</span> <span class="ts-operator">:</span> <span class="ts-variable">Polyhedron</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i9</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">vertices</span> <span class="ts-variable"><span class="ts-operator"></span>P</span>
+
+<span class="ts-variable ts-variable-builtin">o9</span> = | -1 1 0  0 |
+     | 0  0 -1 1 |
+
+              2       4
+o9 : Matrix QQ  &lt;-- QQ
+</code></pre>
+
+<p>This can for example be embedded in 3-space on height 1:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i10</span> <span class="ts-operator">:</span> <span class="ts-variable">HS</span> <span class="ts-operator">=</span> <span class="ts-variable">HS</span> <span class="ts-operator">|</span> <span class="ts-function ts-function-call">matrix</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o10</span> = | 1  1  0 |
+      | 1  -1 0 |
+      | -1 1  0 |
+      | -1 -1 0 |
+
+               4       3
+o10 : Matrix ZZ  &lt;-- ZZ
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i11</span> <span class="ts-operator">:</span> <span class="ts-variable">hyperplanesTmp</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o11</span> = | 0 0 1 |
+
+               1       3
+o11 : Matrix ZZ  &lt;-- ZZ
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i12</span> <span class="ts-operator">:</span> <span class="ts-variable">w</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o12</span> = | 1 |
+
+               1       1
+o12 : Matrix ZZ  &lt;-- ZZ
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i13</span> <span class="ts-operator">:</span> <span class="ts-variable">P</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">polyhedronFromHData</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">HS</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">v</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">hyperplanesTmp</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">w</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o13</span> <span class="ts-operator">=</span> <span class="ts-variable">P</span>
+
+<span class="ts-variable ts-variable-builtin">o13</span> <span class="ts-operator">:</span> <span class="ts-variable">Polyhedron</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i14</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">vertices</span> <span class="ts-variable"><span class="ts-operator"></span>P</span>
+
+<span class="ts-variable ts-variable-builtin">o14</span> = | -1 1 0  0 |
+      | 0  0 -1 1 |
+      | 1  1 1  1 |
+
+               3       4
+o14 : Matrix QQ  &lt;-- QQ
+</code></pre>
+
+<p>See also <a href="___Working_spwith_sppolyhedra.html">Working with polyhedra</a>.</p>
+<h2 id="functions-and-methods-returning-a-convex-polyhedron"><a class="header" href="#functions-and-methods-returning-a-convex-polyhedron">Functions and methods returning a convex polyhedron:</a></h2>
+<ul>
+<li><a href="_affine__Hull.html">affineHull</a> – computes the affine hull of a polyhedron</li>
+<li><a href="_affine__Image.html">affineImage</a> – computes the affine image of a cone or polyhedron</li>
+<li><a href="_affine__Preimage.html">affinePreimage</a> – computes the affine preimage of a cone or polyhedron</li>
+<li><a href="_bipyramid.html">bipyramid</a> – computes the bipyramid over a polyhedron</li>
+<li><a href="_convex__Hull.html">convexHull</a> – computing the convex hull of points, rays and polyhedra</li>
+<li><a href="_cross__Polytope.html">crossPolytope</a> – computes the d-dimensional crosspolytope with diameter 2s</li>
+<li><a href="_cyclic__Polytope.html">cyclicPolytope</a> – computes the d dimensional cyclic polytope with n vertices</li>
+<li><a href="_empty__Polyhedron.html">emptyPolyhedron</a> – generates the empty polyhedron in n-space</li>
+<li><a href="_hypercube.html">hypercube</a> – Returns the d-dimensional hypercube</li>
+<li><a href="_minkowski__Sum.html">minkowskiSum</a> – computes the Minkowski sum of two convex objects</li>
+<li><a href="_newton__Polytope.html">newtonPolytope</a> – computes the Newton polytope of a polynomial</li>
+<li><a href="_polar.html">polar</a> – computes the polar of a polyhedron</li>
+<li><a href="_polar__Face.html">polarFace</a> – computes the dual face of the polar polyhedron</li>
+<li><a href="_polytope.html">polytope</a> – returns a polytope of which the fan is the normal fan if it is polytopal</li>
+<li><a href="_pyramid.html">pyramid</a> – computes the pyramid over a polyhedron</li>
+<li><a href="_secondary__Polytope.html">secondaryPolytope</a> – computes the secondary polytope of a compact polyhedron</li>
+<li><a href="_simplex.html">simplex</a> – Produces a full-dimensional simplex</li>
+<li><a href="_state__Polytope.html">statePolytope</a> – computes the state polytope of a homogeneous ideal</li>
+<li><a href="_std__Simplex.html">stdSimplex</a> – generates the d-dimensional standard simplex</li>
+</ul>
+<h2 id="methods-that-use-a-convex-polyhedron"><a class="header" href="#methods-that-use-a-convex-polyhedron">Methods that use a convex polyhedron:</a></h2>
+<ul>
+<li><code>addPolyhedron(Polyhedron,PolyhedralComplex)</code> – see <a href="_add__Polyhedron.html">addPolyhedron</a> – adds Polyhedra to a PolyhedralComplex</li>
+<li><code>affineHull(Polyhedron)</code> – see <a href="_affine__Hull.html">affineHull</a> – computes the affine hull of a polyhedron</li>
+<li><code>affineImage(Matrix,Polyhedron)</code> – see <a href="_affine__Image_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affineImage(Matrix,Polyhedron,Matrix)</a> – computes the affine image of a polyhedron</li>
+<li><a href="_affine__Image_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affineImage(Matrix,Polyhedron,Matrix)</a> – computes the affine image of a polyhedron</li>
+<li><code>affineImage(Polyhedron,Matrix)</code> – see <a href="_affine__Image_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affineImage(Matrix,Polyhedron,Matrix)</a> – computes the affine image of a polyhedron</li>
+<li><code>affinePreimage(Matrix,Polyhedron)</code> – see <a href="_affine__Preimage_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affinePreimage(Matrix,Polyhedron,Matrix)</a> – computes the affine preimage of a polyhedron</li>
+<li><a href="_affine__Preimage_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affinePreimage(Matrix,Polyhedron,Matrix)</a> – computes the affine preimage of a polyhedron</li>
+<li><code>affinePreimage(Polyhedron,Matrix)</code> – see <a href="_affine__Preimage_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affinePreimage(Matrix,Polyhedron,Matrix)</a> – computes the affine preimage of a polyhedron</li>
+<li><code>areCompatible(Polyhedron,Polyhedron)</code> – see <a href="_are__Compatible.html">areCompatible</a> – checks if the intersection of two cones/polyhedra is a face of each</li>
+<li><code>barycentricTriangulation(Polyhedron)</code> – see <a href="_barycentric__Triangulation.html">barycentricTriangulation</a> – computes a triangulation of a polytope</li>
+<li><code>bipyramid(Polyhedron)</code> – see <a href="_bipyramid.html">bipyramid</a> – computes the bipyramid over a polyhedron</li>
+<li><code>cellDecompose(Polyhedron,Matrix)</code> – see <a href="_cell__Decompose.html">cellDecompose</a> – Deprecated variant of {\tt regularSubdivision}</li>
+<li><code>centroid(Polyhedron)</code> – see <a href="_centroid.html">centroid</a> – computes the centroid or barycenter of a polyhedron</li>
+<li><code>commonFace(Polyhedron,Polyhedron)</code> – see <a href="_common__Face.html">commonFace</a> – checks if the intersection is a face of both Cones or Polyhedra, or of cones with fans</li>
+<li><a href="___Cone_sp_st_sp__Polyhedron.html">Cone * Polyhedron</a> – computes the direct product of a cone and a polyhedron</li>
+<li><a href="___Cone_sp_pl_sp__Polyhedron.html">Cone + Polyhedron</a> – computes the Minkowski sum of a cone and a polyhedron</li>
+<li><a href="_cone_lp__Polyhedron_rp.html">cone(Polyhedron)</a> – Take the cone over a polyhedron</li>
+<li><code>coneFromVData(Polyhedron)</code> – see <a href="_cone__From__V__Data.html">coneFromVData</a> – computes the positive hull of rays, cones, and the cone over a polyhedron</li>
+<li><code>contains(Cone,Polyhedron)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(List,Polyhedron)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(Polyhedron,Cone)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(Polyhedron,Matrix)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(Polyhedron,Polyhedron)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>convexHull(Polyhedron,Polyhedron)</code> – see <a href="_convex__Hull.html">convexHull</a> – computing the convex hull of points, rays and polyhedra</li>
+<li><code>directProduct(Cone,Polyhedron)</code> – see <a href="_direct__Product_lp__Cone_cm__Cone_rp.html">directProduct(Cone,Cone)</a> – computes the direct product of polyhedra and cones</li>
+<li><code>directProduct(Polyhedron,Cone)</code> – see <a href="_direct__Product_lp__Cone_cm__Cone_rp.html">directProduct(Cone,Cone)</a> – computes the direct product of polyhedra and cones</li>
+<li><code>directProduct(Polyhedron,Polyhedron)</code> – see <a href="_direct__Product_lp__Cone_cm__Cone_rp.html">directProduct(Cone,Cone)</a> – computes the direct product of polyhedra and cones</li>
+<li>dualFaceRepresentationMap(Polyhedron) (missing documentation)</li>
+<li><code>ehrhart(Polyhedron)</code> – see <a href="_ehrhart.html">ehrhart</a> – calculates the Ehrhart polynomial of a polytope</li>
+<li><code>faceFan(Polyhedron)</code> – see <a href="_face__Fan.html">faceFan</a> – computes the fan generated by the cones over the faces</li>
+<li><code>facesAsPolyhedra(ZZ,Polyhedron)</code> – see <a href="_faces__As__Polyhedra.html">facesAsPolyhedra</a> – Returns the faces of a polyhedron as actual polyhedra.</li>
+<li><code>facets(Polyhedron)</code> – see <a href="_facets.html">facets</a> – Giving the facet inequalities of a cone or polyhedron.</li>
+<li><code>halfspaces(Polyhedron)</code> – see <a href="_halfspaces.html">halfspaces</a> – computes the defining half-spaces of a Cone or a Polyhedron</li>
+<li><code>hyperplanes(Polyhedron)</code> – see <a href="_hyperplanes.html">hyperplanes</a> – computes the defining hyperplanes of a Cone or a Polyhedron</li>
+<li><code>incompPolyhedra(PolyhedralComplex,Polyhedron)</code> – see <a href="_incomp__Polyhedra.html">incompPolyhedra</a> – returns the pairs of incompatible polyhedra</li>
+<li><code>incompPolyhedra(Polyhedron,PolyhedralComplex)</code> – see <a href="_incomp__Polyhedra.html">incompPolyhedra</a> – returns the pairs of incompatible polyhedra</li>
+<li><code>inInterior(Matrix,Polyhedron)</code> – see <a href="_in__Interior.html">inInterior</a> – checks if a point lies in the relative interior of a Cone/Polyhedron</li>
+<li><code>interiorLatticePoints(Polyhedron)</code> – see <a href="_interior__Lattice__Points.html">interiorLatticePoints</a> – computes the lattice points in the relative interior of a polytope</li>
+<li><code>interiorPoint(Polyhedron)</code> – see <a href="_interior__Point.html">interiorPoint</a> – computes a point in the relative interior of the Polyhedron</li>
+<li><code>intersect(Cone,Polyhedron)</code> – see <a href="_intersect.html">intersect</a> – computes the intersection of cones, and polyhedra</li>
+<li><code>intersect(Polyhedron,Cone)</code> – see <a href="_intersect.html">intersect</a> – computes the intersection of cones, and polyhedra</li>
+<li><code>intersect(Polyhedron,Polyhedron)</code> – see <a href="_intersect.html">intersect</a> – computes the intersection of cones, and polyhedra</li>
+<li><code>isCompact(Polyhedron)</code> – see <a href="_is__Compact.html">isCompact</a> – checks compactness of a Polyhedron</li>
+<li><code>isEmpty(Polyhedron)</code> – see <a href="_is__Empty.html">isEmpty</a> – checks if a Polyhedron is empty</li>
+<li><code>isFace(Polyhedron,Polyhedron)</code> – see <a href="_is__Face.html">isFace</a> – tests if the first argument is a face of the second</li>
+<li><code>isLatticePolytope(Polyhedron)</code> – see <a href="_is__Lattice__Polytope.html">isLatticePolytope</a> – checks if a polyhedron is a lattice polytope</li>
+<li><a href="_is__Normal_lp__Polyhedron_rp.html">isNormal(Polyhedron)</a> – checks if a polytope is normal in the ambient lattice</li>
+<li><code>isReflexive(Polyhedron)</code> – see <a href="_is__Reflexive.html">isReflexive</a> – checks if a Polytope is reflexive</li>
+<li><a href="_is__Very__Ample_lp__Polyhedron_rp.html">isVeryAmple(Polyhedron)</a> – checks if the Polyhedron is very ample</li>
+<li><code>isWellDefined(Polyhedron)</code> – see <a href="_is__Well__Defined_lp__Cone_rp.html">isWellDefined(Cone)</a> – Checks whether a polyhedral object is well-defined.</li>
+<li><code>latticePoints(Polyhedron)</code> – see <a href="_lattice__Points.html">latticePoints</a> – computes the lattice points of a polytope</li>
+<li><code>latticeVolume(Polyhedron)</code> – see <a href="_lattice__Volume.html">latticeVolume</a> – Returning the lattice volume of a polyhedron.</li>
+<li><code>linSpace(Polyhedron)</code> – see <a href="_lin__Space.html">linSpace</a> – Deprecated version of @TO “linealitySpace”@</li>
+<li><code>maxFace(Matrix,Polyhedron)</code> – see <a href="_max__Face.html">maxFace</a> – computes the face of a Polyhedron or Cone where a weight attains its maximum</li>
+<li><code>minFace(Matrix,Polyhedron)</code> – see <a href="_min__Face.html">minFace</a> – computes the face of a Polyhedron or Cone where a weight attains its minimum</li>
+<li><code>minkowskiSum(Cone,Polyhedron)</code> – see <a href="_minkowski__Sum.html">minkowskiSum</a> – computes the Minkowski sum of two convex objects</li>
+<li><code>minkowskiSum(Polyhedron,Cone)</code> – see <a href="_minkowski__Sum.html">minkowskiSum</a> – computes the Minkowski sum of two convex objects</li>
+<li><code>minkowskiSum(Polyhedron,Polyhedron)</code> – see <a href="_minkowski__Sum.html">minkowskiSum</a> – computes the Minkowski sum of two convex objects</li>
+<li><code>minkSummandCone(Polyhedron)</code> – see <a href="_mink__Summand__Cone.html">minkSummandCone</a> – computes the Cone of all Minkowski summands and the minimal decompositions</li>
+<li><a href="_normal__Cone_lp__Polyhedron_cm__Polyhedron_rp.html">normalCone(Polyhedron,Polyhedron)</a> – computes the normal cone of a face of a polyhedron</li>
+<li><code>normalFan(Polyhedron)</code> – see <a href="_normal__Fan.html">normalFan</a> – computes the normalFan of a polyhedron</li>
+<li><code>nVertices(Polyhedron)</code> – see <a href="_n__Vertices.html">nVertices</a> – Returns the number of vertices of a polyhedron</li>
+<li><code>objectiveVector(Polyhedron,Polyhedron)</code> – see <a href="_objective__Vector.html">objectiveVector</a> – computes an objective vector of a face of a polyhedron</li>
+<li><code>polar(Polyhedron)</code> – see <a href="_polar.html">polar</a> – computes the polar of a polyhedron</li>
+<li><code>polarFace(Polyhedron,Polyhedron)</code> – see <a href="_polar__Face.html">polarFace</a> – computes the dual face of the polar polyhedron</li>
+<li><code>polyhedralComplex(Polyhedron)</code> – see <a href="_polyhedral__Complex.html">polyhedralComplex</a> – generates a PolyhedralComplex</li>
+<li><a href="___Polyhedron_sp_st_sp__Cone.html">Polyhedron * Cone</a> – computes the direct product of a polyhedron and a cone</li>
+<li><a href="___Polyhedron_sp_st_sp__Polyhedron.html">Polyhedron * Polyhedron</a> – computes the direct product of two polyhedra</li>
+<li><a href="___Polyhedron_sp_pl_sp__Cone.html">Polyhedron + Cone</a> – computes the Minkowski sum of a polyhedron and a cone</li>
+<li><a href="___Polyhedron_sp_pl_sp__Polyhedron.html">Polyhedron + Polyhedron</a> – computes the Minkowski sum of two polyhedra</li>
+<li><a href="___Polyhedron_sp_eq_eq_sp__Polyhedron.html">Polyhedron == Polyhedron</a> – equality</li>
+<li><code>proximum(Matrix,Polyhedron)</code> – see <a href="_proximum.html">proximum</a> – computes the proximum of the Polyhedron/Cone to a point in euclidean metric</li>
+<li><code>pyramid(Polyhedron)</code> – see <a href="_pyramid.html">pyramid</a> – computes the pyramid over a polyhedron</li>
+<li><a href="___Q__Q_sp_st_sp__Polyhedron.html">QQ * Polyhedron</a> – rescales a polyhedron by a given positive factor</li>
+<li><code>ZZ * Polyhedron</code> – see <a href="___Q__Q_sp_st_sp__Polyhedron.html">QQ * Polyhedron</a> – rescales a polyhedron by a given positive factor</li>
+<li><code>regularSubdivision(Polyhedron,Matrix)</code> – see <a href="_regular__Subdivision.html">regularSubdivision</a> – Computes the regular cell decomposition</li>
+<li><code>regularTriangulation(Polyhedron)</code> – see <a href="_regular__Triangulation.html">regularTriangulation</a> – Computes a regular triangulation of a given polytope.</li>
+<li><code>secondaryPolytope(Polyhedron)</code> – see <a href="_secondary__Polytope.html">secondaryPolytope</a> – computes the secondary polytope of a compact polyhedron</li>
+<li><code>smallestFace(Matrix,Polyhedron)</code> – see <a href="_smallest__Face.html">smallestFace</a> – determines the smallest face of the Cone/Polyhedron containing a point</li>
+<li><code>sublatticeBasis(Polyhedron)</code> – see <a href="_sublattice__Basis.html">sublatticeBasis</a> – computes a basis for the sublattice generated by integral vectors or lattice points of a polytope</li>
+<li><code>tailCone(Polyhedron)</code> – see <a href="_tail__Cone.html">tailCone</a> – computes the tail/recession cone of a polyhedron</li>
+<li><code>toSublattice(Polyhedron)</code> – see <a href="_to__Sublattice.html">toSublattice</a> – calculates the preimage of a polytope in the sublattice generated by its lattice points</li>
+<li><code>triangulate(Polyhedron)</code> – see <a href="_triangulate.html">triangulate</a> – Deprecated name for {\tt barycentricTriangulation}</li>
+<li><code>vertexEdgeMatrix(Polyhedron)</code> – see <a href="_vertex__Edge__Matrix.html">vertexEdgeMatrix</a> – computes the vertex-edge-relations matrix</li>
+<li><code>vertexFacetMatrix(Polyhedron)</code> – see <a href="_vertex__Facet__Matrix.html">vertexFacetMatrix</a> – computes the vertex-facet-relations matrix</li>
+<li><code>vertices(Polyhedron)</code> – see <a href="_vertices.html">vertices</a> – displays the vertices of a Polyhedron or a PolyhedralComplex</li>
+<li><code>volume(Polyhedron)</code> – see <a href="_volume.html">volume</a> – computes the volume of a polytope</li>
+</ul>
+<h2 id="for-the-programmer"><a class="header" href="#for-the-programmer">For the programmer</a></h2>
+<p>The object <a href="___Polyhedron.html">Polyhedron</a> is a <a href="../Macaulay2Doc/___Type.html">type</a>, with ancestor classes <a href="___Polyhedral__Object.html">PolyhedralObject</a> &lt; <a href="../Macaulay2Doc/___Mutable__Hash__Table.html">MutableHashTable</a> &lt; <a href="../Macaulay2Doc/___Hash__Table.html">HashTable</a> &lt; <a href="../Macaulay2Doc/___Thing.html">Thing</a>.</p>
+<hr>
+<p>The source of this document is in <code>Polyhedra/documentation/old_documentation.m2:224:0</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="___Polyhedral__Object.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="_polyhedron.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="___Polyhedral__Object.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="_polyhedron.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

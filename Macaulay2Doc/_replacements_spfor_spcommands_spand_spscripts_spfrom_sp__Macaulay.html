@@ -1,0 +1,1022 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>replacements for commands and scripts from Macaulay - Macaulay2Doc — Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-b2932a8a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-ab61a4b0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Macaulay2Doc — Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="replacements-for-commands-and-scripts-from-macaulay"><a class="header" href="#replacements-for-commands-and-scripts-from-macaulay">replacements for commands and scripts from Macaulay</a></h1>
+<p>Macaulay2 aims to provide all of the functionality of Macaulay, but the names of the functions are not the same, and there are other differences. One major difference is the introduction of the notion of module, whereas in Macaulay, the pervasive concept was the matrix.</p>
+<p>Here is a list of old Macaulay functions, together with pointers to functions in Macaulay2 that might be used to replace them.</p>
+<ul>
+<li>Macaulay commands:
+<ul>
+<li>ac – such destructive changes are not allowed</li>
+<li>add – <a href="__pl.html">+</a></li>
+<li>ar – not documented yet</li>
+<li>betti – <a href="_betti.html">betti</a></li>
+<li>calc – not documented yet</li>
+<li>cat – not documented yet</li>
+<li>ce – not documented yet</li>
+<li>characteristic – <a href="_char.html">char</a></li>
+<li>chcalc – not documented yet</li>
+<li>codim – <a href="_codim.html">codim</a></li>
+<li>coef – not documented yet</li>
+<li>col_degree – not documented yet</li>
+<li>col_degs – not documented yet</li>
+<li>commands – not documented yet</li>
+<li>compress – <a href="_compress.html">compress</a></li>
+<li>concat – <a href="__vb.html">|</a>,<a href="__vb_vb.html">||</a></li>
+<li>continue – not documented yet</li>
+<li>contract – <a href="_contract.html">contract</a></li>
+<li>copy – not documented yet</li>
+<li>degree – <a href="_degree.html">degree</a></li>
+<li>determinants – <a href="_minors_lp__Z__Z_cm__Matrix_rp.html">minors</a></li>
+<li>diag – The command <code>diag m n</code> is equivalent to the Macaulay2 expression <br><code>n = map((ring m)^(numgens source m), source m,(i,j) -&gt; if i === j then m_(0,i) else 0)</code></li>
+<li>diag – not documented yet</li>
+<li>diff – <a href="_diff.html">diff</a></li>
+<li>dshift – not documented yet</li>
+<li>dsum – <a href="__pl_pl.html">++</a></li>
+<li>edit – not documented yet</li>
+<li>edit_map – not documented yet</li>
+<li>elim – <a href="_select__In__Subring.html">selectInSubring</a></li>
+<li>ev – <a href="_substitute.html">substitute</a>,<a href="___Ring__Map.html">RingMap</a></li>
+<li>exit – <a href="_quit.html">quit</a></li>
+<li>fetch – <a href="_substitute.html">substitute</a></li>
+<li>flatten – <a href="_flatten.html">flatten</a></li>
+<li>forcestd – <a href="_force__G__B.html">forceGB</a></li>
+<li>help – <a href="_help.html">help</a></li>
+<li>help_file – not documented yet</li>
+<li>hilb – <a href="_hilbert__Series.html">hilbertSeries</a>,<a href="_hilbert__Polynomial.html">hilbertPolynomial</a>,<a href="_hilbert__Function.html">hilbertFunction</a>,<a href="_poincare.html">poincare</a></li>
+<li>hilb_numer – <a href="_hilbert__Series.html">hilbertSeries</a></li>
+<li>homog – <a href="_homogenize.html">homogenize</a></li>
+<li>hulb – not documented yet</li>
+<li>ideal – <a href="_ideal.html">ideal</a>, <a href="_matrix.html">matrix</a></li>
+<li>iden – <a href="_id.html">id</a></li>
+<li>if – <a href="_if.html">if</a></li>
+<li>imap – <a href="_map.html">map</a></li>
+<li>in – <a href="_lead__Term.html">leadTerm</a></li>
+<li>inpart – not documented yet</li>
+<li>int – not documented yet</li>
+<li>intersect – <a href="_intersect.html">intersect</a></li>
+<li>is_zero – <a href="__eq_eq.html">==</a></li>
+<li>jacob – <a href="_jacobian.html">jacobian</a></li>
+<li>jump – not documented yet</li>
+<li>k-basis – <a href="_basis.html">basis</a></li>
+<li>k_basis – <a href="_basis.html">basis</a></li>
+<li>keep – not documented yet</li>
+<li>kill – not documented yet</li>
+<li>koszul – <a href="_koszul.html">koszul</a></li>
+<li>lift – <a href="__sl_sl.html">//</a></li>
+<li>lift_std – <a href="_gb.html">gb</a></li>
+<li>listvars – <a href="_list__User__Symbols.html">listUserSymbols</a></li>
+<li>mat – <a href="_matrix.html">matrix</a></li>
+<li>max – <a href="_max.html">max</a></li>
+<li>mc – not documented yet</li>
+<li>min – <a href="_min.html">min</a></li>
+<li>modulo – <a href="_modulo.html">modulo</a></li>
+<li>monitor – <a href="_using_sp__Macaulay2_spwith_sp__Emacs.html">using Macaulay2 with Emacs</a></li>
+<li>monitoring – not documented yet</li>
+<li>monoms – not documented yet</li>
+<li>monprimes – not documented yet</li>
+<li>mr – not documented yet</li>
+<li>mult – <a href="__st.html">*</a></li>
+<li>ncols – use numgens source m</li>
+<li>nres – <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/OldChainComplexes/html/_resolution.html">resolution</a></li>
+<li>nrows – use numgens target m</li>
+<li>numinfo – not documented yet</li>
+<li>nvars – use numgens R</li>
+<li>outer – <a href="__st_st.html">**</a></li>
+<li>path – <a href="_path.html">path</a></li>
+<li>pc – not documented yet</li>
+<li>pfaff – <a href="_pfaffians.html">pfaffians</a></li>
+<li>pmap – not documented yet</li>
+<li>poly – not documented yet</li>
+<li>power – <a href="_^.html">^</a></li>
+<li>pr – not documented yet</li>
+<li>**pres &lt;C:complex&gt; – **Use <code>C.dd</code> or <code>print C.dd</code></li>
+<li>present_ring – not documented yet</li>
+<li>pring – not documented yet</li>
+<li>prmat – <a href="_print.html">print</a> or <a href="_to__String.html">toString</a></li>
+<li>putchange – not documented yet</li>
+<li>putmat – not documented yet</li>
+<li>putstd – not documented yet</li>
+<li>**qring &lt;I:ideal&gt; &lt;result A:ring&gt; – **In Macaulay2, if <code>I</code> is an ideal, then <code>A = (ring I)/I</code> is equivalent, except that in Macaulay2, a Gröbner basis of I is computed for you, if it is needed</li>
+<li>quit – <a href="_quit.html">quit</a></li>
+<li>quotient – not documented yet</li>
+<li>random – not documented yet</li>
+<li>reduce – not documented yet</li>
+<li>res – not documented yet</li>
+<li>reset – <a href="_restart.html">restart</a></li>
+<li>ring – not documented yet</li>
+<li>ring-from-rows – not documented yet</li>
+<li>ring_from_cols – not documented yet</li>
+<li>ring_from_rows – not documented yet</li>
+<li>ring_sum – not documented yet</li>
+<li>rmap – not documented yet</li>
+<li>row_degree – not documented yet</li>
+<li>row_degs – not documented yet</li>
+<li>sat – <a href="../Saturation/_saturate.html">saturate</a></li>
+<li>set – not documented yet</li>
+<li>set_value – not documented yet</li>
+<li>setcoldegs – not documented yet</li>
+<li>setdegs – not documented yet</li>
+<li>setring – <a href="_use.html">use</a></li>
+<li>shout – not documented yet</li>
+<li>size – not documented yet</li>
+<li>smult – <a href="__st.html">*</a></li>
+<li>space – not documented yet</li>
+<li>spairs – not documented yet</li>
+<li>spare – not documented yet</li>
+<li>sparse – not documented yet</li>
+<li>std – not documented yet</li>
+<li>std_minimal – not documented yet</li>
+<li>stdpart – not documented yet</li>
+<li>submat – <a href="_submatrix.html">submatrix</a></li>
+<li>subtract – <a href="_-.html">-</a></li>
+<li>syz – <a href="_syz.html">syz</a>,<a href="_kernel.html">kernel</a></li>
+<li>tensor &lt;matrix M&gt; &lt;matrix N&gt; &lt;result matrix M.N&gt; – <code>cokernel M ** cokernel N</code></li>
+<li>trace – <a href="_trace_lp__Matrix_rp.html">trace</a></li>
+<li>transpose – <a href="_transpose.html">transpose</a></li>
+<li>truncate – <a href="../Truncations/_truncate_lp__List_cm__Module_rp.html">truncate(ZZ,Module)</a></li>
+<li>type – not documented yet</li>
+<li>version – <a href="_version.html">version</a></li>
+<li>wedge – <a href="_minors_lp__Z__Z_cm__Matrix_rp.html">minors</a>,<a href="_exterior__Power.html">exteriorPower</a></li>
+</ul>
+</li>
+<li>Macaulay scripts from ‘scriptsde’:
+<ul>
+<li>&lt;adj_of_cat – not documented yet</li>
+<li>&lt;adjoin_fractions – not documented yet</li>
+<li>&lt;adjoint – not documented yet</li>
+<li>&lt;analytic_spread – not documented yet</li>
+<li>&lt;annihilated – not documented yet</li>
+<li>&lt;annihilator – <a href="../Saturation/_annihilator.html">annihilator</a></li>
+<li>&lt;annihilator1 – <a href="../Saturation/_annihilator.html">annihilator</a></li>
+<li>&lt;annihilator2 – <a href="../Saturation/_annihilator.html">annihilator</a></li>
+<li>&lt;binomial – <a href="_binomial.html">binomial</a></li>
+<li>&lt;ceiling – not documented yet</li>
+<li>&lt;changelog – not documented yet</li>
+<li>&lt;codim – not documented yet</li>
+<li>&lt;cohomology – not documented yet</li>
+<li>&lt;cohomology1 – not documented yet</li>
+<li>&lt;column_vector – not documented yet</li>
+<li>&lt;complement – not documented yet</li>
+<li>&lt;copyring – not documented yet</li>
+<li>&lt;cotan – not documented yet</li>
+<li>&lt;cotan_bihom – not documented yet</li>
+<li>&lt;curve_on_cubic – not documented yet</li>
+<li>&lt;diagonal_submodule – not documented yet</li>
+<li>&lt;diff – not documented yet</li>
+<li>&lt;double_dual – not documented yet</li>
+<li>&lt;double_dual1 – not documented yet</li>
+<li>&lt;dual_variety – not documented yet</li>
+<li>&lt;empty_array – not documented yet</li>
+<li>&lt;equality – not documented yet</li>
+<li>&lt;ext – not documented yet</li>
+<li>&lt;ext(-,r) – not documented yet</li>
+<li>&lt;extend_ring – not documented yet</li>
+<li>&lt;from_bigraded – not documented yet</li>
+<li>&lt;from_div_powers – not documented yet</li>
+<li>&lt;generic_mat – <a href="_generic__Matrix.html">genericMatrix</a></li>
+<li>&lt;getvars – not documented yet</li>
+<li>&lt;hom – not documented yet</li>
+<li>&lt;hom_and_map – not documented yet</li>
+<li>&lt;hom_is_0 – not documented yet</li>
+<li>&lt;homology – not documented yet</li>
+<li>&lt;i_in_j – not documented yet</li>
+<li>&lt;ideal – not documented yet</li>
+<li>&lt;idempotent – not documented yet</li>
+<li>&lt;idencoldegs – not documented yet</li>
+<li>&lt;idenrowdegs – not documented yet</li>
+<li>&lt;interchange – not documented yet</li>
+<li>&lt;interchange_permutation – not documented yet</li>
+<li>&lt;inverse – not documented yet</li>
+<li>&lt;is_zero – not documented yet</li>
+<li>&lt;k3carpet – not documented yet</li>
+<li>&lt;kernel – not documented yet</li>
+<li>&lt;kernel_and_map – not documented yet</li>
+<li>&lt;kosz_hom1 – not documented yet</li>
+<li>&lt;kosz_hom2 – not documented yet</li>
+<li>&lt;l_i_in_j – not documented yet</li>
+<li>&lt;l_intersect – not documented yet</li>
+<li>&lt;l_res – not documented yet</li>
+<li>&lt;lex_seg_ideal – not documented yet</li>
+<li>&lt;macaulayrep – not documented yet</li>
+<li>&lt;map_from_col – not documented yet</li>
+<li>&lt;minpres – not documented yet</li>
+<li>&lt;module_iso – not documented yet</li>
+<li>&lt;monomial_curve – not documented yet</li>
+<li>&lt;mult_ideals – not documented yet</li>
+<li>&lt;nbyn_commuting – not documented yet</li>
+<li>&lt;normal_sheaf – not documented yet</li>
+<li>&lt;nres – not documented yet</li>
+<li>&lt;nzd – not documented yet</li>
+<li>&lt;orbit_equations – not documented yet</li>
+<li>&lt;permutation – not documented yet</li>
+<li>&lt;perp – not documented yet</li>
+<li>&lt;points – not documented yet</li>
+<li>&lt;powers – not documented yet</li>
+<li>&lt;project_from_product – not documented yet</li>
+<li>&lt;projective_plane – not documented yet</li>
+<li>&lt;prune – <a href="_prune.html">prune</a></li>
+<li>&lt;prune_and_map – not documented yet</li>
+<li>&lt;push_forward – <a href="_push__Forward_lp__Ring__Map_cm__Module_rp.html">pushForward</a></li>
+<li>&lt;push_forward1 – <a href="_coimage.html">coimage</a> (eventually)</li>
+<li>&lt;quotient1 – <a href="_quotient.html">quotient</a></li>
+<li>&lt;radical – <a href="../MinimalPrimes/_radical.html">radical</a></li>
+<li>&lt;random_element – not documented yet</li>
+<li>&lt;random_int – not documented yet</li>
+<li>&lt;random_map – not documented yet</li>
+<li>&lt;random_mat – not documented yet</li>
+<li>&lt;rank_prob – not documented yet</li>
+<li>&lt;rat_nor_curve – not documented yet</li>
+<li>&lt;rat_nor_osc_locus – not documented yet</li>
+<li>&lt;rational_surface – not documented yet</li>
+<li>&lt;rational_surface1 – not documented yet</li>
+<li>&lt;reduce_syzygy_1 – not documented yet</li>
+<li>&lt;regular_sequence – not documented yet</li>
+<li>&lt;regular_sequence1 – not documented yet</li>
+<li>&lt;regularity – <a href="_regularity.html">regularity</a></li>
+<li>&lt;remove_low_dim – not documented yet</li>
+<li>&lt;remove_low_dim_id – not documented yet</li>
+<li>&lt;remove_lowest_dim – not documented yet</li>
+<li>&lt;representatives – not documented yet</li>
+<li>&lt;representatives_old – not documented yet</li>
+<li>&lt;res – <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/OldChainComplexes/html/_resolution.html">resolution</a></li>
+<li>&lt;res_and_dim – <a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/OldChainComplexes/html/_resolution.html">resolution</a>,<a href="_pdim.html">pdim</a></li>
+<li>&lt;ring – not documented yet</li>
+<li>&lt;sagbi – not documented yet</li>
+<li>&lt;sagbi_step – not documented yet</li>
+<li>&lt;sat – <a href="../Saturation/_saturate.html">saturate</a></li>
+<li>&lt;sat1 – <a href="../Saturation/_saturate.html">saturate</a></li>
+<li>&lt;scroll – not documented yet</li>
+<li>&lt;select – not documented yet</li>
+<li>&lt;shout_list – not documented yet</li>
+<li>&lt;sort_by_degree – not documented yet</li>
+<li>&lt;stack – <a href="_matrix.html">matrix</a>,<a href="_map.html">map</a></li>
+<li>&lt;submat_by_degs – not documented yet</li>
+<li>&lt;subring – <a href="_kernel.html">kernel</a></li>
+<li>&lt;sym – not documented yet</li>
+<li>&lt;sym_cokernel – not documented yet</li>
+<li>&lt;template_for_scripts – not documented yet</li>
+<li>&lt;to_div_powers – not documented yet</li>
+<li>&lt;tor – <a href="___Tor.html">Tor</a></li>
+<li>&lt;unmixed_radical – <a href="../MinimalPrimes/_radical.html">radical</a></li>
+<li>&lt;unmixed_radical1 – <a href="../MinimalPrimes/_radical.html">radical</a></li>
+<li>&lt;unmixed_radical2 – <a href="../MinimalPrimes/_radical.html">radical</a></li>
+<li>&lt;wedge_cokernel – not documented yet</li>
+<li>&lt;x_to_last – <a href="_new__Coordinate__System.html">newCoordinateSystem</a></li>
+<li>&lt;zeromat – not documented yet</li>
+</ul>
+</li>
+<li>Macaulay scripts from ‘scriptsmj’:
+<ul>
+<li>&lt;2BYN – not documented yet</li>
+<li>&lt;add_matrix_to_array – not documented yet</li>
+<li>&lt;check_complex – not documented yet</li>
+<li>&lt;check_exact – not documented yet</li>
+<li>&lt;comp_to_array – not documented yet</li>
+<li>&lt;eagon_northcott – not documented yet</li>
+<li>&lt;extract_matrix – not documented yet</li>
+<li>&lt;homology_of_array – not documented yet</li>
+<li>&lt;jordan0 – not documented yet</li>
+<li>&lt;koszul_complex – not documented yet</li>
+<li>&lt;lift – not documented yet</li>
+<li>&lt;lift_arrays – not documented yet</li>
+<li>&lt;mc – not documented yet</li>
+<li>&lt;nilpotent0 – not documented yet</li>
+<li>&lt;pres – not documented yet</li>
+<li>&lt;smult_complex – not documented yet</li>
+<li>&lt;splice_resns – not documented yet</li>
+</ul>
+</li>
+<li>Macaulay scripts from ‘scriptsms’:
+<ul>
+<li>&lt;block_map – not documented yet</li>
+<li>&lt;blowup – not documented yet</li>
+<li>&lt;blowup0 – not documented yet</li>
+<li>&lt;generic_skew_mat – <a href="_generic__Skew__Matrix.html">genericSkewMatrix</a></li>
+<li>&lt;generic_sym_mat – <a href="_generic__Symmetric__Matrix.html">genericSymmetricMatrix</a></li>
+<li>&lt;hilb_fcn – not documented yet</li>
+<li>&lt;inhomog_std – not documented yet</li>
+<li>&lt;l_dual0 – not documented yet</li>
+<li>&lt;l_from_dual – <a href="../InverseSystems/_from__Dual.html">fromDual</a></li>
+<li>&lt;l_homog0 – not documented yet</li>
+<li>&lt;l_min0 – not documented yet</li>
+<li>&lt;l_minimal – not documented yet</li>
+<li>&lt;l_minimal0 – not documented yet</li>
+<li>&lt;l_tangentcone – not documented yet</li>
+<li>&lt;l_to_dual – <a href="../InverseSystems/_to__Dual.html">toDual</a></li>
+<li>&lt;line_bundle_image – not documented yet</li>
+<li>&lt;normal_cone – not documented yet</li>
+<li>&lt;proj_bundle – not documented yet</li>
+<li>&lt;rmap – not documented yet</li>
+<li>&lt;symmetric_algebra – not documented yet</li>
+</ul>
+</li>
+</ul>
+<h3 id="add-matrix-matrix-matrix"><a class="header" href="#add-matrix-matrix-matrix">add &lt;matrix&gt; &lt;matrix&gt; &lt;matrix&gt;</a></h3>
+<p>Add matrices <code>m</code> and <code>n</code>, using <code>result = m + n</code>. In general, arithmetic in Macaulay2 is done using natural mathematical expressions. See <a href="__pl.html">+</a>.</p>
+<h3 id="betti-res"><a class="header" href="#betti-res">betti &lt;res&gt;</a></h3>
+<p>Display the graded betti numbers of a chaincomplex or resolution <code>C</code> using <code>betti C</code>. See <a href="_betti.html">betti</a>.</p>
+<h3 id="calc-computation-hi-degree"><a class="header" href="#calc-computation-hi-degree">calc &lt;computation&gt; [hi degree]</a></h3>
+<h3 id="chcalc-computation-new-hi-deg"><a class="header" href="#chcalc-computation-new-hi-deg">chcalc &lt;computation&gt; [new hi deg]</a></h3>
+<p>Compute the Gröbner basis of <code>m</code> up to a given degree, using <code>gb(m, DegreeLimit=&gt;3)</code>. Similarly, if a computation in Macaulay2 has been halted by pressing &lt;CTRL&gt;-C, the computation can be restarted from where it left off, by giving the original command, e.g., <code>gb m</code>.</p>
+<h3 id="cat-first-var0numvars-1-result-matrix"><a class="header" href="#cat-first-var0numvars-1-result-matrix">cat &lt;first var(0..numvars-1)&gt; &lt;result matrix&gt;</a></h3>
+<p>Macaulay1 then also prompts for two lists of integers, say <code>rows</code> and <code>cols</code>. The resulting catalecticant matrix can be obtained in Macaulay2 in the following way.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i1</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">QQ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">h</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o1</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>
+
+<span class="ts-variable ts-variable-builtin">o1</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i2</span> <span class="ts-operator">:</span> <span class="ts-variable">rows</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o2</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o2</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i3</span> <span class="ts-operator">:</span> <span class="ts-variable">cols</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o3</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o3</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i4</span> <span class="ts-operator">:</span> <span class="ts-variable">result</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">map</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">R</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">R</span><span class="ts-operator">_</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">rows</span><span class="ts-operator">_</span><span class="ts-property">i</span> <span class="ts-operator">+</span> <span class="ts-variable">cols</span><span class="ts-operator">_</span><span class="ts-property">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o4</span> = | a d |
+     | b e |
+     | c f |
+
+             3      2
+o4 : Matrix R  &lt;-- R
+</code></pre>
+
+<h3 id="characteristic-ring-result-integer"><a class="header" href="#characteristic-ring-result-integer">characteristic &lt;ring&gt; [result integer]</a></h3>
+<p>To obtain the characteristic of a ring <code>R</code>, use <code>char R</code>. See <a href="_char.html">char</a>.</p>
+<h3 id="codim-standard-basis-integer-result"><a class="header" href="#codim-standard-basis-integer-result">codim &lt;standard basis&gt; [integer result]</a></h3>
+<p>When computing the codimension of an ideal or module <code>M</code>, a Gröbner basis is computed automatically, if needed. Use <code>codim M</code>.One use of this command in Macaulay1 was to compute the codimension of a partially computed Gröbner basis.</p>
+<h3 id="coef-matrix-result-monoms-result-coefs-variable-list"><a class="header" href="#coef-matrix-result-monoms-result-coefs-variable-list">coef &lt;matrix&gt; &lt;result monoms&gt; &lt;result coefs&gt; [variable list]</a></h3>
+<p>To obtain the matrices of monomials and their coefficients, use <a href="_coefficients.html">coefficients</a>. The following example obtains the coefficients of the variable <code>a</code> (which is variable number 0)</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i5</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-variable">ZZ</span><span class="ts-operator">/</span><span class="ts-number">101</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i6</span> <span class="ts-operator">:</span> <span class="ts-variable">m</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-operator">+</span><span class="ts-variable">a</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-operator">*</span><span class="ts-variable">c</span><span class="ts-operator">+</span><span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span><span class="ts-operator">+</span><span class="ts-number">3</span><span class="ts-operator">*</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o6</span> = | a2c+a2+ab+3d |
+
+             1      1
+o6 : Matrix R  &lt;-- R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i7</span> <span class="ts-operator">:</span> <span class="ts-variable">result</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">coefficients</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">m</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">Variables</span> <span class="ts-operator">=&gt;</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o7</span> = <span class="ts-punctuation ts-punctuation-bracket">(</span>| a2 a 1 |, {2} | c+1 |)
+                  {1} | b   |
+                  {0} | 3d  |
+
+o7 : Sequence
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i8</span> <span class="ts-operator">:</span> <span class="ts-variable">result</span><span class="ts-operator">_</span><span class="ts-property">0</span>
+
+<span class="ts-variable ts-variable-builtin">o8</span> = | a2 a 1 |
+
+             1      3
+o8 : Matrix R  &lt;-- R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i9</span> <span class="ts-operator">:</span> <span class="ts-variable">result</span><span class="ts-operator">_</span><span class="ts-property">1</span>
+
+<span class="ts-variable ts-variable-builtin">o9</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-variable">c</span><span class="ts-operator">+</span><span class="ts-number">1</span> <span class="ts-operator">|</span>
+     <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-variable">b</span>   <span class="ts-operator">|</span>
+     <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-number">3</span><span class="ts-operator"></span><span class="ts-variable">d</span>  <span class="ts-operator">|</span>
+
+             <span class="ts-number">3</span>      <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o9</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">Matrix</span> <span class="ts-variable"><span class="ts-operator"></span>R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>
+</code></pre>
+
+<h3 id="col_degree-matrix-column-result-integer"><a class="header" href="#col_degree-matrix-column-result-integer">col_degree &lt;matrix&gt; &lt;column&gt; [result integer]</a></h3>
+<p>To obtain the degree of the <code>i</code>-th column of a matrix <code>m</code>, use <code>(degrees source m)_i</code>. See <a href="_degrees.html">degrees</a>. Note that in Macaulay2, one can use multi-degrees, so the result is a list of integers. Also all indices in Macaulay2 start at 0.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i10</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">QQ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">Degrees</span><span class="ts-operator">=&gt;</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i11</span> <span class="ts-operator">:</span> <span class="ts-variable">m</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o11</span> = | ab b2 |
+
+              1      2
+o11 : Matrix R  &lt;-- R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i12</span> <span class="ts-operator">:</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">degrees</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">source</span></span> <span class="ts-variable"><span class="ts-operator"></span>m</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-operator">_</span><span class="ts-property">0</span>
+
+<span class="ts-variable ts-variable-builtin">o12</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o12</span> <span class="ts-operator">:</span> <span class="ts-variable">List</span>
+</code></pre>
+
+<h3 id="col_degs-matrix-column-degrees"><a class="header" href="#col_degs-matrix-column-degrees">col_degs &lt;matrix&gt; [column degrees]</a></h3>
+<p>Compute the list of degrees of the columns of a matrix <code>m</code> using <code>degrees source m</code>. The result is a list of degrees. Each degree is itself a list of integers, since multi-degrees are allowed.</p>
+<h3 id="commands"><a class="header" href="#commands">commands</a></h3>
+<p>Using Macaulay2 in Emacs, type the first few letters of a command, then hit <code>Tab</code>. The list of all commands starting with those letters will be displayed, or if there is only one, Emacs will complete the typing for you.</p>
+<h3 id="compress-matrix-result-matrix"><a class="header" href="#compress-matrix-result-matrix">compress &lt;matrix&gt; &lt;result matrix&gt;</a></h3>
+<p>Remove columns of a matrix <code>m</code> which are entirely zero using <code>compress m</code>. See <a href="_compress.html">compress</a>.</p>
+<h3 id="concat-matrix-matrix2--matrix-n"><a class="header" href="#concat-matrix-matrix2--matrix-n">concat &lt;matrix&gt; &lt;matrix2&gt; … &lt;matrix n&gt;</a></h3>
+<p>Concatenate matrices <code>m1</code>, <code>m2</code>, …, <code>mn</code> using <code>m1 | m2 | ... | mn</code>. See <a href="__vb.html">|</a>. The main difference is that in Macaulay2 this command does not overwrite the first matrix.</p>
+<h3 id="continue"><a class="header" href="#continue">continue</a></h3>
+<p>In Macaulay2, one interrupts a computation using &lt;CTRL&gt;-C, as in Macaulay1. Restart the computation using the original command. For Gröbner basis and resolution commands, the computation starts off where it left off.</p>
+<h3 id="contract-ideal-ideal-result-matrix"><a class="header" href="#contract-ideal-ideal-result-matrix">contract &lt;ideal&gt; &lt;ideal&gt; &lt;result matrix&gt;</a></h3>
+<p>To contract the matrix <code>n</code> by the matrix <code>m</code> use <code>contract(m,n)</code>. See <a href="_contract.html">contract</a>. In Macaulay2, the arguments are not constrained to be matrices with one row.</p>
+<h3 id="copy-existing-matrix-copy-of-matrix"><a class="header" href="#copy-existing-matrix-copy-of-matrix">copy &lt;existing matrix&gt; &lt;copy of matrix&gt;</a></h3>
+<p>Since matrices in Macaulay2 are immutable objects, this command is no longer necessary. One can still make a copy of a matrix. For example</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i13</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-variable">ZZ</span><span class="ts-operator">/</span><span class="ts-number">101</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o13</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>
+
+<span class="ts-variable ts-variable-builtin">o13</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i14</span> <span class="ts-operator">:</span> <span class="ts-variable">m</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o14</span> = | a b |
+      | c d |
+
+              2      2
+o14 : Matrix R  &lt;-- R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i15</span> <span class="ts-operator">:</span> <span class="ts-variable">copym</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">map</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">target</span> <span class="ts-variable"><span class="ts-operator"></span>m</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">source</span> <span class="ts-variable"><span class="ts-operator"></span>m</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">entries</span> <span class="ts-variable"><span class="ts-operator"></span>m</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o15</span> = | a b |
+      | c d |
+
+              2      2
+o15 : Matrix R  &lt;-- R
+</code></pre>
+
+<h3 id="degree-standard-basis-integer-codim-integer-degree"><a class="header" href="#degree-standard-basis-integer-codim-integer-degree">degree &lt;standard basis&gt; [integer codim] [integer degree]</a></h3>
+<p>When computing the degree of an ideal or module <code>M</code>, a Gröbner basis is computed automatically, if needed. Use <code>degree M</code>. Note that in Macaulay2, <code>degree</code> returns only the degree. Use <code>codim M</code> to obtain the codimension.One use of this command in Macaulay1 was to compute the degree of a partially computed Gröbner basis.</p>
+<h3 id="determinants-matrix-p-result"><a class="header" href="#determinants-matrix-p-result">determinants &lt;matrix&gt; &lt;p&gt; &lt;result&gt;</a></h3>
+<p>Use <code>minors(p,m)</code> to compute the ideal of p by p minors of the matrix <code>m</code>. See <a href="_minors_lp__Z__Z_cm__Matrix_rp.html">minors</a>.</p>
+<h3 id="diag-matrix-result"><a class="header" href="#diag-matrix-result">diag &lt;matrix&gt; &lt;result&gt;</a></h3>
+<p>To make a diagonal matrix whose diagonal entries are taken from a matrix <code>m</code>, it is necessary to build the matrix directly, as in the following example.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i16</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ZZ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i17</span> <span class="ts-operator">:</span> <span class="ts-variable">m</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-operator">^</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">d</span><span class="ts-operator">^</span><span class="ts-number">5</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o17</span> = | a2 b3 c4 d5 |
+
+              1      4
+o17 : Matrix R  &lt;-- R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i18</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">map</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">R</span><span class="ts-operator">^</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">numgens</span> <span class="ts-variable"><span class="ts-operator"></span>source</span> <span class="ts-variable"><span class="ts-operator"></span>m</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">source</span> <span class="ts-variable"><span class="ts-operator"></span>m</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> 
+                       <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-keyword ts-keyword-conditional">if</span> <span class="ts-variable">i</span> <span class="ts-operator">===</span> <span class="ts-variable">j</span> <span class="ts-keyword ts-keyword-conditional">then</span> <span class="ts-variable">m</span><span class="ts-operator">_</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">i</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-keyword ts-keyword-conditional">else</span> <span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o18</span> = | a2 0  0  0  |
+      | 0  b3 0  0  |
+      | 0  0  c4 0  |
+      | 0  0  0  d5 |
+
+              4      4
+o18 : Matrix R  &lt;-- R
+</code></pre>
+
+<h3 id="diff-ideal-ideal-result-matrix"><a class="header" href="#diff-ideal-ideal-result-matrix">diff &lt;ideal&gt; &lt;ideal&gt; &lt;result matrix&gt;</a></h3>
+<p>To differentiate the matrix <code>n</code> by the matrix <code>m</code> use <code>diff(m,n)</code>. See <a href="_diff.html">diff</a>. In Macaulay2, the arguments are not constrained to be matrices with one row.</p>
+<h3 id="dshift-matrix-degree-to-shift-by"><a class="header" href="#dshift-matrix-degree-to-shift-by">dshift &lt;matrix&gt; &lt;degree to shift by&gt;</a></h3>
+<p>To shift the degrees of a matrix <code>m</code> by an integer <code>d</code>, use <code>m ** (ring m)^{-d}</code>. See <a href="__st_st.html">**</a>. Note that this returns a matrix with the degrees shifted, and does not modify the original matrix <code>m</code>. For example</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i19</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ZZ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i20</span> <span class="ts-operator">:</span> <span class="ts-variable">m</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">c</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">d</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o20</span> = | a  b2 |
+      | c2 d3 |
+
+              2      2
+o20 : Matrix R  &lt;-- R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i21</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">betti</span> <span class="ts-variable"><span class="ts-operator"></span>m</span>
+
+             <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o21</span> <span class="ts-operator">=</span> <span class="ts-variable">total</span><span class="ts-operator">:</span> <span class="ts-number">2</span> <span class="ts-operator"></span><span class="ts-number">2</span>
+          <span class="ts-number">0</span>: <span class="ts-number">2</span> <span class="ts-operator">.</span>
+          <span class="ts-property">1</span>: . 1
+          2: . 1
+
+o21 : BettiTally
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i22</span> <span class="ts-operator">:</span> <span class="ts-variable">n</span> <span class="ts-operator">=</span> <span class="ts-variable">m</span> <span class="ts-operator">**</span> <span class="ts-variable">R</span><span class="ts-operator">^</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o22</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-function ts-function-call">a</span>  <span class="ts-variable"><span class="ts-operator"></span>b2</span> <span class="ts-operator">|</span>
+      <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-function ts-function-call">c2</span> <span class="ts-variable"><span class="ts-operator"></span>d3</span> <span class="ts-operator">|</span>
+
+              <span class="ts-number">2</span>      <span class="ts-operator"></span><span class="ts-number">2</span>
+<span class="ts-variable ts-variable-builtin">o22</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">Matrix</span> <span class="ts-variable"><span class="ts-operator"></span>R</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i23</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">betti</span> <span class="ts-variable"><span class="ts-operator"></span>n</span>
+
+             <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o23</span> <span class="ts-operator">=</span> <span class="ts-variable">total</span><span class="ts-operator">:</span> <span class="ts-number">2</span> <span class="ts-operator"></span><span class="ts-number">2</span>
+          <span class="ts-number">1</span>: <span class="ts-number">2</span> <span class="ts-operator">.</span>
+          <span class="ts-property">2</span>: . 1
+          3: . 1
+
+o23 : BettiTally
+</code></pre>
+
+<h3 id="dsum-matrix--matrix-result"><a class="header" href="#dsum-matrix--matrix-result">dsum &lt;matrix&gt; … &lt;matrix&gt; &lt;result&gt;</a></h3>
+<p>To form the direct sum of matrices <code>m1, m2, ..., mn</code>, use <code>m1 ++ m2 ++ ... ++ mn</code>. See <a href="__pl_pl.html">++</a>.</p>
+<h3 id="elim-standard-basis-result-matrix-n"><a class="header" href="#elim-standard-basis-result-matrix-n">elim &lt;standard basis&gt; &lt;result matrix&gt; [n]</a></h3>
+<p>To select the columns of the matrix <code>m</code> which lie in the subring defined by the first <code>n</code> slots of the monomial order being zero, use <code>selectInSubring(n,m)</code>. Usually, one uses the value of 1 for <code>n</code>.</p>
+<h3 id="ev-ideal-matrix-changed-matrix"><a class="header" href="#ev-ideal-matrix-changed-matrix">ev &lt;ideal&gt; &lt;matrix&gt; &lt;changed matrix&gt;</a></h3>
+<p>In Macaulay2, one uses ring maps, or <a href="_substitute.html">substitute</a> to substitute variables. If <code>m</code> is a matrix in a ring <code>R</code> having <code>n</code> variables, and <code>f</code> is a 1 by n matrix over some ring, then use <code>substitute(m,f)</code> to perform the substitution. For example,</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i24</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">QQ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o24</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>
+
+<span class="ts-variable ts-variable-builtin">o24</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i25</span> <span class="ts-operator">:</span> <span class="ts-variable">S</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">QQ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">s</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">t</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o25</span> <span class="ts-operator">=</span> <span class="ts-variable">S</span>
+
+<span class="ts-variable ts-variable-builtin">o25</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i26</span> <span class="ts-operator">:</span> <span class="ts-variable">m</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-operator">-</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o26</span> = | a2-d bc |
+
+              1      2
+o26 : Matrix R  &lt;-- R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i27</span> <span class="ts-operator">:</span> <span class="ts-variable">f</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">s</span><span class="ts-operator">^</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">s</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">*</span><span class="ts-variable">t</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">s</span><span class="ts-operator">*</span><span class="ts-variable">t</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">t</span><span class="ts-operator">^</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o27</span> = | s4 s3t st3 t4 |
+
+              1      4
+o27 : Matrix S  &lt;-- S
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i28</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">substitute</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">m</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o28</span> = | s8-t4 s4t4 |
+
+              1      2
+o28 : Matrix S  &lt;-- S
+</code></pre>
+
+<p>In Macaulay2, one may also create and apply ring maps</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i29</span> <span class="ts-operator">:</span> <span class="ts-variable">F</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">map</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">R</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">R</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o29</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">map</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">R</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">R</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o29</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">RingMap</span> <span class="ts-variable"><span class="ts-operator"></span>R</span> <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i30</span> <span class="ts-operator">:</span> <span class="ts-variable">m</span> <span class="ts-operator">+</span> <span class="ts-function ts-function-call">F</span> <span class="ts-variable"><span class="ts-operator"></span>m</span> <span class="ts-operator">+</span> <span class="ts-function ts-function-call">F</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">F</span></span> <span class="ts-variable"><span class="ts-operator"></span>m</span> <span class="ts-operator">+</span> <span class="ts-function ts-function-call">F</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">F</span></span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">F</span></span> <span class="ts-variable"><span class="ts-operator"></span>m</span>
+
+<span class="ts-variable ts-variable-builtin">o30</span> = | a2+b2+c2+d2-a-b-c-d ab+bc+ad+cd |
+
+              1      2
+o30 : Matrix R  &lt;-- R
+</code></pre>
+
+<p>Or one may substitute for only some variables</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i31</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">substitute</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">m</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-operator">=&gt;</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">b</span><span class="ts-operator">=&gt;</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o31</span> = | -d+1 3c |
+
+              1      2
+o31 : Matrix R  &lt;-- R
+</code></pre>
+
+<h3 id="exit"><a class="header" href="#exit">exit</a></h3>
+<p>Use <a href="_exit.html">exit</a> to quit Macaulay2.</p>
+<h3 id="fetch-matrix-result-matrix-ones-defaultzeros"><a class="header" href="#fetch-matrix-result-matrix-ones-defaultzeros">fetch &lt;matrix&gt; &lt;result matrix&gt; [ones, default=zeros]</a></h3>
+<p>In order to bring a matrix <code>m</code> to a ring <code>S</code> which has ring variables of the same name, use <code>substitute(m,S)</code>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i32</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ZZ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">s</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">t</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o32</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>
+
+<span class="ts-variable ts-variable-builtin">o32</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i33</span> <span class="ts-operator">:</span> <span class="ts-variable">m</span> <span class="ts-operator">=</span> <span class="ts-variable">s</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-operator">+</span><span class="ts-variable">t</span><span class="ts-operator">^</span><span class="ts-number">2</span>
+
+       <span class="ts-number">2</span>    <span class="ts-operator"></span><span class="ts-number">2</span>
+<span class="ts-variable ts-variable-builtin">o33</span> <span class="ts-operator">=</span> <span class="ts-variable">s</span>  <span class="ts-operator">+</span> <span class="ts-variable">t</span>
+
+<span class="ts-variable ts-variable-builtin">o33</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i34</span> <span class="ts-operator">:</span> <span class="ts-variable">S</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">R</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o34</span> <span class="ts-operator">=</span> <span class="ts-variable">S</span>
+
+<span class="ts-variable ts-variable-builtin">o34</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i35</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">substitute</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">m</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">S</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+       <span class="ts-number">2</span>    <span class="ts-operator"></span><span class="ts-number">2</span>
+<span class="ts-variable ts-variable-builtin">o35</span> <span class="ts-operator">=</span> <span class="ts-variable">s</span>  <span class="ts-operator">+</span> <span class="ts-variable">t</span>
+
+<span class="ts-variable ts-variable-builtin">o35</span> <span class="ts-operator">:</span> <span class="ts-variable">S</span>
+</code></pre>
+
+<h3 id="flatten-matrix-result-ideal-of-entries"><a class="header" href="#flatten-matrix-result-ideal-of-entries">flatten &lt;matrix&gt; &lt;result ideal of entries&gt;</a></h3>
+<p>In order to form a one row matrix with the entries of a matrix <code>m</code>, use <code>flatten m</code>. See <a href="_flatten.html">flatten</a>.</p>
+<h3 id="forcestd-matrix-result-standard-basis-change-of-basis"><a class="header" href="#forcestd-matrix-result-standard-basis-change-of-basis">forcestd &lt;matrix&gt; &lt;result standard basis&gt; [change of basis]</a></h3>
+<p>In order to inform the system that the columns of the matrix <code>m</code> form a Gröbner basis, use <code>forceGB m</code>. See <a href="_force__G__B.html">forceGB</a>.</p>
+<h3 id="homog-matrix-homog-variable-new-matrix"><a class="header" href="#homog-matrix-homog-variable-new-matrix">homog &lt;matrix&gt; &lt;homog variable&gt; &lt;new matrix&gt;</a></h3>
+<p>To homogenize a matrix <code>m</code> with respect to a variable <code>x</code>, use <code>homogenize(m,x)</code>. One may also homogenize with respect to a given weight vector. See <a href="_homogenize.html">homogenize</a>.</p>
+<h3 id="ideal-resulting-matrix"><a class="header" href="#ideal-resulting-matrix">ideal &lt;resulting matrix&gt;</a></h3>
+<p>To enter a one row matrix, use we may use the following method.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i36</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ZZ</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o36</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>
+
+<span class="ts-variable ts-variable-builtin">o36</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i37</span> <span class="ts-operator">:</span> <span class="ts-variable">f</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">matrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">a</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-operator">-</span><span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-operator">*</span><span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">c</span><span class="ts-operator">^</span><span class="ts-number">4</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+
+<span class="ts-variable ts-variable-builtin">o37</span> = | a2-bc 3bc4-1 |
+
+              1      2
+o37 : Matrix R  &lt;-- R
+</code></pre>
+
+<p>Remember that ideals, modules, and matrices are all different in Macaulay2. One can easily change between them, as in:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i38</span> <span class="ts-operator">:</span> <span class="ts-variable">J</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span> <span class="ts-variable"><span class="ts-operator"></span>f</span>
+
+              <span class="ts-number">2</span>            <span class="ts-operator"></span><span class="ts-number">4</span>
+<span class="ts-variable ts-variable-builtin">o38</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span>  <span class="ts-operator">-</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-number">3</span><span class="ts-variable"><span class="ts-operator"></span>b</span><span class="ts-operator">*</span><span class="ts-variable">c</span>  <span class="ts-operator">-</span> <span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o38</span> <span class="ts-operator">:</span> <span class="ts-variable">Ideal</span> <span class="ts-keyword">of</span> R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i39</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">generators</span> <span class="ts-variable"><span class="ts-operator"></span>J</span>
+
+<span class="ts-variable ts-variable-builtin">o39</span> = | a2-bc 3bc4-1 |
+
+              1      2
+o39 : Matrix R  &lt;-- R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i40</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">image</span> <span class="ts-variable"><span class="ts-operator"></span>f</span>
+
+<span class="ts-variable ts-variable-builtin">o40</span> <span class="ts-operator">=</span> <span class="ts-variable">image</span> <span class="ts-operator">|</span> <span class="ts-variable">a2</span><span class="ts-operator">-</span><span class="ts-function ts-function-call">bc</span> <span class="ts-number"><span class="ts-operator"></span>3</span><span class="ts-operator"></span><span class="ts-variable">bc4</span><span class="ts-operator">-</span><span class="ts-number">1</span> <span class="ts-operator">|</span>
+
+                              <span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o40</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span><span class="ts-operator">-</span><span class="ts-variable">module</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">submodule</span> <span class="ts-keyword">of</span> R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i41</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">cokernel</span> <span class="ts-variable"><span class="ts-operator"></span>f</span>
+
+<span class="ts-variable ts-variable-builtin">o41</span> <span class="ts-operator">=</span> <span class="ts-variable">cokernel</span> <span class="ts-operator">|</span> <span class="ts-variable">a2</span><span class="ts-operator">-</span><span class="ts-function ts-function-call">bc</span> <span class="ts-number"><span class="ts-operator"></span>3</span><span class="ts-operator"></span><span class="ts-variable">bc4</span><span class="ts-operator">-</span><span class="ts-number">1</span> <span class="ts-operator">|</span>
+
+                             <span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o41</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span><span class="ts-operator">-</span><span class="ts-variable">module</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">quotient</span> <span class="ts-keyword">of</span> R
+</code></pre>
+
+<h3 id="iden-size-result"><a class="header" href="#iden-size-result">iden &lt;size&gt; &lt;result&gt;</a></h3>
+<p>To make the identity map on a module <code>F</code>, use <code>id_F</code>, as in</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i42</span> <span class="ts-operator">:</span> <span class="ts-variable">id</span><span class="ts-operator">_</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">R</span><span class="ts-operator">^</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o42</span> = | 1 0 0 0 |
+      | 0 1 0 0 |
+      | 0 0 1 0 |
+      | 0 0 0 1 |
+
+              4      4
+o42 : Matrix R  &lt;-- R
+</code></pre>
+
+<p>See <a href="_id.html">id</a>.</p>
+<h3 id="if-integer-label1-label2"><a class="header" href="#if-integer-label1-label2">if &lt;integer&gt; &lt;label1&gt; [&lt;label2&gt;]</a></h3>
+<p>For conditional execution, use the if-then or if-then-else statement</p>
+<h3 id="int-name-new-value"><a class="header" href="#int-name-new-value">int &lt;name&gt; &lt;new value&gt;</a></h3>
+<p>To assign a value to a variable in Macaulay2, use <a href="__eq.html">=</a>. For example,</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i43</span> <span class="ts-operator">:</span> <span class="ts-variable">myanswer</span> <span class="ts-operator">=</span> <span class="ts-number">2</span><span class="ts-operator">*</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">numgens</span> <span class="ts-variable"><span class="ts-operator"></span>R</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-</span> <span class="ts-number">1</span>
+
+<span class="ts-variable ts-variable-builtin">o43</span> <span class="ts-operator">=</span> <span class="ts-number">7</span>
+</code></pre>
+
+<p>Warning: In Macaulay1, names of variables in rings, and user defined variables are completely separate. In Macaulay2, if you assign something to a ring variable, it will assume its new value.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i44</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-variable">ZZ</span><span class="ts-operator">/</span><span class="ts-number">31991</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o44</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>
+
+<span class="ts-variable ts-variable-builtin">o44</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i45</span> <span class="ts-operator">:</span> <span class="ts-variable">a</span>
+
+<span class="ts-variable ts-variable-builtin">o45</span> <span class="ts-operator">=</span> <span class="ts-variable">a</span>
+
+<span class="ts-variable ts-variable-builtin">o45</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i46</span> <span class="ts-operator">:</span> <span class="ts-variable">a</span> <span class="ts-operator">=</span> <span class="ts-number">43</span>
+
+<span class="ts-variable ts-variable-builtin">o46</span> <span class="ts-operator">=</span> <span class="ts-number">43</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i47</span> <span class="ts-operator">:</span> <span class="ts-variable">a</span>
+
+<span class="ts-variable ts-variable-builtin">o47</span> <span class="ts-operator">=</span> <span class="ts-number">43</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i48</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">use</span> <span class="ts-variable"><span class="ts-operator"></span>R</span>
+
+<span class="ts-variable ts-variable-builtin">o48</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>
+
+<span class="ts-variable ts-variable-builtin">o48</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i49</span> <span class="ts-operator">:</span> <span class="ts-variable">a</span>
+
+<span class="ts-variable ts-variable-builtin">o49</span> <span class="ts-operator">=</span> <span class="ts-variable">a</span>
+
+<span class="ts-variable ts-variable-builtin">o49</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span>
+</code></pre>
+
+<h3 id="intersect-mat-1--mat-n-result-computation"><a class="header" href="#intersect-mat-1--mat-n-result-computation">intersect &lt;mat 1&gt; … &lt;mat n&gt; &lt;result computation&gt;</a></h3>
+<p>To intersect ideals, or submodules <code>I1, I2, ..., In</code>, use <code>intersect(I1,I2,...,In)</code>. The main difference is that these values cannot be matrices, they must be ideals or submodules. A second difference is that the computation, if interrupted, must be restarted at the beginning. See <a href="_intersect.html">intersect</a>. For example,</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i50</span> <span class="ts-operator">:</span> <span class="ts-variable">I</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-operator">-</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">d</span><span class="ts-operator">^</span><span class="ts-number">2</span><span class="ts-operator">-</span><span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+              <span class="ts-number">2</span>                      <span class="ts-operator"></span><span class="ts-number">2</span>
+<span class="ts-variable ts-variable-builtin">o50</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span>  <span class="ts-operator">-</span> <span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span> <span class="ts-operator">-</span> <span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span> <span class="ts-operator">+</span> <span class="ts-variable">d</span> <span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o50</span> <span class="ts-operator">:</span> <span class="ts-variable">Ideal</span> <span class="ts-keyword">of</span> R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i51</span> <span class="ts-operator">:</span> <span class="ts-variable">J</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-operator">*</span><span class="ts-variable">d</span><span class="ts-operator">-</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o51</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span> <span class="ts-operator">-</span> <span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-operator">*</span><span class="ts-variable">d</span> <span class="ts-operator">-</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o51</span> <span class="ts-operator">:</span> <span class="ts-variable">Ideal</span> <span class="ts-keyword">of</span> R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i52</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">intersect</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">I</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">J</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+              <span class="ts-number">2</span>                                          <span class="ts-operator"></span><span class="ts-number">3</span>                 
+<span class="ts-variable ts-variable-builtin">o52</span> <span class="ts-operator">=</span> <span class="ts-variable">ideal</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">c</span> <span class="ts-variable"><span class="ts-operator"></span>d</span> <span class="ts-operator">-</span> <span class="ts-variable">c</span><span class="ts-operator">*</span><span class="ts-variable">d</span> <span class="ts-operator">-</span> <span class="ts-number">2</span><span class="ts-operator"></span><span class="ts-variable">c</span> <span class="ts-operator">+</span> <span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">c</span> <span class="ts-operator">-</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span> <span class="ts-operator">-</span> <span class="ts-variable">c</span> <span class="ts-operator">+</span> <span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">c</span><span class="ts-operator">*</span><span class="ts-variable">d</span>  <span class="ts-operator">-</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">d</span> <span class="ts-operator">+</span> <span class="ts-number">2</span><span class="ts-operator"></span><span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span> <span class="ts-operator">-</span>
+      <span class="ts-comment">-----------------------------------------------------------------------</span>
+              <span class="ts-number">2</span>       <span class="ts-operator"></span><span class="ts-number">2</span>                <span class="ts-operator"></span><span class="ts-number">2</span>        <span class="ts-operator"></span><span class="ts-number">2</span>       <span class="ts-operator"></span><span class="ts-number">2</span>        <span class="ts-operator"></span><span class="ts-number">2</span>           
+      <span class="ts-variable">c</span>*d - 2d  + d, a c*d - b*c*d - 2a  + 2b, a b*d - b c*d - 2a b + a*c*d +
+      -----------------------------------------------------------------------
+        2         2 2        2          2   3       2    2
+      2b  - a*d, a b  - a*b*d  - a*b + d , a b - a*b  - a  + b)
+
+o52 : Ideal of R
+</code></pre>
+
+<h3 id="is_zero-poly-result-integer-1-if-zero-else-0"><a class="header" href="#is_zero-poly-result-integer-1-if-zero-else-0">is_zero &lt;poly&gt; &lt;result integer: 1 if zero, else 0&gt;</a></h3>
+<p>To decide whether a polynomial, matrix, ideal, etc., <code>f</code> is zero, use <code>f == 0</code>. The resulting value is a Boolean: either <code>true</code>, or <code>false</code>. See <a href="__eq_eq.html">==</a>.</p>
+<h3 id="jacob-ideal-resulting-jacobian-variable-list"><a class="header" href="#jacob-ideal-resulting-jacobian-variable-list">jacob &lt;ideal&gt; &lt;resulting jacobian&gt; [variable list]</a></h3>
+<p>To find the Jacobian matrix of an ideal or one row matrix<code>f</code>, use <code>jacobian f</code>. If you only wish to differentiate with some of the variables, use <a href="_diff.html">diff</a> instead. See <a href="_jacobian.html">jacobian</a>.</p>
+<h3 id="jump-label"><a class="header" href="#jump-label">jump &lt;label&gt;</a></h3>
+<p>Macaulay2 has no go to statements. Instead, you should use the control structures.</p>
+<hr>
+<p>The source of this document is in <code>Macaulay2Doc/macaulay.m2:678:0</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="_list_spof_spobsolete_spfunctions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="___Acknowledgements.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="_list_spof_spobsolete_spfunctions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="___Acknowledgements.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,637 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Polyhedra - Polyhedra — Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-a988f81b.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-a00e57cd.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Polyhedra — Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="polyhedra--for-computations-with-convex-polyhedra-cones-and-fans"><a class="header" href="#polyhedra--for-computations-with-convex-polyhedra-cones-and-fans">Polyhedra – for computations with convex polyhedra, cones, and fans</a></h1>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
+<p>A rational convex <a href="___Polyhedron.html">Polyhedron</a> is the intersection of finitely many affine half-spaces over <a href="../Macaulay2Doc/___Q__Q.html">QQ</a> or equivalently, the convex hull of a finite set of vertices and rays. A rational convex polyhedral <a href="___Cone.html">Cone</a> is the intersection of finitely many linear half-spaces over <a href="../Macaulay2Doc/___Q__Q.html">QQ</a> or equivalently, the positive hull of a finite set of rays. A <a href="___Fan.html">Fan</a> is a finite collection of cones such that for each cone all its faces are in the fan and for two cones in the fan the intersection is a face of each.</p>
+<p><code>Polyhedra</code> uses the</p>
+<ul>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FourierMotzkin/html/index.html">FourierMotzkin</a> package by <a href="http://www.mast.queensu.ca/~ggsmith">Gregory G. Smith</a></li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/FourTiTwo/html/index.html">FourTiTwo</a> package by <a href="http://pi.math.cornell.edu/~mike/">Michael Stillman</a>, <a href="http://people.math.gatech.edu/~jyu67/">Josephine Yu</a>, and <a href="http://math.iit.edu/~spetrov1/">Sonja Petrovic</a></li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Normaliz/html/index.html">Normaliz</a> package by Gesa Kaempf and Christof Soeger</li>
+<li><a href="https://macaulay2.com/doc/Macaulay2/share/doc/Macaulay2/Topcom/html/index.html">Topcom</a> package by <a href="http://pi.math.cornell.edu/~mike/">Michael Stillman</a>.</li>
+</ul>
+<p>Here are some examples illustrating the main uses of this package.</p>
+<ul>
+<li><a href="___Working_spwith_sppolyhedra.html">Working with polyhedra</a></li>
+<li><a href="___Working_spwith_spcones.html">Working with cones</a></li>
+<li><a href="___Working_spwith_spfans.html">Working with fans</a></li>
+</ul>
+<p>Please have a look at <a href="___V-_spand_sp__H-representation.html">V- and H-representation</a> on conventions used throughout this package before you start.</p>
+<p>For an introduction to polyhedra and cones, we recommend <a href="http://www.mi.fu-berlin.de/math/groups/discgeom/ziegler/">Gunter M. Ziegler’s</a> <em>Lectures on Polytopes</em>, Graduate Texts in Mathematics 152, Springer-Verlag, New York, 1995.</p>
+<p>The authors would like to thank</p>
+<ul>
+<li><a href="https://faculty.math.illinois.edu/~dan/">Daniel R. Grayson</a></li>
+<li><a href="http://people.cs.uchicago.edu/~nilten/">Nathan Ilten</a></li>
+<li><a href="http://page.math.tu-berlin.de/~panizzut/">Marta Panizzut</a></li>
+<li><a href="http://www.mast.queensu.ca/~ggsmith/">Gregory G. Smith</a></li>
+<li><a href="http://astaal.be/">Andrew P. Staal</a></li>
+<li><a href="http://pi.math.cornell.edu/~mike/">Michael Stillman</a></li>
+<li><a href="http://www.mi.fu-berlin.de/math/groups/ag-algebra/members/mitarbeiter/Winz.html">Anna-Lena Winz</a></li>
+</ul>
+<p>for code contributions, bug reports, and helpful discussions concerning this package.</p>
+<h2 id="authors"><a class="header" href="#authors">Authors</a></h2>
+<ul>
+<li><a href="http://page.mi.fu-berlin.de/rbirkner/index.htm">René Birkner</a> &lt;<a href="mailto:rbirkner%40mi.fu-berlin.de">rbirkner@mi.fu-berlin.de</a>&gt;</li>
+<li><a href="http://page.mi.fu-berlin.de/lkastner/">Lars Kastner</a> &lt;<a href="mailto:k.l%40fu-berlin.de">k.l@fu-berlin.de</a>&gt;</li>
+</ul>
+<h2 id="certification"><a class="header" href="#certification">Certification <img src="images/GoldStar.png" alt="a gold star"></a></h2>
+<p>Version <strong>1.0.5</strong> of this package was accepted for publication in <a href="https://msp.org/jsag/2009/1-1/">volume 1</a> of <a href="https://msp.org/jsag/">The Journal of Software for Algebra and Geometry: Macaulay2</a> on 2009-09-07, in the article <a href="https://msp.org/jsag/2009/1-1/p03.xhtml">Polyhedra: a package for computations with convex polyhedral objects</a> (DOI: <a href="https://doi.org/10.2140/jsag.2009.1.11">10.2140/jsag.2009.1.11</a>). That version can be obtained from <a href="https://msp.org/jsag/2009/1-1/jsag-v1-n1-x03-code.zip">the journal</a>.</p>
+<h2 id="version"><a class="header" href="#version">Version</a></h2>
+<p>This documentation describes version <strong>1.10</strong> of Polyhedra, released <strong>November 12, 2018</strong>.</p>
+<h2 id="citation"><a class="header" href="#citation">Citation</a></h2>
+<p>If you have used this package in your research, please cite it as follows:</p>
+<pre><code class="language-text">@misc{PolyhedraSource,
+  title = {{Polyhedra: convex polyhedra. Version~1.10}},
+  author = {Ren{\'e} Birkner and Lars Kastner},
+  howpublished = {A \emph{Macaulay2} package available at
+    \url{https://github.com/Macaulay2/M2/tree/stable/M2/Macaulay2/packages}}
+}
+
+@article{PolyhedraArticle,
+  title = {{Polyhedra: a package for computations with convex polyhedral objects}},
+  author = {Ren{\'e} Birkner and Lars Kastner},
+  journal = {The Journal of Software for Algebra and Geometry: Macaulay2},
+  volume = {1},
+  year = {2009},
+}
+</code></pre>
+<h2 id="exports"><a class="header" href="#exports">Exports</a></h2>
+<ul>
+<li>Types
+<ul>
+<li><a href="___Cone.html">Cone</a> – the class of all rational convex polyhedral cones</li>
+<li><a href="___Fan.html">Fan</a> – the class of all fans</li>
+<li><a href="___Polyhedral__Complex.html">PolyhedralComplex</a> – the class of all polyhedral complexes</li>
+<li><a href="___Polyhedral__Object.html">PolyhedralObject</a> – the class of all polyhedral objects in Polyhedra</li>
+<li><a href="___Polyhedron.html">Polyhedron</a> – the class of all convex polyhedra</li>
+</ul>
+</li>
+<li>Functions and commands
+<ul>
+<li><a href="_add__Cone.html">addCone</a> – adds cones to a Fan</li>
+<li><a href="_add__Polyhedron.html">addPolyhedron</a> – adds Polyhedra to a PolyhedralComplex</li>
+<li><a href="_affine__Hull.html">affineHull</a> – computes the affine hull of a polyhedron</li>
+<li><a href="_affine__Image.html">affineImage</a> – computes the affine image of a cone or polyhedron</li>
+<li><a href="_affine__Preimage.html">affinePreimage</a> – computes the affine preimage of a cone or polyhedron</li>
+<li><a href="_amb__Dim.html">ambDim</a> – ambient dimension of a Polyhedron, Cone or Fan</li>
+<li><a href="_are__Compatible.html">areCompatible</a> – checks if the intersection of two cones/polyhedra is a face of each</li>
+<li><a href="_barycentric__Triangulation.html">barycentricTriangulation</a> – computes a triangulation of a polytope</li>
+<li><a href="_bipyramid.html">bipyramid</a> – computes the bipyramid over a polyhedron</li>
+<li><a href="_cc__Refinement.html">ccRefinement</a> – computes the coarsest common refinement of a set of rays</li>
+<li><a href="_cell__Decompose.html">cellDecompose</a> – Deprecated variant of {\tt regularSubdivision}</li>
+<li><a href="_centroid.html">centroid</a> – computes the centroid or barycenter of a polyhedron</li>
+<li><a href="_common__Face.html">commonFace</a> – checks if the intersection is a face of both Cones or Polyhedra, or of cones with fans</li>
+<li><a href="_cone__From__H__Data.html">coneFromHData</a> – Constructing a polyhedral cone as intersection of halfspaces.</li>
+<li><a href="_cone__From__V__Data.html">coneFromVData</a> – computes the positive hull of rays, cones, and the cone over a polyhedron</li>
+<li><a href="_cones.html">cones</a> – computes all cones of a fan of a certain dimension</li>
+<li><a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><a href="_convex__Hull.html">convexHull</a> – computing the convex hull of points, rays and polyhedra</li>
+<li><a href="_cross__Polytope.html">crossPolytope</a> – computes the d-dimensional crosspolytope with diameter 2s</li>
+<li><a href="_cyclic__Polytope.html">cyclicPolytope</a> – computes the d dimensional cyclic polytope with n vertices</li>
+<li><a href="_dual__Cone.html">dualCone</a> – computes the dual Cone</li>
+<li>dualFaceRepresentationMap (missing documentation)</li>
+<li><a href="_ehrhart.html">ehrhart</a> – calculates the Ehrhart polynomial of a polytope</li>
+<li><a href="_empty__Polyhedron.html">emptyPolyhedron</a> – generates the empty polyhedron in n-space</li>
+<li><a href="_face__Fan.html">faceFan</a> – computes the fan generated by the cones over the faces</li>
+<li><a href="_faces.html">faces</a> – computes all faces of a certain codimension of a Cone or Polyhedron</li>
+<li><a href="_faces__As__Cones.html">facesAsCones</a> – Returns the faces of a cone as actual cones.</li>
+<li><a href="_faces__As__Polyhedra.html">facesAsPolyhedra</a> – Returns the faces of a polyhedron as actual polyhedra.</li>
+<li><a href="_facets.html">facets</a> – Giving the facet inequalities of a cone or polyhedron.</li>
+<li><a href="_fan.html">fan</a> – generates a Fan</li>
+<li><a href="_fan__From__Gfan.html">fanFromGfan</a> – Construct a fan from output data of {\tt Gfan}</li>
+<li><a href="_f__Vector.html">fVector</a> – computes the f-vector of a Cone, Polyhedron, Fan or PolyhedralComplex</li>
+<li><a href="_halfspaces.html">halfspaces</a> – computes the defining half-spaces of a Cone or a Polyhedron</li>
+<li><a href="_hilbert__Basis.html">hilbertBasis</a> – computes the Hilbert basis of a Cone</li>
+<li><a href="_hirzebruch.html">hirzebruch</a> – computes the fan of the r-th Hirzebruch surface</li>
+<li><a href="_hypercube.html">hypercube</a> – Returns the d-dimensional hypercube</li>
+<li><a href="_hyperplanes.html">hyperplanes</a> – computes the defining hyperplanes of a Cone or a Polyhedron</li>
+<li><a href="_image__Fan.html">imageFan</a> – computes the fan of the image</li>
+<li><a href="_incomp__Cones.html">incompCones</a> – returns the pairs of incompatible cones</li>
+<li><a href="_incomp__Polyhedra.html">incompPolyhedra</a> – returns the pairs of incompatible polyhedra</li>
+<li><a href="_in__Interior.html">inInterior</a> – checks if a point lies in the relative interior of a Cone/Polyhedron</li>
+<li><a href="_interior__Lattice__Points.html">interiorLatticePoints</a> – computes the lattice points in the relative interior of a polytope</li>
+<li><a href="_interior__Point.html">interiorPoint</a> – computes a point in the relative interior of the Polyhedron</li>
+<li><a href="_interior__Vector.html">interiorVector</a> – computes a vector in the relative interior of a Cone</li>
+<li><a href="_is__Compact.html">isCompact</a> – checks compactness of a Polyhedron</li>
+<li><a href="_is__Complete.html">isComplete</a> – checks completeness of a Fan or PolyhedralComplex</li>
+<li><a href="_is__Face.html">isFace</a> – tests if the first argument is a face of the second</li>
+<li><a href="_is__Full__Dimensional.html">isFullDimensional</a> – Determine whether a polyhedral object is full-dimensional</li>
+<li><a href="_is__Lattice__Polytope.html">isLatticePolytope</a> – checks if a polyhedron is a lattice polytope</li>
+<li><a href="_is__Pointed.html">isPointed</a> – checks if a Cone or Fan is pointed</li>
+<li><a href="_is__Polytopal.html">isPolytopal</a> – checks if a Fan is polytopal</li>
+<li><a href="_is__Pure.html">isPure</a> – checks if a Fan or PolyhedralComplex is of pure dimension</li>
+<li><a href="_is__Reflexive.html">isReflexive</a> – checks if a Polytope is reflexive</li>
+<li><a href="_is__Simplicial.html">isSimplicial</a> – checks if a polyhedral object is simplicial</li>
+<li><a href="_lattice__Points.html">latticePoints</a> – computes the lattice points of a polytope</li>
+<li><a href="_lattice__Volume.html">latticeVolume</a> – Returning the lattice volume of a polyhedron.</li>
+<li><a href="_lineality__Space.html">linealitySpace</a> – computes a basis of the lineality space</li>
+<li>linearTransform (missing documentation)</li>
+<li><a href="_lin__Space.html">linSpace</a> – Deprecated version of @TO “linealitySpace”@</li>
+<li><a href="_max__Cones.html">maxCones</a> – displays the generating Cones of a Fan</li>
+<li><a href="_max__Face.html">maxFace</a> – computes the face of a Polyhedron or Cone where a weight attains its maximum</li>
+<li><a href="_max__Polyhedra.html">maxPolyhedra</a> – displays the generating Polyhedra of a PolyhedralComplex</li>
+<li><a href="_min__Face.html">minFace</a> – computes the face of a Polyhedron or Cone where a weight attains its minimum</li>
+<li>minimalNonFaces (missing documentation)</li>
+<li><a href="_minkowski__Sum.html">minkowskiSum</a> – computes the Minkowski sum of two convex objects</li>
+<li><a href="_mink__Summand__Cone.html">minkSummandCone</a> – computes the Cone of all Minkowski summands and the minimal decompositions</li>
+<li><a href="_mixed__Volume.html">mixedVolume</a> – computes the mixed volume of a list of polytope</li>
+<li><a href="_newton__Polytope.html">newtonPolytope</a> – computes the Newton polytope of a polynomial</li>
+<li><a href="_normal__Fan.html">normalFan</a> – computes the normalFan of a polyhedron</li>
+<li><a href="_n__Vertices.html">nVertices</a> – Returns the number of vertices of a polyhedron</li>
+<li><a href="_objective__Vector.html">objectiveVector</a> – computes an objective vector of a face of a polyhedron</li>
+<li><a href="_polar.html">polar</a> – computes the polar of a polyhedron</li>
+<li><a href="_polar__Face.html">polarFace</a> – computes the dual face of the polar polyhedron</li>
+<li><a href="_polyhedra.html">polyhedra</a> – computes all polyhedra of a polyhedral complex of a certain dimension</li>
+<li><a href="_polyhedral__Complex.html">polyhedralComplex</a> – generates a PolyhedralComplex</li>
+<li><a href="_polyhedron.html">polyhedron</a> – Turn a cone into a polyhedron</li>
+<li><a href="_polyhedron__From__H__Data.html">polyhedronFromHData</a> – Constructing a polyhedron from its H-representation, i.e. inequalities and equations</li>
+<li><a href="_polytope.html">polytope</a> – returns a polytope of which the fan is the normal fan if it is polytopal</li>
+<li><a href="_pos__Orthant.html">posOrthant</a> – generates the positive orthant in n-space</li>
+<li><a href="_proximum.html">proximum</a> – computes the proximum of the Polyhedron/Cone to a point in euclidean metric</li>
+<li><a href="_pyramid.html">pyramid</a> – computes the pyramid over a polyhedron</li>
+<li><a href="_regular__Subdivision.html">regularSubdivision</a> – Computes the regular cell decomposition</li>
+<li><a href="_regular__Triangulation.html">regularTriangulation</a> – Computes a regular triangulation of a given polytope.</li>
+<li><a href="_save__Session.html">saveSession</a> – save the actual Polyhedra session to a file</li>
+<li><a href="_secondary__Polytope.html">secondaryPolytope</a> – computes the secondary polytope of a compact polyhedron</li>
+<li><a href="_simplex.html">simplex</a> – Produces a full-dimensional simplex</li>
+<li><a href="_skeleton.html">skeleton</a> – computes the k-skeleton of a Fan or PolyhedralComplex</li>
+<li><a href="_smallest__Face.html">smallestFace</a> – determines the smallest face of the Cone/Polyhedron containing a point</li>
+<li><a href="_smooth__Subfan.html">smoothSubfan</a> – computes the subfan of all smooth cones</li>
+<li>stanleyReisnerRing (missing documentation)</li>
+<li><a href="_state__Polytope.html">statePolytope</a> – computes the state polytope of a homogeneous ideal</li>
+<li><a href="_std__Simplex.html">stdSimplex</a> – generates the d-dimensional standard simplex</li>
+<li><a href="_stellar__Subdivision.html">stellarSubdivision</a> – computes the stellar subdivision of the fan by a ray</li>
+<li><a href="_sublattice__Basis.html">sublatticeBasis</a> – computes a basis for the sublattice generated by integral vectors or lattice points of a polytope</li>
+<li><a href="_tail__Cone.html">tailCone</a> – computes the tail/recession cone of a polyhedron</li>
+<li><a href="_to__Sublattice.html">toSublattice</a> – calculates the preimage of a polytope in the sublattice generated by its lattice points</li>
+<li><a href="_triangulate.html">triangulate</a> – Deprecated name for {\tt barycentricTriangulation}</li>
+<li><a href="_vertex__Edge__Matrix.html">vertexEdgeMatrix</a> – computes the vertex-edge-relations matrix</li>
+<li><a href="_vertex__Facet__Matrix.html">vertexFacetMatrix</a> – computes the vertex-facet-relations matrix</li>
+<li><a href="_vertices.html">vertices</a> – displays the vertices of a Polyhedron or a PolyhedralComplex</li>
+<li><a href="_volume.html">volume</a> – computes the volume of a polytope</li>
+</ul>
+</li>
+<li>Methods
+<ul>
+<li><code>addCone(Cone,Fan)</code> – see <a href="_add__Cone.html">addCone</a> – adds cones to a Fan</li>
+<li><code>addCone(List,Fan)</code> – see <a href="_add__Cone.html">addCone</a> – adds cones to a Fan</li>
+<li>addCone(Fan,Cone) (missing documentation)</li>
+<li><code>addPolyhedron(List,PolyhedralComplex)</code> – see <a href="_add__Polyhedron.html">addPolyhedron</a> – adds Polyhedra to a PolyhedralComplex</li>
+<li><code>addPolyhedron(Polyhedron,PolyhedralComplex)</code> – see <a href="_add__Polyhedron.html">addPolyhedron</a> – adds Polyhedra to a PolyhedralComplex</li>
+<li><code>affineHull(Polyhedron)</code> – see <a href="_affine__Hull.html">affineHull</a> – computes the affine hull of a polyhedron</li>
+<li><code>affineImage(Cone,Matrix)</code> – see <a href="_affine__Image_lp__Matrix_cm__Cone_cm__Matrix_rp.html">affineImage(Matrix,Cone,Matrix)</a> – computes the affine image of a cone</li>
+<li><code>affineImage(Matrix,Cone)</code> – see <a href="_affine__Image_lp__Matrix_cm__Cone_cm__Matrix_rp.html">affineImage(Matrix,Cone,Matrix)</a> – computes the affine image of a cone</li>
+<li><a href="_affine__Image_lp__Matrix_cm__Cone_cm__Matrix_rp.html">affineImage(Matrix,Cone,Matrix)</a> – computes the affine image of a cone</li>
+<li><code>affineImage(Matrix,Polyhedron)</code> – see <a href="_affine__Image_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affineImage(Matrix,Polyhedron,Matrix)</a> – computes the affine image of a polyhedron</li>
+<li><a href="_affine__Image_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affineImage(Matrix,Polyhedron,Matrix)</a> – computes the affine image of a polyhedron</li>
+<li><code>affineImage(Polyhedron,Matrix)</code> – see <a href="_affine__Image_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affineImage(Matrix,Polyhedron,Matrix)</a> – computes the affine image of a polyhedron</li>
+<li><code>affinePreimage(Cone,Matrix)</code> – see <a href="_affine__Preimage_lp__Matrix_cm__Cone_cm__Matrix_rp.html">affinePreimage(Matrix,Cone,Matrix)</a> – computes the affine preimage of a cone</li>
+<li><code>affinePreimage(Matrix,Cone)</code> – see <a href="_affine__Preimage_lp__Matrix_cm__Cone_cm__Matrix_rp.html">affinePreimage(Matrix,Cone,Matrix)</a> – computes the affine preimage of a cone</li>
+<li><a href="_affine__Preimage_lp__Matrix_cm__Cone_cm__Matrix_rp.html">affinePreimage(Matrix,Cone,Matrix)</a> – computes the affine preimage of a cone</li>
+<li><code>affinePreimage(Matrix,Polyhedron)</code> – see <a href="_affine__Preimage_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affinePreimage(Matrix,Polyhedron,Matrix)</a> – computes the affine preimage of a polyhedron</li>
+<li><a href="_affine__Preimage_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affinePreimage(Matrix,Polyhedron,Matrix)</a> – computes the affine preimage of a polyhedron</li>
+<li><code>affinePreimage(Polyhedron,Matrix)</code> – see <a href="_affine__Preimage_lp__Matrix_cm__Polyhedron_cm__Matrix_rp.html">affinePreimage(Matrix,Polyhedron,Matrix)</a> – computes the affine preimage of a polyhedron</li>
+<li><code>ambDim(PolyhedralObject)</code> – see <a href="_amb__Dim.html">ambDim</a> – ambient dimension of a Polyhedron, Cone or Fan</li>
+<li><code>areCompatible(Cone,Cone)</code> – see <a href="_are__Compatible.html">areCompatible</a> – checks if the intersection of two cones/polyhedra is a face of each</li>
+<li><code>areCompatible(Polyhedron,Polyhedron)</code> – see <a href="_are__Compatible.html">areCompatible</a> – checks if the intersection of two cones/polyhedra is a face of each</li>
+<li><code>barycentricTriangulation(Polyhedron)</code> – see <a href="_barycentric__Triangulation.html">barycentricTriangulation</a> – computes a triangulation of a polytope</li>
+<li><code>bipyramid(Polyhedron)</code> – see <a href="_bipyramid.html">bipyramid</a> – computes the bipyramid over a polyhedron</li>
+<li><code>ccRefinement(Matrix)</code> – see <a href="_cc__Refinement.html">ccRefinement</a> – computes the coarsest common refinement of a set of rays</li>
+<li><code>cellDecompose(Polyhedron,Matrix)</code> – see <a href="_cell__Decompose.html">cellDecompose</a> – Deprecated variant of {\tt regularSubdivision}</li>
+<li><code>centroid(Polyhedron)</code> – see <a href="_centroid.html">centroid</a> – computes the centroid or barycenter of a polyhedron</li>
+<li><code>commonFace(Cone,Cone)</code> – see <a href="_common__Face.html">commonFace</a> – checks if the intersection is a face of both Cones or Polyhedra, or of cones with fans</li>
+<li><code>commonFace(Cone,Fan)</code> – see <a href="_common__Face.html">commonFace</a> – checks if the intersection is a face of both Cones or Polyhedra, or of cones with fans</li>
+<li><code>commonFace(Fan,Cone)</code> – see <a href="_common__Face.html">commonFace</a> – checks if the intersection is a face of both Cones or Polyhedra, or of cones with fans</li>
+<li><code>commonFace(Fan,Fan)</code> – see <a href="_common__Face.html">commonFace</a> – checks if the intersection is a face of both Cones or Polyhedra, or of cones with fans</li>
+<li><code>commonFace(List)</code> – see <a href="_common__Face.html">commonFace</a> – checks if the intersection is a face of both Cones or Polyhedra, or of cones with fans</li>
+<li><code>commonFace(Polyhedron,Polyhedron)</code> – see <a href="_common__Face.html">commonFace</a> – checks if the intersection is a face of both Cones or Polyhedra, or of cones with fans</li>
+<li><a href="___Cone_sp_st_sp__Cone.html">Cone * Cone</a> – computes the direct product of two cones</li>
+<li><a href="___Cone_sp_st_sp__Polyhedron.html">Cone * Polyhedron</a> – computes the direct product of a cone and a polyhedron</li>
+<li><a href="___Cone_sp_pl_sp__Cone.html">Cone + Cone</a> – computes the Minkowski sum of two cones</li>
+<li><a href="___Cone_sp_pl_sp__Polyhedron.html">Cone + Polyhedron</a> – computes the Minkowski sum of a cone and a polyhedron</li>
+<li><a href="___Cone_sp_eq_eq_sp__Cone.html">Cone == Cone</a> – equality</li>
+<li><a href="___Cone_sp_qu_sp__Cone.html">Cone ? Cone</a> – compares the Cones</li>
+<li><a href="_cone_lp__Polyhedron_rp.html">cone(Polyhedron)</a> – Take the cone over a polyhedron</li>
+<li><code>coneFromHData(Matrix)</code> – see <a href="_cone__From__H__Data.html">coneFromHData</a> – Constructing a polyhedral cone as intersection of halfspaces.</li>
+<li><code>coneFromHData(Matrix,Matrix)</code> – see <a href="_cone__From__H__Data.html">coneFromHData</a> – Constructing a polyhedral cone as intersection of halfspaces.</li>
+<li><code>coneFromVData(Cone,Cone)</code> – see <a href="_cone__From__V__Data.html">coneFromVData</a> – computes the positive hull of rays, cones, and the cone over a polyhedron</li>
+<li><code>coneFromVData(List)</code> – see <a href="_cone__From__V__Data.html">coneFromVData</a> – computes the positive hull of rays, cones, and the cone over a polyhedron</li>
+<li><code>coneFromVData(Matrix)</code> – see <a href="_cone__From__V__Data.html">coneFromVData</a> – computes the positive hull of rays, cones, and the cone over a polyhedron</li>
+<li><code>coneFromVData(Matrix,Matrix)</code> – see <a href="_cone__From__V__Data.html">coneFromVData</a> – computes the positive hull of rays, cones, and the cone over a polyhedron</li>
+<li><code>coneFromVData(Polyhedron)</code> – see <a href="_cone__From__V__Data.html">coneFromVData</a> – computes the positive hull of rays, cones, and the cone over a polyhedron</li>
+<li><code>cones(ZZ,Fan)</code> – see <a href="_cones.html">cones</a> – computes all cones of a fan of a certain dimension</li>
+<li><code>contains(Cone,Cone)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(Cone,Matrix)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(Cone,Polyhedron)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(Fan,Cone)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(List,Cone)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(List,Polyhedron)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(Polyhedron,Cone)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(Polyhedron,Matrix)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>contains(Polyhedron,Polyhedron)</code> – see <a href="_contains.html">contains</a> – checks if the first argument contains the second argument</li>
+<li><code>convexHull(List)</code> – see <a href="_convex__Hull.html">convexHull</a> – computing the convex hull of points, rays and polyhedra</li>
+<li><code>convexHull(Matrix)</code> – see <a href="_convex__Hull.html">convexHull</a> – computing the convex hull of points, rays and polyhedra</li>
+<li><code>convexHull(Matrix,Matrix)</code> – see <a href="_convex__Hull.html">convexHull</a> – computing the convex hull of points, rays and polyhedra</li>
+<li><code>convexHull(Matrix,Matrix,Matrix)</code> – see <a href="_convex__Hull.html">convexHull</a> – computing the convex hull of points, rays and polyhedra</li>
+<li><code>convexHull(Polyhedron,Polyhedron)</code> – see <a href="_convex__Hull.html">convexHull</a> – computing the convex hull of points, rays and polyhedra</li>
+<li><code>crossPolytope(ZZ)</code> – see <a href="_cross__Polytope.html">crossPolytope</a> – computes the d-dimensional crosspolytope with diameter 2s</li>
+<li><code>crossPolytope(ZZ,QQ)</code> – see <a href="_cross__Polytope.html">crossPolytope</a> – computes the d-dimensional crosspolytope with diameter 2s</li>
+<li><code>crossPolytope(ZZ,ZZ)</code> – see <a href="_cross__Polytope.html">crossPolytope</a> – computes the d-dimensional crosspolytope with diameter 2s</li>
+<li><code>cyclicPolytope(ZZ,ZZ)</code> – see <a href="_cyclic__Polytope.html">cyclicPolytope</a> – computes the d dimensional cyclic polytope with n vertices</li>
+<li><a href="_dim_lp__Polyhedral__Object_rp.html">dim(PolyhedralObject)</a> – computes the dimension of a cone, polyhedron, fan or polyhedral complex</li>
+<li><a href="_direct__Product_lp__Cone_cm__Cone_rp.html">directProduct(Cone,Cone)</a> – computes the direct product of polyhedra and cones</li>
+<li><code>directProduct(Cone,Polyhedron)</code> – see <a href="_direct__Product_lp__Cone_cm__Cone_rp.html">directProduct(Cone,Cone)</a> – computes the direct product of polyhedra and cones</li>
+<li><code>directProduct(Polyhedron,Cone)</code> – see <a href="_direct__Product_lp__Cone_cm__Cone_rp.html">directProduct(Cone,Cone)</a> – computes the direct product of polyhedra and cones</li>
+<li><code>directProduct(Polyhedron,Polyhedron)</code> – see <a href="_direct__Product_lp__Cone_cm__Cone_rp.html">directProduct(Cone,Cone)</a> – computes the direct product of polyhedra and cones</li>
+<li><a href="_direct__Product_lp__Fan_cm__Fan_rp.html">directProduct(Fan,Fan)</a> – computes the direct product of two fans</li>
+<li><code>dualCone(Cone)</code> – see <a href="_dual__Cone.html">dualCone</a> – computes the dual Cone</li>
+<li>dualFaceRepresentationMap(Cone) (missing documentation)</li>
+<li>dualFaceRepresentationMap(Polyhedron) (missing documentation)</li>
+<li><code>ehrhart(Polyhedron)</code> – see <a href="_ehrhart.html">ehrhart</a> – calculates the Ehrhart polynomial of a polytope</li>
+<li><code>emptyPolyhedron(ZZ)</code> – see <a href="_empty__Polyhedron.html">emptyPolyhedron</a> – generates the empty polyhedron in n-space</li>
+<li><code>faceFan(Polyhedron)</code> – see <a href="_face__Fan.html">faceFan</a> – computes the fan generated by the cones over the faces</li>
+<li><code>faces(ZZ,PolyhedralObject)</code> – see <a href="_faces.html">faces</a> – computes all faces of a certain codimension of a Cone or Polyhedron</li>
+<li><a href="_faces_lp__Polyhedral__Object_rp.html">faces(PolyhedralObject)</a> – Giving the faces of a polyhedral object.</li>
+<li><code>facesAsCones(ZZ,Cone)</code> – see <a href="_faces__As__Cones.html">facesAsCones</a> – Returns the faces of a cone as actual cones.</li>
+<li><code>facesAsCones(ZZ,Fan)</code> – see <a href="_faces__As__Cones.html">facesAsCones</a> – Returns the faces of a cone as actual cones.</li>
+<li><code>facesAsPolyhedra(ZZ,Polyhedron)</code> – see <a href="_faces__As__Polyhedra.html">facesAsPolyhedra</a> – Returns the faces of a polyhedron as actual polyhedra.</li>
+<li><code>facets(Cone)</code> – see <a href="_facets.html">facets</a> – Giving the facet inequalities of a cone or polyhedron.</li>
+<li><code>facets(Polyhedron)</code> – see <a href="_facets.html">facets</a> – Giving the facet inequalities of a cone or polyhedron.</li>
+<li><code>fan(Cone)</code> – see <a href="_fan.html">fan</a> – generates a Fan</li>
+<li><code>fan(List)</code> – see <a href="_fan.html">fan</a> – generates a Fan</li>
+<li><a href="___Fan_sp_st_sp__Fan.html">Fan * Fan</a> – computes the direct product</li>
+<li><a href="___Fan_sp_eq_eq_sp__Fan.html">Fan == Fan</a> – equality</li>
+<li><code>fan(Matrix,List)</code> – see <a href="_fan_lp__Matrix_cm__Matrix_cm__List_rp.html">fan(Matrix,Matrix,List)</a> – Constructing a fan.</li>
+<li><a href="_fan_lp__Matrix_cm__Matrix_cm__List_rp.html">fan(Matrix,Matrix,List)</a> – Constructing a fan.</li>
+<li><code>fan(Matrix,Matrix,Sequence)</code> – see <a href="_fan_lp__Matrix_cm__Matrix_cm__List_rp.html">fan(Matrix,Matrix,List)</a> – Constructing a fan.</li>
+<li><code>fan(Matrix,Sequence)</code> – see <a href="_fan_lp__Matrix_cm__Matrix_cm__List_rp.html">fan(Matrix,Matrix,List)</a> – Constructing a fan.</li>
+<li><a href="_fan_lp__Polyhedral__Complex_rp.html">fan(PolyhedralComplex)</a> – Take the fan over a polyhedral complex</li>
+<li><code>fanFromGfan(List)</code> – see <a href="_fan__From__Gfan.html">fanFromGfan</a> – Construct a fan from output data of {\tt Gfan}</li>
+<li><code>fVector(PolyhedralObject)</code> – see <a href="_f__Vector.html">fVector</a> – computes the f-vector of a Cone, Polyhedron, Fan or PolyhedralComplex</li>
+<li><code>halfspaces(Cone)</code> – see <a href="_halfspaces.html">halfspaces</a> – computes the defining half-spaces of a Cone or a Polyhedron</li>
+<li><code>halfspaces(Polyhedron)</code> – see <a href="_halfspaces.html">halfspaces</a> – computes the defining half-spaces of a Cone or a Polyhedron</li>
+<li><code>hilbertBasis(Cone)</code> – see <a href="_hilbert__Basis.html">hilbertBasis</a> – computes the Hilbert basis of a Cone</li>
+<li>hilbertBasis(Matrix) (missing documentation)</li>
+<li><code>hirzebruch(ZZ)</code> – see <a href="_hirzebruch.html">hirzebruch</a> – computes the fan of the r-th Hirzebruch surface</li>
+<li><code>hypercube(ZZ)</code> – see <a href="_hypercube.html">hypercube</a> – Returns the d-dimensional hypercube</li>
+<li><code>hypercube(ZZ,QQ)</code> – see <a href="_hypercube.html">hypercube</a> – Returns the d-dimensional hypercube</li>
+<li><code>hypercube(ZZ,QQ,QQ)</code> – see <a href="_hypercube.html">hypercube</a> – Returns the d-dimensional hypercube</li>
+<li><code>hypercube(ZZ,QQ,ZZ)</code> – see <a href="_hypercube.html">hypercube</a> – Returns the d-dimensional hypercube</li>
+<li><code>hypercube(ZZ,ZZ)</code> – see <a href="_hypercube.html">hypercube</a> – Returns the d-dimensional hypercube</li>
+<li><code>hypercube(ZZ,ZZ,QQ)</code> – see <a href="_hypercube.html">hypercube</a> – Returns the d-dimensional hypercube</li>
+<li><code>hypercube(ZZ,ZZ,ZZ)</code> – see <a href="_hypercube.html">hypercube</a> – Returns the d-dimensional hypercube</li>
+<li><code>hyperplanes(Cone)</code> – see <a href="_hyperplanes.html">hyperplanes</a> – computes the defining hyperplanes of a Cone or a Polyhedron</li>
+<li><code>hyperplanes(Polyhedron)</code> – see <a href="_hyperplanes.html">hyperplanes</a> – computes the defining hyperplanes of a Cone or a Polyhedron</li>
+<li><code>imageFan(Matrix,Cone)</code> – see <a href="_image__Fan.html">imageFan</a> – computes the fan of the image</li>
+<li><code>incompCones(Cone,Fan)</code> – see <a href="_incomp__Cones.html">incompCones</a> – returns the pairs of incompatible cones</li>
+<li><code>incompCones(Fan,Cone)</code> – see <a href="_incomp__Cones.html">incompCones</a> – returns the pairs of incompatible cones</li>
+<li><code>incompCones(Fan,Fan)</code> – see <a href="_incomp__Cones.html">incompCones</a> – returns the pairs of incompatible cones</li>
+<li><code>incompCones(List)</code> – see <a href="_incomp__Cones.html">incompCones</a> – returns the pairs of incompatible cones</li>
+<li><code>incompPolyhedra(List)</code> – see <a href="_incomp__Polyhedra.html">incompPolyhedra</a> – returns the pairs of incompatible polyhedra</li>
+<li><code>incompPolyhedra(PolyhedralComplex,PolyhedralComplex)</code> – see <a href="_incomp__Polyhedra.html">incompPolyhedra</a> – returns the pairs of incompatible polyhedra</li>
+<li><code>incompPolyhedra(PolyhedralComplex,Polyhedron)</code> – see <a href="_incomp__Polyhedra.html">incompPolyhedra</a> – returns the pairs of incompatible polyhedra</li>
+<li><code>incompPolyhedra(Polyhedron,PolyhedralComplex)</code> – see <a href="_incomp__Polyhedra.html">incompPolyhedra</a> – returns the pairs of incompatible polyhedra</li>
+<li><code>inInterior(Matrix,Cone)</code> – see <a href="_in__Interior.html">inInterior</a> – checks if a point lies in the relative interior of a Cone/Polyhedron</li>
+<li><code>inInterior(Matrix,Polyhedron)</code> – see <a href="_in__Interior.html">inInterior</a> – checks if a point lies in the relative interior of a Cone/Polyhedron</li>
+<li><code>interiorLatticePoints(Polyhedron)</code> – see <a href="_interior__Lattice__Points.html">interiorLatticePoints</a> – computes the lattice points in the relative interior of a polytope</li>
+<li><code>interiorPoint(Polyhedron)</code> – see <a href="_interior__Point.html">interiorPoint</a> – computes a point in the relative interior of the Polyhedron</li>
+<li><code>interiorVector(Cone)</code> – see <a href="_interior__Vector.html">interiorVector</a> – computes a vector in the relative interior of a Cone</li>
+<li><code>intersect(Cone,Cone)</code> – see <a href="_intersect.html">intersect</a> – computes the intersection of cones, and polyhedra</li>
+<li><code>intersect(Cone,Polyhedron)</code> – see <a href="_intersect.html">intersect</a> – computes the intersection of cones, and polyhedra</li>
+<li><code>intersect(Polyhedron,Cone)</code> – see <a href="_intersect.html">intersect</a> – computes the intersection of cones, and polyhedra</li>
+<li><code>intersect(Polyhedron,Polyhedron)</code> – see <a href="_intersect.html">intersect</a> – computes the intersection of cones, and polyhedra</li>
+<li><a href="_intersect_lp__Matrix_rp.html">intersect(Matrix)</a> – Deprecated variant of {\tt coneFromHData}</li>
+<li><a href="_intersect_lp__Matrix_cm__Matrix_rp.html">intersect(Matrix,Matrix)</a> – Deprecated variants of {\tt polyhedronFromHData} and {\tt coneFromHData}</li>
+<li><code>intersect(Matrix,Matrix,Matrix,Matrix)</code> – see <a href="_intersect_lp__Matrix_cm__Matrix_rp.html">intersect(Matrix,Matrix)</a> – Deprecated variants of {\tt polyhedronFromHData} and {\tt coneFromHData}</li>
+<li><code>isCompact(Polyhedron)</code> – see <a href="_is__Compact.html">isCompact</a> – checks compactness of a Polyhedron</li>
+<li><code>isComplete(Fan)</code> – see <a href="_is__Complete.html">isComplete</a> – checks completeness of a Fan or PolyhedralComplex</li>
+<li><code>isComplete(PolyhedralComplex)</code> – see <a href="_is__Complete.html">isComplete</a> – checks completeness of a Fan or PolyhedralComplex</li>
+<li><code>isEmpty(Polyhedron)</code> – see <a href="_is__Empty.html">isEmpty</a> – checks if a Polyhedron is empty</li>
+<li><code>isFace(Cone,Cone)</code> – see <a href="_is__Face.html">isFace</a> – tests if the first argument is a face of the second</li>
+<li><code>isFace(Polyhedron,Polyhedron)</code> – see <a href="_is__Face.html">isFace</a> – tests if the first argument is a face of the second</li>
+<li><code>isFullDimensional(PolyhedralObject)</code> – see <a href="_is__Full__Dimensional.html">isFullDimensional</a> – Determine whether a polyhedral object is full-dimensional</li>
+<li><code>isLatticePolytope(Polyhedron)</code> – see <a href="_is__Lattice__Polytope.html">isLatticePolytope</a> – checks if a polyhedron is a lattice polytope</li>
+<li><a href="_is__Normal_lp__Polyhedron_rp.html">isNormal(Polyhedron)</a> – checks if a polytope is normal in the ambient lattice</li>
+<li><code>isPointed(Cone)</code> – see <a href="_is__Pointed.html">isPointed</a> – checks if a Cone or Fan is pointed</li>
+<li><code>isPointed(Fan)</code> – see <a href="_is__Pointed.html">isPointed</a> – checks if a Cone or Fan is pointed</li>
+<li><code>isPolytopal(Fan)</code> – see <a href="_is__Polytopal.html">isPolytopal</a> – checks if a Fan is polytopal</li>
+<li><code>isPure(Fan)</code> – see <a href="_is__Pure.html">isPure</a> – checks if a Fan or PolyhedralComplex is of pure dimension</li>
+<li><code>isPure(PolyhedralComplex)</code> – see <a href="_is__Pure.html">isPure</a> – checks if a Fan or PolyhedralComplex is of pure dimension</li>
+<li><code>isReflexive(Polyhedron)</code> – see <a href="_is__Reflexive.html">isReflexive</a> – checks if a Polytope is reflexive</li>
+<li><code>isSimplicial(PolyhedralObject)</code> – see <a href="_is__Simplicial.html">isSimplicial</a> – checks if a polyhedral object is simplicial</li>
+<li><a href="_is__Smooth_lp__Cone_rp.html">isSmooth(Cone)</a> – checks if a Cone or Fan is smooth</li>
+<li><code>isSmooth(Fan)</code> – see <a href="_is__Smooth_lp__Cone_rp.html">isSmooth(Cone)</a> – checks if a Cone or Fan is smooth</li>
+<li><a href="_is__Very__Ample_lp__Polyhedron_rp.html">isVeryAmple(Polyhedron)</a> – checks if the Polyhedron is very ample</li>
+<li><a href="_is__Well__Defined_lp__Cone_rp.html">isWellDefined(Cone)</a> – Checks whether a polyhedral object is well-defined.</li>
+<li><code>isWellDefined(Fan)</code> – see <a href="_is__Well__Defined_lp__Cone_rp.html">isWellDefined(Cone)</a> – Checks whether a polyhedral object is well-defined.</li>
+<li><code>isWellDefined(PolyhedralComplex)</code> – see <a href="_is__Well__Defined_lp__Cone_rp.html">isWellDefined(Cone)</a> – Checks whether a polyhedral object is well-defined.</li>
+<li><code>isWellDefined(PolyhedralObject)</code> – see <a href="_is__Well__Defined_lp__Cone_rp.html">isWellDefined(Cone)</a> – Checks whether a polyhedral object is well-defined.</li>
+<li><code>isWellDefined(Polyhedron)</code> – see <a href="_is__Well__Defined_lp__Cone_rp.html">isWellDefined(Cone)</a> – Checks whether a polyhedral object is well-defined.</li>
+<li><code>latticePoints(Polyhedron)</code> – see <a href="_lattice__Points.html">latticePoints</a> – computes the lattice points of a polytope</li>
+<li><code>latticeVolume(Polyhedron)</code> – see <a href="_lattice__Volume.html">latticeVolume</a> – Returning the lattice volume of a polyhedron.</li>
+<li><code>linealitySpace(PolyhedralObject)</code> – see <a href="_lineality__Space.html">linealitySpace</a> – computes a basis of the lineality space</li>
+<li>linearTransform(Fan,Matrix) (missing documentation)</li>
+<li><code>linSpace(Cone)</code> – see <a href="_lin__Space.html">linSpace</a> – Deprecated version of @TO “linealitySpace”@</li>
+<li><code>linSpace(Fan)</code> – see <a href="_lin__Space.html">linSpace</a> – Deprecated version of @TO “linealitySpace”@</li>
+<li><code>linSpace(Polyhedron)</code> – see <a href="_lin__Space.html">linSpace</a> – Deprecated version of @TO “linealitySpace”@</li>
+<li><code>maxCones(Fan)</code> – see <a href="_max__Cones.html">maxCones</a> – displays the generating Cones of a Fan</li>
+<li><code>maxFace(Matrix,Cone)</code> – see <a href="_max__Face.html">maxFace</a> – computes the face of a Polyhedron or Cone where a weight attains its maximum</li>
+<li><code>maxFace(Matrix,Polyhedron)</code> – see <a href="_max__Face.html">maxFace</a> – computes the face of a Polyhedron or Cone where a weight attains its maximum</li>
+<li><code>maxPolyhedra(PolyhedralComplex)</code> – see <a href="_max__Polyhedra.html">maxPolyhedra</a> – displays the generating Polyhedra of a PolyhedralComplex</li>
+<li><code>minFace(Matrix,Cone)</code> – see <a href="_min__Face.html">minFace</a> – computes the face of a Polyhedron or Cone where a weight attains its minimum</li>
+<li><code>minFace(Matrix,Polyhedron)</code> – see <a href="_min__Face.html">minFace</a> – computes the face of a Polyhedron or Cone where a weight attains its minimum</li>
+<li><a href="_minimal__Non__Faces_lp__Fan_rp.html">minimalNonFaces(Fan)</a> – Giving the minimal non-faces of a fan..</li>
+<li><code>minkowskiSum(Cone,Cone)</code> – see <a href="_minkowski__Sum.html">minkowskiSum</a> – computes the Minkowski sum of two convex objects</li>
+<li><code>minkowskiSum(Cone,Polyhedron)</code> – see <a href="_minkowski__Sum.html">minkowskiSum</a> – computes the Minkowski sum of two convex objects</li>
+<li><code>minkowskiSum(Polyhedron,Cone)</code> – see <a href="_minkowski__Sum.html">minkowskiSum</a> – computes the Minkowski sum of two convex objects</li>
+<li><code>minkowskiSum(Polyhedron,Polyhedron)</code> – see <a href="_minkowski__Sum.html">minkowskiSum</a> – computes the Minkowski sum of two convex objects</li>
+<li><code>minkSummandCone(Polyhedron)</code> – see <a href="_mink__Summand__Cone.html">minkSummandCone</a> – computes the Cone of all Minkowski summands and the minimal decompositions</li>
+<li><code>mixedVolume(List)</code> – see <a href="_mixed__Volume.html">mixedVolume</a> – computes the mixed volume of a list of polytope</li>
+<li><code>newtonPolytope(RingElement)</code> – see <a href="_newton__Polytope.html">newtonPolytope</a> – computes the Newton polytope of a polynomial</li>
+<li><a href="_normal__Cone_lp__Polyhedron_cm__Polyhedron_rp.html">normalCone(Polyhedron,Polyhedron)</a> – computes the normal cone of a face of a polyhedron</li>
+<li><code>normalFan(Polyhedron)</code> – see <a href="_normal__Fan.html">normalFan</a> – computes the normalFan of a polyhedron</li>
+<li><code>nVertices(Polyhedron)</code> – see <a href="_n__Vertices.html">nVertices</a> – Returns the number of vertices of a polyhedron</li>
+<li><code>objectiveVector(Polyhedron,Polyhedron)</code> – see <a href="_objective__Vector.html">objectiveVector</a> – computes an objective vector of a face of a polyhedron</li>
+<li><code>polar(Polyhedron)</code> – see <a href="_polar.html">polar</a> – computes the polar of a polyhedron</li>
+<li><code>polarFace(Polyhedron,Polyhedron)</code> – see <a href="_polar__Face.html">polarFace</a> – computes the dual face of the polar polyhedron</li>
+<li><code>polyhedra(ZZ,PolyhedralComplex)</code> – see <a href="_polyhedra.html">polyhedra</a> – computes all polyhedra of a polyhedral complex of a certain dimension</li>
+<li><code>polyhedralComplex(List)</code> – see <a href="_polyhedral__Complex.html">polyhedralComplex</a> – generates a PolyhedralComplex</li>
+<li><code>polyhedralComplex(Polyhedron)</code> – see <a href="_polyhedral__Complex.html">polyhedralComplex</a> – generates a PolyhedralComplex</li>
+<li><a href="_polyhedral__Complex_lp__Fan_rp.html">polyhedralComplex(Fan)</a> – Turn a fan into a polyhedral complex</li>
+<li><code>polyhedralComplex(Matrix,List)</code> – see <a href="_polyhedral__Complex_lp__Matrix_cm__Matrix_cm__Matrix_cm__List_rp.html">polyhedralComplex(Matrix,Matrix,Matrix,List)</a> – Constructing a polyhedral complex.</li>
+<li><code>polyhedralComplex(Matrix,Matrix,List)</code> – see <a href="_polyhedral__Complex_lp__Matrix_cm__Matrix_cm__Matrix_cm__List_rp.html">polyhedralComplex(Matrix,Matrix,Matrix,List)</a> – Constructing a polyhedral complex.</li>
+<li><a href="_polyhedral__Complex_lp__Matrix_cm__Matrix_cm__Matrix_cm__List_rp.html">polyhedralComplex(Matrix,Matrix,Matrix,List)</a> – Constructing a polyhedral complex.</li>
+<li><code>polyhedron(Cone)</code> – see <a href="_polyhedron.html">polyhedron</a> – Turn a cone into a polyhedron</li>
+<li><a href="___Polyhedron_sp_st_sp__Cone.html">Polyhedron * Cone</a> – computes the direct product of a polyhedron and a cone</li>
+<li><a href="___Polyhedron_sp_st_sp__Polyhedron.html">Polyhedron * Polyhedron</a> – computes the direct product of two polyhedra</li>
+<li><a href="___Polyhedron_sp_pl_sp__Cone.html">Polyhedron + Cone</a> – computes the Minkowski sum of a polyhedron and a cone</li>
+<li><a href="___Polyhedron_sp_pl_sp__Polyhedron.html">Polyhedron + Polyhedron</a> – computes the Minkowski sum of two polyhedra</li>
+<li><a href="___Polyhedron_sp_eq_eq_sp__Polyhedron.html">Polyhedron == Polyhedron</a> – equality</li>
+<li><code>polyhedronFromHData(Matrix,Matrix)</code> – see <a href="_polyhedron__From__H__Data.html">polyhedronFromHData</a> – Constructing a polyhedron from its H-representation, i.e. inequalities and equations</li>
+<li><code>polyhedronFromHData(Matrix,Matrix,Matrix,Matrix)</code> – see <a href="_polyhedron__From__H__Data.html">polyhedronFromHData</a> – Constructing a polyhedron from its H-representation, i.e. inequalities and equations</li>
+<li><code>polytope(Fan)</code> – see <a href="_polytope.html">polytope</a> – returns a polytope of which the fan is the normal fan if it is polytopal</li>
+<li><code>posOrthant(ZZ)</code> – see <a href="_pos__Orthant.html">posOrthant</a> – generates the positive orthant in n-space</li>
+<li><code>proximum(Matrix,Cone)</code> – see <a href="_proximum.html">proximum</a> – computes the proximum of the Polyhedron/Cone to a point in euclidean metric</li>
+<li><code>proximum(Matrix,Polyhedron)</code> – see <a href="_proximum.html">proximum</a> – computes the proximum of the Polyhedron/Cone to a point in euclidean metric</li>
+<li><code>pyramid(Polyhedron)</code> – see <a href="_pyramid.html">pyramid</a> – computes the pyramid over a polyhedron</li>
+<li><a href="___Q__Q_sp_st_sp__Polyhedron.html">QQ * Polyhedron</a> – rescales a polyhedron by a given positive factor</li>
+<li><code>ZZ * Polyhedron</code> – see <a href="___Q__Q_sp_st_sp__Polyhedron.html">QQ * Polyhedron</a> – rescales a polyhedron by a given positive factor</li>
+<li><a href="_rays_lp__Polyhedral__Object_rp.html">rays(PolyhedralObject)</a> – displays all rays of a Cone, a Fan, or a Polyhedron</li>
+<li><code>regularSubdivision(Matrix,Matrix)</code> – see <a href="_regular__Subdivision.html">regularSubdivision</a> – Computes the regular cell decomposition</li>
+<li><code>regularSubdivision(Polyhedron,Matrix)</code> – see <a href="_regular__Subdivision.html">regularSubdivision</a> – Computes the regular cell decomposition</li>
+<li><code>regularTriangulation(Polyhedron)</code> – see <a href="_regular__Triangulation.html">regularTriangulation</a> – Computes a regular triangulation of a given polytope.</li>
+<li><code>saveSession(String)</code> – see <a href="_save__Session.html">saveSession</a> – save the actual Polyhedra session to a file</li>
+<li><code>secondaryPolytope(Polyhedron)</code> – see <a href="_secondary__Polytope.html">secondaryPolytope</a> – computes the secondary polytope of a compact polyhedron</li>
+<li><code>simplex(ZZ)</code> – see <a href="_simplex.html">simplex</a> – Produces a full-dimensional simplex</li>
+<li><code>simplex(ZZ,QQ)</code> – see <a href="_simplex.html">simplex</a> – Produces a full-dimensional simplex</li>
+<li><code>simplex(ZZ,ZZ)</code> – see <a href="_simplex.html">simplex</a> – Produces a full-dimensional simplex</li>
+<li><code>skeleton(ZZ,Fan)</code> – see <a href="_skeleton.html">skeleton</a> – computes the k-skeleton of a Fan or PolyhedralComplex</li>
+<li><code>skeleton(ZZ,PolyhedralComplex)</code> – see <a href="_skeleton.html">skeleton</a> – computes the k-skeleton of a Fan or PolyhedralComplex</li>
+<li><code>smallestFace(Matrix,Cone)</code> – see <a href="_smallest__Face.html">smallestFace</a> – determines the smallest face of the Cone/Polyhedron containing a point</li>
+<li><code>smallestFace(Matrix,Polyhedron)</code> – see <a href="_smallest__Face.html">smallestFace</a> – determines the smallest face of the Cone/Polyhedron containing a point</li>
+<li><code>smoothSubfan(Fan)</code> – see <a href="_smooth__Subfan.html">smoothSubfan</a> – computes the subfan of all smooth cones</li>
+<li><a href="_stanley__Reisner__Ring_lp__Fan_rp.html">stanleyReisnerRing(Fan)</a> – Give the Stanley–Reisner ring of a fan.</li>
+<li><code>statePolytope(Ideal)</code> – see <a href="_state__Polytope.html">statePolytope</a> – computes the state polytope of a homogeneous ideal</li>
+<li><code>stdSimplex(ZZ)</code> – see <a href="_std__Simplex.html">stdSimplex</a> – generates the d-dimensional standard simplex</li>
+<li><code>stellarSubdivision(Fan,Matrix)</code> – see <a href="_stellar__Subdivision.html">stellarSubdivision</a> – computes the stellar subdivision of the fan by a ray</li>
+<li><code>sublatticeBasis(Matrix)</code> – see <a href="_sublattice__Basis.html">sublatticeBasis</a> – computes a basis for the sublattice generated by integral vectors or lattice points of a polytope</li>
+<li><code>sublatticeBasis(Polyhedron)</code> – see <a href="_sublattice__Basis.html">sublatticeBasis</a> – computes a basis for the sublattice generated by integral vectors or lattice points of a polytope</li>
+<li><code>tailCone(Polyhedron)</code> – see <a href="_tail__Cone.html">tailCone</a> – computes the tail/recession cone of a polyhedron</li>
+<li><code>toSublattice(Polyhedron)</code> – see <a href="_to__Sublattice.html">toSublattice</a> – calculates the preimage of a polytope in the sublattice generated by its lattice points</li>
+<li><code>triangulate(Polyhedron)</code> – see <a href="_triangulate.html">triangulate</a> – Deprecated name for {\tt barycentricTriangulation}</li>
+<li><code>vertexEdgeMatrix(Polyhedron)</code> – see <a href="_vertex__Edge__Matrix.html">vertexEdgeMatrix</a> – computes the vertex-edge-relations matrix</li>
+<li><code>vertexFacetMatrix(Polyhedron)</code> – see <a href="_vertex__Facet__Matrix.html">vertexFacetMatrix</a> – computes the vertex-facet-relations matrix</li>
+<li><code>vertices(PolyhedralComplex)</code> – see <a href="_vertices.html">vertices</a> – displays the vertices of a Polyhedron or a PolyhedralComplex</li>
+<li><code>vertices(Polyhedron)</code> – see <a href="_vertices.html">vertices</a> – displays the vertices of a Polyhedron or a PolyhedralComplex</li>
+<li><code>volume(Polyhedron)</code> – see <a href="_volume.html">volume</a> – computes the volume of a polytope</li>
+</ul>
+</li>
+</ul>
+<h2 id="for-the-programmer"><a class="header" href="#for-the-programmer">For the programmer</a></h2>
+<p>The object <a href="index.html">Polyhedra</a> is a <a href="../Macaulay2Doc/___Package.html">package</a>, defined in <code>Polyhedra.m2</code>, with auxiliary files in <code>Polyhedra/</code>.</p>
+<hr>
+<p>The source of this document is in <code>Polyhedra/documentation/intro.m2:53:0</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="_add__Cone.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="_add__Cone.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

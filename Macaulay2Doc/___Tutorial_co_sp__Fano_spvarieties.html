@@ -1,0 +1,1004 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Tutorial: Fano varieties - Macaulay2Doc — Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-b2932a8a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-ab61a4b0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Macaulay2Doc — Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="tutorial-fano-varieties"><a class="header" href="#tutorial-fano-varieties">Tutorial: Fano varieties</a></h1>
+<p>Given a variety <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span> in projective <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span>-space <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span></span></span></span></span></span></span></span>, the Fano scheme <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal">an</span><span class="mord"><span class="mord mathnormal">o</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span> is the natural parameter space for the linear <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>-planes lying on <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span>. In this tutorial we explore the methods for computing it. The tutorial is in three parts</p>
+<p>A. The twenty-seven lines</p>
+<p>B. General methods</p>
+<p>C. Surfaces of degree <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span></p>
+<p>In section A, we treat by hand the Fano variety of lines on a nonsingular cubic surface in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span>, and find that there are indeed <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">27</span></span></span></span> lines lying on the surface.</p>
+<p>In section B, we explain a general purpose function, written to compute Fano schemes.</p>
+<p>There are (up to linear transformations) just <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span> nondegenerate smooth surfaces of degree <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>: the Veronese embedding of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span> and the rational normal scrolls <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">3</span><span class="mclose">)</span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span>. Can they be distinguished by their Fano varieties of lines? To find out, read section C!</p>
+<h4 id="a-lines-on-the-nonsingular-cubic-in-p3"><a class="header" href="#a-lines-on-the-nonsingular-cubic-in-p3">A. Lines on the nonsingular cubic in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></a></h4>
+<p>First make the homogeneous coordinate ring of the ambient projective <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">3</span></span></span></span>-space</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i1</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-variable">ZZ</span><span class="ts-operator">/</span><span class="ts-number">32003</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o1</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>
+
+<span class="ts-variable ts-variable-builtin">o1</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<p>and the ideal of a nonsingular cubic</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i2</span> <span class="ts-operator">:</span> <span class="ts-variable">X</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">+</span><span class="ts-variable">b</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">+</span><span class="ts-variable">c</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">+</span><span class="ts-variable">d</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+            <span class="ts-number">3</span>    <span class="ts-operator"></span><span class="ts-number">3</span>    <span class="ts-operator"></span><span class="ts-number">3</span>    <span class="ts-operator"></span><span class="ts-number">3</span>
+<span class="ts-variable ts-variable-builtin">o2</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span>  <span class="ts-operator">+</span> <span class="ts-variable">b</span>  <span class="ts-operator">+</span> <span class="ts-variable">c</span>  <span class="ts-operator">+</span> <span class="ts-variable">d</span> <span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o2</span> <span class="ts-operator">:</span> <span class="ts-variable">Ideal</span> <span class="ts-keyword">of</span> R
+</code></pre>
+
+<p>We make a parametrized indeterminate line in our projective space, adding parameters <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span></span></span></span> for the line and two points <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">..</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">..</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> representing the points 0 and infinity on the line.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i3</span> <span class="ts-operator">:</span> <span class="ts-variable">KK</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">coefficientRing</span> <span class="ts-variable"><span class="ts-operator"></span>R</span> 
+
+<span class="ts-variable ts-variable-builtin">o3</span> <span class="ts-operator">=</span> <span class="ts-variable">KK</span>
+
+<span class="ts-variable ts-variable-builtin">o3</span> <span class="ts-operator">:</span> <span class="ts-variable">QuotientRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i4</span> <span class="ts-operator">:</span> <span class="ts-variable">S</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">KK</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">s</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">t</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">..</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">q</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">..</span><span class="ts-variable">q</span><span class="ts-operator">_</span><span class="ts-property">3</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o4</span> <span class="ts-operator">=</span> <span class="ts-variable">S</span>
+
+<span class="ts-variable ts-variable-builtin">o4</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<p>Then we make a map <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span></span></span></span> from <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span></span></span></span> to the new ring sending the variables to the coordinates of the general point on the line</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i5</span> <span class="ts-operator">:</span> <span class="ts-variable">F</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">map</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">S</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">R</span><span class="ts-punctuation ts-punctuation-delimiter">,</span>
+            <span class="ts-variable">s</span><span class="ts-operator">*</span><span class="ts-function ts-function-call">matrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">..</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">+</span>
+            <span class="ts-variable">t</span><span class="ts-operator">*</span><span class="ts-function ts-function-call">matrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">q</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">..</span><span class="ts-variable">q</span><span class="ts-operator">_</span><span class="ts-property">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span>
+            <span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o5</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">map</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">S</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">R</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">s</span><span class="ts-operator">*</span><span class="ts-variable">p</span>  <span class="ts-operator">+</span> <span class="ts-variable">t</span><span class="ts-operator">*</span><span class="ts-variable">q</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">s</span><span class="ts-operator">*</span><span class="ts-variable">p</span>  <span class="ts-operator">+</span> <span class="ts-variable">t</span><span class="ts-operator">*</span><span class="ts-variable">q</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">s</span><span class="ts-operator">*</span><span class="ts-variable">p</span>  <span class="ts-operator">+</span> <span class="ts-variable">t</span><span class="ts-operator">*</span><span class="ts-variable">q</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">s</span><span class="ts-operator">*</span><span class="ts-variable">p</span>  <span class="ts-operator">+</span> <span class="ts-variable">t</span><span class="ts-operator">*</span><span class="ts-variable">q</span> <span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+                    <span class="ts-number">0</span>      <span class="ts-operator"></span><span class="ts-number">0</span>     <span class="ts-operator"></span><span class="ts-number">1</span>      <span class="ts-operator"></span><span class="ts-number">1</span>     <span class="ts-operator"></span><span class="ts-number">2</span>      <span class="ts-operator"></span><span class="ts-number">2</span>     <span class="ts-operator"></span><span class="ts-number">3</span>      <span class="ts-operator"></span><span class="ts-number">3</span>
+
+<span class="ts-variable ts-variable-builtin">o5</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">RingMap</span> <span class="ts-variable"><span class="ts-operator"></span>S</span> <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">R</span>
+</code></pre>
+
+<p>We now apply <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span></span></span></span> to the ideal of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span></span></span></span></p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i6</span> <span class="ts-operator">:</span> <span class="ts-variable">FX</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">F</span> <span class="ts-variable"><span class="ts-operator"></span>X</span>
+
+            <span class="ts-number">3</span> <span class="ts-operator"></span><span class="ts-number">3</span>    <span class="ts-operator"></span><span class="ts-number">3</span> <span class="ts-operator"></span><span class="ts-number">3</span>    <span class="ts-operator"></span><span class="ts-number">3</span> <span class="ts-operator"></span><span class="ts-number">3</span>    <span class="ts-operator"></span><span class="ts-number">3</span> <span class="ts-operator"></span><span class="ts-number">3</span>     <span class="ts-operator"></span><span class="ts-number">2</span>   <span class="ts-operator"></span><span class="ts-number">2</span>         <span class="ts-operator"></span><span class="ts-number">2</span>   <span class="ts-operator"></span><span class="ts-number">2</span>    <span class="ts-operator"></span><span class="ts-number">3</span> <span class="ts-operator"></span><span class="ts-number">3</span>  
+<span class="ts-variable ts-variable-builtin">o6</span> <span class="ts-operator">=</span> <span class="ts-variable">ideal</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">s</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">s</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">s</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">s</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-operator">+</span> <span class="ts-number">3</span><span class="ts-operator"></span><span class="ts-function ts-function-call">s</span> <span class="ts-variable"><span class="ts-operator"></span>t</span><span class="ts-operator">*</span><span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span>  <span class="ts-operator">+</span> <span class="ts-number">3</span><span class="ts-operator"></span><span class="ts-variable">s</span><span class="ts-operator">*</span><span class="ts-function ts-function-call">t</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">p</span></span> <span class="ts-variable"><span class="ts-operator"></span>q</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">t</span> <span class="ts-variable"><span class="ts-operator"></span>q</span>  <span class="ts-operator">+</span>
+              <span class="ts-number">0</span>      <span class="ts-operator"></span><span class="ts-number">1</span>      <span class="ts-operator"></span><span class="ts-number">2</span>      <span class="ts-operator"></span><span class="ts-number">3</span>         <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span>         <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">0</span>      <span class="ts-operator"></span><span class="ts-number">0</span>  
+     <span class="ts-comment">------------------------------------------------------------------------</span>
+       2   2         2   2    3 3     2   2         2   2    3 3     2   2  
+     3s t*p q  + 3s*t p q  + t q  + 3s t*p q  + 3s*t p q  + t q  + 3s t*p q 
+           1 1         1 1      1         2 2         2 2      2         3 3
+     ------------------------------------------------------------------------
+           2   2    3 3
+     + 3s*t p q  + t q )
+             3 3      3
+
+o6 : Ideal of S
+</code></pre>
+
+<p>and the condition we want becomes the condition that <code>FX</code> vanishes identically in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8095em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span></span></span></span>. The following line produces the coefficients:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i7</span> <span class="ts-operator">:</span> <span class="ts-variable">cFX</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">last</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">coefficients</span></span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">gens</span> <span class="ts-variable"><span class="ts-operator"></span>FX</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">Variables</span> <span class="ts-operator">=&gt;</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">s</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">t</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o7</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">+</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">1</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">+</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">2</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">+</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">3</span><span class="ts-operator">^</span><span class="ts-number">3</span>                 <span class="ts-operator">|</span>
+     <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span> | 3p_0^2q_0+3p_1^2q_1+3p_2^2q_2+3p_3^2q_3 |
+     {3} | 3p_0q_0^2+3p_1q_1^2+3p_2q_2^2+3p_3q_3^2 |
+     {3} | q_0^3+q_1^3+q_2^3+q_3^3                 |
+
+             4      1
+o7 : Matrix S  &lt;-- S
+</code></pre>
+
+<p>The interface to the <code>coefficients</code> routine is a bit baroque, and might change in the future. For now, the <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">1</span><span class="mclose">}</span></span></span></span> says to find the coefficients of each column of the matrix, with respect to the first two variables. The routine returns a list of two matrices, the second one being the one we need (index 1, since all indices start at 0 in Macaulay2)</p>
+<p>We can get rid of some of the variables of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span></span></span></span>, to ease the computation:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i8</span> <span class="ts-operator">:</span> <span class="ts-variable">S1</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">KK</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">..</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">q</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">..</span><span class="ts-variable">q</span><span class="ts-operator">_</span><span class="ts-property">3</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o8</span> <span class="ts-operator">=</span> <span class="ts-variable">S1</span>
+
+<span class="ts-variable ts-variable-builtin">o8</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i9</span> <span class="ts-operator">:</span> <span class="ts-variable">cFX</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">substitute</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">cFX</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">S1</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o9</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span> <span class="ts-operator">|</span> <span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">+</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">1</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">+</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">2</span><span class="ts-operator">^</span><span class="ts-number">3</span><span class="ts-operator">+</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">3</span><span class="ts-operator">^</span><span class="ts-number">3</span>                 <span class="ts-operator">|</span>
+     <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span> | 3p_0^2q_0+3p_1^2q_1+3p_2^2q_2+3p_3^2q_3 |
+     {3} | 3p_0q_0^2+3p_1q_1^2+3p_2q_2^2+3p_3q_3^2 |
+     {3} | q_0^3+q_1^3+q_2^3+q_3^3                 |
+
+              4       1
+o9 : Matrix S1  &lt;-- S1
+</code></pre>
+
+<p>The ring we want is the quotient</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i10</span> <span class="ts-operator">:</span> <span class="ts-variable">S1bar</span> <span class="ts-operator">=</span> <span class="ts-variable">S1</span><span class="ts-operator">/</span><span class="ts-function ts-function-call">ideal</span> <span class="ts-variable"><span class="ts-operator"></span>cFX</span>
+
+<span class="ts-variable ts-variable-builtin">o10</span> <span class="ts-operator">=</span> <span class="ts-variable">S1bar</span>
+
+<span class="ts-variable ts-variable-builtin">o10</span> <span class="ts-operator">:</span> <span class="ts-variable">QuotientRing</span>
+</code></pre>
+
+<p>Now we want to move to the Grassmannian, so we take a new polynomial ring in 6 variables that will correspond to the minors of the matrix with rows <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">..</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> and <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">..</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>,</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i11</span> <span class="ts-operator">:</span> <span class="ts-variable">GR</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">coefficientRing</span> <span class="ts-variable"><span class="ts-operator"></span>R</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">x</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">..</span><span class="ts-variable">x</span><span class="ts-operator">_</span><span class="ts-property">5</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o11</span> <span class="ts-operator">=</span> <span class="ts-variable">GR</span>
+
+<span class="ts-variable ts-variable-builtin">o11</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<p>We define a map sending the <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5806em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3117em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> to the minors, regarded as elements of S1bar</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i12</span> <span class="ts-operator">:</span> <span class="ts-variable">M</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">substitute</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span>
+          <span class="ts-function ts-function-call">exteriorPower</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">matrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">..</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-variable">q</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">..</span><span class="ts-variable">q</span><span class="ts-operator">_</span><span class="ts-property">3</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">,</span>
+          <span class="ts-variable">S1bar</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o12</span> = | -p_1q_0+p_0q_1 -p_2q_0+p_0q_2 -p_2q_1+p_1q_2 -p_3q_0+p_0q_3
+      -----------------------------------------------------------------------
+      -p_3q_1+p_1q_3 -p_3q_2+p_2q_3 |
+
+                  1          6
+o12 : Matrix S1bar  &lt;-- S1bar
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i13</span> <span class="ts-operator">:</span> <span class="ts-variable">gr</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">map</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">S1bar</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">GR</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">M</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o13</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">map</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">S1bar</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">GR</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-operator">-</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>q</span> <span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+                          <span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">0</span>    <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span>     <span class="ts-operator"></span><span class="ts-number">2</span> <span class="ts-operator"></span><span class="ts-number">0</span>    <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">2</span>     <span class="ts-operator"></span><span class="ts-number">2</span> <span class="ts-operator"></span><span class="ts-number">1</span>    <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">2</span>     <span class="ts-operator"></span><span class="ts-number">3</span> <span class="ts-operator"></span><span class="ts-number">0</span>    <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">3</span>     <span class="ts-operator"></span><span class="ts-number">3</span> <span class="ts-operator"></span><span class="ts-number">1</span>    <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">3</span>     <span class="ts-operator"></span><span class="ts-number">3</span> <span class="ts-operator"></span><span class="ts-number">2</span>    <span class="ts-operator"></span><span class="ts-number">2</span> <span class="ts-operator"></span><span class="ts-number">3</span>
+
+<span class="ts-variable ts-variable-builtin">o13</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">RingMap</span> <span class="ts-variable"><span class="ts-operator"></span>S1bar</span> <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">GR</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i14</span> <span class="ts-operator">:</span> <span class="ts-variable">fano</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">trim</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">ker</span></span> <span class="ts-variable"><span class="ts-operator"></span>gr</span>
+
+                                                    <span class="ts-number">2</span>      <span class="ts-operator"></span><span class="ts-number">2</span>           <span class="ts-operator"></span><span class="ts-number">2</span>    
+<span class="ts-variable ts-variable-builtin">o14</span> <span class="ts-operator">=</span> <span class="ts-variable">ideal</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">x</span> <span class="ts-variable"><span class="ts-operator"></span>x</span>  <span class="ts-operator">-</span> <span class="ts-function ts-function-call">x</span> <span class="ts-variable"><span class="ts-operator"></span>x</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">x</span> <span class="ts-variable"><span class="ts-operator"></span>x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">x</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">x</span></span> <span class="ts-variable"><span class="ts-operator"></span>x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">x</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">x</span></span> <span class="ts-variable"><span class="ts-operator"></span>x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">x</span> <span class="ts-variable"><span class="ts-operator"></span>x</span>  <span class="ts-operator">+</span> <span class="ts-function ts-function-call">x</span> <span class="ts-variable"><span class="ts-operator"></span>x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">x</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">x</span></span> <span class="ts-variable"><span class="ts-operator"></span>x</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">x</span> <span class="ts-variable"><span class="ts-operator"></span>x</span>  <span class="ts-operator">+</span>
+              <span class="ts-number">2</span> <span class="ts-operator"></span><span class="ts-number">3</span>    <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">4</span>    <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">5</span>   <span class="ts-operator"></span><span class="ts-number">3</span> <span class="ts-operator"></span><span class="ts-number">4</span> <span class="ts-operator"></span><span class="ts-number">5</span>   <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">2</span> <span class="ts-operator"></span><span class="ts-number">5</span>   <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">4</span>    <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">5</span>   <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">2</span> <span class="ts-operator"></span><span class="ts-number">4</span>   <span class="ts-operator"></span><span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">4</span>  
+      <span class="ts-comment">-----------------------------------------------------------------------</span>
+       2     3    3    3     2      2     2      2   2      2             2  
+      x x , x  + x  + x , x x  + x x , x x  - x x , x x  + x x , x x x , x x 
+       1 5   3    4    5   1 3    2 4   0 3    2 5   1 3    2 4   0 1 3   0 3
+      -----------------------------------------------------------------------
+         2       2      2     2      2   2      2     2      2     3    3  
+      + x x , x x  + x x , x x  + x x , x x  + x x , x x  - x x , x  + x  -
+         2 5   1 2    3 4   0 2    3 5   1 2    3 4   0 2    3 5   1    2  
+      -----------------------------------------------------------------------
+       3     2      2   2      2     3    3    3
+      x , x x  - x x , x x  - x x , x  - x  - x )
+       5   0 1    4 5   0 1    4 5   0    2    4
+
+o14 : Ideal of GR
+</code></pre>
+
+<p><code>trim</code> replaces the given set of generators with a minimal set of generators. We get an ideal representing points:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i15</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">codim</span> <span class="ts-variable"><span class="ts-operator"></span>fano</span>
+
+<span class="ts-variable ts-variable-builtin">o15</span> <span class="ts-operator">=</span> <span class="ts-number">5</span>
+</code></pre>
+
+<p>and the number of these points – the number of the corresponding lines - is 27:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i16</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">degree</span> <span class="ts-variable"><span class="ts-operator"></span>fano</span>
+
+<span class="ts-variable ts-variable-builtin">o16</span> <span class="ts-operator">=</span> <span class="ts-number">27</span>
+</code></pre>
+
+<p>It is interesting to note that the ideal of the Fano scheme that we have produced is NOT saturated, as the number (25) of cubics it contains is less than <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">56</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">27</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">29</span></span></span></span>:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i17</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">betti</span> <span class="ts-variable"><span class="ts-operator"></span>fano</span>
+
+             <span class="ts-number">0</span>  <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o17</span> <span class="ts-operator">=</span> <span class="ts-variable">total</span><span class="ts-operator">:</span> <span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">20</span>
+          <span class="ts-number">0</span>: <span class="ts-number">1</span>  <span class="ts-operator">.</span>
+          <span class="ts-property">1</span>: .  1
+          2: . 19
+
+o17 : BettiTally
+</code></pre>
+
+<p>Possible next steps in this computation would be to compute the Jacobian ideal of Fano to show that we really got 27 distinct lines, etc.</p>
+<h4 id="b-general-methods"><a class="header" href="#b-general-methods">B. General methods</a></h4>
+<p>The first step in writing a program is to decide what the program should do, and it is just as well to write the documentation at this point .</p>
+<p>The documentation has the following form.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i18</span> <span class="ts-operator">:</span> <span class="ts-function">needsPackage</span> <span class="ts-string"><span class="ts-operator"></span><span class="ts-module">"Text"</span></span>
+
+<span class="ts-variable ts-variable-builtin">o18</span> <span class="ts-operator">=</span> <span class="ts-variable">Text</span>
+
+<span class="ts-variable ts-variable-builtin">o18</span> <span class="ts-operator">:</span> <span class="ts-variable">Package</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i19</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">document</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span>
+           <span class="ts-variable">Key</span> <span class="ts-operator">=&gt;</span> <span class="ts-variable">Fano2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> 
+              <span class="ts-function ts-function-call">TT</span> <span class="ts-string"><span class="ts-operator"></span>"Fano2(k,X,GR) or  Fano2(k,X)"</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-string">" -- computes </span>
+<span class="ts-string">              the ideal of a Fano scheme in the Grassmannian."</span><span class="ts-punctuation ts-punctuation-delimiter">,</span>
+              <span class="ts-function ts-function-call">PARA</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span><span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">,</span>
+              <span class="ts-string">"Given an ideal X representing a projective variety </span>
+<span class="ts-string">              in P^r, a positive integer k&lt;r, and optionally a </span>
+<span class="ts-string">              ring GR with (exactly) r+1 choose k+1 variables, </span>
+<span class="ts-string">              representing the ambient space of the Grassmannian of </span>
+<span class="ts-string">              k-planes in P^r, this routine returns the ideal in</span>
+<span class="ts-string">              GR of the Fano scheme that parametrizes the k-planes </span>
+<span class="ts-string">              lying on X. If the optional third argument is not </span>
+<span class="ts-string">              present, the routine fabricates its own local ring, </span>
+<span class="ts-string">              and returns an ideal over it."</span>
+              <span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<p>If we take the variety that is the whole of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span></span></span></span></span></span></span></span>, we get the Grassmannian. It is useful to be able to make the ring representing the ambient space of the Grassmannian beforehand by hand, so the ideals of several Fano varieties can be compared. But often we won’t need this. Thus we make the function capable of accepting this ambient ring as an argument, or of fending for itself if no ambient ring is given.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i20</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">document</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">{</span>
+          <span class="ts-variable">Key</span> <span class="ts-operator">=&gt;</span> <span class="ts-variable">Grassmannian2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span>
+          <span class="ts-function ts-function-call">TT</span> <span class="ts-string"><span class="ts-operator"></span>"Grassmannian2(k,r,R) or </span>
+<span class="ts-string">              Grassmannian2(k,r)"</span><span class="ts-punctuation ts-punctuation-delimiter">,</span>
+             <span class="ts-string">"-- Given natural numbers k &lt;= r,</span>
+<span class="ts-string">              and optionally a ring R with at least binomial(r+1,k+1)</span>
+<span class="ts-string">              variables, the routine defines the ideal of the </span>
+<span class="ts-string">              Grassmannian of projective k-planes in P^r, using </span>
+<span class="ts-string">              the first binomial(r+1,k+1) variables of R. </span>
+<span class="ts-string">              If R is not given, the routine makes and uses</span>
+<span class="ts-string">              ZZ/31991[vars(0..binomial(r+1,k+1)-1]."</span>
+              <span class="ts-punctuation ts-punctuation-bracket">}</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+</code></pre>
+
+<p>In order to make <code>Fano2</code> handle an optional number of arguments, we make it a method instead of a function, documenting it as follows.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i21</span> <span class="ts-operator">:</span> <span class="ts-variable">Fano2</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">method</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o21</span> <span class="ts-operator">=</span> <span class="ts-variable">Fano2</span>
+
+<span class="ts-variable ts-variable-builtin">o21</span> <span class="ts-operator">:</span> <span class="ts-variable">MethodFunction</span>
+</code></pre>
+
+<p>Here is the code for the first case, with comments interspersed:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i22</span> <span class="ts-label">:</span> <span class="ts-function ts-function-call"><span class="ts-type ts-type-parameter">Fano2<span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">ZZ</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">Ideal</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">Ring</span><span class="ts-punctuation ts-punctuation-bracket">)</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">k</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">X</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">GR</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-punctuation ts-punctuation-bracket">(</span>
+        <span class="ts-comment">-- Get info about the base ring of X:</span>
+        <span class="ts-comment">-- The coefficient ring (to make new rings of</span>
+        <span class="ts-comment">-- the same characteristic, for example)</span>
+        <span class="ts-comment">-- and the number of variables</span>
+        <span class="ts-variable">KK</span><span class="ts-operator">:=</span><span class="ts-function ts-function-call">coefficientRing</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">ring</span></span> <span class="ts-variable"><span class="ts-operator"></span>X</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-variable">r</span> <span class="ts-operator">:=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">numgens</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">ring</span></span> <span class="ts-variable"><span class="ts-operator"></span>X</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-</span> <span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-comment">-- Next make private variables for our </span>
+        <span class="ts-comment">-- intermediate rings, to avoid interfering</span>
+        <span class="ts-comment">-- with something outside:</span>
+        <span class="ts-variable">t</span><span class="ts-operator">:=</span><span class="ts-keyword ts-keyword-modifier">symbol</span> <span class="ts-variable">t</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-variable">p</span><span class="ts-operator">:=</span><span class="ts-keyword ts-keyword-modifier">symbol</span> <span class="ts-variable">p</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-comment">-- And rings</span>
+        <span class="ts-variable">S1</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">KK</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">t</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">..</span><span class="ts-variable">t</span><span class="ts-operator">_</span><span class="ts-property">k</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-variable">S2</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">KK</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-operator">..</span><span class="ts-variable">p</span><span class="ts-operator">_</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">k</span><span class="ts-operator">*</span><span class="ts-variable">r</span><span class="ts-operator">+</span><span class="ts-variable">k</span><span class="ts-operator">+</span><span class="ts-variable">r</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-variable">S</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">tensor</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">S1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">S2</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-comment">-- Over S we have a generic point of a generic</span>
+        <span class="ts-comment">-- line, represented by a row vector, which</span>
+        <span class="ts-comment">-- we use to define a map from the base ring</span>
+        <span class="ts-comment">-- of X</span>
+        <span class="ts-variable">F</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">map</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">S</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-function ts-function-call">ring</span> <span class="ts-variable"><span class="ts-operator"></span>X</span><span class="ts-punctuation ts-punctuation-delimiter">,</span>
+                <span class="ts-function ts-function-call">genericMatrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">S</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">S</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">k</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-operator">*</span>
+                <span class="ts-function ts-function-call">genericMatrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">S</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">S</span><span class="ts-operator">_</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">k</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">k</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">r</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+                <span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-comment">-- We now apply F to the ideal of X</span>
+        <span class="ts-variable">FX</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">F</span> <span class="ts-variable"><span class="ts-operator"></span>X</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-comment">-- and the condition we want becomes the condition</span>
+        <span class="ts-comment">-- that FX vanishes identically in the t_i.</span>
+        <span class="ts-comment">-- The following line produces the matrix of</span>
+        <span class="ts-comment">-- coefficients of the monomials in the </span>
+        <span class="ts-comment">-- variables labelled 0..k:</span>
+        <span class="ts-variable">cFX</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">last</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">coefficients</span></span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">gens</span> <span class="ts-variable"><span class="ts-operator"></span>FX</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">Variables</span> <span class="ts-operator">=&gt;</span> <span class="ts-function ts-function-call">toList</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">apply</span></span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">0</span><span class="ts-operator">..</span><span class="ts-variable">k</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable ts-variable-parameter">i</span> <span class="ts-operator">-&gt;</span> <span class="ts-variable">S</span><span class="ts-operator">_</span><span class="ts-property">i</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-comment">-- We can get rid of the variables t_i</span>
+        <span class="ts-comment">-- to ease the computation:</span>
+        <span class="ts-variable">cFX</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">substitute</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">cFX</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">S2</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-comment">-- The ring we want is the quotient</span>
+        <span class="ts-variable">S2bar</span> <span class="ts-operator">:=</span> <span class="ts-variable">S2</span><span class="ts-operator">/</span><span class="ts-function ts-function-call">ideal</span> <span class="ts-variable"><span class="ts-operator"></span>cFX</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-comment">-- Now we want to move to the Grassmannian,</span>
+        <span class="ts-comment">-- represented by the ring GR</span>
+        <span class="ts-comment">-- We define a map sending the variables of GR</span>
+        <span class="ts-comment">-- to the minors of the generic matrix in the</span>
+        <span class="ts-comment">-- p_i regarded as elements of S1bar</span>
+        <span class="ts-variable">gr</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">map</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">S2bar</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">GR</span><span class="ts-punctuation ts-punctuation-delimiter">,</span>
+                  <span class="ts-function ts-function-call">exteriorPower</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">k</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> 
+                  <span class="ts-function ts-function-call">genericMatrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">S2bar</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">S2bar</span><span class="ts-operator">_</span><span class="ts-property">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">k</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">r</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+                  <span class="ts-punctuation ts-punctuation-bracket">)</span>
+                 <span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-comment">-- and the defining ideal of the Fano variety is</span>
+        <span class="ts-function ts-function-call">ker</span> <span class="ts-variable"><span class="ts-operator"></span>gr</span>
+      <span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o22</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">FunctionClosure</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">currentString</span><span class="ts-operator">:</span><span class="ts-number">52</span><span class="ts-operator">:</span><span class="ts-number">24</span><span class="ts-operator">-</span><span class="ts-number">101</span><span class="ts-operator">:</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o22</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<p>Here is the code for the second case, which reduces to the first.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i23</span> <span class="ts-label">:</span> <span class="ts-function ts-function-call"><span class="ts-type ts-type-parameter">Fano2<span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">ZZ</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">Ideal</span><span class="ts-punctuation ts-punctuation-bracket">)</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">k</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">X</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-punctuation ts-punctuation-bracket">(</span>
+        <span class="ts-variable">KK</span><span class="ts-operator">:=</span><span class="ts-function ts-function-call">coefficientRing</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">ring</span></span> <span class="ts-variable"><span class="ts-operator"></span>X</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-variable">r</span> <span class="ts-operator">:=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">numgens</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">ring</span></span> <span class="ts-variable"><span class="ts-operator"></span>X</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-</span> <span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-comment">-- We can specify a private ring with binomial(r+1,k+1)</span>
+        <span class="ts-comment">-- variables as follows</span>
+        <span class="ts-variable">GR</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">KK</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">Variables</span> <span class="ts-operator">=&gt;</span> <span class="ts-function ts-function-call">binomial</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">r</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">k</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+        <span class="ts-comment">-- the work is done by</span>
+        <span class="ts-function ts-function-call">Fano2</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">k</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">X</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">GR</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+      <span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o23</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">FunctionClosure</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">currentString</span><span class="ts-operator">:</span><span class="ts-number">102</span><span class="ts-operator">:</span><span class="ts-number">20</span><span class="ts-operator">-</span><span class="ts-number">110</span><span class="ts-operator">:</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o23</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<p>With the zero ideal we get the Grassmannian of projective <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>-planes in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6889em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em;">r</span></span></span></span></span></span></span></span></span></span></span>:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i24</span> <span class="ts-operator">:</span> <span class="ts-variable">Grassmannian2</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">method</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o24</span> <span class="ts-operator">=</span> <span class="ts-variable">Grassmannian2</span>
+
+<span class="ts-variable ts-variable-builtin">o24</span> <span class="ts-operator">:</span> <span class="ts-variable">MethodFunction</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i25</span> <span class="ts-label">:</span> <span class="ts-function ts-function-call"><span class="ts-type ts-type-parameter">Grassmannian2<span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">ZZ</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">ZZ</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">Ring</span><span class="ts-punctuation ts-punctuation-bracket">)</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">k</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">r</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">R</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span><span class="ts-punctuation ts-punctuation-bracket">(</span> 
+              <span class="ts-variable">KK</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">coefficientRing</span> <span class="ts-variable"><span class="ts-operator"></span>R</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+              <span class="ts-variable">RPr</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">KK</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">Variables</span> <span class="ts-operator">=&gt;</span> <span class="ts-variable">r</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+              <span class="ts-variable">Pr</span> <span class="ts-operator">:=</span> <span class="ts-function ts-function-call">ideal</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number"><span class="ts-number">0<span class="ts-operator">_</span><span class="ts-property">RPr</span></span></span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+              <span class="ts-function ts-function-call">Fano2</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">k</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">Pr</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+           <span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o25</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">FunctionClosure</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">currentString</span><span class="ts-operator">:</span><span class="ts-number">112</span><span class="ts-operator">:</span><span class="ts-number">29</span><span class="ts-operator">-</span><span class="ts-number">117</span><span class="ts-operator">:</span><span class="ts-number">6</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o25</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-type ts-type-parameter">i26</span> <span class="ts-label">:</span> <span class="ts-function ts-function-call"><span class="ts-type ts-type-parameter">Grassmannian2<span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">ZZ</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">ZZ</span><span class="ts-punctuation ts-punctuation-bracket">)</span> </span></span><span class="ts-keyword ts-keyword-operator">:=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">r</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">k</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> <span class="ts-punctuation ts-punctuation-bracket">(</span>
+              <span class="ts-variable">R</span> <span class="ts-operator">:=</span> <span class="ts-variable">ZZ</span><span class="ts-operator">/</span><span class="ts-number">31991</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span>
+                     <span class="ts-function ts-function-call">vars</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">0</span><span class="ts-operator">..</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">binomial</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">r</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">k</span><span class="ts-operator">+</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-operator">-</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+                          <span class="ts-punctuation ts-punctuation-bracket">]</span><span class="ts-punctuation ts-punctuation-delimiter">;</span>
+              <span class="ts-function ts-function-call">Grassmannian2</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">k</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">r</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">R</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+                           <span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o26</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">FunctionClosure</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">currentString</span><span class="ts-operator">:</span><span class="ts-number">118</span><span class="ts-operator">:</span><span class="ts-number">24</span><span class="ts-operator">-</span><span class="ts-number">123</span><span class="ts-operator">:</span><span class="ts-number">22</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o26</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<p>As a first example we can try the Fano of lines on the nonsingular quadric in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i27</span> <span class="ts-operator">:</span> <span class="ts-variable">KK</span> <span class="ts-operator">=</span> <span class="ts-variable">ZZ</span><span class="ts-operator">/</span><span class="ts-number">31991</span>
+
+<span class="ts-variable ts-variable-builtin">o27</span> <span class="ts-operator">=</span> <span class="ts-variable">KK</span>
+
+<span class="ts-variable ts-variable-builtin">o27</span> <span class="ts-operator">:</span> <span class="ts-variable">QuotientRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i28</span> <span class="ts-operator">:</span> <span class="ts-variable">R</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">KK</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">b</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o28</span> <span class="ts-operator">=</span> <span class="ts-variable">R</span>
+
+<span class="ts-variable ts-variable-builtin">o28</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i29</span> <span class="ts-operator">:</span> <span class="ts-variable">X</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span><span class="ts-operator">-</span><span class="ts-variable">c</span><span class="ts-operator">*</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o29</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">b</span> <span class="ts-operator">-</span> <span class="ts-variable">c</span><span class="ts-operator">*</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o29</span> <span class="ts-operator">:</span> <span class="ts-variable">Ideal</span> <span class="ts-keyword">of</span> R
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i30</span> <span class="ts-operator">:</span> <span class="ts-variable">I</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">Fano2</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">X</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+                                                  <span class="ts-number">2</span>                     
+<span class="ts-variable ts-variable-builtin">o30</span> <span class="ts-operator">=</span> <span class="ts-variable">ideal</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span> <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  + 15995p p  - 15995p , p p  + p p , p p  -
+              3 4   2 4   1 4         0 5         5   0 4    4 5   2 3  
+      -----------------------------------------------------------------------
+                        2                                                    
+      15995p p  - 15995p , p p , p p  - p p , p p , p p  - p p , p p  + p p ,
+            0 5         5   1 3   0 3    3 5   1 2   0 2    2 5   0 1    1 5 
+      -----------------------------------------------------------------------
+       2    2
+      p  - p )
+       0    5
+
+o30 : Ideal of KK[p ..p ]
+                   0   5
+</code></pre>
+
+<p>we investigate by checking its dimension and degree</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i31</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">dim</span> <span class="ts-variable"><span class="ts-operator"></span>I</span>
+
+<span class="ts-variable ts-variable-builtin">o31</span> <span class="ts-operator">=</span> <span class="ts-number">2</span>
+</code></pre>
+
+<p>The answer ``2’’ means that <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span></span> is the ideal of a curve in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>, the ambient space of the Grassmannian of lines.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i32</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">degree</span> <span class="ts-variable"><span class="ts-operator"></span>I</span>
+
+<span class="ts-variable ts-variable-builtin">o32</span> <span class="ts-operator">=</span> <span class="ts-number">4</span>
+</code></pre>
+
+<p>The answer is 4. In fact, the ideal <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span></span> represents the union of two conics.</p>
+<h4 id="c-surfaces-of-degree-4-in-p5"><a class="header" href="#c-surfaces-of-degree-4-in-p5">C. Surfaces of degree <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span></a></h4>
+<p>We now turn to the three surfaces of degree <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span></span></span></span> in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>, and make their ideals:</p>
+<p>The ring of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span></p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i33</span> <span class="ts-operator">:</span> <span class="ts-variable">KK</span> <span class="ts-operator">=</span> <span class="ts-variable">ZZ</span><span class="ts-operator">/</span><span class="ts-number">31991</span>
+
+<span class="ts-variable ts-variable-builtin">o33</span> <span class="ts-operator">=</span> <span class="ts-variable">KK</span>
+
+<span class="ts-variable ts-variable-builtin">o33</span> <span class="ts-operator">:</span> <span class="ts-variable">QuotientRing</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i34</span> <span class="ts-operator">:</span> <span class="ts-variable">P5</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">KK</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">[</span><span class="ts-variable">a</span><span class="ts-operator">..</span><span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-bracket">]</span>
+
+<span class="ts-variable ts-variable-builtin">o34</span> <span class="ts-operator">=</span> <span class="ts-variable">P5</span>
+
+<span class="ts-variable ts-variable-builtin">o34</span> <span class="ts-operator">:</span> <span class="ts-variable">PolynomialRing</span>
+</code></pre>
+
+<p>It happens that the ideals of all three surfaces are generated by minors of suitable matrices:</p>
+<p>The Veronese embedding of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>:</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i35</span> <span class="ts-operator">:</span> <span class="ts-variable">MVero</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">genericSymmetricMatrix</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">P5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">a</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o35</span> = | a b c |
+      | b d e |
+      | c e f |
+
+               3       3
+o35 : Matrix P5  &lt;-- P5
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i36</span> <span class="ts-operator">:</span> <span class="ts-variable">Vero</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">minors</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">MVero</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+                <span class="ts-number">2</span>                                                  <span class="ts-operator"></span><span class="ts-number">2</span>         
+<span class="ts-variable ts-variable-builtin">o36</span> <span class="ts-operator">=</span> <span class="ts-variable">ideal</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-operator">-</span> <span class="ts-variable">b</span>  <span class="ts-operator">+</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">c</span> <span class="ts-operator">+</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">c</span><span class="ts-operator">*</span><span class="ts-variable">d</span> <span class="ts-operator">+</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">c</span> <span class="ts-operator">+</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">c</span>  <span class="ts-operator">+</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span>
+      <span class="ts-comment">-----------------------------------------------------------------------</span>
+                                              <span class="ts-number">2</span>
+      <span class="ts-variable">c</span>*e + b*f, - c*d + b*e, - c*e + b*f, - e  + d*f)
+
+o36 : Ideal of P5
+</code></pre>
+
+<p>The other scrolls are defined by the minors of matrices that are made from ``catalecticant’’ blocks, that is, from matrices such as <span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.4em;vertical-align:-0.95em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">b</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">c</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">c</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">d</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">e</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">e</span></span></span><span style="top:-2.41em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.95em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span></span> which are manufactured by</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i37</span> <span class="ts-operator">:</span> <span class="ts-variable">catalecticant</span> <span class="ts-operator">=</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">R</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">v</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">m</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">n</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">-&gt;</span> 
+              <span class="ts-function ts-function-call">map</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">R</span><span class="ts-operator">^</span><span class="ts-variable">m</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">n</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable ts-variable-parameter">i</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable ts-variable-parameter">j</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-operator">-&gt;</span> <span class="ts-variable">R</span><span class="ts-operator">_</span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">i</span><span class="ts-operator">+</span><span class="ts-variable">j</span><span class="ts-operator">+</span><span class="ts-variable">v</span><span class="ts-punctuation ts-punctuation-bracket">)</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o37</span> <span class="ts-operator">=</span> <span class="ts-variable">catalecticant</span>
+
+<span class="ts-variable ts-variable-builtin">o37</span> <span class="ts-operator">:</span> <span class="ts-variable">FunctionClosure</span>
+</code></pre>
+
+<p>for example</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i38</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">catalecticant</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">P5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">4</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o38</span> = | b c d e |
+      | c d e f |
+
+               2       4
+o38 : Matrix P5  &lt;-- P5
+</code></pre>
+
+<p>produces the example above. The rational normal scroll <code>S13</code>, which is the union of lines joining a line with the corresponding points of a twisted cubic in a disjoint subspace of <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span></p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i39</span> <span class="ts-operator">:</span> <span class="ts-variable">M13</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">catalecticant</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">P5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">|</span>
+                 <span class="ts-function ts-function-call">catalecticant</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">P5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o39</span> = | a c d e |
+      | b d e f |
+
+               2       4
+o39 : Matrix P5  &lt;-- P5
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i40</span> <span class="ts-operator">:</span> <span class="ts-variable">S13</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">minors</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-variable">M13</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+                                          <span class="ts-number">2</span>                                 
+<span class="ts-variable ts-variable-builtin">o40</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-operator">-</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">c</span> <span class="ts-operator">+</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">d</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">d</span> <span class="ts-operator">+</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">d</span>  <span class="ts-operator">+</span> <span class="ts-variable">c</span><span class="ts-operator">*</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">e</span> <span class="ts-operator">+</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">d</span><span class="ts-operator">*</span><span class="ts-variable">e</span> <span class="ts-operator">+</span> <span class="ts-variable">c</span><span class="ts-operator">*</span><span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span>
+      <span class="ts-comment">-----------------------------------------------------------------------</span>
+         <span class="ts-number">2</span>
+      <span class="ts-operator">-</span> <span class="ts-variable">e</span>  <span class="ts-operator">+</span> <span class="ts-variable">d</span><span class="ts-operator">*</span><span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o40</span> <span class="ts-operator">:</span> <span class="ts-variable">Ideal</span> <span class="ts-keyword">of</span> P5
+</code></pre>
+
+<p>Finally, the rational normal scroll <code>S22</code>, which is made by a similar construction starting with two conics in <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span></p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i41</span> <span class="ts-operator">:</span> <span class="ts-variable">M22</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">catalecticant</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">P5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">0</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span> <span class="ts-operator">|</span> <span class="ts-function ts-function-call">catalecticant</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">P5</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">3</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o41</span> = | a b d e |
+      | b c e f |
+
+               2       4
+o41 : Matrix P5  &lt;-- P5
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i42</span> <span class="ts-operator">:</span> <span class="ts-variable">S22</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">minors</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">2</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">M22</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+                <span class="ts-number">2</span>                                                           
+<span class="ts-variable ts-variable-builtin">o42</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">ideal</span> <span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-operator">-</span> <span class="ts-variable">b</span>  <span class="ts-operator">+</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">c</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">d</span> <span class="ts-operator">+</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">c</span><span class="ts-operator">*</span><span class="ts-variable">d</span> <span class="ts-operator">+</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">e</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">e</span> <span class="ts-operator">+</span> <span class="ts-variable">a</span><span class="ts-operator">*</span><span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-operator">-</span> <span class="ts-variable">c</span><span class="ts-operator">*</span><span class="ts-variable">e</span> <span class="ts-operator">+</span> <span class="ts-variable">b</span><span class="ts-operator">*</span><span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-delimiter">,</span>
+      <span class="ts-comment">-----------------------------------------------------------------------</span>
+         <span class="ts-number">2</span>
+      <span class="ts-operator">-</span> <span class="ts-variable">e</span>  <span class="ts-operator">+</span> <span class="ts-variable">d</span><span class="ts-operator">*</span><span class="ts-variable">f</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+<span class="ts-variable ts-variable-builtin">o42</span> <span class="ts-operator">:</span> <span class="ts-variable">Ideal</span> <span class="ts-keyword">of</span> P5
+</code></pre>
+
+<p>It is interesting to note that the numerical invariants of these surfaces are very hard to distinguish. In particular, the graded betti numbers</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i43</span> <span class="ts-operator">:</span> <span class="ts-variable">Verores</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">res</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">coker</span></span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">gens</span></span> <span class="ts-variable"><span class="ts-operator"></span>Vero</span>
+
+        <span class="ts-number">1</span>       <span class="ts-operator"></span><span class="ts-number">6</span>       <span class="ts-operator"></span><span class="ts-number">8</span>       <span class="ts-operator"></span><span class="ts-number">3</span>
+<span class="ts-variable ts-variable-builtin">o43</span> <span class="ts-operator">=</span> <span class="ts-variable">P5</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">P5</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">P5</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">P5</span>
+                               
+      <span class="ts-number">0</span>       <span class="ts-operator"></span><span class="ts-number">1</span>       <span class="ts-operator"></span><span class="ts-number">2</span>       <span class="ts-operator"></span><span class="ts-number">3</span>
+
+<span class="ts-variable ts-variable-builtin">o43</span> <span class="ts-operator">:</span> <span class="ts-variable">Complex</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i44</span> <span class="ts-operator">:</span> <span class="ts-variable">S22res</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">res</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">coker</span></span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">gens</span></span> <span class="ts-variable"><span class="ts-operator"></span>S22</span>
+
+        <span class="ts-number">1</span>       <span class="ts-operator"></span><span class="ts-number">6</span>       <span class="ts-operator"></span><span class="ts-number">8</span>       <span class="ts-operator"></span><span class="ts-number">3</span>
+<span class="ts-variable ts-variable-builtin">o44</span> <span class="ts-operator">=</span> <span class="ts-variable">P5</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">P5</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">P5</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">P5</span>
+                               
+      <span class="ts-number">0</span>       <span class="ts-operator"></span><span class="ts-number">1</span>       <span class="ts-operator"></span><span class="ts-number">2</span>       <span class="ts-operator"></span><span class="ts-number">3</span>
+
+<span class="ts-variable ts-variable-builtin">o44</span> <span class="ts-operator">:</span> <span class="ts-variable">Complex</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i45</span> <span class="ts-operator">:</span> <span class="ts-variable">S13res</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">res</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">coker</span></span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">gens</span></span> <span class="ts-variable"><span class="ts-operator"></span>S13</span>
+
+        <span class="ts-number">1</span>       <span class="ts-operator"></span><span class="ts-number">6</span>       <span class="ts-operator"></span><span class="ts-number">8</span>       <span class="ts-operator"></span><span class="ts-number">3</span>
+<span class="ts-variable ts-variable-builtin">o45</span> <span class="ts-operator">=</span> <span class="ts-variable">P5</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">P5</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">P5</span>  <span class="ts-operator">&lt;-</span><span class="ts-operator">-</span> <span class="ts-variable">P5</span>
+                               
+      <span class="ts-number">0</span>       <span class="ts-operator"></span><span class="ts-number">1</span>       <span class="ts-operator"></span><span class="ts-number">2</span>       <span class="ts-operator"></span><span class="ts-number">3</span>
+
+<span class="ts-variable ts-variable-builtin">o45</span> <span class="ts-operator">:</span> <span class="ts-variable">Complex</span>
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i46</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">betti</span> <span class="ts-variable"><span class="ts-operator"></span>Verores</span>
+
+             <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">2</span> <span class="ts-operator"></span><span class="ts-number">3</span>
+<span class="ts-variable ts-variable-builtin">o46</span> <span class="ts-operator">=</span> <span class="ts-variable">total</span><span class="ts-operator">:</span> <span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">6</span> <span class="ts-operator"></span><span class="ts-number">8</span> <span class="ts-operator"></span><span class="ts-number">3</span>
+          <span class="ts-number">0</span>: <span class="ts-number">1</span> . . .
+          1: . 6 8 3
+
+o46 : BettiTally
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i47</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">betti</span> <span class="ts-variable"><span class="ts-operator"></span>S22res</span>
+
+             <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">2</span> <span class="ts-operator"></span><span class="ts-number">3</span>
+<span class="ts-variable ts-variable-builtin">o47</span> <span class="ts-operator">=</span> <span class="ts-variable">total</span><span class="ts-operator">:</span> <span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">6</span> <span class="ts-operator"></span><span class="ts-number">8</span> <span class="ts-operator"></span><span class="ts-number">3</span>
+          <span class="ts-number">0</span>: <span class="ts-number">1</span> . . .
+          1: . 6 8 3
+
+o47 : BettiTally
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i48</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">betti</span> <span class="ts-variable"><span class="ts-operator"></span>S13res</span>
+
+             <span class="ts-number">0</span> <span class="ts-operator"></span><span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">2</span> <span class="ts-operator"></span><span class="ts-number">3</span>
+<span class="ts-variable ts-variable-builtin">o48</span> <span class="ts-operator">=</span> <span class="ts-variable">total</span><span class="ts-operator">:</span> <span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">6</span> <span class="ts-operator"></span><span class="ts-number">8</span> <span class="ts-operator"></span><span class="ts-number">3</span>
+          <span class="ts-number">0</span>: <span class="ts-number">1</span> . . .
+          1: . 6 8 3
+
+o48 : BettiTally
+</code></pre>
+
+<p>coincide, so the three cannot be distinguished on the basis of these or on the basis of the (weaker) invariants the Hilbert series or Hilbert polynomials. But the Fano varieties are more obviously different:</p>
+<p>We compute the Fano varieties of lines on each of our surfaces.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i49</span> <span class="ts-operator">:</span> <span class="ts-variable">FVero</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">Fano2</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">Vero</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+              <span class="ts-number">2</span>                                                              
+<span class="ts-variable ts-variable-builtin">o49</span> <span class="ts-operator">=</span> <span class="ts-variable">ideal</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span>
+              <span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">13</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">12</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">11</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">10</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">9</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">8</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">7</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">6</span> <span class="ts-operator"></span><span class="ts-number">14</span> 
+      <span class="ts-comment">-----------------------------------------------------------------------</span>
+                                                 2                          
+      p p  , p p  , p p  , p p  , p p  , p p  , p  , p  p  , p  p  , p  p  ,
+       5 14   4 14   3 14   2 14   1 14   0 14   13   12 13   11 13   10 13 
+      -----------------------------------------------------------------------
+                                                                           
+      p p  , p p  , p p  , p p  , p p  , p p  , p p  , p p  , p p  , p p  ,
+       9 13   8 13   7 13   6 13   5 13   4 13   3 13   2 13   1 13   0 13 
+      -----------------------------------------------------------------------
+       2                                                                   
+      p  , p  p  , p  p  , p p  , p p  , p p  , p p  , p p  , p p  , p p  ,
+       12   11 12   10 12   9 12   8 12   7 12   6 12   5 12   4 12   3 12 
+      -----------------------------------------------------------------------
+                            2                                             
+      p p  , p p  , p p  , p  , p  p  , p p  , p p  , p p  , p p  , p p  ,
+       2 12   1 12   0 12   11   10 11   9 11   8 11   7 11   6 11   5 11 
+      -----------------------------------------------------------------------
+                                          2                              
+      p p  , p p  , p p  , p p  , p p  , p  , p p  , p p  , p p  , p p  ,
+       4 11   3 11   2 11   1 11   0 11   10   9 10   8 10   7 10   6 10 
+      -----------------------------------------------------------------------
+                                                 2                         
+      p p  , p p  , p p  , p p  , p p  , p p  , p , p p , p p , p p , p p ,
+       5 10   4 10   3 10   2 10   1 10   0 10   9   8 9   7 9   6 9   5 9 
+      -----------------------------------------------------------------------
+                                     2                                     
+      p p , p p , p p , p p , p p , p , p p , p p , p p , p p , p p , p p ,
+       4 9   3 9   2 9   1 9   0 9   8   7 8   6 8   5 8   4 8   3 8   2 8 
+      -----------------------------------------------------------------------
+                   2                                             2       
+      p p , p p , p , p p , p p , p p , p p , p p , p p , p p , p , p p ,
+       1 8   0 8   7   6 7   5 7   4 7   3 7   2 7   1 7   0 7   6   5 6 
+      -----------------------------------------------------------------------
+                                     2                                 2 
+      p p , p p , p p , p p , p p , p , p p , p p , p p , p p , p p , p ,
+       4 6   3 6   2 6   1 6   0 6   5   4 5   3 5   2 5   1 5   0 5   4 
+      -----------------------------------------------------------------------
+                               2                     2               2       
+      p p , p p , p p , p p , p , p p , p p , p p , p , p p , p p , p , p p ,
+       3 4   2 4   1 4   0 4   3   2 3   1 3   0 3   2   1 2   0 2   1   0 1 
+      -----------------------------------------------------------------------
+       2
+      p )
+       0
+
+o49 : Ideal of KK[p ..p  ]
+                   0   14
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i50</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">betti</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">gens</span></span> <span class="ts-variable"><span class="ts-operator"></span>FVero</span>
+
+             <span class="ts-number">0</span>   <span class="ts-operator"></span><span class="ts-number">1</span>
+<span class="ts-variable ts-variable-builtin">o50</span> <span class="ts-operator">=</span> <span class="ts-variable">total</span><span class="ts-operator">:</span> <span class="ts-number">1</span> <span class="ts-operator"></span><span class="ts-number">120</span>
+          <span class="ts-number">0</span>: <span class="ts-number">1</span>   <span class="ts-operator">.</span>
+          <span class="ts-property">1</span>: . 120
+
+o50 : BettiTally
+</code></pre>
+
+<p>The ideal contains all <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">120</span></span></span></span> quadrics, and represents the empty set: The Veronese surface contains no lines!</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i51</span> <span class="ts-operator">:</span> <span class="ts-variable">FS13</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">Fano2</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">S13</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+              <span class="ts-number">2</span>                                                              
+<span class="ts-variable ts-variable-builtin">o51</span> <span class="ts-operator">=</span> <span class="ts-variable">ideal</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span>
+              <span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">13</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">12</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">11</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">10</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">9</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">8</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">7</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">6</span> <span class="ts-operator"></span><span class="ts-number">14</span> 
+      <span class="ts-comment">-----------------------------------------------------------------------</span>
+                                                 2                          
+      p p  , p p  , p p  , p p  , p p  , p p  , p  , p  p  , p  p  , p  p  ,
+       5 14   4 14   3 14   2 14   1 14   0 14   13   12 13   11 13   10 13 
+      -----------------------------------------------------------------------
+                                                                           
+      p p  , p p  , p p  , p p  , p p  , p p  , p p  , p p  , p p  , p p  ,
+       9 13   8 13   7 13   6 13   5 13   4 13   3 13   2 13   1 13   0 13 
+      -----------------------------------------------------------------------
+       2                                                                   
+      p  , p  p  , p  p  , p p  , p p  , p p  , p p  , p p  , p p  , p p  ,
+       12   11 12   10 12   9 12   8 12   7 12   6 12   5 12   4 12   3 12 
+      -----------------------------------------------------------------------
+                                                                       
+      p p  , p p  , p p  , p p  , p p  , p p   - p  p  , p p  , p p   -
+       2 12   1 12   0 12   9 11   8 11   7 11    10 11   5 11   4 11  
+      -----------------------------------------------------------------------
+                                    2                                       
+      p p  , p p   - p p  , p p  , p   - p p  , p p  , p p  , p p   - p p  ,
+       6 11   2 11    3 11   0 11   10    6 11   9 10   8 10   7 10    6 11 
+      -----------------------------------------------------------------------
+                                                                        
+      p p   - p p  , p p  , p p   - p p  , p p   - p p  , p p   - p p  ,
+       6 10    3 11   5 10   4 10    3 11   3 10    1 11   2 10    1 11 
+      -----------------------------------------------------------------------
+              2                                                         2 
+      p p  , p , p p , p p , p p , p p , p p , p p , p p , p p , p p , p ,
+       0 10   9   8 9   7 9   6 9   5 9   4 9   3 9   2 9   1 9   0 9   8 
+      -----------------------------------------------------------------------
+                                                       2                
+      p p , p p , p p , p p , p p , p p , p p , p p , p  - p p  , p p  -
+       7 8   6 8   5 8   4 8   3 8   2 8   1 8   0 8   7    6 11   6 7  
+      -----------------------------------------------------------------------
+                                                                          
+      p p  , p p , p p  - p p  , p p  - p p  , p p  - p p  , p p  - p p  ,
+       3 11   5 7   4 7    3 11   3 7    1 11   2 7    1 11   1 7    1 10 
+      -----------------------------------------------------------------------
+             2                                                               
+      p p , p  - p p  , p p , p p  - p p  , p p  - p p  , p p  - p p  , p p ,
+       0 7   6    1 11   5 6   4 6    1 11   3 6    1 10   2 6    1 10   0 6 
+      -----------------------------------------------------------------------
+       2                                 2                              
+      p , p p , p p , p p , p p , p p , p  - p p  , p p  - p p  , p p  -
+       5   4 5   3 5   2 5   1 5   0 5   4    1 11   3 4    1 10   2 4  
+      -----------------------------------------------------------------------
+                                 2                             2
+      p p  , p p  - p p , p p , p  - p p , p p  - p p , p p , p  - p p , p p 
+       1 10   1 4    1 6   0 4   3    1 6   2 3    1 6   0 3   2    1 6   1 2
+      -----------------------------------------------------------------------
+      - p p , p p , p p )
+         1 3   0 2   0 1
+
+o51 : Ideal of KK[p ..p  ]
+                   0   14
+</code></pre>
+
+<p>It turns out that the dimension (1) and degree (4) of these varieties coincide! Moreover, since the ideals are not saturated, one cannot directly compare the Hilbert series or free resolutions (of course one could first compute a saturation). But there is the arithmetic genus, that is, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord">0</span><span class="mclose">)</span></span></span></span>, where <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span> is the Hilbert polynomial.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i52</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">hilbertPolynomial</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">coker</span></span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">gens</span></span> <span class="ts-variable"><span class="ts-operator"></span>FS13</span>
+
+<span class="ts-variable ts-variable-builtin">o52</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span> <span class="ts-number">2</span><span class="ts-operator">*</span><span class="ts-variable">P</span>  <span class="ts-operator">+</span> <span class="ts-number">4</span><span class="ts-operator">*</span><span class="ts-variable">P</span>
+           <span class="ts-number">0</span>      <span class="ts-operator"></span><span class="ts-number">1</span>
+
+<span class="ts-variable ts-variable-builtin">o52</span> <span class="ts-operator">:</span> <span class="ts-variable">ProjectiveHilbertPolynomial</span>
+</code></pre>
+
+<p>The output, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">2</span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span>, means ``four times the Hilbert polynomial of the projective line minus 2’’; that is, the polynomial is <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>; so arithmetic genus is <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>.</p>
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i53</span> <span class="ts-operator">:</span> <span class="ts-variable">FS22</span> <span class="ts-operator">=</span> <span class="ts-function ts-function-call">Fano2</span><span class="ts-operator"></span><span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-number">1</span><span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-variable">S22</span><span class="ts-punctuation ts-punctuation-bracket">)</span>
+
+              <span class="ts-number">2</span>                                                              
+<span class="ts-variable ts-variable-builtin">o53</span> <span class="ts-operator">=</span> <span class="ts-variable">ideal</span> <span class="ts-punctuation ts-punctuation-bracket">(</span><span class="ts-variable">p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span>  <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span> <span class="ts-function ts-function-call">p</span> <span class="ts-variable"><span class="ts-operator"></span>p</span>  <span class="ts-punctuation ts-punctuation-delimiter">,</span>
+              <span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">13</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">12</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">11</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">10</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">9</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">8</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">7</span> <span class="ts-operator"></span><span class="ts-number">14</span>   <span class="ts-operator"></span><span class="ts-number">6</span> <span class="ts-operator"></span><span class="ts-number">14</span> 
+      <span class="ts-comment">-----------------------------------------------------------------------</span>
+                                                 2                          
+      p p  , p p  , p p  , p p  , p p  , p p  , p  , p  p  , p  p  , p  p  ,
+       5 14   4 14   3 14   2 14   1 14   0 14   13   12 13   11 13   10 13 
+      -----------------------------------------------------------------------
+                                                                           
+      p p  , p p  , p p  , p p  , p p  , p p  , p p  , p p  , p p  , p p  ,
+       9 13   8 13   7 13   6 13   5 13   4 13   3 13   2 13   1 13   0 13 
+      -----------------------------------------------------------------------
+                                                                           
+      p p  , p p   - p  p  , p p   - p  p  , p p   - p  p  , p p   - p p  ,
+       9 12   8 12    11 12   7 12    10 12   5 12    10 12   4 12    6 12 
+      -----------------------------------------------------------------------
+                            2                                          
+      p p  , p p  , p p  , p   - p  p  , p  p   - p p  , p p  , p p   -
+       2 12   1 12   0 12   11    10 12   10 11    6 12   9 11   8 11  
+      -----------------------------------------------------------------------
+                                                                         
+      p  p  , p p   - p p  , p p   - p p  , p p   - p p  , p p   - p p  ,
+       10 12   7 11    6 12   6 11    3 12   5 11    6 12   4 11    3 12 
+      -----------------------------------------------------------------------
+                            2                                               
+      p p  , p p  , p p  , p   - p p  , p p  , p p   - p p  , p p   - p p  ,
+       2 11   1 11   0 11   10    3 12   9 10   8 10    6 12   7 10    3 12 
+      -----------------------------------------------------------------------
+                                                                         2 
+      p p   - p p  , p p   - p p  , p p   - p p  , p p  , p p  , p p  , p ,
+       6 10    3 11   5 10    3 12   4 10    3 11   2 10   1 10   0 10   9 
+      -----------------------------------------------------------------------
+                                                             2               
+      p p , p p , p p , p p , p p , p p , p p , p p , p p , p  - p  p  , p p 
+       8 9   7 9   6 9   5 9   4 9   3 9   2 9   1 9   0 9   8    10 12   7 8
+      -----------------------------------------------------------------------
+                                                                            
+      - p p  , p p  - p p  , p p  - p p  , p p  - p p  , p p  - p p  , p p ,
+         6 12   6 8    3 12   5 8    6 12   4 8    3 12   3 8    3 11   2 8 
+      -----------------------------------------------------------------------
+                   2                                                        
+      p p , p p , p  - p p  , p p  - p p  , p p  - p p  , p p  - p p  , p p 
+       1 8   0 8   7    3 12   6 7    3 11   5 7    3 12   4 7    3 11   3 7
+      -----------------------------------------------------------------------
+                                  2                                     
+      - p p  , p p , p p , p p , p  - p p  , p p  - p p  , p p  - p p  ,
+         3 10   2 7   1 7   0 7   6    3 10   5 6    3 11   4 6    3 10 
+      -----------------------------------------------------------------------
+                         2                                                 
+      p p , p p , p p , p  - p p  , p p  - p p  , p p  - p p  , p p , p p ,
+       2 6   1 6   0 6   5    3 12   4 5    3 11   3 5    3 10   2 5   1 5 
+      -----------------------------------------------------------------------
+             2                                                            2 
+      p p , p  - p p  , p p  - p p , p p , p p , p p , p p , p p , p p , p ,
+       0 5   4    3 10   3 4    3 6   2 4   1 4   0 4   2 3   1 3   0 3   2 
+      -----------------------------------------------------------------------
+                   2         2
+      p p , p p , p , p p , p )
+       1 2   0 2   1   0 1   0
+
+o53 : Ideal of KK[p ..p  ]
+                   0   14
+</code></pre>
+
+<pre class="treesitter"><code class="no-highlight" data-language="m2"><span class="ts-variable">i54</span> <span class="ts-operator">:</span> <span class="ts-function ts-function-call">hilbertPolynomial</span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">coker</span></span> <span class="ts-variable"><span class="ts-operator"></span><span class="ts-function ts-function-call">gens</span></span> <span class="ts-variable"><span class="ts-operator"></span>FS22</span>
+
+<span class="ts-variable ts-variable-builtin">o54</span> <span class="ts-operator">=</span> <span class="ts-operator">-</span> <span class="ts-number">3</span><span class="ts-operator">*</span><span class="ts-variable">P</span>  <span class="ts-operator">+</span> <span class="ts-number">4</span><span class="ts-operator">*</span><span class="ts-variable">P</span>
+           <span class="ts-number">0</span>      <span class="ts-operator"></span><span class="ts-number">1</span>
+
+<span class="ts-variable ts-variable-builtin">o54</span> <span class="ts-operator">:</span> <span class="ts-variable">ProjectiveHilbertPolynomial</span>
+</code></pre>
+
+<p>The output, <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathbb">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span></span></span></span>, means <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>, arithmetic genus <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span>. In fact, the Fano variety of <code>S22</code> consists of a projective line, embedded as a smooth rational quartic; while the Fano variety of <code>S13</code> consists of a smooth rational quartic (corresponding to the rulings of the surface <code>S13</code> and an isolated point, corresponding to the section of negative self-intersection on the surface).</p>
+<hr>
+<p>The source of this document is in <code>Macaulay2Doc/loads.m2:97:0</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="___Tutorial_co_sp__Canonical_sp__Embeddings_spof_sp__Plane_sp__Curves_spand_sp__Gonality.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="___Tutorial_co_sp__Divisors.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="___Tutorial_co_sp__Canonical_sp__Embeddings_spof_sp__Plane_sp__Curves_spand_sp__Gonality.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="___Tutorial_co_sp__Divisors.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

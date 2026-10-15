@@ -1,0 +1,36 @@
+# mdBook configuration written by MarkdownDocs. This directory is the book's
+# source (src = "."). Build each book into a directory named like its source,
+# all side by side, so that links between packages (../<package>/) resolve.
+[book]
+title = "ConwayPolynomials — Macaulay2 documentation"
+language = "en"
+src = "."
+
+# Mathematics is raw TeX between dollar signs, with the macros of the
+# Macaulay2 documentation; rendered when mdbook-katex is installed.
+[preprocessor.katex]
+optional = true
+after = ["links"]
+macros = "../katex-macros.txt"
+throw-on-error = false
+
+# Macaulay2 code highlighted by mdbook-tsitter with the configured grammar. Its
+# stylesheet (mdbook-tsitter css) is expected beside the books.
+[preprocessor.tsitter]
+# After math: code blocks must still be code when mdbook-katex skips them.
+after = ["links", "katex"]
+
+[preprocessor.tsitter.languages.macaulay2]
+library = "/home/flux/m2/MarkdownDocs/test-build/out/grammar/macaulay2.so"
+highlights = "/home/flux/m2/MarkdownDocs/test-build/out/grammar/highlights.scm"
+aliases = ["m2", "macaulay2"]
+
+[output.html]
+additional-css = ["../treesitter.css"]
+
+[output.html.fold]
+enable = true
+level = 0
+
+[output.html.print]
+enable = false

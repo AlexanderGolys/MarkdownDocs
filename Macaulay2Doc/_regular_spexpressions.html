@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>regular expressions - Macaulay2Doc — Macaulay2 documentation</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-0392ca55.css">
+        <link rel="stylesheet" href="css/chrome-fc474251.css">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../treesitter.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-b2932a8a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-ab61a4b0.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Macaulay2Doc — Macaulay2 documentation</h1>
+
+                    <div class="right-buttons">
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<h1 id="regular-expressions--syntax-for-regular-expressions"><a class="header" href="#regular-expressions--syntax-for-regular-expressions">regular expressions – syntax for regular expressions</a></h1>
+<p>A regular expression is a string that specifies a pattern that describes a set of matching subject strings. Typically the string is compiled into a deterministic finite automaton whose execution, guided by the subject string, determines whether there is a match.</p>
+<p>Characters match themselves, except for the following special characters.</p>
+<pre><code class="language-text">.  [  {  }  (  )  \  *  +  ?  |  ^  $
+</code></pre>
+<p>Regular expressions are constructed inductively as follows: the empty regular expression matches the empty string; a concatenation of regular expressions matches the concatenation of the corresponding matching strings. Regular expressions separated by the character <code>|</code> match strings matched by any of them. Parentheses can be used for grouping, except that now, with the use of the <a href="___Boost.html">Boost</a> library, their insertion may alter the matching of subexpressions of ambiguous expressions. Additionally, the substrings matched by parenthesized subexpressions are captured for later use in replacement strings.</p>
+<h4 id="syntax-for-special-characters"><a class="header" href="#syntax-for-special-characters">Syntax for special characters</a></h4>
+<ul>
+<li>Wildcard
+<ul>
+<li><code>.</code> – match any character except the newline character</li>
+</ul>
+</li>
+<li>Anchors
+<ul>
+<li><code>^</code> – match the beginning of the string or the beginning of a line</li>
+<li><code>$</code> – match the end of the string or the end of a line</li>
+</ul>
+</li>
+<li>Sub-expressions
+<ul>
+<li><code>(...)</code> – marked sub-expression, may be referred to by a back-reference</li>
+<li><code>\i</code> – match the same string that the i-th parenthesized sub-expression matched</li>
+</ul>
+</li>
+<li>Repeats
+<ul>
+<li><code>*</code> – match previous expression 0 or more times</li>
+<li><code>+</code> – match previous expression 1 or more times</li>
+<li><code>?</code> – match previous expression 1 or 0 times</li>
+<li><code>{m}</code> – match previous expression exactly m times</li>
+<li><code>{m,n}</code> – match previous expression at least m and at most n times</li>
+<li><code>{,n}</code> – match previous expression at most n times</li>
+<li><code>{m,}</code> – match previous expression at least m times</li>
+</ul>
+</li>
+<li>Alternation
+<ul>
+<li><code>|</code> – match expression to left or expression to right</li>
+</ul>
+</li>
+<li>Word and buffer boundaries
+<ul>
+<li><code>\b</code> – match word boundary</li>
+<li><code>\B</code> – match within word</li>
+<li><code>\&lt;</code> – match beginning of word</li>
+<li><code>\&gt;</code> – match end of word</li>
+<li><code>\`</code> – match beginning of string</li>
+<li><code>\'</code> – match end of string</li>
+</ul>
+</li>
+<li>Character sets
+<ul>
+<li><code>[...]</code> – match any single character that is a member of the set
+<ul>
+<li><code>[abc]</code> – match either <code>a</code>, <code>b</code>, or <code>c</code></li>
+<li><code>[A-C]</code> – match any character from <code>A</code> through <code>C</code></li>
+</ul>
+</li>
+<li><code>[^...]</code> – match non-listed characters, ranges, or classes</li>
+</ul>
+</li>
+<li>Character classes
+<ul>
+<li><code>[:alnum:]</code> – any alphanumeric character</li>
+<li><code>[:alpha:]</code> – any alphabetic character</li>
+<li><code>[:blank:]</code> – any whitespace or tab character</li>
+<li><code>[:cntrl:]</code> – any control character</li>
+<li><code>[:digit:]</code> – any decimal digit</li>
+<li><code>[:graph:]</code> – any graphical character (same as [:print:] except omits space)</li>
+<li><code>[:lower:]</code> – any lowercase character</li>
+<li><code>[:print:]</code> – any printable character</li>
+<li><code>[:punct:]</code> – any punctuation character</li>
+<li><code>[:space:]</code> – any whitespace, tab, carriage return, newline, vertical tab, and form feed</li>
+<li><code>[:unicode:]</code> – any unicode character with code point above 255 in value</li>
+<li><code>[:upper:]</code> – any uppercase character</li>
+<li><code>[:word:]</code> – any word character (alphanumeric characters plus the underscore</li>
+<li><code>[:xdigit:]</code> – any hexadecimal digit character</li>
+</ul>
+</li>
+<li>“Single character” character classes
+<ul>
+<li><code>\d</code> – same as <code>[[:digit:]]</code></li>
+<li><code>\l</code> – same as <code>[[:lower:]]</code></li>
+<li><code>\s</code> – same as <code>[[:space:]]</code></li>
+<li><code>\u</code> – same as <code>[[:upper:]]</code></li>
+<li><code>\w</code> – same as <code>[[:word:]]</code></li>
+<li><code>\D</code> – same as <code>[^[:digit:]]</code></li>
+<li><code>\L</code> – same as <code>[^[:lower:]]</code></li>
+<li><code>\S</code> – same as <code>[^[:space:]]</code></li>
+<li><code>\U</code> – same as <code>[^[:upper:]]</code></li>
+<li><code>\W</code> – same as <code>[^[:word:]]</code></li>
+</ul>
+</li>
+</ul>
+<p>The special character <code>\</code> may be confusing, as inside a string delimited by quotation marks (<code>"..."</code>), you type two of them to specify a special character, whereas inside a string delimited by triple slashes (<code>///...///</code>), you only need one. Thus regular expressions delimited by triple slashes are more readable. To match <code>\</code> against itself, double the number of backslashes.</p>
+<p>In order to match one of the special characters itself, precede it with a backslash or use <a href="_regex__Quote.html">regexQuote</a>.</p>
+<h2 id="flavors-of-regular-expressions"><a class="header" href="#flavors-of-regular-expressions">Flavors of Regular Expressions</a></h2>
+<p>The regular expression functions in Macaulay2 are powered by calls to the <a href="https://www.boost.org/doc/libs/release/libs/regex/">Boost.Regex</a> C++ library, which supports multiple flavors, or standards, of regular expression.</p>
+<p>Since Macaulay2 <a href="_changes_cm_sp1.17.html">v1.17</a>, the Perl flavor is the default. In general, the Perl flavor supports all patterns designed for the POSIX Extended flavor, but allows for more fine-tuning in the patterns. Alternatively, the POSIX Extended flavor can be chosen by passing the option <code>POSIX =&gt; true</code>. One key difference is what happens when there is more that one way to match a regular expression:</p>
+<ul>
+<li><strong>Perl</strong> – the “first” match is arrived at by a depth-first search.</li>
+<li><strong>POSIX</strong> – the “best” match is obtained using the “leftmost-longest” rule;</li>
+</ul>
+<p>If there’s a tie in the POSIX flavor, the rule is applied to the first parenthetical subexpression.</p>
+<h2 id="additional-perl-regular-expression-syntax"><a class="header" href="#additional-perl-regular-expression-syntax">Additional Perl Regular Expression Syntax</a></h2>
+<p>The Perl flavor adds the following, non-backward compatible constructions:</p>
+<h4 id="non-marking-grouping-ie-a-grouping-that-does-not-generate-a-sub-expression"><a class="header" href="#non-marking-grouping-ie-a-grouping-that-does-not-generate-a-sub-expression">Non-marking grouping; i.e., a grouping that does not generate a sub-expression</a></h4>
+<ul>
+<li><code>(?#...)</code> – ignored and treated as a comment</li>
+<li><code>(?:...)</code> – non-marked sub-expression, may not be referred to by a back-reference</li>
+<li><code>(?=...)</code> – positive lookahead; consumes zero characters, only if pattern matches</li>
+<li><code>(?!...)</code> – negative lookahead; consumes zero characters, only if pattern does not match</li>
+<li><code>(?&lt;=..)</code> – positive lookbehind; consumes zero characters, only if pattern could be matched against the characters preceding the current position (pattern must be of fixed length)</li>
+<li><code>(?&lt;!..)</code> – negative lookbehind; consumes zero characters, only if pattern could not be matched against the characters preceding the current position (pattern must be of fixed length)</li>
+<li><code>(?&gt;...)</code> – match independently of the surrounding pattern and the expression will never backtrack into the pattern</li>
+</ul>
+<h4 id="non-greedy-repeats"><a class="header" href="#non-greedy-repeats">Non-greedy repeats</a></h4>
+<ul>
+<li><code>*?</code> – match the previous atom 0 or more times, while consuming as little input as possible</li>
+<li><code>+?</code> – match the previous atom 1 or more times, while consuming as little input as possible</li>
+<li><code>??</code> – match the previous atom 1 or 0 times, while consuming as little input as possible</li>
+<li><code>{m,}?</code> – match the previous atom m or more times, while consuming as little input as possible</li>
+<li><code>{m,n}?</code> – match the previous atom at between m and n times, while consuming as little input as possible</li>
+</ul>
+<h4 id="possessive-repeats"><a class="header" href="#possessive-repeats">Possessive repeats</a></h4>
+<ul>
+<li><code>*+</code> – match the previous atom 0 or more times, while giving nothing back</li>
+<li><code>++</code> – match the previous atom 1 or more times, while giving nothing back</li>
+<li><code>?+</code> – match the previous atom 1 or 0 times, while giving nothing back</li>
+<li><code>{m,}+</code> – match the previous atom m or more times, while giving nothing back</li>
+<li><code>{m,n}+</code> – match the previous atom at between m and n times, while giving nothing back</li>
+</ul>
+<h4 id="back-references"><a class="header" href="#back-references">Back references</a></h4>
+<ul>
+<li><code>\g1</code> – match whatever matched sub-expression 1</li>
+<li><code>\g{1}</code> – match whatever matched sub-expression 1</li>
+<li><code>\g-1</code> – match whatever matched the last opened sub-expression</li>
+<li><code>\g{-2}</code> – match whatever matched the last but one opened sub-expression</li>
+<li><code>\g{that}</code> – match whatever matched the sub-expression named “that”</li>
+<li><code>\k&lt;that&gt;</code> – match whatever matched the sub-expression named “that”</li>
+<li><code>(?&lt;NAME&gt;...)</code> – named sub-expression, may be referred to by a named back-reference</li>
+<li><code>(?'NAME'...)</code> – named sub-expression, may be referred to by a named back-reference</li>
+</ul>
+<p>See references below for more in depth syntax for controlling the backtracking algorithm.</p>
+<h2 id="string-formatting-syntax"><a class="header" href="#string-formatting-syntax">String Formatting Syntax</a></h2>
+<p>The replacement string in <a href="_replace_lp__String_cm__String_cm__String_rp.html">replace(String,String,String)</a> and <a href="_select_lp__String_cm__String_cm__String_rp.html">select(String,String,String)</a> supports additional syntax for escape sequences as well as inserting captured sub-expressions:</p>
+<h4 id="using-perl-regular-expression-syntax-default"><a class="header" href="#using-perl-regular-expression-syntax-default">Using Perl regular expression syntax (default)</a></h4>
+<ul>
+<li>Syntax for inserting captured sub-expressions:
+<ul>
+<li><code>$&amp;</code> – outputs what matched the whole expression</li>
+<li><code>$`</code> – outputs the text between the end of the last match (or beginning if no previous match was found) and the start of the current match</li>
+<li><code>$'</code> – outputs the text following the end of the current match</li>
+<li><code>$+</code> – outputs what matched the last marked sub-expression in the regular expression</li>
+<li><code>$^N</code> – outputs what matched the last sub-expression to be actually matched</li>
+<li><code>$n</code> – outputs what matched the n-th sub-expression</li>
+<li><code>${n}</code> – outputs what matched the n-th sub-expression</li>
+<li><code>$+{NAME}</code> – outputs what matched the sub-expression named <code>NAME</code> (Perl syntax only)</li>
+<li><code>$$</code> – outputs a literal <code>$</code></li>
+</ul>
+</li>
+<li>Syntax for manipulating the captured groups:
+<ul>
+<li><code>\l</code> – converts the next character to be outputted to lower case</li>
+<li><code>\u</code> – converts the next character to be outputted to upper case</li>
+<li><code>\L</code> – converts all subsequent characters to be outputted to lower case, until it reaches <code>\E</code></li>
+<li><code>\U</code> – converts all subsequent characters to be outputted to upper case, until it reaches <code>\E</code></li>
+<li><code>\E</code> – terminates a <code>\U</code> or <code>\L</code> sequence</li>
+<li><code>\</code> – specifies an escape sequence (e.g. <code>\\</code>)</li>
+</ul>
+</li>
+</ul>
+<h4 id="using-posix-extended-syntax-posix--true"><a class="header" href="#using-posix-extended-syntax-posix--true">Using POSIX Extended syntax (<code>POSIX =&gt; true</code>)</a></h4>
+<ul>
+<li>Syntax for inserting captured groups:
+<ul>
+<li><code>&amp;</code> – outputs what matched the whole expression</li>
+<li><code>\0</code> – outputs what matched the whole expression</li>
+<li><code>\n</code> – if <code>n</code> is in the range 1-9, outputs what matched the n-th sub-expression</li>
+<li><code>\</code> – specifies an escape sequence (e.g. <code>\&amp;</code>)</li>
+</ul>
+</li>
+</ul>
+<p>For the complete list, including characters escape sequences, see the Boost.Regex manual on <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/boost_regex/format/perl_format.html">format string syntax</a>.</p>
+<h4 id="string-processing-functions-that-accept-regular-expressions"><a class="header" href="#string-processing-functions-that-accept-regular-expressions">String processing functions that accept regular expressions</a></h4>
+<ul>
+<li><a href="_match.html">match</a> – regular expression matching</li>
+<li><a href="_regex.html">regex</a> – evaluate a regular expression search</li>
+<li><a href="_separate.html">separate</a> – split a string into substrings using a regular expression</li>
+<li><a href="_select_lp__String_cm__String_cm__String_rp.html">select(String,String,String)</a> – select and reformat substrings matching a regular expression</li>
+<li><a href="_replace_lp__String_cm__String_cm__String_rp.html">replace(String,String,String)</a> – replace substrings matching a regular expression</li>
+</ul>
+<h4 id="other-functions-that-accept-regular-expressions"><a class="header" href="#other-functions-that-accept-regular-expressions">Other functions that accept regular expressions</a></h4>
+<ul>
+<li><a href="_about.html">about</a> – search the documentation</li>
+<li><a href="_apropos.html">apropos</a> – symbols matching a pattern</li>
+<li><a href="_find__Files.html">findFiles</a> – find files recursively</li>
+<li><a href="_copy__Directory_lp__String_cm__String_rp.html">copyDirectory</a></li>
+<li><a href="_symlink__Directory_lp__String_cm__String_rp.html">symlinkDirectory</a> – make symbolic links for all files in a directory tree</li>
+</ul>
+<h2 id="complete-references"><a class="header" href="#complete-references">Complete References</a></h2>
+<p>For complete documentation on regular expressions supported in Macaulay2, see the Boost.Regex manual on <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/boost_regex/syntax/perl_syntax.html">Perl</a> and <a href="https://www.boost.org/doc/libs/release/libs/regex/doc/html/boost_regex/syntax/basic_extended.html">Extended</a> flavors, or read the entry for <code>regex</code> in section 7 of the unix man pages.</p>
+<p>In addition to the functions mentioned below, regular expressions appear in <a href="_about.html">about</a>, <a href="_apropos.html">apropos</a>, <a href="_find__Files.html">findFiles</a>, <a href="_copy__Directory_lp__String_cm__String_rp.html">copyDirectory</a>, and <a href="_symlink__Directory_lp__String_cm__String_rp.html">symlinkDirectory</a>.</p>
+<h3 id="menu"><a class="header" href="#menu">Menu</a></h3>
+<h4 id="functions-that-accept-regular-expressions"><a class="header" href="#functions-that-accept-regular-expressions">functions that accept regular expressions</a></h4>
+<ul>
+<li><a href="_match.html">match</a> – regular expression matching</li>
+<li><a href="_regex.html">regex</a> – evaluate a regular expression search</li>
+<li><a href="_separate.html">separate</a> – split a string into substrings using a regular expression</li>
+<li><a href="_select_lp__String_cm__String_cm__String_rp.html">select(String,String,String)</a> – select and reformat substrings matching a regular expression</li>
+<li><a href="_replace_lp__String_cm__String_cm__String_rp.html">replace(String,String,String)</a> – replace substrings matching a regular expression</li>
+<li><a href="_regex__Quote.html">regexQuote</a> – escape special characters in regular expressions</li>
+</ul>
+<hr>
+<p>The source of this document is in <code>Macaulay2Doc/functions/regex-doc.m2:321:0</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="_strings_spand_spnets.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="_match.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="_strings_spand_spnets.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="_match.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
+
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-c22b7243.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
