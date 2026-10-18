@@ -1,19 +1,37 @@
-# mdBook configuration written by MarkdownDocs. This directory is the book's
-# source (src = "."). Build each book into a directory named like its source,
-# all side by side, so that links between packages (../<package>/) resolve.
+# mdBook configuration written by MarkdownDocs. This directory is the book's source
+# (src = "."). Build each book into a directory named like its source, all side
+# by side, so that links between packages (../<package>/) resolve.
 [book]
 title = "@TITLE@"
 language = "en"
 src = "."
 
+# The pages are plain Markdown: without mdBook's own preprocessors, {{#...}} in
+# them stays text instead of being expanded.
+[build]
+use-default-preprocessors = false
+
 # Mathematics is raw TeX between dollar signs, with the macros of the
 # Macaulay2 documentation; rendered when mdbook-katex is installed.
 [preprocessor.katex]
 optional = true
-after = ["links"]
 macros = "../katex-macros.txt"
 throw-on-error = false
-@TREESITTER@
+
+# Macaulay2 code highlighted when mdbook-tsitter is installed, which fetches and
+# compiles the grammar on the first build and embeds its own stylesheet.
+[preprocessor.tsitter]
+optional = true
+
+[preprocessor.tsitter.languages.macaulay2]
+aliases = ["m2", "macaulay2"]
+@GRAMMAR@
+[preprocessor.tsitter.languages.bibtex]
+aliases = ["bib", "bibtex"]
+
+[output.html]
+additional-css = ["book.css"]
+
 [output.html.fold]
 enable = true
 level = 0

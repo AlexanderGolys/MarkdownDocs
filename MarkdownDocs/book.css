@@ -1,0 +1,18 @@
+/* Keep synopsis headings close to their contents. */
+.content h3 {
+    margin-bottom: 0.5em;
+}
+
+.content h3 + :is(p, pre, ul, ol) {
+    margin-top: 0;
+}
+
+/* The headline callout of a page is titled "Info". */
+.blockquote-tag-note .blockquote-tag-title {
+    font-size: 0;
+}
+
+.blockquote-tag-note .blockquote-tag-title::after {
+    content: "Info";
+    font-size: 1.6rem;
+}
